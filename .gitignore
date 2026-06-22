@@ -1,0 +1,12 @@
+node_modules/
+.wrangler/
+*.log
+.DS_Store
+Thumbs.db
+assets/_source/
+assets/ChatGPT Image*.png
+.claude/
+CLAUDE.md
+dist/
+migrations/
+wrangler.toml
