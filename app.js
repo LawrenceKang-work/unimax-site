@@ -75,7 +75,7 @@
     {t:"Ziegenfuss TN, et al. Aqueous extract of Withania somnifera on strength training adaptations and recovery: the STAR trial. Nutrients. 2018;10(11):1807.", u:"https://doi.org/10.3390/nu10111807"}
   ];
 
-  /* ---------- DATA: FAQ (B2B — wholesale & distribution) ---------- */
+  /* ---------- DATA: FAQ (compliant, structure-function) ---------- */
   var FAQ = [
     {q:{en:"What is Uni Max?",zh:"Uni Max 是什么？",ms:"Apakah itu Uni Max?",nl:"Wat is Uni Max?",de:"Was ist Uni Max?",pl:"Co to jest Uni Max?"},
      a:{en:"Uni Max is a ready-to-drink botanical lychee vitality drink with Triple Force Tongkat Ali (Yellow, Red & Black), amino acids, adaptogens, antioxidants and essential nutrients — formulated to support everyday energy, stamina, focus, circulation and natural vitality in one convenient sachet.",
@@ -175,7 +175,7 @@
   /* ---------- i18n dictionary (static data-i18n keys) ---------- */
   var I18N = {
     zh: {
-      "announce":"提供 B2B 批发 · 欢迎欧洲分销商洽询 · HALAL 与 GMP 认证 · 马来西亚制造",
+      "announce":"提供大批量订购 · 欢迎欧洲分销商洽询 · HALAL 与 GMP 认证 · 马来西亚制造",
       "nav.benefits":"功效","nav.formula":"配方","nav.trust":"认证","nav.research":"研究依据","nav.faq":"常见问题",
       "cta.order":"索取批发条款","cta.explore":"了解配方",
       "hero.eyebrow":"30+ 男士 · 高压上班族 · 运动爱好者","hero.h1a":"总在下午就","hero.h1pk":"没电？","hero.h1b":"","hero.h1c":"每天","hero.h1bk":"一包，","hero.h1cp":"","hero.h1d":"撑满你的一整天。",
@@ -225,9 +225,9 @@
       "use.note":"无需冲泡——撕开、饮用、出发。请勿超过建议每日份量。",
       "rev.eyebrow":"每日用户的真实选择","rev.h2a":"真实日常，","rev.h2b":"真实动力","rev.sample":"看看活跃人士如何将 UNI MAX 融入日常——从繁忙工作日到训练时间，随行不间断。",
       "faq.eyebrow":"值得了解","faq.h2":"常见问题","faq.asideT":"还有疑问？","faq.asideP":"在 WhatsApp 上联系我们，团队将协助您选择最合适的方案。","faq.asideCta":"与 Jack 聊聊",
-      "cta.h2a":"为你的一天充能 —","cta.h2b":"在 WhatsApp 下单 Uni Max。","cta.p":"无需结账，毫不繁琐。直接讯息我们，即可安排您的首盒与配送。","cta.sub":"+60 10-200 5803 · 联系人：Jack",
+      "cta.h2a":"为你的一天充能 —","cta.h2b":"在 WhatsApp 下单 Uni Max。","cta.p":"无需结账，毫不繁琐。直接讯息我们，即可安排您的首盒与配送。","cta.sub":"+49 173 6986625 · 联系我们",
       "foot.about":"力量的宇宙，极致释放。一款含三重东革阿里的植物荔枝活力饮品，由 UniPro 出品。",
-      "foot.explore":"探索","foot.product":"产品","foot.p1":"10克 × 30 包","foot.p2":"即饮","foot.p3":"植物荔枝","foot.p4":"HALAL 认证","foot.contact":"联系","foot.jack":"请找 Jack",
+      "foot.explore":"探索","foot.product":"产品","foot.p1":"10克 × 30 包","foot.p2":"即饮","foot.p3":"植物荔枝","foot.p4":"HALAL 认证","foot.contact":"联系","foot.jack":"联系我们",
       "foot.disclaimer":"本产品为膳食补充品，无意诊断、治疗、治愈或预防任何疾病。本网站信息涉及一般保健及各别成分的结构功能，不能替代专业医疗建议。饮用前请咨询医疗专业人员，尤其是孕期、哺乳期、正在服药或有健康状况者。请置于儿童无法触及之处。不建议 18 岁以下人士饮用。",
       "foot.copy":"© 2026 UniPro · UNI MAX。版权所有。","foot.made":"由 Orient Biotech Sdn Bhd 于马来西亚制造。",
       "nav.order":"成为合作伙伴","cta.seeplans":"查看方案与价格",
@@ -244,7 +244,7 @@
       "order.p2save":"更超值","order.p2day":"· 三个月份量","order.p2f1":"90 包","order.p2f2":"整组免运费","order.p2f3":"优先 WhatsApp 客服","order.p2cta":"购买优惠装",
       "order.p3name":"区域总代理","order.p3tag":"每月一盒","order.p3day":"最低价 · 随时取消",
       "order.p3f1":"每月配送 30 包","order.p3f2":"每月免运费","order.p3f3":"可随时暂停或取消","order.p3cta":"开始订阅",
-      "order.a1":"首盒免运费","order.a2":"WhatsApp 当天回复","order.a3":"HALAL 与 GMP 认证设施","order.a4":"不适合你？随时讯息我们",
+      "order.a1":"欢迎大批量订购","order.a2":"WhatsApp 当天回复","order.a3":"HALAL 与 GMP 认证设施","order.a4":"不适合你？随时讯息我们",
       "sticky.from":"准备好为一天充能了吗？","sticky.sub":"首盒免运费","sticky.cta":"查看方案",
       "order.subtag":"批量定价 · 起订量洽询确认","order.howmany":"选择你的合作级别","order.spec1":"包 / 盒","order.spec2":"植物与营养成分","order.spec3":"添加糖","order.spec4":"分钟感受提升",
       "order.p1sub":"适合商店、药房与健身房试销","order.p2sub":"适合按箱采购的分销商与进口商","order.p3sub":"独家区域代理权与市场支持","order.best":"最受欢迎","order.freeship":"免运费","order.cta":"索取批发条款","order.p3save":"更省","order.poa":"价格待定","order.p1price":"低起订量","order.p2price":"最优单价","order.p3price":"区域代理权",
@@ -254,7 +254,7 @@
       "brand.h2a":"力量的宇宙，","brand.h2b":"极致释放。"
     },
     ms: {
-      "announce":"Borong B2B tersedia · Pertanyaan pengedar Eropah dialu-alukan · Disahkan HALAL & GMP · Buatan Malaysia",
+      "announce":"Pesanan Pukal Tersedia · Pertanyaan pengedar Eropah dialu-alukan · Disahkan HALAL & GMP · Buatan Malaysia",
       "nav.benefits":"Manfaat","nav.formula":"Formula","nav.trust":"Pensijilan","nav.research":"Penyelidikan","nav.faq":"Soalan Lazim",
       "cta.order":"Minta Terma Borong","cta.explore":"Terokai formula",
       "hero.eyebrow":"Lelaki 30+ · Profesional tekanan tinggi · Gaya hidup aktif","hero.h1a":"","hero.h1pk":"Lesu","hero.h1b":" menjelang petang?","hero.h1c":"Satu ","hero.h1bk":"sachet","hero.h1cp":" sehari,","hero.h1d":"bertenaga sepanjang hari.",
@@ -304,9 +304,9 @@
       "use.note":"Tiada bancuhan diperlukan — koyak, minum, pergi. Jangan melebihi sajian harian yang disyorkan.",
       "rev.eyebrow":"Dipercayai Pengguna Harian","rev.h2a":"Rutin sebenar,","rev.h2b":"momentum sebenar","rev.sample":"Lihat bagaimana individu aktif menjadikan UNI MAX sebahagian daripada rutin harian mereka — dari hari kerja sibuk hingga sesi latihan dan waktu panjang dalam perjalanan.",
       "faq.eyebrow":"Baik untuk diketahui","faq.h2":"Soalan lazim","faq.asideT":"Masih ada soalan?","faq.asideP":"Mesej kami di WhatsApp dan pasukan kami akan membantu anda memilih yang sesuai.","faq.asideCta":"Berbual dengan Jack",
-      "cta.h2a":"Cas tenaga hari anda —","cta.h2b":"pesan Uni Max di WhatsApp.","cta.p":"Tiada pembayaran, tanpa kerumitan. Mesej kami terus dan kami akan uruskan kotak pertama serta penghantaran anda.","cta.sub":"+60 10-200 5803 · Hubungi: Jack",
+      "cta.h2a":"Cas tenaga hari anda —","cta.h2b":"pesan Uni Max di WhatsApp.","cta.p":"Tiada pembayaran, tanpa kerumitan. Mesej kami terus dan kami akan uruskan kotak pertama serta penghantaran anda.","cta.sub":"+49 173 6986625 · Hubungi kami",
       "foot.about":"Alam Semesta Kuasa, Impak Maksimum. Minuman vitaliti botani laici dengan Tongkat Ali Tiga Kuasa, oleh UniPro.",
-      "foot.explore":"Terokai","foot.product":"Produk","foot.p1":"10g × 30 sachet","foot.p2":"Sedia minum","foot.p3":"Laici botani","foot.p4":"Disahkan HALAL","foot.contact":"Hubungi","foot.jack":"Tanya Jack",
+      "foot.explore":"Terokai","foot.product":"Produk","foot.p1":"10g × 30 sachet","foot.p2":"Sedia minum","foot.p3":"Laici botani","foot.p4":"Disahkan HALAL","foot.contact":"Hubungi","foot.jack":"Hubungi kami",
       "foot.disclaimer":"Produk ini ialah suplemen diet dan tidak bertujuan untuk mendiagnos, merawat, menyembuh atau mencegah sebarang penyakit. Maklumat di laman ini berkaitan kesihatan umum dan struktur-fungsi bahan individu, dan bukan pengganti nasihat perubatan profesional. Berunding dengan profesional kesihatan sebelum penggunaan, terutamanya jika anda hamil, menyusu, mengambil ubat atau menguruskan keadaan kesihatan. Jauhkan daripada kanak-kanak. Tidak disyorkan untuk bawah 18 tahun.",
       "foot.copy":"© 2026 UniPro · UNI MAX. Hak cipta terpelihara.","foot.made":"Dikilang di Malaysia oleh Orient Biotech Sdn Bhd.",
       "nav.order":"Jadi Rakan Kongsi","cta.seeplans":"Lihat pelan & harga",
@@ -323,7 +323,7 @@
       "order.p2save":"Lebih jimat","order.p2day":"· bekalan 3 bulan","order.p2f1":"90 sachet","order.p2f2":"Penghantaran percuma seluruh pakej","order.p2f3":"Sokongan WhatsApp keutamaan","order.p2cta":"Pesan pakej",
       "order.p3name":"Pengedar Serantau","order.p3tag":"1 kotak setiap bulan","order.p3day":"Harga terendah · batal bila-bila masa",
       "order.p3f1":"30 sachet dihantar bulanan","order.p3f2":"Penghantaran percuma setiap bulan","order.p3f3":"Jeda atau batal bila-bila masa","order.p3cta":"Mula langganan",
-      "order.a1":"Penghantaran percuma kotak pertama","order.a2":"Balasan WhatsApp hari sama","order.a3":"Kemudahan bersijil HALAL & GMP","order.a4":"Tidak sesuai? Mesej kami sahaja",
+      "order.a1":"Pesanan pukal dialu-alukan","order.a2":"Balasan WhatsApp hari sama","order.a3":"Kemudahan bersijil HALAL & GMP","order.a4":"Tidak sesuai? Mesej kami sahaja",
       "sticky.from":"Bersedia bertenaga hari ini?","sticky.sub":"Penghantaran percuma kotak pertama","sticky.cta":"Lihat pelan",
       "order.subtag":"Harga mengikut jumlah · MOQ disahkan atas pertanyaan","order.howmany":"Pilih tahap kerjasama anda","order.spec1":"sachet / kotak","order.spec2":"botani & nutrien","order.spec3":"gula tambahan","order.spec4":"minit rasa kesannya",
       "order.p1sub":"Untuk kedai, farmasi & gim menguji jualan","order.p2sub":"Untuk penjual semula & pengimport beli mengikut karton","order.p3sub":"Hak wilayah eksklusif & sokongan pemasaran","order.best":"PALING POPULAR","order.freeship":"PENGHANTARAN PERCUMA","order.cta":"Minta Terma Borong","order.p3save":"Lebih jimat","order.poa":"Harga atas permintaan","order.p1price":"MOQ rendah","order.p2price":"Harga unit terbaik","order.p3price":"Hak wilayah",
@@ -333,7 +333,7 @@
       "brand.h2a":"Alam semesta kuasa,","brand.h2b":"impak maksimum."
     },
     pl: {
-      "announce":"Dostępna sprzedaż hurtowa B2B · Zapraszamy dystrybutorów z UE · Certyfikat HALAL i GMP · Wyprodukowano w Malezji",
+      "announce":"Dostępne zamówienia hurtowe · Zapraszamy dystrybutorów z UE · Certyfikat HALAL i GMP · Wyprodukowano w Malezji",
       "nav.benefits":"Korzyści","nav.formula":"Formuła","nav.trust":"Certyfikaty","nav.research":"Badania","nav.faq":"FAQ",
       "cta.order":"Poproś o warunki hurtowe","cta.explore":"Odkryj formułę",
       "hero.eyebrow":"Mężczyźni 30+ · Zapracowani profesjonaliści · Aktywny styl życia","hero.h1a":"Brak energii","hero.h1pk":"po południu?","hero.h1b":"","hero.h1c":"Jedno","hero.h1bk":"sachet dziennie —","hero.h1cp":"","hero.h1d":"energia na cały dzień.",
@@ -383,9 +383,9 @@
       "use.note":"Bez parzenia — otwórz, wypij, idź. Nie przekraczaj zalecanej dziennej dawki.",
       "rev.eyebrow":"Prawdziwy wybór codziennych użytkowników","rev.h2a":"Prawdziwa codzienność,","rev.h2b":"prawdziwa motywacja","rev.sample":"Sprawdź, jak aktywne osoby włączają UNI MAX do swojej codzienności — od zabieganych dni roboczych po treningi, zawsze pod ręką.",
       "faq.eyebrow":"Warto wiedzieć","faq.h2":"Najczęstsze pytania","faq.asideT":"Masz jeszcze pytania?","faq.asideP":"Skontaktuj się z nami na WhatsApp, a nasz zespół pomoże Ci wybrać najlepsze rozwiązanie.","faq.asideCta":"Porozmawiaj z Jackiem",
-      "cta.h2a":"Naładuj swój dzień —","cta.h2b":"zamów Uni Max przez WhatsApp.","cta.p":"Bez skomplikowanego koszyka zakupów. Wyślij nam wiadomość i zorganizujemy Twoje pierwsze opakowanie z dostawą.","cta.sub":"+60 10-200 5803 · Kontakt: Jack",
+      "cta.h2a":"Naładuj swój dzień —","cta.h2b":"zamów Uni Max przez WhatsApp.","cta.p":"Bez skomplikowanego koszyka zakupów. Wyślij nam wiadomość i zorganizujemy Twoje pierwsze opakowanie z dostawą.","cta.sub":"+49 173 6986625 · Skontaktuj się z nami",
       "foot.about":"Wszechświat siły, maksymalny efekt. Botaniczny napój witalny liczi z Triple Tongkat Ali, od UniPro.",
-      "foot.explore":"Odkryj","foot.product":"Produkt","foot.p1":"10 g × 30 saszetek","foot.p2":"Gotowy do picia","foot.p3":"Botaniczny liczi","foot.p4":"Certyfikat HALAL","foot.contact":"Kontakt","foot.jack":"Zapytaj Jacka",
+      "foot.explore":"Odkryj","foot.product":"Produkt","foot.p1":"10 g × 30 saszetek","foot.p2":"Gotowy do picia","foot.p3":"Botaniczny liczi","foot.p4":"Certyfikat HALAL","foot.contact":"Kontakt","foot.jack":"Skontaktuj się z nami",
       "foot.disclaimer":"Ten produkt jest suplementem diety i nie jest przeznaczony do diagnozowania, leczenia, wyleczenia ani zapobiegania jakiejkolwiek chorobie. Informacje na tej stronie dotyczą ogólnego dobrostanu i wsparcia strukturalnego i funkcjonalnego poszczególnych składników i nie zastępują profesjonalnej porady medycznej. Skonsultuj się z pracownikiem służby zdrowia przed użyciem, szczególnie w przypadku ciąży, karmienia piersią, przyjmowania leków lub problemów zdrowotnych. Przechowywać w miejscu niedostępnym dla dzieci. Nie zalecane dla osób poniżej 18 roku życia.",
       "foot.copy":"© 2026 UniPro · UNI MAX. Wszelkie prawa zastrzeżone.","foot.made":"Wyprodukowane przez Orient Biotech Sdn Bhd w Malezji.",
       "nav.order":"Zostań partnerem","cta.seeplans":"Zobacz plany i ceny",
@@ -402,7 +402,7 @@
       "order.p2save":"Lepsza wartość","order.p2day":"· zapas na trzy miesiące","order.p2f1":"90 saszetek","order.p2f2":"Bezpłatna dostawa całego zestawu","order.p2f3":"Priorytetowa obsługa WhatsApp","order.p2cta":"Kup pakiet",
       "order.p3name":"Dystrybutor regionalny","order.p3tag":"Jedno opakowanie miesięcznie","order.p3day":"Najniższa cena · Anuluj w dowolnym momencie",
       "order.p3f1":"30 saszetek dostarczanych miesięcznie","order.p3f2":"Bezpłatna dostawa co miesiąc","order.p3f3":"Wstrzymaj lub anuluj w dowolnym momencie","order.p3cta":"Rozpocznij subskrypcję",
-      "order.a1":"Bezpłatna dostawa przy pierwszym zamówieniu","order.a2":"Odpowiedź WhatsApp tego samego dnia","order.a3":"Certyfikowany zakład HALAL i GMP","order.a4":"Nie pasuje? Po prostu nam napisz",
+      "order.a1":"Zamówienia hurtowe mile widziane","order.a2":"Odpowiedź WhatsApp tego samego dnia","order.a3":"Certyfikowany zakład HALAL i GMP","order.a4":"Nie pasuje? Po prostu nam napisz",
       "sticky.from":"Gotowy, aby naładować swój dzień?","sticky.sub":"Bezpłatna dostawa przy pierwszym zamówieniu","sticky.cta":"Zobacz plany",
       "order.subtag":"Ceny zależne od wolumenu · MOQ potwierdzane na zapytanie","order.howmany":"Wybierz poziom współpracy","order.spec1":"saszetek / opakowanie","order.spec2":"składniki botaniczne i odżywcze","order.spec3":"dodany cukier","order.spec4":"minut, aby poczuć efekty",
       "order.p1sub":"Dla sklepów, aptek i siłowni testujących sprzedaż","order.p2sub":"Dla odsprzedawców i importerów kupujących na kartony","order.p3sub":"Wyłączne prawa do terytorium i wsparcie marketingowe","order.best":"NAJPOPULARNIEJSZE","order.freeship":"BEZPŁATNA DOSTAWA","order.cta":"Poproś o warunki hurtowe","order.p3save":"Oszczędzaj więcej","order.poa":"Cena na zapytanie","order.p1price":"Niski MOQ","order.p2price":"Najlepsza cena jednostkowa","order.p3price":"Prawa do terytorium",
@@ -412,7 +412,7 @@
       "brand.h2a":"Wszechświat siły,","brand.h2b":"maksymalny efekt."
     },
     nl: {
-      "announce":"B2B-groothandel beschikbaar · Distributeurs uit de EU welkom · HALAL- en GMP-gecertificeerd · Gemaakt in Maleisië",
+      "announce":"Bulkbestellingen mogelijk · Distributeurs uit de EU welkom · HALAL- en GMP-gecertificeerd · Gemaakt in Maleisië",
       "nav.benefits":"Voordelen","nav.formula":"Formule","nav.trust":"Certificaten","nav.research":"Onderzoek","nav.faq":"Veelgestelde vragen",
       "cta.order":"Vraag groothandelsvoorwaarden aan","cta.explore":"Ontdek de formule",
       "hero.eyebrow":"Mannen 30+ · Drukke professionals · Actieve levensstijl","hero.h1a":"Energieloos","hero.h1pk":"in de middag?","hero.h1b":"","hero.h1c":"Eén","hero.h1bk":"sachet per dag —","hero.h1cp":"","hero.h1d":"energie voor de hele dag.",
@@ -462,9 +462,9 @@
       "use.note":"Geen brouwen nodig — scheur open, drink op, ga. Overschrijd de aanbevolen dagelijkse dosis niet.",
       "rev.eyebrow":"De keuze van dagelijkse gebruikers","rev.h2a":"Echte routines,","rev.h2b":"echte energie","rev.sample":"Bekijk hoe actieve mensen UNI MAX opnemen in hun dagelijkse routine — van drukke werkdagen tot trainingen en lange reizen.",
       "faq.eyebrow":"Goed om te weten","faq.h2":"Veelgestelde vragen","faq.asideT":"Nog vragen?","faq.asideP":"Stuur ons een bericht op WhatsApp en ons team helpt je het juiste plan te vinden.","faq.asideCta":"Chat met Jack",
-      "cta.h2a":"Laad je dag op —","cta.h2b":"bestel Uni Max via WhatsApp.","cta.p":"Geen ingewikkeld afrekenproces. Stuur ons een bericht en we regelen je eerste doos en bezorging.","cta.sub":"+60 10-200 5803 · Contact: Jack",
+      "cta.h2a":"Laad je dag op —","cta.h2b":"bestel Uni Max via WhatsApp.","cta.p":"Geen ingewikkeld afrekenproces. Stuur ons een bericht en we regelen je eerste doos en bezorging.","cta.sub":"+49 173 6986625 · Neem contact op",
       "foot.about":"Universum van kracht, maximale impact. Een botanische vitaaldrank met lychee-smaak en Triple Force Tongkat Ali, van UniPro.",
-      "foot.explore":"Verkennen","foot.product":"Product","foot.p1":"10 g × 30 sachets","foot.p2":"Gebruiksklaar","foot.p3":"Botanische lychee","foot.p4":"HALAL-gecertificeerd","foot.contact":"Contact","foot.jack":"Vraag het Jack",
+      "foot.explore":"Verkennen","foot.product":"Product","foot.p1":"10 g × 30 sachets","foot.p2":"Gebruiksklaar","foot.p3":"Botanische lychee","foot.p4":"HALAL-gecertificeerd","foot.contact":"Contact","foot.jack":"Neem contact op",
       "foot.disclaimer":"Dit product is een voedingssupplement en is niet bedoeld om ziekten te diagnosticeren, behandelen, genezen of voorkomen. De informatie op deze website heeft betrekking op algemene gezondheid en de structurele en functionele eigenschappen van afzonderlijke ingrediënten, en vervangt geen professioneel medisch advies. Raadpleeg een zorgverlener voor gebruik, met name als u zwanger bent, borstvoeding geeft, medicijnen gebruikt of gezondheidsproblemen heeft. Buiten bereik van kinderen bewaren. Niet aanbevolen voor personen onder de 18 jaar.",
       "foot.copy":"© 2026 UniPro · UNI MAX. Alle rechten voorbehouden.","foot.made":"Geproduceerd in Maleisië door Orient Biotech Sdn Bhd.",
       "nav.order":"Word partner","cta.seeplans":"Bekijk plannen en prijzen",
@@ -481,7 +481,7 @@
       "order.p2save":"Meer besparing","order.p2day":"· voorraad voor 3 maanden","order.p2f1":"90 sachets","order.p2f2":"Gratis verzending voor het hele pakket","order.p2f3":"Prioritaire WhatsApp-ondersteuning","order.p2cta":"Bestel pakket",
       "order.p3name":"Regionale distributeur","order.p3tag":"1 doos per maand","order.p3day":"Laagste prijs · op elk moment annuleren",
       "order.p3f1":"30 sachets maandelijks bezorgd","order.p3f2":"Gratis verzending elke maand","order.p3f3":"Pauzeer of annuleer op elk moment","order.p3cta":"Abonnement starten",
-      "order.a1":"Gratis bezorging eerste doos","order.a2":"WhatsApp-reactie op dezelfde dag","order.a3":"HALAL- en GMP-gecertificeerde faciliteit","order.a4":"Niet tevreden? Stuur ons gewoon een bericht",
+      "order.a1":"Bulkbestellingen welkom","order.a2":"WhatsApp-reactie op dezelfde dag","order.a3":"HALAL- en GMP-gecertificeerde faciliteit","order.a4":"Niet tevreden? Stuur ons gewoon een bericht",
       "sticky.from":"Klaar om je dag op te laden?","sticky.sub":"Gratis bezorging eerste doos","sticky.cta":"Bekijk plannen",
       "order.subtag":"Volumeprijzen · MOQ bevestigd op aanvraag","order.howmany":"Kies je samenwerkingsniveau","order.spec1":"sachets / doos","order.spec2":"botanische ingrediënten en nutriënten","order.spec3":"toegevoegde suiker","order.spec4":"minuten om effect te voelen",
       "order.p1sub":"Voor winkels, apotheken en sportscholen die verkoop testen","order.p2sub":"Voor wederverkopers en importeurs die per doos kopen","order.p3sub":"Exclusieve territoriumrechten en marketingondersteuning","order.best":"MEEST POPULAIR","order.freeship":"GRATIS VERZENDING","order.cta":"Vraag groothandelsvoorwaarden aan","order.p3save":"Bespaar meer","order.poa":"Prijs op aanvraag","order.p1price":"Lage MOQ","order.p2price":"Beste stuksprijs","order.p3price":"Territoriumrechten",
@@ -491,7 +491,7 @@
       "brand.h2a":"Universum van kracht,","brand.h2b":"maximale impact."
     },
     de: {
-      "announce":"B2B-Großhandel verfügbar · Vertriebspartner aus der EU willkommen · HALAL & GMP zertifiziert · Hergestellt in Malaysia",
+      "announce":"Großbestellungen möglich · Vertriebspartner aus der EU willkommen · HALAL & GMP zertifiziert · Hergestellt in Malaysia",
       "nav.benefits":"Vorteile","nav.formula":"Formel","nav.trust":"Zertifikate","nav.research":"Forschung","nav.faq":"Häufige Fragen",
       "cta.order":"Großhandelskonditionen anfragen","cta.explore":"Formel entdecken",
       "hero.eyebrow":"Männer 30+ · Vielbeschäftigte Profis · Aktiver Lebensstil","hero.h1a":"Energielos","hero.h1pk":"am Nachmittag?","hero.h1b":"","hero.h1c":"Ein","hero.h1bk":"Sachet pro Tag —","hero.h1cp":"","hero.h1d":"Energie für den ganzen Tag.",
@@ -541,9 +541,9 @@
       "use.note":"Kein Brühen erforderlich — aufreißen, trinken, los. Empfohlene Tagesdosis nicht überschreiten.",
       "rev.eyebrow":"Die Wahl täglicher Anwender","rev.h2a":"Echte Routinen,","rev.h2b":"echte Energie","rev.sample":"Sehen Sie, wie aktive Menschen UNI MAX in ihre tägliche Routine integrieren — von arbeitsreichen Tagen bis hin zu Trainingseinheiten und langen Reisen.",
       "faq.eyebrow":"Gut zu wissen","faq.h2":"Häufig gestellte Fragen","faq.asideT":"Noch Fragen?","faq.asideP":"Schreiben Sie uns auf WhatsApp und unser Team hilft Ihnen, den richtigen Plan zu finden.","faq.asideCta":"Mit Jack chatten",
-      "cta.h2a":"Laden Sie Ihren Tag auf —","cta.h2b":"bestellen Sie Uni Max auf WhatsApp.","cta.p":"Kein komplizierter Checkout. Schreiben Sie uns direkt und wir organisieren Ihre erste Box und Lieferung.","cta.sub":"+60 10-200 5803 · Kontakt: Jack",
+      "cta.h2a":"Laden Sie Ihren Tag auf —","cta.h2b":"bestellen Sie Uni Max auf WhatsApp.","cta.p":"Kein komplizierter Checkout. Schreiben Sie uns direkt und wir organisieren Ihre erste Box und Lieferung.","cta.sub":"+49 173 6986625 · Kontaktieren Sie uns",
       "foot.about":"Universum der Kraft, maximale Wirkung. Ein botanisches Lychee-Vitalitätsgetränk mit Triple Force Tongkat Ali von UniPro.",
-      "foot.explore":"Entdecken","foot.product":"Produkt","foot.p1":"10 g × 30 Sachets","foot.p2":"Trinkfertig","foot.p3":"Botanisches Lychee","foot.p4":"HALAL-zertifiziert","foot.contact":"Kontakt","foot.jack":"Jack fragen",
+      "foot.explore":"Entdecken","foot.product":"Produkt","foot.p1":"10 g × 30 Sachets","foot.p2":"Trinkfertig","foot.p3":"Botanisches Lychee","foot.p4":"HALAL-zertifiziert","foot.contact":"Kontakt","foot.jack":"Kontaktieren Sie uns",
       "foot.disclaimer":"Dieses Produkt ist ein Nahrungsergänzungsmittel und ist nicht zur Diagnose, Behandlung, Heilung oder Vorbeugung von Krankheiten bestimmt. Die Informationen auf dieser Website beziehen sich auf die allgemeine Gesundheit und die strukturellen und funktionellen Eigenschaften einzelner Inhaltsstoffe und ersetzen keine professionelle medizinische Beratung. Konsultieren Sie vor der Einnahme einen Arzt, insbesondere wenn Sie schwanger sind, stillen, Medikamente nehmen oder an gesundheitlichen Problemen leiden. Außerhalb der Reichweite von Kindern aufbewahren. Nicht empfohlen für Personen unter 18 Jahren.",
       "foot.copy":"© 2026 UniPro · UNI MAX. Alle Rechte vorbehalten.","foot.made":"Hergestellt in Malaysia von Orient Biotech Sdn Bhd.",
       "nav.order":"Partner werden","cta.seeplans":"Pläne & Preise ansehen",
@@ -560,7 +560,7 @@
       "order.p2save":"Mehr sparen","order.p2day":"· Vorrat für 3 Monate","order.p2f1":"90 Sachets","order.p2f2":"Kostenloser Versand für das gesamte Paket","order.p2f3":"Priorisierter WhatsApp-Support","order.p2cta":"Paket bestellen",
       "order.p3name":"Regionaldistributor","order.p3tag":"1 Box pro Monat","order.p3day":"Günstigster Preis · jederzeit kündbar",
       "order.p3f1":"30 Sachets monatlich geliefert","order.p3f2":"Kostenloser Versand jeden Monat","order.p3f3":"Jederzeit pausieren oder kündigen","order.p3cta":"Abonnement starten",
-      "order.a1":"Kostenloser Versand der ersten Box","order.a2":"WhatsApp-Antwort am selben Tag","order.a3":"HALAL- & GMP-zertifizierte Anlage","order.a4":"Nicht zufrieden? Schreiben Sie uns einfach",
+      "order.a1":"Großbestellungen willkommen","order.a2":"WhatsApp-Antwort am selben Tag","order.a3":"HALAL- & GMP-zertifizierte Anlage","order.a4":"Nicht zufrieden? Schreiben Sie uns einfach",
       "sticky.from":"Bereit, Ihren Tag aufzuladen?","sticky.sub":"Kostenloser Versand der ersten Box","sticky.cta":"Pläne ansehen",
       "order.subtag":"Mengenpreise · MOQ auf Anfrage bestätigt","order.howmany":"Wählen Sie Ihre Partnerstufe","order.spec1":"Sachets / Box","order.spec2":"botanische Inhaltsstoffe & Nährstoffe","order.spec3":"zugesetzter Zucker","order.spec4":"Minuten bis zur Wirkung",
       "order.p1sub":"Für Geschäfte, Apotheken & Fitnessstudios zum Testen des Abverkaufs","order.p2sub":"Für Wiederverkäufer & Importeure, die kartonweise kaufen","order.p3sub":"Exklusive Gebietsrechte & Marketingunterstützung","order.best":"BELIEBTESTE","order.freeship":"KOSTENLOSER VERSAND","order.cta":"Großhandelskonditionen anfragen","order.p3save":"Mehr sparen","order.poa":"Preis auf Anfrage","order.p1price":"Niedrige MOQ","order.p2price":"Bester Stückpreis","order.p3price":"Gebietsrechte",
@@ -1257,17 +1257,17 @@
 
     startRevTimer();
 
-    /* B2B partnership enquiry — prefilled WhatsApp message (per client brief) */
+    /* Wholesale partnership enquiry — prefilled WhatsApp message (per client brief) */
     var TIER_LABELS = { retail: "Retail Stockist", wholesale: "Wholesale Partner", distributor: "Regional Distributor" };
     function b2bMessage(tier) {
       var interested = tier
         ? "Interested in: " + TIER_LABELS[tier]
         : "Interested in: Retail Stockist / Wholesale Partner / Regional Distributor";
-      return "Hi, I'm interested in UNI MAX B2B partnership in Europe."
+      return "Hi, I'm interested in a UNI MAX wholesale partnership in Europe."
         + "\n\nCountry:\nBusiness type:\nEstimated order quantity:\n" + interested
         + "\n\nPlease share more information about wholesale pricing, MOQ, and partnership opportunities.";
     }
-    function waUrl(tier) { return "https://wa.me/60102005803?text=" + encodeURIComponent(b2bMessage(tier)); }
+    function waUrl(tier) { return "https://wa.me/491736986625?text=" + encodeURIComponent(b2bMessage(tier)); }
 
     /* partnership level selector */
     var packEls = document.querySelectorAll('#packs input[name="pack"]');
@@ -1432,7 +1432,7 @@
       var s = el.closest("section"); return (s && s.id) ? s.id : "other";
     }
     document.querySelectorAll('a[href*="wa.me/"]').forEach(function (a) {
-      /* prefill the B2B enquiry on every WhatsApp CTA (orderCta sets its own tier-specific text) */
+      /* prefill the wholesale enquiry on every WhatsApp CTA (orderCta sets its own tier-specific text) */
       if (a.id !== "orderCta" && a.href.indexOf("text=") === -1) a.href = waUrl(null);
       a.addEventListener("click", function () {
         track("whatsapp_click", { cta_location: ctaLoc(a), link_url: a.href });
