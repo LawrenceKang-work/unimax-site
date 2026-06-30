@@ -248,9 +248,9 @@
       "sticky.from":"准备好为一天充能了吗？","sticky.sub":"首盒免运费","sticky.cta":"查看方案",
       "order.subtag":"批量定价 · 起订量洽询确认","order.howmany":"选择你的合作级别","order.spec1":"包 / 盒","order.spec2":"植物与营养成分","order.spec3":"添加糖","order.spec4":"分钟感受提升",
       "order.p1sub":"适合商店、药房与健身房试销","order.p2sub":"适合按箱采购的分销商与进口商","order.p3sub":"独家区域代理权与市场支持","order.best":"最受欢迎","order.freeship":"免运费","order.cta":"索取批发条款","order.p3save":"更省","order.poa":"价格待定","order.p1price":"低起订量","order.p2price":"最优单价","order.p3price":"区域代理权",
-      "sc.cap1.eyebrow":"批发 · 分销 · 代工贴牌","sc.cap1.line1":"上架一个","sc.cap1.line2":"天生好卖的品牌。",
-      "sc.cap2.line1":"一款经验证的产品。","sc.cap2.line2":"你会满意的利润空间。","sc.cap2.sub":"一款通过认证、可出口的东革阿里活力饮品——三重配方、完整文件、稳定的规模化供货。",
-      "sc.cap3.eyebrow":"HALAL · GMP · 马来西亚制造","sc.cap3.line1":"准备好扩展","sc.cap3.line2":"你的产品组合了吗？",
+      "sc.cap1.eyebrow":"活跃生活 · 日常表现 · 现代活力","sc.cap1.line1":"充能。","sc.cap1.line2":"专注。全力以赴。",
+      "sc.cap2.line1":"每天一包 10g，","sc.cap2.line2":"你所需的全部能量。","sc.cap2.sub":"三重东革阿里 + 草本精华 + 氨基酸——能量、专注与自信，约 30 分钟感受提升。",
+      "sc.cap3.eyebrow":"HALAL · GMP · 马来西亚制造","sc.cap3.line1":"准备好感受","sc.cap3.line2":"与众不同了吗？",
       "brand.h2a":"力量的宇宙，","brand.h2b":"极致释放。"
     },
     ms: {
@@ -327,9 +327,9 @@
       "sticky.from":"Bersedia bertenaga hari ini?","sticky.sub":"Penghantaran percuma kotak pertama","sticky.cta":"Lihat pelan",
       "order.subtag":"Harga mengikut jumlah · MOQ disahkan atas pertanyaan","order.howmany":"Pilih tahap kerjasama anda","order.spec1":"sachet / kotak","order.spec2":"botani & nutrien","order.spec3":"gula tambahan","order.spec4":"minit rasa kesannya",
       "order.p1sub":"Untuk kedai, farmasi & gim menguji jualan","order.p2sub":"Untuk penjual semula & pengimport beli mengikut karton","order.p3sub":"Hak wilayah eksklusif & sokongan pemasaran","order.best":"PALING POPULAR","order.freeship":"PENGHANTARAN PERCUMA","order.cta":"Minta Terma Borong","order.p3save":"Lebih jimat","order.poa":"Harga atas permintaan","order.p1price":"MOQ rendah","order.p2price":"Harga unit terbaik","order.p3price":"Hak wilayah",
-      "sc.cap1.eyebrow":"Borong · Pengedaran · Label Sendiri","sc.cap1.line1":"Stok jenama","sc.cap1.line2":"yang memang laku.",
-      "sc.cap2.line1":"Satu produk terbukti.","sc.cap2.line2":"Margin yang menguntungkan perniagaan anda.","sc.cap2.sub":"Minuman vitaliti Tongkat Ali bersijil & sedia eksport — formula Tiga Kuasa, dokumentasi penuh, bekalan stabil berskala.",
-      "sc.cap3.eyebrow":"HALAL · GMP · Buatan Malaysia","sc.cap3.line1":"Bersedia kembangkan","sc.cap3.line2":"portfolio anda?",
+      "sc.cap1.eyebrow":"Gaya Hidup Aktif · Prestasi Harian · Vitaliti Moden","sc.cap1.line1":"Isi Semula.","sc.cap1.line2":"Fokus. Berprestasi.",
+      "sc.cap2.line1":"Satu sachet 10g.","sc.cap2.line2":"Semua tenaga yang anda perlukan.","sc.cap2.sub":"Tongkat Ali Tiga Kuasa + botani & asid amino — tenaga, fokus & keyakinan dalam ~30 minit.",
+      "sc.cap3.eyebrow":"HALAL · GMP · Buatan Malaysia","sc.cap3.line1":"Bersedia rasai","sc.cap3.line2":"perbezaannya?",
       "brand.h2a":"Alam semesta kuasa,","brand.h2b":"impak maksimum."
     },
     pl: {
@@ -406,9 +406,9 @@
       "sticky.from":"Gotowy, aby naładować swój dzień?","sticky.sub":"Bezpłatna dostawa przy pierwszym zamówieniu","sticky.cta":"Zobacz plany",
       "order.subtag":"Ceny zależne od wolumenu · MOQ potwierdzane na zapytanie","order.howmany":"Wybierz poziom współpracy","order.spec1":"saszetek / opakowanie","order.spec2":"składniki botaniczne i odżywcze","order.spec3":"dodany cukier","order.spec4":"minut, aby poczuć efekty",
       "order.p1sub":"Dla sklepów, aptek i siłowni testujących sprzedaż","order.p2sub":"Dla odsprzedawców i importerów kupujących na kartony","order.p3sub":"Wyłączne prawa do terytorium i wsparcie marketingowe","order.best":"NAJPOPULARNIEJSZE","order.freeship":"BEZPŁATNA DOSTAWA","order.cta":"Poproś o warunki hurtowe","order.p3save":"Oszczędzaj więcej","order.poa":"Cena na zapytanie","order.p1price":"Niski MOQ","order.p2price":"Najlepsza cena jednostkowa","order.p3price":"Prawa do terytorium",
-      "sc.cap1.eyebrow":"Hurt · Dystrybucja · Marka własna","sc.cap1.line1":"Wprowadź markę,","sc.cap1.line2":"która się sprzedaje.",
-      "sc.cap2.line1":"Jeden sprawdzony produkt.","sc.cap2.line2":"Marża, którą pokocha Twój biznes.","sc.cap2.sub":"Certyfikowany, gotowy do eksportu napój witalny z Tongkat Ali — formuła Triple Force, pełna dokumentacja, stabilne dostawy na dużą skalę.",
-      "sc.cap3.eyebrow":"HALAL · GMP · Wyprodukowano w Malezji","sc.cap3.line1":"Gotowy rozwinąć","sc.cap3.line2":"swoje portfolio?",
+      "sc.cap1.eyebrow":"Aktywny styl życia · Codzienna wydajność · Nowoczesna witalność","sc.cap1.line1":"Naładuj się.","sc.cap1.line2":"Skupienie. Działanie.",
+      "sc.cap2.line1":"Jedna saszetka 10&nbsp;g.","sc.cap2.line2":"Cała potrzebna&nbsp;moc.","sc.cap2.sub":"Triple Force Tongkat Ali + składniki botaniczne i aminokwasy — energia, skupienie i pewność siebie w ~30 minut.",
+      "sc.cap3.eyebrow":"HALAL · GMP · Wyprodukowano w Malezji","sc.cap3.line1":"Gotowy poczuć","sc.cap3.line2":"różnicę?",
       "brand.h2a":"Wszechświat siły,","brand.h2b":"maksymalny efekt."
     },
     nl: {
@@ -485,9 +485,9 @@
       "sticky.from":"Klaar om je dag op te laden?","sticky.sub":"Gratis bezorging eerste doos","sticky.cta":"Bekijk plannen",
       "order.subtag":"Volumeprijzen · MOQ bevestigd op aanvraag","order.howmany":"Kies je samenwerkingsniveau","order.spec1":"sachets / doos","order.spec2":"botanische ingrediënten en nutriënten","order.spec3":"toegevoegde suiker","order.spec4":"minuten om effect te voelen",
       "order.p1sub":"Voor winkels, apotheken en sportscholen die verkoop testen","order.p2sub":"Voor wederverkopers en importeurs die per doos kopen","order.p3sub":"Exclusieve territoriumrechten en marketingondersteuning","order.best":"MEEST POPULAIR","order.freeship":"GRATIS VERZENDING","order.cta":"Vraag groothandelsvoorwaarden aan","order.p3save":"Bespaar meer","order.poa":"Prijs op aanvraag","order.p1price":"Lage MOQ","order.p2price":"Beste stuksprijs","order.p3price":"Territoriumrechten",
-      "sc.cap1.eyebrow":"Groothandel · Distributie · Private label","sc.cap1.line1":"Voer het merk","sc.cap1.line2":"dat verkoopt.",
-      "sc.cap2.line1":"Eén bewezen product.","sc.cap2.line2":"Marges waar je bedrijf van houdt.","sc.cap2.sub":"Een gecertificeerde, exportklare Tongkat Ali-vitaaldrank — Triple Force-formule, volledige documentatie, betrouwbare levering op schaal.",
-      "sc.cap3.eyebrow":"HALAL · GMP · Gemaakt in Maleisië","sc.cap3.line1":"Klaar om je","sc.cap3.line2":"assortiment te laten groeien?",
+      "sc.cap1.eyebrow":"Actieve levensstijl · Dagelijkse prestaties · Moderne vitaliteit","sc.cap1.line1":"Opladen.","sc.cap1.line2":"Focus. Presteren.",
+      "sc.cap2.line1":"Eén sachet van 10 g.","sc.cap2.line2":"Alle kracht die je nodig hebt.","sc.cap2.sub":"Triple Force Tongkat Ali + botanische ingrediënten en aminozuren — energie, focus en zelfvertrouwen in ~30 minuten.",
+      "sc.cap3.eyebrow":"HALAL · GMP · Gemaakt in Maleisië","sc.cap3.line1":"Klaar om het","sc.cap3.line2":"verschil te voelen?",
       "brand.h2a":"Universum van kracht,","brand.h2b":"maximale impact."
     },
     de: {
@@ -564,9 +564,9 @@
       "sticky.from":"Bereit, Ihren Tag aufzuladen?","sticky.sub":"Kostenloser Versand der ersten Box","sticky.cta":"Pläne ansehen",
       "order.subtag":"Mengenpreise · MOQ auf Anfrage bestätigt","order.howmany":"Wählen Sie Ihre Partnerstufe","order.spec1":"Sachets / Box","order.spec2":"botanische Inhaltsstoffe & Nährstoffe","order.spec3":"zugesetzter Zucker","order.spec4":"Minuten bis zur Wirkung",
       "order.p1sub":"Für Geschäfte, Apotheken & Fitnessstudios zum Testen des Abverkaufs","order.p2sub":"Für Wiederverkäufer & Importeure, die kartonweise kaufen","order.p3sub":"Exklusive Gebietsrechte & Marketingunterstützung","order.best":"BELIEBTESTE","order.freeship":"KOSTENLOSER VERSAND","order.cta":"Großhandelskonditionen anfragen","order.p3save":"Mehr sparen","order.poa":"Preis auf Anfrage","order.p1price":"Niedrige MOQ","order.p2price":"Bester Stückpreis","order.p3price":"Gebietsrechte",
-      "sc.cap1.eyebrow":"Großhandel · Vertrieb · Eigenmarke","sc.cap1.line1":"Führen Sie die Marke,","sc.cap1.line2":"die sich verkauft.",
-      "sc.cap2.line1":"Ein bewährtes Produkt.","sc.cap2.line2":"Margen, die Ihr Geschäft lieben wird.","sc.cap2.sub":"Ein zertifiziertes, exportfertiges Tongkat-Ali-Vitalitätsgetränk — Triple-Force-Formel, vollständige Dokumentation, zuverlässige Lieferung im großen Maßstab.",
-      "sc.cap3.eyebrow":"HALAL · GMP · Hergestellt in Malaysia","sc.cap3.line1":"Bereit, Ihr","sc.cap3.line2":"Sortiment auszubauen?",
+      "sc.cap1.eyebrow":"Aktiver Lebensstil · Tägliche Leistung · Moderne Vitalität","sc.cap1.line1":"Aufladen.","sc.cap1.line2":"Fokus. Leisten.",
+      "sc.cap2.line1":"Ein 10-g-Sachet.","sc.cap2.line2":"Alle Kraft, die Sie brauchen.","sc.cap2.sub":"Triple Force Tongkat Ali + botanische Inhaltsstoffe & Aminosäuren — Energie, Fokus & Selbstvertrauen in ~30 Minuten.",
+      "sc.cap3.eyebrow":"HALAL · GMP · Hergestellt in Malaysia","sc.cap3.line1":"Bereit, den","sc.cap3.line2":"Unterschied zu spüren?",
       "brand.h2a":"Universum der Kraft,","brand.h2b":"maximale Wirkung."
     }
   };
