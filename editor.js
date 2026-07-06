@@ -237,7 +237,7 @@
     applying = true;
     $$('[data-fb-key="' + cssEsc(k) + '"]').forEach(function (o) { if (o !== el && o.textContent !== v) o.textContent = v; o.setAttribute("data-en", v); });
     applying = false;
-    saveEdits();
+    saveEdits(); fbRenderList();
   });
   document.addEventListener("keydown", function (e) {
     if (mode !== "edit" || e.key !== "Enter") return;
@@ -306,9 +306,9 @@
     if (mediaTarget.type === "image") { edits.images[mediaTarget.key] = url; setImg(mediaTarget.key, url); }
     else if (mediaTarget.type === "video") { edits.videos[mediaTarget.key] = url; setVid(mediaTarget.key, url); }
     else if (mediaTarget.type === "bg") { edits.bgs[mediaTarget.key] = url; applyBgs(); }
-    saveEdits();
+    saveEdits(); fbRenderList();
     $("#ceModal").classList.remove("on");
-    toast("已替换（只在你这台设备预览）");
+    toast("已替换 · 已加入本轮草稿（未提交）");
   }
 
   /* ---------- 8. 留言模式（整页 / 板块 / 元素） ---------- */
@@ -368,7 +368,7 @@
     feedback.push(rec); saveFb();
     $("#fbPanel").classList.remove("on"); fbTarget = null;
     applyFbPreviews(); fbRenderMarks(); fbRenderList();
-    toast("已记录（不耗轮次）· 全部标完后点「🚀 提交本轮」");
+    toast("已加入本轮草稿 · 继续标其它，或点草稿箱底部「提交本轮」一次性交");
   }
   function renderShot() {
     var box = $("#fbShotPrevBox"); if (!box) return;
@@ -409,22 +409,45 @@
 
   function fbRenderList() {
     var el = $("#fbList");
-    if (mode !== "fb" || !feedback.length) { el.classList.remove("on"); return; }
+    var edCount = draftCounts().ed;
+    if (!mode || (!feedback.length && !edCount)) { el.classList.remove("on"); return; }
     el.classList.add("on");
-    var sat = feedback.filter(function (d) { return d.status === "satisfied"; }).length;
-    var chg = feedback.filter(function (d) { return d.status === "change"; }).length;
-    var rmv = feedback.filter(function (d) { return d.status === "remove"; }).length;
-    el.innerHTML = "<b>已提交 " + feedback.length + " 条</b>（定稿 " + sat + " · 改 " + chg + " · 删 " + rmv + "）" +
-      feedback.map(function (d) {
-        var name = d.target === "element" ? (d.block_label + " › " + (d.el_label || d.key)) : d.block_label;
-        var ic = d.status === "satisfied" ? "✓" : d.status === "remove" ? "🗑" : "●";
-        var detail = "";
-        if (d.new_text) detail = "：改文案「" + d.new_text.slice(0, 16) + "」";
-        else if (d.new_image_url) detail = "：换图";
-        else if (d.change_types && d.change_types.length) detail = "：" + d.change_types.join("/");
-        if (d.comment) detail += " 「" + d.comment.slice(0, 14) + "」";
-        return '<div class="item">' + ic + " " + esc(name) + esc(detail) + "</div>";
-      }).join("");
+    var u = usedRounds();
+    var items = feedback.map(function (d) {
+      var name = d.target === "element" ? (d.block_label + " › " + (d.el_label || d.key)) : d.target === "page" ? "整个页面" : d.block_label;
+      var ic = d.status === "satisfied" ? "✓" : d.status === "remove" ? "🗑" : "✎";
+      var detail = "";
+      if (d.new_text) detail = "改文案「" + d.new_text.slice(0, 12) + "」";
+      else if (d.new_image_url) detail = "换图";
+      else if (d.change_types && d.change_types.length) detail = d.change_types.join("/");
+      if (d.comment) detail += (detail ? " · " : "") + "「" + d.comment.slice(0, 10) + "」";
+      if (d.screenshot) detail += " 📷";
+      var rk = fbRecKey(d);
+      return '<div class="fbl-item" data-rk="' + esc(rk) + '"><span class="fbl-ic ' + d.status + '">' + ic + '</span><span class="fbl-t">' + esc(name) + (detail ? '<i class="fbl-d">' + esc(detail) + '</i>' : '') + '</span><button class="fbl-del" data-rk="' + esc(rk) + '" title="从草稿移除">✕</button></div>';
+    }).join("");
+    var edLine = edCount ? '<div class="fbl-item fbl-ed"><span class="fbl-ic edit">✏️</span><span class="fbl-t">直接编辑 ' + edCount + ' 处<i class="fbl-d">文字 / 图 / 背景</i></span></div>' : "";
+    var foot = u >= MAX_ROUNDS
+      ? '<div class="fbl-exhaust">6 轮修改已用完</div>'
+      : '<button class="fbl-submit" id="fblSubmit">🚀 提交本轮（第 ' + (u + 1) + ' 轮）</button>';
+    el.innerHTML =
+      '<div class="fbl-head">📋 本轮草稿 · <b>' + (feedback.length + edCount) + '</b> 处<span class="fbl-sub">未提交 —— 攒齐所有想改的地方，再一起提交</span></div>' +
+      '<div class="fbl-body">' + ((items + edLine) || '<div class="fbl-empty">标注的内容会先存到这里</div>') + '</div>' +
+      foot;
+  }
+  function deleteDraft(rk) {
+    feedback = feedback.filter(function (d) { return fbRecKey(d) !== rk; });
+    saveFb(); applyFbPreviews(); fbRenderMarks(); fbRenderList();
+    toast("已从本轮草稿移除");
+  }
+  function editDraft(rk) {
+    var d = feedback.find(function (x) { return fbRecKey(x) === rk; });
+    if (!d) return;
+    if (d.target === "page") { fbOpen("page", null, null); return; }
+    var block = $('[data-fb-block="' + cssEsc(d.block_id) + '"]');
+    if (d.target === "block") { if (block) fbOpen("block", null, block); return; }
+    var elx = $('[data-fb-key="' + cssEsc(d.key) + '"]');
+    if (elx && block) { elx.scrollIntoView({ block: "center", behavior: "smooth" }); fbOpen("element", elx, block); }
+    else toast("该元素在当前语言下不可见");
   }
 
   /* ---------- 10. 导出清单（编辑改动 + 留言合并） ---------- */
@@ -594,7 +617,7 @@
       '      <label class="fb-shotup"><input type="file" id="fbShotFile" accept="image/*">📷 上传截图</label><span class="fb-shothint" id="fbShotHint"></span></div>' +
       '  </div>' +
       '  <div class="fbp-tip">「记录」不消耗修改轮次；全部标注完后点右下「🚀 提交本轮」一次性提交（共 ' + MAX_ROUNDS + ' 轮）。</div>' +
-      '  <div class="fbp-foot"><button class="fb-cancel" id="fbCancel">取消</button><button class="fb-submit" id="fbSubmit">记录（不耗轮次）</button></div>' +
+      '  <div class="fbp-foot"><button class="fb-cancel" id="fbCancel">取消</button><button class="fb-submit" id="fbSubmit">＋ 加入本轮草稿</button></div>' +
       '</div>' +
       // 换媒体弹窗
       '<div id="ceModal" class="ce-modal"><div class="ce-mbox">' +
@@ -634,6 +657,13 @@
     $("#ceResetBtn").addEventListener("click", resetEdits);
     $("#cePageBtn").addEventListener("click", function () { fbOpen("page", null, null); });
     $("#ceRoundBtn").addEventListener("click", openRoundModal);
+    $("#fbList").addEventListener("click", function (e) {
+      var del = e.target.closest(".fbl-del");
+      if (del) { e.stopPropagation(); deleteDraft(del.getAttribute("data-rk")); return; }
+      if (e.target.closest("#fblSubmit")) { openRoundModal(); return; }
+      var item = e.target.closest(".fbl-item[data-rk]");
+      if (item) editDraft(item.getAttribute("data-rk"));
+    });
     $("#ceRoundChk").addEventListener("change", function (e) { $("#ceRoundGo").disabled = !e.target.checked; });
     $("#ceRoundGo").addEventListener("click", submitRound);
     $("#ceRoundCancel").addEventListener("click", closeRoundModal);
@@ -747,8 +777,25 @@
       ".fbp-foot{padding:14px 22px;border-top:1px solid #eee;display:flex;gap:10px;}" +
       ".fbp-foot button,.ce-mfoot button{flex:1;padding:13px;border-radius:10px;font-weight:700;font-size:.9rem;border:none;cursor:pointer;}" +
       ".fb-submit{background:#c4632a;color:#fff;}.fb-cancel{background:#f0f0f0;color:#666;}" +
-      ".fb-list{position:fixed;left:20px;bottom:20px;z-index:99000;background:#fff;color:#1d1a16;border-radius:12px;padding:14px 18px;font-size:.85rem;box-shadow:0 8px 30px rgba(0,0,0,.25);max-width:330px;max-height:44vh;overflow-y:auto;display:none;font-family:-apple-system,'Segoe UI','Microsoft YaHei',sans-serif;}" +
-      ".fb-list.on{display:block;}.fb-list b{color:#c4632a;}.fb-list .item{padding:6px 0;border-bottom:1px solid #f0f0f0;font-size:.8rem;}" +
+      ".fb-list{position:fixed;left:20px;bottom:20px;z-index:99000;background:#fff;color:#1d1a16;border-radius:14px;width:308px;max-width:86vw;box-shadow:0 12px 40px rgba(0,0,0,.3);display:none;font-family:-apple-system,'Segoe UI','Microsoft YaHei',sans-serif;overflow:hidden;}" +
+      ".fb-list.on{display:block;}" +
+      ".fbl-head{background:#1d1a16;color:#fff;padding:11px 14px;font-size:.84rem;font-weight:700;}" +
+      ".fbl-head b{color:#ffd479;font-size:1.02rem;}" +
+      ".fbl-sub{display:block;font-size:.7rem;font-weight:400;color:#c3bdb4;margin-top:3px;line-height:1.3;}" +
+      ".fbl-body{max-height:36vh;overflow-y:auto;}" +
+      ".fbl-item{display:flex;align-items:center;gap:9px;padding:9px 12px;border-bottom:1px solid #f4f4f4;font-size:.8rem;cursor:pointer;}" +
+      ".fbl-item:hover{background:#faf6ef;}" +
+      ".fbl-ed,.fbl-ed:hover{cursor:default;background:none;}" +
+      ".fbl-empty{padding:18px;text-align:center;color:#aaa;font-size:.78rem;}" +
+      ".fbl-ic{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.66rem;font-weight:800;color:#fff;flex-shrink:0;background:#c4632a;}" +
+      ".fbl-ic.satisfied{background:#2d7a47;}.fbl-ic.remove{background:#b03030;}.fbl-ic.edit{background:#166a3a;}" +
+      ".fbl-t{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}" +
+      ".fbl-d{display:block;font-style:normal;color:#999;font-size:.72rem;overflow:hidden;text-overflow:ellipsis;}" +
+      ".fbl-del{background:none;border:none;color:#c0392b;font-size:.82rem;cursor:pointer;padding:4px 7px;flex-shrink:0;border-radius:6px;opacity:.5;}" +
+      ".fbl-del:hover{background:#fbe9e7;opacity:1;}" +
+      ".fbl-submit{display:block;width:100%;background:#b8382e;color:#fff;border:none;padding:14px;font:700 .92rem/1 -apple-system,'Segoe UI','Microsoft YaHei',sans-serif;cursor:pointer;}" +
+      ".fbl-submit:hover{background:#9c2f26;}" +
+      ".fbl-exhaust{padding:13px;text-align:center;color:#999;font-size:.8rem;background:#f6f6f6;}" +
       // 弹窗
       ".ce-modal{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:99600;display:none;align-items:center;justify-content:center;padding:16px;}" +
       ".ce-modal.on{display:flex;}" +
