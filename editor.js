@@ -214,12 +214,10 @@
     $("#ceFbBtn").innerHTML = mode === "fb" ? "✕&nbsp; 退出留言" : "💬&nbsp; 留言";
     $("#ceEditBtn").classList.toggle("on", mode === "edit");
     $("#ceFbBtn").classList.toggle("on", mode === "fb");
-    $("#ceExportBtn").style.display = mode ? "inline-flex" : "none";
-    $("#ceRoundBtn").style.display = mode ? "inline-flex" : "none";
-    $("#ceRoundChip").style.display = mode ? "block" : "none";
-    $("#ceResetBtn").style.display = mode === "edit" ? "inline-flex" : "none";
-    $("#cePageBtn").style.display = mode === "fb" ? "inline-flex" : "none";
-    updateRoundChip();
+    $("#ceEditOps").style.display = mode === "edit" ? "flex" : "none";
+    $("#ceFbOps").style.display = mode === "fb" ? "flex" : "none";
+    $("#ceRoundChip").style.display = mode === "fb" ? "block" : "none";
+    updateRoundChip(); updatePublishBtn();
     $("#ceHintEdit").style.display = (mode === "edit" && !sessionStorage.getItem("ceHintEditX")) ? "block" : "none";
     $("#ceHintFb").style.display = (mode === "fb" && !sessionStorage.getItem("ceHintFbX")) ? "block" : "none";
     document.body.classList.toggle("ce-pad", !!mode && !!((mode === "edit" && !sessionStorage.getItem("ceHintEditX")) || (mode === "fb" && !sessionStorage.getItem("ceHintFbX"))));
@@ -237,7 +235,7 @@
     applying = true;
     $$('[data-fb-key="' + cssEsc(k) + '"]').forEach(function (o) { if (o !== el && o.textContent !== v) o.textContent = v; o.setAttribute("data-en", v); });
     applying = false;
-    saveEdits(); fbRenderList();
+    saveEdits(); updatePublishBtn();
   });
   document.addEventListener("keydown", function (e) {
     if (mode !== "edit" || e.key !== "Enter") return;
@@ -306,9 +304,9 @@
     if (mediaTarget.type === "image") { edits.images[mediaTarget.key] = url; setImg(mediaTarget.key, url); }
     else if (mediaTarget.type === "video") { edits.videos[mediaTarget.key] = url; setVid(mediaTarget.key, url); }
     else if (mediaTarget.type === "bg") { edits.bgs[mediaTarget.key] = url; applyBgs(); }
-    saveEdits(); fbRenderList();
+    saveEdits(); updatePublishBtn();
     $("#ceModal").classList.remove("on");
-    toast("已替换 · 已加入本轮草稿（未提交）");
+    toast("已替换 · 点「💾 发布我的改动」提交（编辑不限次数）");
   }
 
   /* ---------- 8. 留言模式（整页 / 板块 / 元素） ---------- */
@@ -409,8 +407,7 @@
 
   function fbRenderList() {
     var el = $("#fbList");
-    var edCount = draftCounts().ed;
-    if (!mode || (!feedback.length && !edCount)) { el.classList.remove("on"); return; }
+    if (mode !== "fb" || !feedback.length) { el.classList.remove("on"); return; }
     el.classList.add("on");
     var u = usedRounds();
     var items = feedback.map(function (d) {
@@ -425,13 +422,12 @@
       var rk = fbRecKey(d);
       return '<div class="fbl-item" data-rk="' + esc(rk) + '"><span class="fbl-ic ' + d.status + '">' + ic + '</span><span class="fbl-t">' + esc(name) + (detail ? '<i class="fbl-d">' + esc(detail) + '</i>' : '') + '</span><button class="fbl-del" data-rk="' + esc(rk) + '" title="从草稿移除">✕</button></div>';
     }).join("");
-    var edLine = edCount ? '<div class="fbl-item fbl-ed"><span class="fbl-ic edit">✏️</span><span class="fbl-t">直接编辑 ' + edCount + ' 处<i class="fbl-d">文字 / 图 / 背景</i></span></div>' : "";
     var foot = u >= MAX_ROUNDS
-      ? '<div class="fbl-exhaust">6 轮修改已用完</div>'
-      : '<button class="fbl-submit" id="fblSubmit">🚀 提交本轮（第 ' + (u + 1) + ' 轮）</button>';
+      ? '<div class="fbl-exhaust">6 轮留言已用完</div>'
+      : '<button class="fbl-submit" id="fblSubmit">🚀 提交本轮留言（第 ' + (u + 1) + ' / ' + MAX_ROUNDS + ' 轮）</button>';
     el.innerHTML =
-      '<div class="fbl-head">📋 本轮草稿 · <b>' + (feedback.length + edCount) + '</b> 处<span class="fbl-sub">未提交 —— 攒齐所有想改的地方，再一起提交</span></div>' +
-      '<div class="fbl-body">' + ((items + edLine) || '<div class="fbl-empty">标注的内容会先存到这里</div>') + '</div>' +
+      '<div class="fbl-head">📋 本轮留言草稿 · <b>' + feedback.length + '</b> 处<span class="fbl-sub">未提交 —— 攒齐所有想改的地方再一起提交（留言共 ' + MAX_ROUNDS + ' 轮）</span></div>' +
+      '<div class="fbl-body">' + items + '</div>' +
       foot;
   }
   function deleteDraft(rk) {
@@ -536,6 +532,26 @@
     var e = Object.keys(edits.text).length + Object.keys(edits.images).length + Object.keys(edits.videos).length + Object.keys(edits.bgs).length;
     return { fb: feedback.length, ed: e, total: feedback.length + e };
   }
+  /* 编辑模式：发布自己的改动（不限次数，不占留言轮次） */
+  function updatePublishBtn() {
+    var b = $("#cePublishBtn"); if (!b) return;
+    var n = draftCounts().ed;
+    b.disabled = !n;
+    b.innerHTML = n ? ("💾&nbsp; 发布我的改动（" + n + " 处）") : "💾&nbsp; 发布我的改动";
+  }
+  function publishEdits() {
+    var n = draftCounts().ed;
+    if (!n) { toast("还没有任何编辑改动"); return; }
+    var b = $("#cePublishBtn"); b.disabled = true; b.innerHTML = "发布中…";
+    fetch(API_BASE + "/api/feedback", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ token: EDIT_KEY, client: "unimax", kind: "edit", edits: JSON.parse(JSON.stringify(edits)) }) })
+      .then(function (r) { return r.json(); })
+      .then(function (j) {
+        if (j && j.success) toast("✅ 已发布你的改动 —— 编辑不限次数，我们会应用到网站");
+        else { downloadJSON(); toast("云端暂不可达，已下载改动文件，请发给我们"); }
+        updatePublishBtn();
+      })
+      .catch(function () { downloadJSON(); toast("云端暂不可达，已下载改动文件，请发给我们"); updatePublishBtn(); });
+  }
   function updateRoundChip() {
     var u = usedRounds(), chip = $("#ceRoundChip"), b = $("#ceRoundBtn");
     if (chip) {
@@ -548,11 +564,10 @@
     }
   }
   function openRoundModal() {
-    var c = draftCounts();
-    if (!c.total) { toast("本轮还没有任何标注或编辑"); return; }
-    if (usedRounds() >= MAX_ROUNDS) { toast("6 轮修改已用完，如需再改请联系我们"); return; }
-    $("#ceRoundTitle").textContent = "提交本轮修改（V" + (usedRounds() + 1) + "）";
-    $("#ceRoundSum").innerHTML = "本轮将一次性提交：<b>" + c.fb + "</b> 条留言反馈 + <b>" + c.ed + "</b> 处直接编辑。";
+    if (!feedback.length) { toast("本轮还没有任何留言"); return; }
+    if (usedRounds() >= MAX_ROUNDS) { toast("6 轮留言已用完，如需再改请联系我们"); return; }
+    $("#ceRoundTitle").textContent = "提交本轮留言（V" + (usedRounds() + 1) + "）";
+    $("#ceRoundSum").innerHTML = "本轮将一次性提交 <b>" + feedback.length + "</b> 条留言反馈，整批作为一个版本处理。<br><span style='color:#888;font-size:.82rem'>（你在编辑模式直接改的内容不占轮次，用「发布我的改动」单独提交）</span>";
     $("#ceRoundNote").value = ""; $("#ceRoundChk").checked = false;
     $("#ceRoundGo").disabled = true; $("#ceRoundGo").textContent = "确认提交";
     $("#ceRoundModal").classList.add("on");
@@ -560,26 +575,25 @@
   function closeRoundModal() { $("#ceRoundModal").classList.remove("on"); }
   function submitRound() {
     var recs = feedback.slice();
-    var edSnap = JSON.parse(JSON.stringify(edits));
     var note = $("#ceRoundNote").value.trim();
     var vGuess = usedRounds() + 1;
     $("#ceRoundGo").disabled = true; $("#ceRoundGo").textContent = "提交中…";
-    fetch(API_BASE + "/api/feedback", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ token: EDIT_KEY, client: "unimax", note: note, records: recs, edits: edSnap }) })
+    fetch(API_BASE + "/api/feedback", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ token: EDIT_KEY, client: "unimax", note: note, records: recs }) })
       .then(function (r) { return r.json(); })
       .then(function (j) {
-        if (j && j.success) { cloudUsed = j.used; finishRound(j.round_no, note, recs, edSnap, true); }
-        else if (j && j.error === "rounds_exhausted") { cloudUsed = j.used; updateRoundChip(); closeRoundModal(); toast("6 轮修改已用完，如需再改请联系我们"); }
-        else finishRound(vGuess, note, recs, edSnap, false);
+        if (j && j.success) { cloudUsed = j.used; finishRound(j.round_no, note, recs, true); }
+        else if (j && j.error === "rounds_exhausted") { cloudUsed = j.used; updateRoundChip(); closeRoundModal(); toast("6 轮留言已用完，如需再改请联系我们"); }
+        else finishRound(vGuess, note, recs, false);
       })
-      .catch(function () { finishRound(vGuess, note, recs, edSnap, false); });
+      .catch(function () { finishRound(vGuess, note, recs, false); });
   }
-  function finishRound(v, note, recs, edSnap, synced) {
-    rounds.push({ v: v, at: new Date().toISOString(), note: note, records: recs, edits: edSnap, synced: synced });
+  function finishRound(v, note, recs, synced) {
+    rounds.push({ v: v, at: new Date().toISOString(), note: note, records: recs, synced: synced });
     saveRounds();
     feedback = []; saveFb();
-    resetEditsSilent();
     fbRenderMarks(); fbRenderList(); updateRoundChip(); closeRoundModal();
-    toast(synced ? ("✅ 已提交为 V" + v + "，我们会汇总处理（已同步云端）") : ("✅ 已记为 V" + v + "。云端暂不可达——请点「📋 导出清单」把文件发给我们"));
+    toast(synced ? ("✅ 本轮留言已提交为 V" + v + "，我们会汇总处理") : ("✅ 已记为 V" + v + "（云端暂不可达，已下载文件请发我们）"));
+    if (!synced) downloadJSON();
   }
 
   /* ---------- 11. UI ---------- */
@@ -587,16 +601,21 @@
     var w = document.createElement("div");
     w.className = "ce-ui";
     w.innerHTML =
-      '<div id="ceHintEdit" class="ce-hint ce-hint-edit">✏️ 编辑模式 —— 点<b>文字</b>直接改、点<b>图片 / 视频 / 板块背景</b>替换，改动先存草稿<b>不耗轮次</b>。全部改完点「🚀 提交本轮」一次性提交（共 ' + MAX_ROUNDS + ' 轮，请集中提交）。<span class="ce-hintx" data-x="ceHintEditX">知道了</span></div>' +
-      '<div id="ceHintFb" class="ce-hint ce-hint-fb">💬 留言模式 —— 推荐<b>点板块空白处</b>对整块留言；也可点单个文字/图片，或右下「📄 整页留言」。每处可附<b>截图</b>。「记录」<b>不耗轮次</b>，全部标完点「🚀 提交本轮」（共 ' + MAX_ROUNDS + ' 轮）。<span class="ce-hintx" data-x="ceHintFbX">知道了</span></div>' +
+      '<div id="ceHintEdit" class="ce-hint ce-hint-edit">✏️ 编辑模式 —— 点<b>文字</b>直接改、点<b>图片 / 视频 / 板块背景</b>替换。改完点右下 <b>「💾 发布我的改动」</b> —— 编辑<b>不限次数</b>，随便改随便发。<span class="ce-hintx" data-x="ceHintEditX">知道了</span></div>' +
+      '<div id="ceHintFb" class="ce-hint ce-hint-fb">💬 留言模式 —— 推荐<b>点板块空白处</b>对整块留言（也可单个元素、或右下「📄 整页留言」），每处可附<b>截图</b>。「加入草稿」<b>不耗轮次</b>；攒齐后在左下草稿箱点 <b>「🚀 提交本轮」</b> —— 留言反馈共 ' + MAX_ROUNDS + ' 轮，请集中提交。<span class="ce-hintx" data-x="ceHintFbX">知道了</span></div>' +
       '<div class="ce-dock">' +
       '  <div id="ceRoundChip" class="ce-chip" style="display:none"></div>' +
-      '  <button id="cePageBtn" class="ce-btn ce-btn-page">📄&nbsp; 整页留言</button>' +
-      '  <button id="ceResetBtn" class="ce-btn ce-btn-ghost">↺ 复位</button>' +
-      '  <button id="ceExportBtn" class="ce-btn ce-btn-export">📋&nbsp; 导出清单</button>' +
-      '  <button id="ceRoundBtn" class="ce-btn ce-btn-round" style="display:none">🚀&nbsp; 提交本轮</button>' +
-      '  <button id="ceFbBtn" class="ce-btn ce-btn-fb">💬&nbsp; 留言</button>' +
-      '  <button id="ceEditBtn" class="ce-btn ce-btn-edit">✏️&nbsp; 编辑</button>' +
+      '  <div id="ceEditOps" class="ce-ops" style="display:none">' +
+      '    <button id="cePublishBtn" class="ce-btn ce-btn-publish">💾&nbsp; 发布我的改动</button>' +
+      '    <button id="ceResetBtn" class="ce-btn ce-btn-mini">↺&nbsp; 复位</button>' +
+      '  </div>' +
+      '  <div id="ceFbOps" class="ce-ops" style="display:none">' +
+      '    <button id="cePageBtn" class="ce-btn ce-btn-page">📄&nbsp; 整页留言</button>' +
+      '  </div>' +
+      '  <div class="ce-modes">' +
+      '    <button id="ceFbBtn" class="ce-btn ce-btn-fb">💬&nbsp; 留言</button>' +
+      '    <button id="ceEditBtn" class="ce-btn ce-btn-edit">✏️&nbsp; 编辑</button>' +
+      '  </div>' +
       '</div>' +
       '<div id="fbList" class="fb-list"></div>' +
       // 留言面板
@@ -616,7 +635,7 @@
       '      <div id="fbShotPrevBox" class="fb-shotbox" style="display:none"><img id="fbShotPrev" alt="截图预览"><button type="button" id="fbShotRemove" class="fb-shotx">✕ 移除</button></div>' +
       '      <label class="fb-shotup"><input type="file" id="fbShotFile" accept="image/*">📷 上传截图</label><span class="fb-shothint" id="fbShotHint"></span></div>' +
       '  </div>' +
-      '  <div class="fbp-tip">「记录」不消耗修改轮次；全部标注完后点右下「🚀 提交本轮」一次性提交（共 ' + MAX_ROUNDS + ' 轮）。</div>' +
+      '  <div class="fbp-tip">「加入草稿」不消耗轮次；留言反馈共 ' + MAX_ROUNDS + ' 轮，全部标完后在左下草稿箱点「🚀 提交本轮」一次性提交。</div>' +
       '  <div class="fbp-foot"><button class="fb-cancel" id="fbCancel">取消</button><button class="fb-submit" id="fbSubmit">＋ 加入本轮草稿</button></div>' +
       '</div>' +
       // 换媒体弹窗
@@ -653,10 +672,9 @@
   function bindEvents() {
     $("#ceEditBtn").addEventListener("click", function () { setMode("edit"); });
     $("#ceFbBtn").addEventListener("click", function () { setMode("fb"); });
-    $("#ceExportBtn").addEventListener("click", showExport);
+    $("#cePublishBtn").addEventListener("click", publishEdits);
     $("#ceResetBtn").addEventListener("click", resetEdits);
     $("#cePageBtn").addEventListener("click", function () { fbOpen("page", null, null); });
-    $("#ceRoundBtn").addEventListener("click", openRoundModal);
     $("#fbList").addEventListener("click", function (e) {
       var del = e.target.closest(".fbl-del");
       if (del) { e.stopPropagation(); deleteDraft(del.getAttribute("data-rk")); return; }
@@ -721,7 +739,12 @@
       ".ce-hint{position:fixed;top:0;left:0;right:0;z-index:99000;color:#fff;text-align:center;padding:12px 46px;font:600 .86rem/1.4 -apple-system,'Segoe UI','Microsoft YaHei',sans-serif;display:none;}" +
       ".ce-hint-edit{background:#166a3a;}.ce-hint-fb{background:#c4632a;}.ce-hint b{color:#ffe08a;}" +
       ".ce-hintx{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.22);padding:3px 10px;border-radius:20px;cursor:pointer;font-size:.78rem;}" +
-      ".ce-dock{position:fixed;right:18px;bottom:18px;z-index:99000;display:flex;flex-direction:column;gap:9px;align-items:flex-end;}" +
+      ".ce-dock{position:fixed;right:18px;bottom:18px;z-index:99000;display:flex;flex-direction:column;gap:10px;align-items:flex-end;}" +
+      ".ce-modes{display:flex;gap:10px;}" +
+      ".ce-ops{display:none;flex-direction:column;gap:8px;align-items:flex-end;}" +
+      ".ce-btn-publish{background:#1d6fd4;color:#fff;}" +
+      ".ce-btn-publish:disabled{background:#a9c1de;cursor:default;transform:none!important;box-shadow:0 4px 14px rgba(0,0,0,.12);}" +
+      ".ce-btn-mini{background:#fff;color:#555;border:1.5px solid #dcdcdc;box-shadow:0 4px 12px rgba(0,0,0,.12);padding:9px 15px;font-size:.82rem;}" +
       ".ce-btn{font:700 .9rem/1 -apple-system,'Segoe UI','Microsoft YaHei',sans-serif;border:none;border-radius:40px;padding:13px 20px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;box-shadow:0 8px 26px rgba(0,0,0,.28);transition:transform .14s;}" +
       ".ce-btn:hover{transform:translateY(-2px);}" +
       ".ce-btn-edit{background:#166a3a;color:#fff;}.ce-btn-edit.on{background:#0d4023;}" +
