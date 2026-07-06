@@ -26,11 +26,14 @@
   /* ---------- 状态 ---------- */
   var LS_ED = "unimax_edits_v2";      // 编辑模式改动 {text:{},images:{},videos:{},bgs:{}}
   var LS_FB = "unimax_feedback_v1";   // 留言模式记录 [ {target,status,comment,...} ]
-  var FB_API = "https://tablesites-feedback-api.pages.dev/api/feedback";
-  var FB_CLIENT = "unimax";
+  var LS_ROUNDS = "unimax_rounds_v1"; // 已提交轮次（本机镜像；云端 D1 为准）
+  var API_BASE = "https://unimax-demo.pages.dev"; // UniMax 自有 Functions+D1+R2
+  var MAX_ROUNDS = 6;                 // 服务承诺：总共 6 轮修改
   var mode = null;                    // null | 'edit' | 'fb'
   var fbTarget = null, mediaTarget = null, applying = false;
-  var edits = loadEdits(), feedback = loadFb();
+  var edits = loadEdits(), feedback = loadFb(), rounds = loadRounds();
+  var cloudUsed = -1;                 // 云端已用轮次（-1 = 未取到）
+  var curShot = "";                   // 当前面板里的截图 URL/dataURL
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
 
@@ -46,6 +49,7 @@
     applyEdits();
     applyFbPreviews();
     watchLang();
+    fetchCloudRounds();
   }
 
   /* ---------- 1. 自动标注（板块 / 文字 / 图 / 视频 / CSS背景图） ---------- */
@@ -118,9 +122,36 @@
   function loadFb() { try { return JSON.parse(localStorage.getItem(LS_FB) || "[]"); } catch (e) { return []; } }
   function saveFb() { try { localStorage.setItem(LS_FB, JSON.stringify(feedback)); } catch (e) { } }
   function fbRecKey(t) { return t.target === "element" ? "el:" + t.key : t.target === "page" ? "page" : "block:" + t.block_id; }
-  function fbPost(rec) {
-    var payload = { client_id: FB_CLIENT, token: EDIT_KEY, page: rec.page, target: rec.target, block_id: rec.block_id, block_label: rec.block_label, el_key: rec.key, el_type: rec.el_type, el_label: rec.el_label, status: rec.status, change_types: rec.change_types, comment: rec.comment, new_text: rec.new_text, new_image_url: (rec.new_image_url && rec.new_image_url.indexOf("data:") === 0) ? "(uploaded image, pending storage)" : rec.new_image_url, new_btn_text: rec.new_btn_text, new_btn_url: rec.new_btn_url };
-    try { fetch(FB_API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) }).catch(function () { }); } catch (e) { }
+  function loadRounds() { try { return JSON.parse(localStorage.getItem(LS_ROUNDS) || "[]"); } catch (e) { return []; } }
+  function saveRounds() { try { localStorage.setItem(LS_ROUNDS, JSON.stringify(rounds)); } catch (e) { } }
+  function usedRounds() { return Math.max(cloudUsed < 0 ? 0 : cloudUsed, rounds.length); }
+  function fetchCloudRounds(cb) {
+    try {
+      fetch(API_BASE + "/api/feedback?client=unimax").then(function (r) { return r.json(); }).then(function (j) {
+        if (j && j.success) { cloudUsed = j.used || 0; if ((j.rounds || []).length >= rounds.length) { rounds = j.rounds.map(function (r2) { return { v: r2.round_no, at: r2.created_at, note: r2.note, records: r2.records, edits: r2.edits, synced: true }; }); saveRounds(); } }
+        updateRoundChip(); if (cb) cb();
+      }).catch(function () { updateRoundChip(); if (cb) cb(); });
+    } catch (e) { updateRoundChip(); if (cb) cb(); }
+  }
+  // 截图：压到 ≤1600px 宽 JPEG，传 R2 拿 URL；失败则退回小体积 dataURL 存本机
+  function uploadShot(file, done) {
+    var img = new Image();
+    img.onload = function () {
+      var scale = Math.min(1, 1600 / img.width);
+      var cv = document.createElement("canvas");
+      cv.width = Math.round(img.width * scale); cv.height = Math.round(img.height * scale);
+      cv.getContext("2d").drawImage(img, 0, 0, cv.width, cv.height);
+      cv.toBlob(function (blob) {
+        if (!blob) { done(null); return; }
+        var fd = new FormData(); fd.append("file", new File([blob], "shot.jpg", { type: "image/jpeg" }));
+        fetch(API_BASE + "/api/upload", { method: "POST", body: fd }).then(function (r) { return r.json(); }).then(function (j) {
+          if (j && j.success && j.url) done(API_BASE + j.url);
+          else done(cv.toDataURL("image/jpeg", 0.6));
+        }).catch(function () { done(cv.toDataURL("image/jpeg", 0.6)); });
+      }, "image/jpeg", 0.85);
+    };
+    img.onerror = function () { done(null); };
+    img.src = URL.createObjectURL(file);
   }
 
   /* ---------- 3. 应用改动（含 i18n 兼容联动） ---------- */
@@ -184,8 +215,11 @@
     $("#ceEditBtn").classList.toggle("on", mode === "edit");
     $("#ceFbBtn").classList.toggle("on", mode === "fb");
     $("#ceExportBtn").style.display = mode ? "inline-flex" : "none";
+    $("#ceRoundBtn").style.display = mode ? "inline-flex" : "none";
+    $("#ceRoundChip").style.display = mode ? "block" : "none";
     $("#ceResetBtn").style.display = mode === "edit" ? "inline-flex" : "none";
     $("#cePageBtn").style.display = mode === "fb" ? "inline-flex" : "none";
+    updateRoundChip();
     $("#ceHintEdit").style.display = (mode === "edit" && !sessionStorage.getItem("ceHintEditX")) ? "block" : "none";
     $("#ceHintFb").style.display = (mode === "fb" && !sessionStorage.getItem("ceHintFbX")) ? "block" : "none";
     document.body.classList.toggle("ce-pad", !!mode && !!((mode === "edit" && !sessionStorage.getItem("ceHintEditX")) || (mode === "fb" && !sessionStorage.getItem("ceHintFbX"))));
@@ -291,6 +325,7 @@
     $("#fbNewText").value = ""; $("#fbComment").value = ""; $("#fbImgUrl").value = ""; $("#fbImgFile").value = "";
     $("#fbImgPreview").style.display = "none";
     $$(".fb-types input").forEach(function (i) { i.checked = false; });
+    curShot = ""; renderShot(); $("#fbShotFile").value = "";
 
     var rec = feedback.find(function (d) { return fbRecKey(d) === fbRecKey(fbTarget); });
     if (rec) {
@@ -300,6 +335,7 @@
       if (rec.new_text) $("#fbNewText").value = rec.new_text;
       if (rec.comment) $("#fbComment").value = rec.comment;
       if (rec.new_image_url) $("#fbImgUrl").value = rec.new_image_url;
+      if (rec.screenshot) { curShot = rec.screenshot; renderShot(); }
       (rec.change_types || []).forEach(function (t) { var i = $$(".fb-types input").find(function (x) { return x.value === t; }); if (i) i.checked = true; });
     } else $("#fbpCur").textContent = "还没填过";
     $("#fbPanel").classList.add("on");
@@ -307,6 +343,7 @@
   function fbApplyStatus(status) {
     $$(".fb-section").forEach(function (s) { s.classList.remove("on"); });
     $("#fbSecComment").classList.add("on");
+    $("#fbSecShot").classList.add("on");
     $("#fbCommentLabel").textContent = status === "remove" ? "为什么不要这块？（可选）" : status === "satisfied" ? "想补一句？（可选）" : "补充说明（可选）";
     if (status === "change") {
       if (fbTarget.target === "element") {
@@ -320,6 +357,7 @@
     var status = ($("input[name=fbStatus]:checked") || {}).value;
     if (!status) { alert("先选 满意 / 要修改 / 不要这块"); return; }
     var rec = { target: fbTarget.target, block_id: fbTarget.block_id, block_label: fbTarget.block_label, key: fbTarget.key, el_type: fbTarget.el_type, el_label: fbTarget.el_label, status: status, page: "home", ts: new Date().toISOString(), comment: $("#fbComment").value.trim() };
+    if (curShot) rec.screenshot = curShot;
     if (status === "change") {
       if (fbTarget.target === "element") {
         if (fbTarget.el_type === "text") rec.new_text = $("#fbNewText").value.trim();
@@ -327,10 +365,15 @@
       } else rec.change_types = $$(".fb-types input:checked").map(function (i) { return i.value; });
     }
     feedback = feedback.filter(function (d) { return fbRecKey(d) !== fbRecKey(fbTarget); });
-    feedback.push(rec); saveFb(); fbPost(rec);
+    feedback.push(rec); saveFb();
     $("#fbPanel").classList.remove("on"); fbTarget = null;
     applyFbPreviews(); fbRenderMarks(); fbRenderList();
-    toast("已记录，可继续标其它地方");
+    toast("已记录（不耗轮次）· 全部标完后点「🚀 提交本轮」");
+  }
+  function renderShot() {
+    var box = $("#fbShotPrevBox"); if (!box) return;
+    if (curShot) { $("#fbShotPrev").src = curShot; box.style.display = "block"; }
+    else { box.style.display = "none"; $("#fbShotPrev").removeAttribute("src"); }
   }
 
   /* ---------- 9. 徽章 / 圆点 / 列表 ---------- */
@@ -385,35 +428,44 @@
   }
 
   /* ---------- 10. 导出清单（编辑改动 + 留言合并） ---------- */
+  function fmtFbRec(d, i) {
+    var where = d.target === "element" ? (d.block_label + " › " + (d.el_label || d.key)) : d.target === "page" ? "整个页面" : "整块：" + d.block_label;
+    var tag = d.status === "satisfied" ? "✓满意" : d.status === "remove" ? "🗑不要" : "✎要改";
+    var s = (i + 1) + ". [" + tag + "] " + where;
+    if (d.new_text) s += "\n   新文案：" + d.new_text;
+    if (d.new_image_url) s += "\n   换图：" + (d.new_image_url.indexOf("data:") === 0 ? "已上传（见 JSON）" : d.new_image_url);
+    if (d.change_types && d.change_types.length) s += "\n   要改：" + d.change_types.join("、");
+    if (d.comment) s += "\n   留言：" + d.comment;
+    if (d.screenshot) s += "\n   附截图：" + (d.screenshot.indexOf("data:") === 0 ? "（本机图片，见随附 JSON）" : d.screenshot);
+    return s;
+  }
+  function fmtEdits(ed, lines) {
+    Object.keys(ed.text || {}).forEach(function (k) { var el = $('[data-fb-key="' + cssEsc(k) + '"]'); lines.push("· [文字 " + k + "]" + (el && el._orig ? "\n   原：" + el._orig : "") + "\n   改：" + ed.text[k]); });
+    Object.keys(ed.images || {}).forEach(function (k) { lines.push("· [图 " + k + "] → " + (ed.images[k].indexOf("data:") === 0 ? "已上传本地图片（见随附 JSON）" : ed.images[k])); });
+    Object.keys(ed.videos || {}).forEach(function (k) { lines.push("· [视频 " + k + "] → " + ed.videos[k]); });
+    Object.keys(ed.bgs || {}).forEach(function (k) { lines.push("· [背景图 " + k + "] → " + (ed.bgs[k].indexOf("data:") === 0 ? "已上传本地图片（见随附 JSON）" : ed.bgs[k])); });
+  }
   function summaryText() {
-    var lines = ["UNI MAX 网站 · 客户改动清单", "页面：" + location.origin + location.pathname, ""];
-    var tKeys = Object.keys(edits.text), iKeys = Object.keys(edits.images), vKeys = Object.keys(edits.videos), bKeys = Object.keys(edits.bgs);
-    if (tKeys.length + iKeys.length + vKeys.length + bKeys.length) {
-      lines.push("═══ 直接编辑（所见即所得） ═══");
-      tKeys.forEach(function (k, n) { var el = $('[data-fb-key="' + cssEsc(k) + '"]'); lines.push((n + 1) + ". [文字 " + k + "]\n   原：" + (el && el._orig || "") + "\n   改：" + edits.text[k]); });
-      iKeys.forEach(function (k) { lines.push("· [图 " + k + "] → " + (edits.images[k].indexOf("data:") === 0 ? "已上传本地图片（见随附 JSON）" : edits.images[k])); });
-      vKeys.forEach(function (k) { lines.push("· [视频 " + k + "] → " + edits.videos[k]); });
-      bKeys.forEach(function (k) { lines.push("· [背景图 " + k + "] → " + (edits.bgs[k].indexOf("data:") === 0 ? "已上传本地图片（见随附 JSON）" : edits.bgs[k])); });
+    var lines = ["UNI MAX 网站 · 客户改动清单", "页面：" + location.origin + location.pathname, "修改轮次：已用 " + usedRounds() + " / " + MAX_ROUNDS, ""];
+    var order = { change: 0, remove: 1, satisfied: 2 };
+    rounds.forEach(function (rd) {
+      lines.push("━━━ V" + rd.v + " 已提交 · " + String(rd.at || "").replace("T", " ").slice(0, 16) + (rd.synced ? "" : " · ⚠未同步云端") + " ━━━");
+      if (rd.note) lines.push("总体说明：" + rd.note);
+      fmtEdits(rd.edits || {}, lines);
+      (rd.records || []).slice().sort(function (a, b) { return (order[a.status] || 0) - (order[b.status] || 0); }).forEach(function (d, i) { lines.push(fmtFbRec(d, i)); });
       lines.push("");
+    });
+    var c = draftCounts();
+    if (c.total) {
+      lines.push("═══ 当前草稿（尚未提交，不占轮次） ═══");
+      fmtEdits(edits, lines);
+      feedback.slice().sort(function (a, b) { return (order[a.status] || 0) - (order[b.status] || 0); }).forEach(function (d, i) { lines.push(fmtFbRec(d, i)); });
+    } else if (!rounds.length) {
+      lines.push("（还没有任何改动或留言）");
     }
-    if (feedback.length) {
-      lines.push("═══ 留言反馈（逐处评审） ═══");
-      var order = { change: 0, remove: 1, satisfied: 2 };
-      feedback.slice().sort(function (a, b) { return (order[a.status] || 0) - (order[b.status] || 0); }).forEach(function (d, i) {
-        var where = d.target === "element" ? (d.block_label + " › " + (d.el_label || d.key)) : d.target === "page" ? "整个页面" : "整块：" + d.block_label;
-        var tag = d.status === "satisfied" ? "✓满意" : d.status === "remove" ? "🗑不要" : "✎要改";
-        var s = (i + 1) + ". [" + tag + "] " + where;
-        if (d.new_text) s += "\n   新文案：" + d.new_text;
-        if (d.new_image_url) s += "\n   换图：" + (d.new_image_url.indexOf("data:") === 0 ? "已上传（见 JSON）" : d.new_image_url);
-        if (d.change_types && d.change_types.length) s += "\n   要改：" + d.change_types.join("、");
-        if (d.comment) s += "\n   留言：" + d.comment;
-        lines.push(s);
-      });
-    }
-    if (lines.length === 3) lines.push("（还没有任何改动或留言）");
     return lines.join("\n");
   }
-  function showExport() { $("#ceExportBody").textContent = summaryText(); $("#ceExportModal").classList.add("on"); }
+  function showExport() { $("#ceExpRound").textContent = "· 已用 " + usedRounds() + "/" + MAX_ROUNDS + " 轮"; $("#ceExportBody").textContent = summaryText(); $("#ceExportModal").classList.add("on"); }
   function copyList() {
     var txt = summaryText();
     if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(function () { toast("已复制，粘贴发我们即可"); }, function () { fallbackCopy(txt); });
@@ -421,7 +473,7 @@
   }
   function fallbackCopy(txt) { var ta = document.createElement("textarea"); ta.value = txt; ta.style.cssText = "position:fixed;opacity:0"; document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); toast("已复制"); } catch (e) { toast("复制失败"); } document.body.removeChild(ta); }
   function downloadJSON() {
-    var blob = new Blob([JSON.stringify({ site: "unimax", url: location.href, savedAt: new Date().toISOString(), edits: edits, feedback: feedback }, null, 2)], { type: "application/json" });
+    var blob = new Blob([JSON.stringify({ site: "unimax", url: location.href, savedAt: new Date().toISOString(), rounds_used: usedRounds(), max_rounds: MAX_ROUNDS, rounds: rounds, draft: { edits: edits, feedback: feedback } }, null, 2)], { type: "application/json" });
     var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "unimax-changes.json";
     document.body.appendChild(a); a.click(); document.body.removeChild(a);
     setTimeout(function () { URL.revokeObjectURL(a.href); }, 4000);
@@ -440,9 +492,9 @@
     applyBgs(); toast("已恢复原样");
   }
   function resetAll() {
-    if (!confirm("清空全部（编辑改动 + 留言记录）？")) return;
+    if (!confirm("清空当前草稿（未提交的编辑 + 留言）？已提交的轮次不受影响。")) return;
     feedback = []; saveFb(); resetEditsSilent(); fbRenderMarks(); fbRenderList();
-    $("#ceExportModal").classList.remove("on"); toast("已全部清空");
+    $("#ceExportModal").classList.remove("on"); toast("草稿已清空（已提交轮次保留）");
   }
   function resetEditsSilent() {
     edits = { text: {}, images: {}, videos: {}, bgs: {} }; saveEdits();
@@ -456,17 +508,70 @@
     applyBgs();
   }
 
+  /* ---------- 10b. 轮次制（V1–V6）：一次性提交本轮全部改动 ---------- */
+  function draftCounts() {
+    var e = Object.keys(edits.text).length + Object.keys(edits.images).length + Object.keys(edits.videos).length + Object.keys(edits.bgs).length;
+    return { fb: feedback.length, ed: e, total: feedback.length + e };
+  }
+  function updateRoundChip() {
+    var u = usedRounds(), chip = $("#ceRoundChip"), b = $("#ceRoundBtn");
+    if (chip) {
+      chip.innerHTML = "修改轮次：已用 <b>" + u + "</b> / " + MAX_ROUNDS + (u >= MAX_ROUNDS ? " · 已用完" : u === MAX_ROUNDS - 1 ? " · ⚠最后一轮" : "");
+      chip.classList.toggle("warn", u >= MAX_ROUNDS - 1);
+    }
+    if (b) {
+      if (u >= MAX_ROUNDS) { b.disabled = true; b.innerHTML = "🚀&nbsp; 轮次已用完"; }
+      else { b.disabled = false; b.innerHTML = "🚀&nbsp; 提交本轮（第 " + (u + 1) + " 轮）"; }
+    }
+  }
+  function openRoundModal() {
+    var c = draftCounts();
+    if (!c.total) { toast("本轮还没有任何标注或编辑"); return; }
+    if (usedRounds() >= MAX_ROUNDS) { toast("6 轮修改已用完，如需再改请联系我们"); return; }
+    $("#ceRoundTitle").textContent = "提交本轮修改（V" + (usedRounds() + 1) + "）";
+    $("#ceRoundSum").innerHTML = "本轮将一次性提交：<b>" + c.fb + "</b> 条留言反馈 + <b>" + c.ed + "</b> 处直接编辑。";
+    $("#ceRoundNote").value = ""; $("#ceRoundChk").checked = false;
+    $("#ceRoundGo").disabled = true; $("#ceRoundGo").textContent = "确认提交";
+    $("#ceRoundModal").classList.add("on");
+  }
+  function closeRoundModal() { $("#ceRoundModal").classList.remove("on"); }
+  function submitRound() {
+    var recs = feedback.slice();
+    var edSnap = JSON.parse(JSON.stringify(edits));
+    var note = $("#ceRoundNote").value.trim();
+    var vGuess = usedRounds() + 1;
+    $("#ceRoundGo").disabled = true; $("#ceRoundGo").textContent = "提交中…";
+    fetch(API_BASE + "/api/feedback", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ token: EDIT_KEY, client: "unimax", note: note, records: recs, edits: edSnap }) })
+      .then(function (r) { return r.json(); })
+      .then(function (j) {
+        if (j && j.success) { cloudUsed = j.used; finishRound(j.round_no, note, recs, edSnap, true); }
+        else if (j && j.error === "rounds_exhausted") { cloudUsed = j.used; updateRoundChip(); closeRoundModal(); toast("6 轮修改已用完，如需再改请联系我们"); }
+        else finishRound(vGuess, note, recs, edSnap, false);
+      })
+      .catch(function () { finishRound(vGuess, note, recs, edSnap, false); });
+  }
+  function finishRound(v, note, recs, edSnap, synced) {
+    rounds.push({ v: v, at: new Date().toISOString(), note: note, records: recs, edits: edSnap, synced: synced });
+    saveRounds();
+    feedback = []; saveFb();
+    resetEditsSilent();
+    fbRenderMarks(); fbRenderList(); updateRoundChip(); closeRoundModal();
+    toast(synced ? ("✅ 已提交为 V" + v + "，我们会汇总处理（已同步云端）") : ("✅ 已记为 V" + v + "。云端暂不可达——请点「📋 导出清单」把文件发给我们"));
+  }
+
   /* ---------- 11. UI ---------- */
   function buildUI() {
     var w = document.createElement("div");
     w.className = "ce-ui";
     w.innerHTML =
-      '<div id="ceHintEdit" class="ce-hint ce-hint-edit">✏️ 编辑模式 —— 点<b>文字</b>直接改、点<b>图片 / 视频 / 板块背景</b>替换。改动自动保存在你这台设备，改完点「📋 导出清单」发给我们。<span class="ce-hintx" data-x="ceHintEditX">知道了</span></div>' +
-      '<div id="ceHintFb" class="ce-hint ce-hint-fb">💬 留言模式 —— 推荐<b>点板块空白处</b>对整块留言；也可点单个文字/图片。每处选 ✓满意 / ✎要改 / 🗑不要，可留言。整页意见点右下「📄 整页留言」。<span class="ce-hintx" data-x="ceHintFbX">知道了</span></div>' +
+      '<div id="ceHintEdit" class="ce-hint ce-hint-edit">✏️ 编辑模式 —— 点<b>文字</b>直接改、点<b>图片 / 视频 / 板块背景</b>替换，改动先存草稿<b>不耗轮次</b>。全部改完点「🚀 提交本轮」一次性提交（共 ' + MAX_ROUNDS + ' 轮，请集中提交）。<span class="ce-hintx" data-x="ceHintEditX">知道了</span></div>' +
+      '<div id="ceHintFb" class="ce-hint ce-hint-fb">💬 留言模式 —— 推荐<b>点板块空白处</b>对整块留言；也可点单个文字/图片，或右下「📄 整页留言」。每处可附<b>截图</b>。「记录」<b>不耗轮次</b>，全部标完点「🚀 提交本轮」（共 ' + MAX_ROUNDS + ' 轮）。<span class="ce-hintx" data-x="ceHintFbX">知道了</span></div>' +
       '<div class="ce-dock">' +
+      '  <div id="ceRoundChip" class="ce-chip" style="display:none"></div>' +
       '  <button id="cePageBtn" class="ce-btn ce-btn-page">📄&nbsp; 整页留言</button>' +
       '  <button id="ceResetBtn" class="ce-btn ce-btn-ghost">↺ 复位</button>' +
       '  <button id="ceExportBtn" class="ce-btn ce-btn-export">📋&nbsp; 导出清单</button>' +
+      '  <button id="ceRoundBtn" class="ce-btn ce-btn-round" style="display:none">🚀&nbsp; 提交本轮</button>' +
       '  <button id="ceFbBtn" class="ce-btn ce-btn-fb">💬&nbsp; 留言</button>' +
       '  <button id="ceEditBtn" class="ce-btn ce-btn-edit">✏️&nbsp; 编辑</button>' +
       '</div>' +
@@ -484,8 +589,12 @@
       '    <div class="fb-section" id="fbSecImage"><div class="fb-fieldlabel">换成这张图</div><div class="fb-imgbox"><img id="fbImgPreview"><input type="file" id="fbImgFile" accept="image/*"><div class="or">— 或贴图片链接 —</div><input class="fb-input" id="fbImgUrl" placeholder="https://…"></div></div>' +
       '    <div class="fb-section" id="fbSecBlock"><div class="fb-fieldlabel">要改什么（可多选）</div><div class="fb-types"><input type="checkbox" id="ft1" value="文案"><label for="ft1">文案</label><input type="checkbox" id="ft2" value="图片"><label for="ft2">图片</label><input type="checkbox" id="ft3" value="颜色"><label for="ft3">颜色</label><input type="checkbox" id="ft4" value="排版"><label for="ft4">排版</label><input type="checkbox" id="ft5" value="风格"><label for="ft5">整体风格</label><input type="checkbox" id="ft6" value="其他"><label for="ft6">其他</label></div></div>' +
       '    <div class="fb-section" id="fbSecComment"><div class="fb-fieldlabel" id="fbCommentLabel">补充说明（可选）</div><textarea class="fb-textarea" id="fbComment" placeholder="写下你的想法…"></textarea></div>' +
+      '    <div class="fb-section" id="fbSecShot"><div class="fb-fieldlabel">补充截图（可选）—— 可自己截图圈出要改的位置再传上来</div>' +
+      '      <div id="fbShotPrevBox" class="fb-shotbox" style="display:none"><img id="fbShotPrev" alt="截图预览"><button type="button" id="fbShotRemove" class="fb-shotx">✕ 移除</button></div>' +
+      '      <label class="fb-shotup"><input type="file" id="fbShotFile" accept="image/*">📷 上传截图</label><span class="fb-shothint" id="fbShotHint"></span></div>' +
       '  </div>' +
-      '  <div class="fbp-foot"><button class="fb-cancel" id="fbCancel">取消</button><button class="fb-submit" id="fbSubmit">提交</button></div>' +
+      '  <div class="fbp-tip">「记录」不消耗修改轮次；全部标注完后点右下「🚀 提交本轮」一次性提交（共 ' + MAX_ROUNDS + ' 轮）。</div>' +
+      '  <div class="fbp-foot"><button class="fb-cancel" id="fbCancel">取消</button><button class="fb-submit" id="fbSubmit">记录（不耗轮次）</button></div>' +
       '</div>' +
       // 换媒体弹窗
       '<div id="ceModal" class="ce-modal"><div class="ce-mbox">' +
@@ -499,10 +608,20 @@
       '</div></div>' +
       // 导出弹窗
       '<div id="ceExportModal" class="ce-modal"><div class="ce-mbox ce-mbox-lg">' +
-      '  <h4>客户改动清单</h4>' +
+      '  <h4>改动清单 <span id="ceExpRound" class="ce-exp-round"></span></h4>' +
       '  <pre id="ceExportBody" class="ce-exportbody"></pre>' +
-      '  <p class="ce-tip">改动只存在你的浏览器。点「复制清单」发给我们即可安排上线；含上传图片时请一并「下载文件」发来。</p>' +
-      '  <div class="ce-mfoot ce-wrap"><button id="ceCopy" class="fb-submit">📋 复制清单</button><button id="ceDownload" class="ce-btn-dl">⬇ 下载文件</button><button id="ceClearAll" class="fb-cancel">↺ 清空全部</button><button id="ceExportClose" class="fb-cancel">关闭</button></div>' +
+      '  <p class="ce-tip">已提交轮次保存在云端（我们随时可查）；「当前草稿」只存你的浏览器。可复制清单或下载文件发给我们核对。</p>' +
+      '  <div class="ce-mfoot ce-wrap"><button id="ceCopy" class="fb-submit">📋 复制清单</button><button id="ceDownload" class="ce-btn-dl">⬇ 下载文件</button><button id="ceCloudRefresh" class="fb-cancel">☁ 刷新云端</button><button id="ceClearAll" class="fb-cancel">↺ 清空草稿</button><button id="ceExportClose" class="fb-cancel">关闭</button></div>' +
+      '</div></div>' +
+      // 提交本轮确认弹窗
+      '<div id="ceRoundModal" class="ce-modal"><div class="ce-mbox">' +
+      '  <h4 id="ceRoundTitle">提交本轮修改</h4>' +
+      '  <div id="ceRoundSum" class="ce-roundsum"></div>' +
+      '  <div class="fb-fieldlabel">本轮总体说明（可选）</div>' +
+      '  <textarea id="ceRoundNote" class="fb-textarea" placeholder="例：这一轮主要想把首屏和配色调得更年轻…"></textarea>' +
+      '  <p class="ce-roundwarn">⚠️ 提交将消耗 ' + MAX_ROUNDS + ' 次修改轮次中的 <b>1 次</b>，请确认本轮所有想改的地方都已标注/编辑完。提交后我们会把整批改动汇总为一个版本处理。</p>' +
+      '  <label class="ce-roundchk"><input type="checkbox" id="ceRoundChk"> 我确认本轮已全部标注完毕</label>' +
+      '  <div class="ce-mfoot"><button id="ceRoundCancel" class="fb-cancel">再想想</button><button id="ceRoundGo" class="fb-submit" disabled>确认提交</button></div>' +
       '</div></div>' +
       '<div id="ceToast" class="ce-toast"></div>';
     document.body.appendChild(w);
@@ -514,6 +633,21 @@
     $("#ceExportBtn").addEventListener("click", showExport);
     $("#ceResetBtn").addEventListener("click", resetEdits);
     $("#cePageBtn").addEventListener("click", function () { fbOpen("page", null, null); });
+    $("#ceRoundBtn").addEventListener("click", openRoundModal);
+    $("#ceRoundChk").addEventListener("change", function (e) { $("#ceRoundGo").disabled = !e.target.checked; });
+    $("#ceRoundGo").addEventListener("click", submitRound);
+    $("#ceRoundCancel").addEventListener("click", closeRoundModal);
+    $("#ceCloudRefresh").addEventListener("click", function () { $("#ceCloudRefresh").textContent = "☁ 刷新中…"; fetchCloudRounds(function () { $("#ceCloudRefresh").textContent = "☁ 刷新云端"; showExport(); }); });
+    $("#fbShotFile").addEventListener("change", function (e) {
+      var f = e.target.files[0]; if (!f) return;
+      $("#fbShotHint").textContent = "上传中…";
+      uploadShot(f, function (url) {
+        if (!url) { $("#fbShotHint").textContent = "上传失败，请重试"; return; }
+        curShot = url; renderShot();
+        $("#fbShotHint").textContent = url.indexOf("data:") === 0 ? "已保存在本机（导出时随 JSON 一起发）" : "已上传 ✓";
+      });
+    });
+    $("#fbShotRemove").addEventListener("click", function () { curShot = ""; renderShot(); $("#fbShotFile").value = ""; $("#fbShotHint").textContent = ""; });
     $$(".ce-hintx").forEach(function (x) { x.addEventListener("click", function () { sessionStorage.setItem(x.getAttribute("data-x"), "1"); x.parentElement.style.display = "none"; document.body.classList.remove("ce-pad"); }); });
     // 留言面板
     $("#fbSat").addEventListener("change", function () { fbApplyStatus("satisfied"); });
@@ -631,6 +765,25 @@
       ".ce-tip{font-size:.8rem;color:#888;margin:12px 0 0;line-height:1.5;}" +
       ".ce-toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:#1d1a16;color:#fff;padding:13px 22px;border-radius:12px;font:600 .88rem/1 -apple-system,'Segoe UI','Microsoft YaHei',sans-serif;z-index:99800;opacity:0;pointer-events:none;transition:opacity .25s;box-shadow:0 8px 30px rgba(0,0,0,.4);}" +
       ".ce-toast.on{opacity:1;}" +
+      // 轮次
+      ".ce-chip{background:#1d1a16;color:#fff;font:700 .78rem/1 -apple-system,'Segoe UI','Microsoft YaHei',sans-serif;padding:8px 14px;border-radius:20px;box-shadow:0 4px 14px rgba(0,0,0,.25);}" +
+      ".ce-chip b{color:#ffd479;}" +
+      ".ce-chip.warn{background:#7a2e1a;}" +
+      ".ce-btn-round{background:#b8382e;color:#fff;}" +
+      ".ce-btn-round:disabled{background:#999;cursor:not-allowed;transform:none!important;}" +
+      ".ce-roundsum{background:#faf6ef;border:1px solid #eee;border-radius:10px;padding:12px;font-size:.9rem;margin-bottom:8px;}" +
+      ".ce-roundsum b{color:#b8382e;}" +
+      ".ce-roundwarn{font-size:.8rem;color:#8a5a1a;background:#fdf3e3;border-radius:8px;padding:10px;margin:10px 0 6px;line-height:1.5;}" +
+      ".ce-roundchk{display:flex;align-items:center;gap:8px;font-size:.86rem;font-weight:600;margin:8px 0 2px;cursor:pointer;}" +
+      ".ce-exp-round{font-size:.78rem;color:#888;font-weight:600;}" +
+      // 面板小字 & 截图
+      ".fbp-tip{padding:8px 22px 0;font-size:.75rem;color:#999;line-height:1.4;}" +
+      ".fb-shotbox{position:relative;margin-bottom:8px;}" +
+      ".fb-shotbox img{max-width:100%;max-height:140px;border-radius:8px;border:1px solid #eee;display:block;}" +
+      ".fb-shotx{position:absolute;top:6px;right:6px;background:rgba(0,0,0,.65);color:#fff;border:none;border-radius:14px;padding:4px 10px;font-size:.72rem;cursor:pointer;}" +
+      ".fb-shotup{display:inline-block;border:1.5px dashed #cfcfcf;border-radius:10px;padding:9px 14px;font-size:.84rem;cursor:pointer;}" +
+      ".fb-shotup input{display:none;}" +
+      ".fb-shothint{font-size:.76rem;color:#2d7a47;margin-left:8px;}" +
       "@media(max-width:600px){.fb-panel{width:100vw;}.ce-mbox-lg{width:94vw;}.ce-btn{padding:11px 15px;font-size:.82rem;}}";
     var st = document.createElement("style"); st.id = "ce-styles"; st.textContent = css; document.head.appendChild(st);
   }
