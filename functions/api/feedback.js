@@ -70,7 +70,7 @@ export async function onRequestPost({ request, env }) {
     await env.DB.prepare(
       "INSERT INTO feedback_rounds (client, round_no, note, payload) VALUES (?, ?, ?, ?)"
     ).bind(CLIENT, roundNo, String(body.note || '').slice(0, 2000), payload).run();
-    return Response.json({ success: true, round_no: roundNo, used: roundNo, max_rounds: MAX_ROUNDS }, { headers: CORS });
+    return Response.json({ success: true, round_no: roundNo, used: roundNo, max_rounds: MAX_ROUNDS, over_limit: roundNo > MAX_ROUNDS }, { headers: CORS });
   } catch (e) {
     return Response.json({ success: false, error: e.message }, { status: 500, headers: CORS });
   }

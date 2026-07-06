@@ -30,9 +30,9 @@
       btn_fb: '💬&nbsp; 留言', btn_fb_exit: '✕&nbsp; 退出留言',
       btn_publish: '💾&nbsp; 发布我的改动', btn_publish_n: '💾&nbsp; 发布我的改动（{n} 处）', btn_publishing: '发布中…',
       btn_reset: '↺&nbsp; 复位', btn_page: '📄&nbsp; 整页留言',
-      chip: '修改轮次：已用 <b>{u}</b> / {m}{extra}', chip_out: ' · 已用完', chip_last: ' · ⚠最后一轮',
+      chip: '修改轮次：已用 <b>{u}</b> / {m}{extra}', chip_full: ' · 已达约定', chip_over: ' · ⚠已超约定 {n} 轮', chip_last: ' · ⚠最后一轮',
       draft_head: '📋 本轮留言草稿 · <b>{n}</b> 处', draft_sub: '未提交 —— 攒齐所有想改的地方再一起提交（留言共 {m} 轮）',
-      draft_submit: '🚀 提交本轮留言（第 {v} / {m} 轮）', draft_exhaust: '{m} 轮留言已用完', draft_del: '从草稿移除',
+      draft_submit: '🚀 提交本轮留言（第 {v} / {m} 轮）', draft_submit_over: '🚀 提交第 {v} 轮（已超约定 {m} 轮）', draft_del: '从草稿移除',
       fb_title: '留言反馈', fb_notfilled: '还没填过', fb_cur: '当前：',
       st_done: '已定稿', st_removed: '标记为不要', st_todo: '待改',
       scope_page: '整个页面', scope_block: '整个板块', scope_el: '元素 · {t} · 属于「{b}」',
@@ -53,7 +53,7 @@
       round_title: '提交本轮留言（V{v}）',
       round_sum: '本轮将一次性提交 <b>{n}</b> 条留言反馈，整批作为一个版本处理。<br><span class="ce-dim">（你在编辑模式直接改的内容不占轮次，用「发布我的改动」单独提交）</span>',
       round_note_label: '本轮总体说明（可选）', round_note_ph: '例：这一轮主要想把首屏和配色调得更年轻…',
-      round_warn: '⚠️ 提交将消耗 {m} 次修改轮次中的 <b>1 次</b>，请确认本轮所有想改的地方都已标注完。提交后我们会把整批改动汇总为一个版本处理。',
+      round_warn: '⚠️ 提交将消耗 {m} 次修改轮次中的 <b>1 次</b>，请确认本轮所有想改的地方都已标注完。提交后我们会把整批改动汇总为一个版本处理。', round_warn_over: '⚠️ 这是<b>超出约定 {m} 轮</b>的第 {v} 轮。你仍可提交、我们照常收到并记录，超出部分可能需另行沟通。',
       round_chk: '我确认本轮已全部标注完毕', round_cancel: '再想想', round_go: '确认提交', round_submitting: '提交中…',
       ts_added: '已加入本轮草稿 · 继续标其它，或点草稿箱底部「提交本轮」一次性交',
       ts_media: '已替换 · 点「💾 发布我的改动」提交（编辑不限次数）',
@@ -72,9 +72,9 @@
       btn_fb: '💬&nbsp; Feedback', btn_fb_exit: '✕&nbsp; Exit',
       btn_publish: '💾&nbsp; Publish my changes', btn_publish_n: '💾&nbsp; Publish my changes ({n})', btn_publishing: 'Publishing…',
       btn_reset: '↺&nbsp; Reset', btn_page: '📄&nbsp; Whole page',
-      chip: 'Revision rounds: <b>{u}</b> / {m} used{extra}', chip_out: ' · none left', chip_last: ' · ⚠last round',
+      chip: 'Revision rounds: <b>{u}</b> / {m} used{extra}', chip_full: ' · agreed limit reached', chip_over: ' · ⚠{n} over the agreed limit', chip_last: ' · ⚠last round',
       draft_head: '📋 This round’s draft · <b>{n}</b>', draft_sub: 'Not submitted — collect every change first, then submit together ({m} rounds total)',
-      draft_submit: '🚀 Submit this round ({v} / {m})', draft_exhaust: 'All {m} feedback rounds used', draft_del: 'Remove from draft',
+      draft_submit: '🚀 Submit this round ({v} / {m})', draft_submit_over: '🚀 Submit round {v} (past the agreed {m})', draft_del: 'Remove from draft',
       fb_title: 'Feedback', fb_notfilled: 'Not filled yet', fb_cur: 'Current: ',
       st_done: 'Approved', st_removed: 'Marked to remove', st_todo: 'To change',
       scope_page: 'Whole page', scope_block: 'Whole section', scope_el: 'Element · {t} · in “{b}”',
@@ -95,7 +95,7 @@
       round_title: 'Submit this round (V{v})',
       round_sum: 'This submits <b>{n}</b> feedback notes at once, handled as one version.<br><span class="ce-dim">(Direct edits don’t count toward rounds — publish those separately with “Publish my changes”.)</span>',
       round_note_label: 'Overall note for this round (optional)', round_note_ph: 'e.g. This round is mainly a younger hero and color scheme…',
-      round_warn: '⚠️ This uses <b>1</b> of your {m} revision rounds. Please make sure everything for this round is marked — we’ll handle the whole batch as one version.',
+      round_warn: '⚠️ This uses <b>1</b> of your {m} revision rounds. Please make sure everything for this round is marked — we’ll handle the whole batch as one version.', round_warn_over: '⚠️ This is round {v}, <b>past the agreed {m} rounds</b>. You can still submit — we’ll receive and log it; the extra rounds may need a separate chat.',
       round_chk: 'I confirm everything for this round is marked', round_cancel: 'Not yet', round_go: 'Confirm & submit', round_submitting: 'Submitting…',
       ts_added: 'Added to this round · keep marking, or hit “Submit this round” in the draft box',
       ts_media: 'Replaced · hit “💾 Publish my changes” (edits are unlimited)',
@@ -808,6 +808,7 @@
       ".fbl-del:hover{background:rgba(154,43,43,.1);opacity:1;}" +
       ".fbl-submit{display:block;width:100%;background:var(--ce-gold);color:var(--ce-ink);border:none;padding:15px;font:700 .92rem/1 var(--ce-fd);letter-spacing:.01em;cursor:pointer;transition:.12s;}" +
       ".fbl-submit:hover{background:#b78a30;}" +
+      ".fbl-submit.over{background:#9a6a1e;}.fbl-submit.over:hover{background:#875c19;}" +
       ".fbl-exhaust{padding:14px;text-align:center;color:var(--ce-muted);font-size:.8rem;background:#f4f5f8;}" +
       ".ce-modal{position:fixed;inset:0;background:rgba(15,20,40,.55);z-index:99600;display:none;align-items:center;justify-content:center;padding:16px;}" +
       ".ce-modal.on{display:flex;}" +
