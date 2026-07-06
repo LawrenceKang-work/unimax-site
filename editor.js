@@ -59,7 +59,7 @@
       ts_media: '已替换 · 点「💾 发布我的改动」提交（编辑不限次数）',
       ts_removed: '已从本轮草稿移除', ts_reset: '已恢复原样',
       ts_pub_ok: '✅ 已发布你的改动 —— 编辑不限次数，我们会应用到网站', ts_pub_fail: '云端暂不可达，已下载改动文件，请发给我们', ts_pub_none: '还没有任何编辑改动',
-      ts_round_ok: '✅ 本轮留言已提交为 V{v}，我们会汇总处理', ts_round_local: '✅ 已记为 V{v}（云端暂不可达，已下载文件请发我们）',
+      ts_round_ok: '✅ 第 {v} 轮已送达，我们会尽快处理并通过 WhatsApp 联系你 —— 无需额外通知', ts_round_local: '✅ 已记为 V{v}（云端暂不可达，已下载文件请发我们）',
       ts_exhausted: '{m} 轮留言已用完，如需再改请联系我们', ts_no_fb: '本轮还没有任何留言', ts_el_hidden: '该元素在当前语言下不可见',
       ts_pick_first: '先选图或贴链接', ts_pick_status: '先选 满意 / 要修改 / 不要这块', ts_storage: '存储空间不足：上传图片太大，请改用图片链接',
       cf_reset: '清空「直接编辑」的所有改动、恢复原样？（留言记录保留）'
@@ -101,7 +101,7 @@
       ts_media: 'Replaced · hit “💾 Publish my changes” (edits are unlimited)',
       ts_removed: 'Removed from this round’s draft', ts_reset: 'Restored to original',
       ts_pub_ok: '✅ Your changes are published — edits are unlimited, we’ll apply them', ts_pub_fail: 'Cloud unreachable — a file was downloaded, please send it to us', ts_pub_none: 'No edits yet',
-      ts_round_ok: '✅ This round submitted as V{v} — we’ll consolidate it', ts_round_local: '✅ Saved as V{v} (cloud unreachable — file downloaded, please send it)',
+      ts_round_ok: '✅ Round {v} received — we’ll handle it and reach you on WhatsApp. No need to notify us.', ts_round_local: '✅ Saved as V{v} (cloud unreachable — file downloaded, please send it)',
       ts_exhausted: 'All {m} feedback rounds used — please contact us if you need more', ts_no_fb: 'No feedback in this round yet', ts_el_hidden: 'That element isn’t visible in the current language',
       ts_pick_first: 'Pick an image or paste a link first', ts_pick_status: 'Pick Keep / Change / Remove first', ts_storage: 'Storage full: image too large — please use an image link',
       cf_reset: 'Clear all direct edits and restore original? (feedback notes are kept)'
@@ -131,6 +131,31 @@
   function init() {
     annotate(); baseline(); injectStyles(); buildUI(); bindEvents();
     applyEdits(); applyFbPreviews(); watchLang(); fetchCloudRounds();
+    setTimeout(showWelcome, 900);
+  }
+  function showWelcome() {
+    try { if (localStorage.getItem("unimax_ce_welcomed") === "1") return; } catch (e) { }
+    if (document.querySelector(".ce-welcome")) return;
+    if (!document.getElementById("ce-wc-style")) {
+      var st = document.createElement("style"); st.id = "ce-wc-style";
+      st.textContent = ".ce-welcome{position:fixed;inset:0;z-index:2147483600;background:rgba(12,20,40,.55);display:flex;align-items:center;justify-content:center;padding:20px}.ce-wc-card{max-width:380px;background:#fff;border-radius:18px;padding:26px 24px 22px;box-shadow:0 20px 60px rgba(0,0,0,.35);text-align:center;font-family:'Inter',system-ui,sans-serif;animation:cewc .25s ease}@keyframes cewc{from{opacity:0;transform:translateY(10px)}}.ce-wc-emoji{font-size:40px;margin-bottom:6px}.ce-wc-card h3{margin:0 0 10px;font-family:'Sora','Inter',sans-serif;font-size:19px;color:#22315b}.ce-wc-card p{margin:0 0 10px;font-size:14px;line-height:1.55;color:#43506e}.ce-wc-safe{background:#f2f6ff;border-radius:10px;padding:9px 11px;font-size:13px!important;color:#2b3a5e!important}.ce-wc-go{margin-top:6px;width:100%;border:0;border-radius:999px;padding:12px;font-size:15px;font-weight:600;color:#fff;background:#3f7fe0;cursor:pointer}";
+      document.head.appendChild(st);
+    }
+    var zh = uiLang() === "zh";
+    var ov = document.createElement("div");
+    ov.className = "ce-ui ce-welcome";
+    ov.innerHTML =
+      '<div class="ce-wc-card">' +
+      '<div class="ce-wc-emoji">👋</div>' +
+      '<h3>' + (zh ? '欢迎！这是你的专属修改通道' : 'Your private revision channel') + '</h3>' +
+      '<p>' + (zh ? '想自己改字、换图 → 点右下 <b>✏️ 编辑</b>；想告诉我们哪里要调 → 点 <b>💬 留言</b>。' : 'Edit text/images yourself → tap <b>✏️ Edit</b> (bottom-right). Tell us what to change → tap <b>💬 Feedback</b>.') + '</p>' +
+      '<p class="ce-wc-safe">' + (zh ? '🔒 你的改动<b>只有我们能看到，不会动到线上网站</b> —— 放心试。' : '🔒 Your changes are <b>private and never touch the live site</b> — feel free to try.') + '</p>' +
+      '<button class="ce-wc-go">' + (zh ? '开始吧' : 'Get started') + '</button>' +
+      '</div>';
+    document.body.appendChild(ov);
+    function closeWc() { try { localStorage.setItem("unimax_ce_welcomed", "1"); } catch (e) { } ov.remove(); }
+    ov.querySelector(".ce-wc-go").addEventListener("click", closeWc);
+    ov.addEventListener("click", function (e) { if (e.target === ov) closeWc(); });
   }
 
   /* ---------- 1. 自动标注 ---------- */
@@ -467,7 +492,8 @@
       var rk = fbRecKey(d);
       return '<div class="fbl-item" data-rk="' + esc(rk) + '"><span class="fbl-ic ' + d.status + '">' + ic + '</span><span class="fbl-t">' + esc(name) + (detail ? '<i class="fbl-d">' + esc(detail) + '</i>' : '') + '</span><button class="fbl-del" data-rk="' + esc(rk) + '" title="' + esc(t("draft_del")) + '">✕</button></div>';
     }).join("");
-    var foot = u >= MAX_ROUNDS ? '<div class="fbl-exhaust">' + esc(t("draft_exhaust", { m: MAX_ROUNDS })) + '</div>'
+    var foot = u >= MAX_ROUNDS
+      ? '<button class="fbl-submit over" id="fblSubmit">' + t("draft_submit_over", { v: u + 1, m: MAX_ROUNDS }) + '</button>'
       : '<button class="fbl-submit" id="fblSubmit">' + t("draft_submit", { v: u + 1, m: MAX_ROUNDS }) + '</button>';
     el.innerHTML =
       '<div class="fbl-head">' + t("draft_head", { n: feedback.length }) + '<span class="fbl-sub">' + esc(t("draft_sub", { m: MAX_ROUNDS })) + '</span></div>' +
