@@ -107,7 +107,13 @@
       cf_reset: 'Clear all direct edits and restore original? (feedback notes are kept)'
     }
   };
-  function uiLang() { var l = (document.documentElement.getAttribute("lang") || "en").toLowerCase(); return l.indexOf("zh") === 0 ? "zh" : "en"; }
+  function uiLang() {
+    var l = "";
+    try { l = localStorage.getItem("unimax_lang") || ""; } catch (e) { }   // app.js 存的权威当前语言，最可靠
+    if (!l) l = document.documentElement.getAttribute("lang") || "en";       // 兜底：<html lang>
+    l = l.toLowerCase();
+    return l.indexOf("zh") === 0 ? "zh" : "en";   // 中文→中文，其余一律→英文
+  }
   function t(k, a) { var s = (UILANG[uiLang()] || UILANG.en)[k]; if (s == null) s = UILANG.en[k] || k; if (a) Object.keys(a).forEach(function (x) { s = s.split("{" + x + "}").join(a[x]); }); return s; }
 
   /* ---------- 状态 ---------- */
@@ -245,16 +251,23 @@
     applying = false;
   }
   function watchLang() {
+    if (!("MutationObserver" in window)) return;
+    // ① 监听 <html lang> 变化（app.js 初始 applyLang + 用户切换都会改它）→ 挂件重建为对应语言
+    var lastUi = uiLang();
+    new MutationObserver(function () {
+      var now = uiLang();
+      if (now !== lastUi) { lastUi = now; applyEdits(); applyFbPreviews(); rebuildUI(); }
+    }).observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
+    // ② 语言切换也点了按钮时兜底一次（防某些浏览器属性变化不触发）
     $$("#langBtn, #langMenu button, [data-drawer-lang], #footLangBtn, #footLangMenu button").forEach(function (b) {
-      b.addEventListener("click", function () { setTimeout(function () { applyEdits(); applyFbPreviews(); rebuildUI(); }, 90); });
+      b.addEventListener("click", function () { setTimeout(function () { var now = uiLang(); if (now !== lastUi) { lastUi = now; applyEdits(); applyFbPreviews(); rebuildUI(); } }, 120); });
     });
-    if ("MutationObserver" in window) {
-      new MutationObserver(function () {
-        if (applying || mode === "edit") return;
-        var dirty = Object.keys(edits.text).some(function (k) { var el = $('[data-fb-key="' + cssEsc(k) + '"]'); return el && el.textContent !== edits.text[k]; });
-        if (dirty) { applyEdits(); applyFbPreviews(); }
-      }).observe(document.body, { subtree: true, childList: true, characterData: true });
-    }
+    // ③ 文字被 applyLang 改回时重套编辑/留言预览
+    new MutationObserver(function () {
+      if (applying || mode === "edit") return;
+      var dirty = Object.keys(edits.text).some(function (k) { var el = $('[data-fb-key="' + cssEsc(k) + '"]'); return el && el.textContent !== edits.text[k]; });
+      if (dirty) { applyEdits(); applyFbPreviews(); }
+    }).observe(document.body, { subtree: true, childList: true, characterData: true });
   }
 
   /* ---------- 4. 模式切换（互斥） ---------- */
