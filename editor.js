@@ -200,7 +200,7 @@
         if (!own || own.length > 120) return;                       // 无自己的文本 / 过长跳过
         if (!/[0-9A-Za-z一-鿿]/.test(own)) return;          // 纯符号跳过
         el.setAttribute("data-fb-el", "text");
-        el.setAttribute("data-fb-key", "auto:" + (autoN++));
+        el.setAttribute("data-fb-key", el.getAttribute("data-edit-id") || ("auto:" + (autoN++)));  // 源码有稳定锚点(data-edit-id)就用它 → 可写回源码;否则退回位置式 auto:N(仅编辑/留言,不可发布)
         el.setAttribute("data-fb-ellabel", own.slice(0, 20));
       });
     });
