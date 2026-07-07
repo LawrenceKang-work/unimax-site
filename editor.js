@@ -704,9 +704,9 @@
   function publishEdits() {
     var n = draftEditCount(); if (!n) { toast(t("ts_pub_none")); return; }
     var b = $("#cePublishBtn"); b.disabled = true; b.innerHTML = t("btn_publishing");
-    fetch(API_BASE + "/api/feedback", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ token: EDIT_KEY, client: "unimax", kind: "edit", edits: JSON.parse(JSON.stringify(edits)) }) })
+    fetch(API_BASE + "/api/publish", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ token: EDIT_KEY, client: "unimax", lang: uiLang(), edits: JSON.parse(JSON.stringify(edits)) }) })
       .then(function (r) { return r.json(); })
-      .then(function (j) { if (j && j.success) toast(t("ts_pub_ok")); else { downloadJSON(); toast(t("ts_pub_fail")); } updatePublishBtn(); })
+      .then(function (j) { if (j && j.success) toast(j.note || t("ts_pub_ok")); else { downloadJSON(); toast((j && j.note) || t("ts_pub_fail")); } updatePublishBtn(); })
       .catch(function () { downloadJSON(); toast(t("ts_pub_fail")); updatePublishBtn(); });
   }
 
