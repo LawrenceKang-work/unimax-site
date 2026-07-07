@@ -45,6 +45,7 @@
       comment_label: '补充说明（可选）', comment_label_rm: '为什么不要这块？（可选）', comment_label_sat: '想补一句？（可选）', comment_ph: '写下你的想法…',
       shot_label: '补充截图（可选）—— 可自己截图圈出要改的位置再传上来', shot_up: '📷 上传截图', shot_remove: '✕ 移除',
       shot_uploading: '上传中…', shot_ok: '已上传 ✓', shot_local: '已保存在本机（导出时随文件一起发）', shot_fail: '上传失败，请重试',
+      shot_paste: '📋 粘贴截图', shot_nopaste: '剪贴板里没有图片 —— 请先截图复制（Win+Shift+S），或直接按 Ctrl+V 粘贴',
       fbp_tip: '「加入草稿」不消耗轮次；留言反馈共 {m} 轮，全部标完后在左下草稿箱点「🚀 提交本轮」一次性提交。',
       btn_cancel: '取消', btn_add_draft: '＋ 加入本轮草稿',
       media_image: '换图片', media_video: '换视频', media_bg: '换背景图',
@@ -87,6 +88,7 @@
       comment_label: 'Notes (optional)', comment_label_rm: 'Why remove this? (optional)', comment_label_sat: 'Anything to add? (optional)', comment_ph: 'Write your thoughts…',
       shot_label: 'Screenshot (optional) — mark up where to change, then upload', shot_up: '📷 Upload screenshot', shot_remove: '✕ Remove',
       shot_uploading: 'Uploading…', shot_ok: 'Uploaded ✓', shot_local: 'Saved on this device (sent with the export file)', shot_fail: 'Upload failed, please retry',
+      shot_paste: '📋 Paste screenshot', shot_nopaste: 'No image in clipboard — copy a screenshot first (Win+Shift+S), or press Ctrl+V',
       fbp_tip: '“Add to draft” uses no round. Feedback is limited to {m} rounds — once everything is marked, hit “🚀 Submit this round” in the draft box (bottom-left).',
       btn_cancel: 'Cancel', btn_add_draft: '＋ Add to this round',
       media_image: 'Replace image', media_video: 'Replace video', media_bg: 'Replace background',
@@ -172,6 +174,21 @@
       el.setAttribute("data-fb-el", "text");
       el.setAttribute("data-fb-key", el.getAttribute("data-i18n"));
       el.setAttribute("data-fb-ellabel", (el.textContent.trim().replace(/\s+/g, " ").slice(0, 20)) || el.getAttribute("data-i18n"));
+    });
+    // 叶子文本兜底：没有 data-i18n 的文案 / 数字（如统计数字、硬编码短句）也纳入可编辑，跨项目通用防漏标
+    var autoN = 0;
+    $$("main, header.header, footer.footer").forEach(function (root) {
+      $$("h1,h2,h3,h4,h5,h6,p,span,li,a,strong,em,b,td,th,button,label,blockquote,figcaption,dt,dd,small", root).forEach(function (el) {
+        if (el.hasAttribute("data-fb-el")) return;          // 已标注（含 data-i18n）
+        if (el.closest(".ce-ui")) return;                    // 挂件自身
+        if (el.children.length) return;                      // 只标最内层叶子
+        var txt = (el.textContent || "").trim();
+        if (!txt || txt.length > 120) return;                // 空 / 过长跳过
+        if (!/[0-9A-Za-z一-鿿]/.test(txt)) return;   // 纯符号跳过
+        el.setAttribute("data-fb-el", "text");
+        el.setAttribute("data-fb-key", "auto:" + (autoN++));
+        el.setAttribute("data-fb-ellabel", txt.slice(0, 20));
+      });
     });
     $$("img").forEach(function (img) {
       if (!editableImg(img) || img.hasAttribute("data-fb-el")) return;
@@ -622,6 +639,7 @@
       '<div id="ceHintEdit" class="ce-hint ce-hint-edit">' + t("hint_edit") + '<span class="ce-hintx" data-x="ceHintEditX">' + t("hint_ok") + '</span></div>' +
       '<div id="ceHintFb" class="ce-hint ce-hint-fb">' + t("hint_fb", { m: MAX_ROUNDS }) + '<span class="ce-hintx" data-x="ceHintFbX">' + t("hint_ok") + '</span></div>' +
       '<div class="ce-dock">' +
+      '  <button id="ceMinBtn" class="ce-min" title="最小化工具栏">▾</button>' +
       '  <div id="ceRoundChip" class="ce-chip" style="display:none"></div>' +
       '  <div id="ceEditOps" class="ce-ops" style="display:none">' +
       '    <button id="cePublishBtn" class="ce-btn ce-btn-publish"></button>' +
@@ -657,7 +675,9 @@
       '    <div class="fb-section" id="fbSecComment"><div class="fb-fieldlabel" id="fbCommentLabel">' + t("comment_label") + '</div><textarea class="fb-textarea" id="fbComment" placeholder="' + esc(t("comment_ph")) + '"></textarea></div>' +
       '    <div class="fb-section" id="fbSecShot"><div class="fb-fieldlabel">' + t("shot_label") + '</div>' +
       '      <div id="fbShotPrevBox" class="fb-shotbox" style="display:none"><img id="fbShotPrev" alt="screenshot"><button type="button" id="fbShotRemove" class="fb-shotx">' + t("shot_remove") + '</button></div>' +
-      '      <label class="fb-shotup"><input type="file" id="fbShotFile" accept="image/*">' + t("shot_up") + '</label><span class="fb-shothint" id="fbShotHint"></span></div>' +
+      '      <label class="fb-shotup"><input type="file" id="fbShotFile" accept="image/*">' + t("shot_up") + '</label>' +
+      '      <button type="button" class="fb-shotpaste" id="fbShotPaste">' + t("shot_paste") + '</button>' +
+      '      <span class="fb-shothint" id="fbShotHint"></span></div>' +
       '  </div>' +
       '  <div class="fbp-tip">' + t("fbp_tip", { m: MAX_ROUNDS }) + '</div>' +
       '  <div class="fbp-foot"><button class="fb-cancel" id="fbCancel">' + t("btn_cancel") + '</button><button class="fb-submit" id="fbSubmit">' + t("btn_add_draft") + '</button></div>' +
@@ -728,6 +748,7 @@
     $("#ceRoundChk").addEventListener("change", function (e) { $("#ceRoundGo").disabled = !e.target.checked; });
     $("#ceRoundGo").addEventListener("click", submitRound);
     $("#ceRoundCancel").addEventListener("click", closeRoundModal);
+    var mb = $("#ceMinBtn"); if (mb) mb.addEventListener("click", function () { var d = $(".ce-dock"); var m = d.classList.toggle("min"); this.textContent = m ? "✏️" : "▾"; this.title = m ? "展开工具栏" : "最小化工具栏"; });
   }
 
   function toast(msg) { var el = $("#ceToast"); if (!el) return; el.textContent = msg; el.classList.add("on"); clearTimeout(el._t); el._t = setTimeout(function () { el.classList.remove("on"); }, 2800); }
@@ -754,6 +775,10 @@
       ".ce-hint-edit{background:var(--ce-edit);}.ce-hint-fb{background:var(--ce-fb);}.ce-hint b{color:var(--ce-gold);}" +
       ".ce-hintx{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.24);padding:3px 12px;border-radius:var(--ce-rp);cursor:pointer;font-size:.78rem;white-space:nowrap;}" +
       ".ce-dock{position:fixed;right:18px;bottom:18px;z-index:99000;display:flex;flex-direction:column;gap:10px;align-items:flex-end;}" +
+      ".ce-min{align-self:flex-end;display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;border:2px solid #fff;background:var(--ce-gold);color:#fff;font-size:1.5rem;line-height:1;cursor:pointer;box-shadow:var(--ce-sh-md);transition:.14s;}" +
+      ".ce-min:hover{transform:translateY(-2px);filter:brightness(1.06);}" +
+      ".ce-dock.min>*{display:none!important;}" +
+      ".ce-dock.min .ce-min{display:flex!important;align-items:center;justify-content:center;width:56px;height:56px;font-size:1.7rem;background:var(--ce-edit);}" +
       ".ce-modes{display:flex;gap:10px;}" +
       ".ce-ops{display:none;flex-direction:column;gap:8px;align-items:flex-end;}" +
       ".ce-btn{font:700 .9rem/1 var(--ce-fd);letter-spacing:.01em;border:none;border-radius:var(--ce-rp);padding:13px 22px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;box-shadow:var(--ce-sh-md);transition:transform .14s,box-shadow .14s,background .14s;white-space:nowrap;}" +
@@ -766,9 +791,10 @@
       ".ce-btn-page{background:var(--ce-fb-d);color:#fff;}" +
       ".ce-chip{background:var(--ce-dark);color:#fff;font:700 .78rem/1 var(--ce-fb-font);padding:8px 15px;border-radius:var(--ce-rp);box-shadow:var(--ce-sh-md);}" +
       ".ce-chip b{color:var(--ce-gold);}.ce-chip.warn{background:#5a2f2a;}" +
-      "body.ce-edit [data-fb-el='text']{outline:1.5px dashed rgba(63,127,224,.5);outline-offset:3px;border-radius:3px;cursor:text;}" +
-      "body.ce-edit [data-fb-el='text']:hover,body.ce-edit [data-fb-el='text']:focus{outline:2.5px solid var(--ce-edit);background:rgba(63,127,224,.08);}" +
-      "body.ce-edit img[data-fb-el],body.ce-edit video[data-fb-el]{outline:2px dashed rgba(199,154,69,.8)!important;outline-offset:3px;cursor:pointer!important;}" +
+      "@keyframes cePulseT{0%,100%{background:rgba(63,127,224,.06);}45%{background:rgba(63,127,224,.3);}}@keyframes cePulseM{0%,100%{box-shadow:none;}45%{box-shadow:0 0 0 5px rgba(199,154,69,.4);}}" +
+      "body.ce-edit [data-fb-el='text']{outline:1.5px dashed rgba(63,127,224,.8);outline-offset:3px;border-radius:3px;cursor:text;background:rgba(63,127,224,.06);animation:cePulseT .9s ease 2;}" +
+      "body.ce-edit [data-fb-el='text']:hover,body.ce-edit [data-fb-el='text']:focus{outline:2.5px solid var(--ce-edit);background:rgba(63,127,224,.12);}" +
+      "body.ce-edit img[data-fb-el],body.ce-edit video[data-fb-el]{outline:2.5px dashed rgba(199,154,69,.95)!important;outline-offset:3px;cursor:pointer!important;animation:cePulseM .9s ease 2;}" +
       "body.ce-edit img[data-fb-el]:hover,body.ce-edit video[data-fb-el]:hover{outline:3px solid var(--ce-gold)!important;}" +
       "body.ce-edit [data-fb-bg]{position:relative;}" +
       "body.ce-edit [data-fb-bg]::after{content:'🖼';position:absolute;top:12px;right:12px;z-index:60;background:var(--ce-gold);color:#fff;font-size:1rem;padding:6px 10px;border-radius:var(--ce-rs);pointer-events:none;box-shadow:var(--ce-sh-md);}" +
@@ -814,6 +840,7 @@
       ".fb-shotup{display:inline-block;border:1.5px dashed #cfd3dc;border-radius:var(--ce-rm);padding:10px 16px;font-size:.84rem;cursor:pointer;transition:.12s;}" +
       ".fb-shotup:hover{border-color:var(--ce-fb);color:var(--ce-fb);}.fb-shotup input{display:none;}" +
       ".fb-shothint{font-size:.76rem;color:var(--ce-fb);margin-left:8px;}" +
+      ".fb-shotpaste{display:inline-block;border:1.5px solid var(--ce-fb);background:#fff;color:var(--ce-fb);border-radius:var(--ce-rm);padding:10px 16px;font-size:.84rem;cursor:pointer;margin-left:8px;transition:.12s;}.fb-shotpaste:hover{background:var(--ce-fb);color:#fff;}" +
       ".fbp-tip{padding:12px 24px 0;font-size:.76rem;color:#9aa0ad;line-height:1.5;}" +
       ".fbp-foot{padding:14px 24px;border-top:1px solid var(--ce-line);display:flex;gap:10px;}" +
       ".fbp-foot button,.ce-mfoot button{flex:1;padding:13px;border-radius:var(--ce-rp);font-weight:700;font-size:.9rem;font-family:var(--ce-fd);border:none;cursor:pointer;transition:.12s;}" +
