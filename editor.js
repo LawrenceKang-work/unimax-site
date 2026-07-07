@@ -244,7 +244,7 @@
   function baseline() { $$("[data-fb-el]").forEach(function (el) { el._orig = (el.dataset.fbEl === "image" || el.dataset.fbEl === "video") ? el.getAttribute("src") : el.textContent; }); }
 
   /* ---------- 2. 存取 ---------- */
-  function loadEdits() { try { var o = JSON.parse(localStorage.getItem(LS_ED) || "{}"); return { text: o.text || {}, images: o.images || {}, videos: o.videos || {}, bgs: o.bgs || {} }; } catch (e) { return { text: {}, images: {}, videos: {}, bgs: {} }; } }
+  function loadEdits() { try { var o = JSON.parse(localStorage.getItem(LS_ED) || "{}"); return { text: o.text || {}, textLang: o.textLang || {}, images: o.images || {}, videos: o.videos || {}, bgs: o.bgs || {} }; } catch (e) { return { text: {}, textLang: {}, images: {}, videos: {}, bgs: {} }; } }
   function saveEdits() { try { localStorage.setItem(LS_ED, JSON.stringify(edits)); } catch (e) { toast(t("ts_storage")); } }
   function loadFb() { try { return JSON.parse(localStorage.getItem(LS_FB) || "[]"); } catch (e) { return []; } }
   function saveFb() { try { localStorage.setItem(LS_FB, JSON.stringify(feedback)); } catch (e) { } }
@@ -369,7 +369,7 @@
     var el = e.target.closest && e.target.closest('[data-fb-el="text"]');
     if (!el) return;
     var k = el.getAttribute("data-fb-key"), v = el.textContent;
-    if (v === el._orig) delete edits.text[k]; else edits.text[k] = v;
+    if (v === el._orig) { delete edits.text[k]; delete edits.textLang[k]; } else { edits.text[k] = v; edits.textLang[k] = uiLang(); }
     el.classList.toggle("ce-dirty", v !== el._orig);
     applying = true;
     $$('[data-fb-key="' + cssEsc(k) + '"]').forEach(function (o) { if (o !== el && o.textContent !== v) o.textContent = v; o.setAttribute("data-en", v); });
@@ -864,8 +864,11 @@
     $("#fbShotRemove").addEventListener("click", function () { curShot = ""; renderShot(); $("#fbShotFile").value = ""; $("#fbShotHint").textContent = ""; });
     $("#ceMFile").addEventListener("change", function (e) {
       var f = e.target.files[0]; if (!f) return;
-      if (f.size > 1.5 * 1024 * 1024) { toast(t("ts_storage")); e.target.value = ""; return; }
-      var rd = new FileReader(); rd.onload = function (ev) { showMPrev(ev.target.result); $("#ceMUrl").value = ""; }; rd.readAsDataURL(f);
+      if (f.size > 15 * 1024 * 1024) { toast(t("ts_storage")); e.target.value = ""; return; }
+      $("#ceMUrl").value = "";                                                            // 同步清一次，避免竞态
+      var rd = new FileReader(); rd.onload = function (ev) { showMPrev(ev.target.result); }; rd.readAsDataURL(f);  // 即时预览(data URI)
+      var uh = $("#ceMUrl"); uh.setAttribute("placeholder", "上传中…");
+      uploadShot(f, function (url) { uh.setAttribute("placeholder", ""); if (url && url.indexOf("data:") !== 0) uh.value = url; });  // 传 R2 → 绝对 URL 进 URL 框 → applyMedia 存 URL 而非 data URI(可写回源码)
     });
     $("#ceMUrl").addEventListener("input", function (e) { var u = e.target.value.trim(); if (u) showMPrev(u); });
     $("#ceMCancel").addEventListener("click", function () { $("#ceModal").classList.remove("on"); });
