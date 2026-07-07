@@ -613,16 +613,19 @@
     var s = g.sample;
     $("#rvBlk").textContent = s.target === "element" ? (s.el_label || s.key) : (s.block_label || t("scope_page"));
     $("#rvScope").textContent = s.target === "element" ? t("scope_el", { t: t("type_" + s.el_type), b: s.block_label }) : s.target === "page" ? t("scope_page") : t("scope_block");
-    var html = "";
-    g.versions.forEach(function (ver) {
-      var d = ver.rec, stTxt = d.status === "satisfied" ? t("st_done") : d.status === "remove" ? t("st_removed") : t("st_todo");
-      html += '<div class="rv-ver"><div class="rv-vhead"><span class="rv-vtag">V' + ver.v + '</span><span class="rv-vst ' + d.status + '">' + esc(stTxt) + '</span><span class="rv-vat">' + esc((ver.at || "").replace("T", " ").slice(0, 16)) + '</span></div>';
-      if (d.new_text) html += '<div class="rv-new">' + esc(t("sec_text_label")) + '：' + esc(d.new_text) + '</div>';
-      if (d.new_image_url) html += '<div class="rv-cm">🖼 <a href="' + esc(d.new_image_url) + '" target="_blank">' + esc(d.new_image_url.slice(0, 46)) + '</a></div>';
-      if (d.change_types && d.change_types.length) html += '<div class="rv-cm">' + esc(d.change_types.join(" · ")) + '</div>';
-      if (d.comment) html += '<div class="rv-cm">💬 ' + esc(d.comment) + '</div>';
+    var html = "", n = g.versions.length;
+    g.versions.forEach(function (ver, i) {
+      var d = ver.rec, isLast = i === n - 1;
+      var stKey = d.status === "satisfied" ? "satisfied" : d.status === "remove" ? "remove" : "change";
+      var stTxt = d.status === "satisfied" ? t("st_done") : d.status === "remove" ? t("st_removed") : t("st_todo");
+      html += '<div class="rv-ver ' + stKey + (isLast ? ' latest' : '') + '">';
+      html += '<div class="rv-vhead"><span class="rv-vtag">V' + ver.v + '</span><span class="rv-vst ' + stKey + '">' + esc(stTxt) + '</span><span class="rv-vat">' + esc((ver.at || "").replace("T", " ").slice(0, 16)) + '</span></div>';
+      if (d.new_text) html += '<div class="rv-new"><span class="rv-nlabel">' + esc(t("sec_text_label")) + '</span>' + esc(d.new_text) + '</div>';
+      if (d.new_image_url) html += '<div class="rv-cm">🖼 <a href="' + esc(d.new_image_url) + '" target="_blank" rel="noopener">' + esc(d.new_image_url.slice(0, 46)) + '</a></div>';
+      if (d.change_types && d.change_types.length) html += '<div class="rv-tags">' + d.change_types.map(function (x) { return '<span class="rv-tag">' + esc(x) + '</span>'; }).join("") + '</div>';
+      if (d.comment) html += '<div class="rv-cm rv-comment">💬 ' + esc(d.comment) + '</div>';
       if (d.screenshot) html += '<div class="rv-shot"><img src="' + esc(d.screenshot) + '" alt="shot"></div>';
-      if (d.resolved) html += '<div class="rv-donetag">' + esc(t("rv_marked", { at: (d.resolved_at || "").replace("T", " ").slice(0, 16) })) + '</div>';
+      if (d.resolved) html += '<div class="rv-donetag">✅ ' + esc(t("rv_marked", { at: (d.resolved_at || "").replace("T", " ").slice(0, 16) }).replace(/^✅\s*/, "")) + '</div>';
       html += '</div>';
     });
     $("#rvBody").innerHTML = html;
@@ -940,6 +943,25 @@
       ".fbp-head .scope{display:inline-block;margin-top:10px;font-size:.72rem;font-weight:700;padding:4px 11px;border-radius:var(--ce-rp);}" +
       ".fbp-head .scope.el{background:rgba(63,127,224,.12);color:var(--ce-edit-d);}.fbp-head .scope.block{background:rgba(51,81,140,.1);color:var(--ce-fb);}" +
       ".fbp-body{padding:18px 24px;overflow-y:auto;flex:1;}" +
+      ".rv-ver{position:relative;background:#f8f9fb;border:1px solid var(--ce-line);border-left:4px solid #c7ccd6;border-radius:12px;padding:13px 15px;margin-bottom:14px;}" +
+      ".rv-ver:last-child{margin-bottom:2px;}" +
+      ".rv-ver.latest{background:#fff;box-shadow:0 5px 18px -7px rgba(20,30,60,.22);}" +
+      ".rv-ver.satisfied{border-left-color:#2f9e6f;}.rv-ver.change{border-left-color:#d99a2b;}.rv-ver.remove{border-left-color:#c0453d;}" +
+      ".rv-vhead{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:9px;}" +
+      ".rv-vtag{display:inline-flex;align-items:center;justify-content:center;min-width:36px;height:23px;padding:0 9px;background:var(--ce-dark,#1a2340);color:#fff;border-radius:999px;font:800 .74rem/1 var(--ce-fd);letter-spacing:.02em;}" +
+      ".rv-ver.latest .rv-vtag{background:var(--ce-fb,#33518c);}" +
+      ".rv-vst{font-size:.7rem;font-weight:700;padding:3px 11px;border-radius:999px;letter-spacing:.01em;}" +
+      ".rv-vst.satisfied{background:rgba(47,158,111,.15);color:#1f7a53;}.rv-vst.change{background:rgba(217,154,43,.17);color:#a5741a;}.rv-vst.remove{background:rgba(192,69,61,.13);color:#a83a33;}" +
+      ".rv-vat{margin-left:auto;font-size:.72rem;color:#9aa0ad;font-variant-numeric:tabular-nums;white-space:nowrap;}" +
+      ".rv-new{background:#fff;border:1px solid var(--ce-line);border-radius:9px;padding:9px 11px;font-size:.9rem;color:var(--ce-ink);margin:7px 0;line-height:1.5;word-break:break-word;}" +
+      ".rv-ver.latest .rv-new{background:#f6f8fb;}" +
+      ".rv-nlabel{display:block;font-size:.66rem;font-weight:700;color:var(--ce-muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:3px;}" +
+      ".rv-cm{font-size:.86rem;color:var(--ce-ink);margin:6px 0;line-height:1.5;word-break:break-word;}" +
+      ".rv-comment{color:#4a4f5a;}" +
+      ".rv-tags{display:flex;flex-wrap:wrap;gap:6px;margin:7px 0;}" +
+      ".rv-tag{font-size:.72rem;padding:3px 10px;background:rgba(51,81,140,.09);color:var(--ce-fb);border-radius:999px;font-weight:600;}" +
+      ".rv-shot{margin:8px 0 2px;}.rv-shot img{max-width:100%;border-radius:9px;border:1px solid var(--ce-line);display:block;}" +
+      ".rv-donetag{margin-top:9px;font-size:.76rem;font-weight:700;color:#1f7a53;background:rgba(47,158,111,.13);border-radius:9px;padding:7px 11px;}" +
       ".fb-choice{display:flex;gap:8px;margin-bottom:6px;}" +
       ".fb-choice label{flex:1;border:1.5px solid var(--ce-line);border-radius:var(--ce-rm);padding:13px 6px;text-align:center;cursor:pointer;font-weight:600;font-size:.82rem;line-height:1.3;transition:.12s;}" +
       ".fb-choice label:hover{border-color:#c9ccd6;}" +
