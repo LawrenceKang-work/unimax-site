@@ -34,7 +34,7 @@
       btn_edit: '✏️&nbsp; 编辑', btn_edit_exit: '✕&nbsp; 退出编辑',
       btn_fb: '💬&nbsp; 留言', btn_fb_exit: '✕&nbsp; 退出留言',
       btn_review: '👀&nbsp; 审阅', btn_review_exit: '✕&nbsp; 退出审阅',
-      hint_review: '👀 审阅进度 —— 顾客留言的板块有<b>红点</b>(待处理)/<b>绿点</b>(已完成)。点开看留言与历史；乙方处理完点<b>「✓ 改好了」</b>标为完成。顾客也能切来这里看进度。',
+      hint_review: '👀 <b>红点</b>=有留言待处理，<b>绿点</b>=已完成。点圆点看留言与历史，改好了点<b>「✓ 改好了」</b>。',
       rv_title: '留言 · 进度', rv_tip: '「改好了」只标记进度；真正上线仍需改源码后部署。', rv_mark_done: '✓ 改好了', rv_undo: '↩ 撤销', rv_marked: '✅ 已于 {at} 标记完成', rv_marked_ok: '已标记完成 ✓', rv_unmarked: '已撤销',
       btn_publish: '💾&nbsp; 发布我的改动', btn_publish_n: '💾&nbsp; 发布我的改动（{n} 处）', btn_publishing: '发布中…',
       btn_reset: '↺&nbsp; 复位', btn_page: '📄&nbsp; 整页留言',
@@ -80,7 +80,7 @@
       btn_edit: '✏️&nbsp; Edit', btn_edit_exit: '✕&nbsp; Exit',
       btn_fb: '💬&nbsp; Feedback', btn_fb_exit: '✕&nbsp; Exit',
       btn_review: '👀&nbsp; Progress', btn_review_exit: '✕&nbsp; Exit',
-      hint_review: '👀 Progress — blocks with feedback show a <b>red dot</b> (open) / <b>green dot</b> (done). Click to read notes & history; when handled, hit <b>"✓ Done"</b>. Clients can switch here too to track progress.',
+      hint_review: '👀 <b>Red dot</b>=open feedback, <b>green dot</b>=done. Click a dot to read notes & history; when fixed, hit <b>"✓ Done"</b>.',
       rv_title: 'Feedback · Progress', rv_tip: '"Done" just marks progress; going live still needs source edit & deploy.', rv_mark_done: '✓ Done', rv_undo: '↩ Undo', rv_marked: '✅ Marked done at {at}', rv_marked_ok: 'Marked done ✓', rv_unmarked: 'Undone',
       btn_publish: '💾&nbsp; Publish my changes', btn_publish_n: '💾&nbsp; Publish my changes ({n})', btn_publishing: 'Publishing…',
       btn_reset: '↺&nbsp; Reset', btn_page: '📄&nbsp; Whole page',
@@ -892,11 +892,11 @@
       "--ce-red:#9a2b2b;--ce-fd:var(--font-display,'Sora',system-ui,sans-serif);--ce-fb-font:var(--font-body,'Inter',system-ui,sans-serif);" +
       "--ce-rp:var(--r-pill,999px);--ce-rl:var(--r-lg,20px);--ce-rm:var(--r-md,14px);--ce-rs:var(--r-sm,10px);" +
       "--ce-sh-md:var(--shadow-md,0 10px 30px -8px rgba(20,30,60,.16));--ce-sh-lg:var(--shadow-lg,0 30px 60px -18px rgba(15,25,55,.30));}" +
-      "body.ce-pad{padding-top:46px!important;}" +
+      "body.ce-pad{padding-top:0!important;}" +
       ".ce-ui *{box-sizing:border-box;}" +
       ".ce-dim{color:var(--ce-muted);font-size:.82rem;}" +
-      ".ce-hint{position:fixed;top:0;left:0;right:0;z-index:99000;color:#fff;text-align:center;padding:12px 46px;font:600 .86rem/1.45 var(--ce-fb-font);display:none;}" +
-      ".ce-hint-edit{background:var(--ce-edit);}.ce-hint-fb{background:var(--ce-fb);}.ce-hint b{color:var(--ce-gold);}" +
+      ".ce-hint{position:fixed;bottom:78px;left:50%;transform:translateX(-50%);width:min(94vw,640px);z-index:100000;color:#fff;text-align:left;padding:14px 46px 14px 18px;border-radius:14px;font:600 .85rem/1.5 var(--ce-fb-font,'Inter',-apple-system,sans-serif);display:none;box-shadow:0 12px 40px rgba(0,0,0,.45);}" +
+      ".ce-hint-edit{background:#3f7fd6;}.ce-hint-fb{background:#3a4a7a;}.ce-hint-review{background:#2f9e6f;}.ce-hint b{color:#ffdd8f;}" +
       ".ce-hintx{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.24);padding:3px 12px;border-radius:var(--ce-rp);cursor:pointer;font-size:.78rem;white-space:nowrap;}" +
       ".ce-dock{position:fixed;right:18px;bottom:18px;z-index:99000;display:flex;flex-direction:column;gap:10px;align-items:flex-end;}" +
       ".ce-min{align-self:flex-end;display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;border:2px solid #fff;background:var(--ce-gold);color:#fff;font-size:1.5rem;line-height:1;cursor:pointer;box-shadow:var(--ce-sh-md);transition:.14s;}" +
