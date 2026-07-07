@@ -175,19 +175,22 @@
       el.setAttribute("data-fb-key", el.getAttribute("data-i18n"));
       el.setAttribute("data-fb-ellabel", (el.textContent.trim().replace(/\s+/g, " ").slice(0, 20)) || el.getAttribute("data-i18n"));
     });
-    // 叶子文本兜底：没有 data-i18n 的文案 / 数字（如统计数字、硬编码短句）也纳入可编辑，跨项目通用防漏标
+    // 文本兜底：没有 data-i18n 的文案 / 数字（含"数字+单位"混合结构，如 <div>12<span>+</span></div>）也纳入可编辑。
+    // 判据 = 元素有"自己的直接文本节点"（而非纯叶子），天然排除纯布局容器；祖先已可编辑则不再拆子元素。跨项目通用防漏标。
     var autoN = 0;
     $$("main, header.header, footer.footer").forEach(function (root) {
-      $$("h1,h2,h3,h4,h5,h6,p,span,li,a,strong,em,b,td,th,button,label,blockquote,figcaption,dt,dd,small", root).forEach(function (el) {
-        if (el.hasAttribute("data-fb-el")) return;          // 已标注（含 data-i18n）
-        if (el.closest(".ce-ui")) return;                    // 挂件自身
-        if (el.children.length) return;                      // 只标最内层叶子
-        var txt = (el.textContent || "").trim();
-        if (!txt || txt.length > 120) return;                // 空 / 过长跳过
-        if (!/[0-9A-Za-z一-鿿]/.test(txt)) return;   // 纯符号跳过
+      $$("h1,h2,h3,h4,h5,h6,p,span,li,a,strong,em,b,i,td,th,button,label,blockquote,figcaption,dt,dd,small,div", root).forEach(function (el) {
+        if (el.hasAttribute("data-fb-el")) return;                 // 已标注（含 data-i18n）
+        if (el.closest(".ce-ui")) return;                           // 挂件自身
+        if (el.closest('[data-fb-el="text"]')) return;              // 祖先已是可编辑文本 → 不再拆分
+        var own = "";                                               // 只取直接文本节点，排除纯容器
+        for (var _i = 0; _i < el.childNodes.length; _i++) { var _n = el.childNodes[_i]; if (_n.nodeType === 3) own += _n.textContent; }
+        own = own.trim();
+        if (!own || own.length > 120) return;                       // 无自己的文本 / 过长跳过
+        if (!/[0-9A-Za-z一-鿿]/.test(own)) return;          // 纯符号跳过
         el.setAttribute("data-fb-el", "text");
         el.setAttribute("data-fb-key", "auto:" + (autoN++));
-        el.setAttribute("data-fb-ellabel", txt.slice(0, 20));
+        el.setAttribute("data-fb-ellabel", own.slice(0, 20));
       });
     });
     $$("img").forEach(function (img) {
