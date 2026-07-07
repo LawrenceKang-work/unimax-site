@@ -19,6 +19,11 @@
   if (urlKey === EDIT_KEY) { try { localStorage.setItem(TKEY, urlKey); } catch (e) { } }
   var stored = ""; try { stored = localStorage.getItem(TKEY) || ""; } catch (e) { }
   if (urlKey !== EDIT_KEY && stored !== EDIT_KEY) return;
+  var reviewGate = false;
+  try {
+    if (new URLSearchParams(location.search).get("role") === "vendor") localStorage.setItem("fbrole_unimax", "vendor");
+    reviewGate = (localStorage.getItem("fbrole_unimax") === "vendor");
+  } catch (e) { }
 
   /* ---------- 双语字典 ---------- */
   var UILANG = {
@@ -123,7 +128,7 @@
   var API_BASE = "https://unimax-demo.pages.dev", MAX_ROUNDS = 6;
   var mode = null, fbTarget = null, mediaTarget = null, applying = false;
   var edits = loadEdits(), feedback = loadFb(), rounds = loadRounds();
-  var cloudUsed = -1, curShot = "";
+  var cloudUsed = -1, curShot = "", cloudResolutions = [];
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
 
@@ -244,8 +249,8 @@
   function fetchCloudRounds(cb) {
     try {
       fetch(API_BASE + "/api/feedback?client=unimax").then(function (r) { return r.json(); }).then(function (j) {
-        if (j && j.success) { cloudUsed = j.used || 0; if ((j.rounds || []).length >= rounds.length) { rounds = j.rounds.map(function (r2) { return { v: r2.round_no, at: r2.created_at, note: r2.note, records: r2.records, synced: true }; }); saveRounds(); } }
-        updateRoundChip(); if (cb) cb();
+        if (j && j.success) { cloudUsed = j.used || 0; if ((j.rounds || []).length >= rounds.length) { rounds = j.rounds.map(function (r2) { return { v: r2.round_no, at: r2.created_at, note: r2.note, records: r2.records, synced: true }; }); saveRounds(); } cloudResolutions = j.resolutions || []; stitchResolutions(); }
+        updateRoundChip(); if (mode === "review") fbRenderMarks(); if (cb) cb();
       }).catch(function () { updateRoundChip(); if (cb) cb(); });
     } catch (e) { updateRoundChip(); if (cb) cb(); }
   }
@@ -318,28 +323,33 @@
   /* ---------- 4. 模式切换（互斥） ---------- */
   function setMode(m) {
     if (mode === m) m = null;
-    document.body.classList.remove("ce-edit", "fb-on");
+    document.body.classList.remove("ce-edit", "fb-on", "rv-on");
     $$('[data-fb-el="text"]').forEach(function (el) { el.removeAttribute("contenteditable"); });
     $("#fbPanel").classList.remove("on"); $("#ceModal").classList.remove("on"); $("#ceRoundModal").classList.remove("on");
+    var rvp = $("#rvPanel"); if (rvp) rvp.classList.remove("on");
     mode = m;
     if (mode === "edit") { document.body.classList.add("ce-edit"); $$('[data-fb-el="text"]').forEach(function (el) { el.setAttribute("contenteditable", "true"); }); }
     else if (mode === "fb") { document.body.classList.add("fb-on"); }
+    else if (mode === "review") { document.body.classList.add("rv-on"); }
     $("#ceEditBtn").innerHTML = mode === "edit" ? t("btn_edit_exit") : t("btn_edit");
     $("#ceFbBtn").innerHTML = mode === "fb" ? t("btn_fb_exit") : t("btn_fb");
+    var rvb = $("#ceReviewBtn"); if (rvb) rvb.innerHTML = mode === "review" ? t("btn_review_exit") : t("btn_review");
     $("#ceEditBtn").classList.toggle("on", mode === "edit");
     $("#ceFbBtn").classList.toggle("on", mode === "fb");
+    if (rvb) rvb.classList.toggle("on", mode === "review");
     $("#ceEditOps").style.display = mode === "edit" ? "flex" : "none";
     $("#ceFbOps").style.display = mode === "fb" ? "flex" : "none";
     $("#ceRoundChip").style.display = mode === "fb" ? "block" : "none";
     updateRoundChip(); updatePublishBtn();
     $("#ceHintEdit").style.display = (mode === "edit" && !sessionStorage.getItem("ceHintEditX")) ? "block" : "none";
     $("#ceHintFb").style.display = (mode === "fb" && !sessionStorage.getItem("ceHintFbX")) ? "block" : "none";
-    document.body.classList.toggle("ce-pad", !!mode && ((mode === "edit" && !sessionStorage.getItem("ceHintEditX")) || (mode === "fb" && !sessionStorage.getItem("ceHintFbX"))));
+    var rvh = $("#ceHintReview"); if (rvh) rvh.style.display = (mode === "review" && !sessionStorage.getItem("ceHintReviewX")) ? "block" : "none";
+    document.body.classList.toggle("ce-pad", !!mode && ((mode === "edit" && !sessionStorage.getItem("ceHintEditX")) || (mode === "fb" && !sessionStorage.getItem("ceHintFbX")) || (mode === "review" && !sessionStorage.getItem("ceHintReviewX"))));
     fbRenderMarks(); fbRenderList();
   }
   function rebuildUI() {
     var m = mode;
-    document.body.classList.remove("ce-edit", "fb-on");
+    document.body.classList.remove("ce-edit", "fb-on", "rv-on");
     $$('[data-fb-el="text"]').forEach(function (el) { el.removeAttribute("contenteditable"); });
     var ui = $(".ce-ui"); if (ui) ui.remove();
     mode = null;
@@ -401,6 +411,13 @@
       var block = e.target.closest("[data-fb-block]");
       if (el2 && block) { e.preventDefault(); e.stopPropagation(); fbOpen("element", el2, block); }
       else if (block) { e.preventDefault(); e.stopPropagation(); fbOpen("block", null, block); }
+    } else if (mode === "review") {
+      var rel = e.target.closest("[data-fb-el]");
+      if (!rel) { var rip = e.target.closest("[data-fb-imgparent]"); if (rip) rel = rip.querySelector('img[data-fb-el="image"]'); }
+      if (!rel) rel = hitMedia(e.clientX, e.clientY);
+      var rblock = e.target.closest("[data-fb-block]");
+      var rrk = rel ? ("el:" + rel.dataset.fbKey) : rblock ? ("block:" + rblock.dataset.fbBlock) : null;
+      if (rrk && reviewGroups().map[rrk]) { e.preventDefault(); e.stopPropagation(); rvOpen(rrk); }
     }
   }, true);
 
@@ -531,8 +548,94 @@
   }
 
   /* ---------- 10. 徽章 / 圆点 ---------- */
+  /* ---------- 乙方审阅：读已提交 rounds、红点/绿点、签收 ---------- */
+  function reviewGroups() {
+    var map = {}, order = [];
+    rounds.forEach(function (rd) {
+      (rd.records || []).forEach(function (rec) {
+        var rk = fbRecKey(rec);
+        if (!map[rk]) { map[rk] = { rk: rk, versions: [], sample: rec }; order.push(rk); }
+        map[rk].versions.push({ v: rd.v, at: rd.at, note: rd.note, rec: rec });
+        map[rk].sample = rec;
+      });
+    });
+    return { map: map, order: order };
+  }
+  function rkResolved(g) { var vs = g.versions; return vs.length ? !!vs[vs.length - 1].rec.resolved : false; }
+  function rkLatestRound(g) { var vs = g.versions; return vs.length ? vs[vs.length - 1].v : 0; }
+  function stitchResolutions() {
+    if (!cloudResolutions || !cloudResolutions.length) return;
+    var idx = {};
+    cloudResolutions.forEach(function (x) { idx[x.round_no + "|" + x.rec_key] = x; });
+    rounds.forEach(function (rd) {
+      (rd.records || []).forEach(function (rec) {
+        var hit = idx[rd.v + "|" + fbRecKey(rec)];
+        if (hit) { rec.resolved = !!hit.resolved; rec.resolved_at = hit.resolved_at; }
+      });
+    });
+    saveRounds();
+  }
+  function rvRenderMarks() {
+    var g = reviewGroups();
+    g.order.forEach(function (rk) {
+      var grp = g.map[rk], s = grp.sample, done = rkResolved(grp);
+      if (s.target === "block") {
+        var sec = $('[data-fb-block="' + cssEsc(s.block_id) + '"]'); if (!sec) return;
+        var r = sec.getBoundingClientRect();
+        var b = document.createElement("div");
+        b.className = "fb-badge " + (done ? "resolved" : "todo");
+        b.textContent = done ? "✓" : "●";
+        b.style.left = Math.max(8, r.right + window.scrollX - 34) + "px";
+        b.style.top = (r.top + window.scrollY + 10) + "px";
+        document.body.appendChild(b);
+      } else if (s.target === "element") {
+        var el = $('[data-fb-key="' + cssEsc(s.key) + '"]'); if (!el) return;
+        var r2 = el.getBoundingClientRect(); if (!r2.width && !r2.height) return;
+        var dot = document.createElement("div");
+        dot.className = "fb-eldot " + (done ? "resolved" : "todo");
+        dot.textContent = done ? "✓" : "!";
+        dot.style.left = (r2.left + window.scrollX) + "px";
+        dot.style.top = (r2.top + window.scrollY) + "px";
+        document.body.appendChild(dot);
+      }
+    });
+  }
+  function rvOpen(rk) {
+    var g = reviewGroups().map[rk]; if (!g) return;
+    var s = g.sample;
+    $("#rvBlk").textContent = s.target === "element" ? (s.el_label || s.key) : (s.block_label || t("scope_page"));
+    $("#rvScope").textContent = s.target === "element" ? t("scope_el", { t: t("type_" + s.el_type), b: s.block_label }) : s.target === "page" ? t("scope_page") : t("scope_block");
+    var html = "";
+    g.versions.forEach(function (ver) {
+      var d = ver.rec, stTxt = d.status === "satisfied" ? t("st_done") : d.status === "remove" ? t("st_removed") : t("st_todo");
+      html += '<div class="rv-ver"><div class="rv-vhead"><span class="rv-vtag">V' + ver.v + '</span><span class="rv-vst ' + d.status + '">' + esc(stTxt) + '</span><span class="rv-vat">' + esc((ver.at || "").replace("T", " ").slice(0, 16)) + '</span></div>';
+      if (d.new_text) html += '<div class="rv-new">' + esc(t("sec_text_label")) + '：' + esc(d.new_text) + '</div>';
+      if (d.new_image_url) html += '<div class="rv-cm">🖼 <a href="' + esc(d.new_image_url) + '" target="_blank">' + esc(d.new_image_url.slice(0, 46)) + '</a></div>';
+      if (d.change_types && d.change_types.length) html += '<div class="rv-cm">' + esc(d.change_types.join(" · ")) + '</div>';
+      if (d.comment) html += '<div class="rv-cm">💬 ' + esc(d.comment) + '</div>';
+      if (d.screenshot) html += '<div class="rv-shot"><img src="' + esc(d.screenshot) + '" alt="shot"></div>';
+      if (d.resolved) html += '<div class="rv-donetag">' + esc(t("rv_marked", { at: (d.resolved_at || "").replace("T", " ").slice(0, 16) })) + '</div>';
+      html += '</div>';
+    });
+    $("#rvBody").innerHTML = html;
+    var resolved = rkResolved(g), latestRound = rkLatestRound(g), btn = $("#rvDone");
+    btn.textContent = resolved ? t("rv_undo") : t("rv_mark_done");
+    btn.className = "fb-submit rv-done" + (resolved ? " undo" : "");
+    btn.onclick = function () { rvResolve(rk, latestRound, !resolved); };
+    $("#rvPanel").classList.add("on");
+  }
+  function rvResolve(rk, roundNo, val) {
+    rounds.forEach(function (rd) {
+      if (rd.v !== roundNo) return;
+      (rd.records || []).forEach(function (rec) { if (fbRecKey(rec) === rk) { rec.resolved = val; rec.resolved_at = new Date().toISOString(); } });
+    });
+    saveRounds(); fbRenderMarks(); rvOpen(rk);
+    toast(val ? t("rv_marked_ok") : t("rv_unmarked"));
+    try { fetch(API_BASE + "/api/feedback", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ token: EDIT_KEY, client: "unimax", kind: "resolve", round_no: roundNo, rec_key: rk, resolved: val }) }).catch(function () { }); } catch (e) { }
+  }
   function fbRenderMarks() {
     $$(".fb-badge,.fb-eldot").forEach(function (b) { b.remove(); });
+    if (mode === "review") { rvRenderMarks(); return; }
     if (mode !== "fb") return;
     feedback.forEach(function (rec) {
       if (rec.target === "block") {
@@ -556,8 +659,8 @@
       }
     });
   }
-  window.addEventListener("scroll", function () { if (mode === "fb") fbRenderMarks(); });
-  window.addEventListener("resize", function () { if (mode === "fb") fbRenderMarks(); });
+  window.addEventListener("scroll", function () { if (mode === "fb" || mode === "review") fbRenderMarks(); });
+  window.addEventListener("resize", function () { if (mode === "fb" || mode === "review") fbRenderMarks(); });
 
   /* ---------- 11. 导出（兜底，无按钮） ---------- */
   function downloadJSON() {
