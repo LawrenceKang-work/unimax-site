@@ -591,6 +591,7 @@
         var b = document.createElement("div");
         b.className = "fb-badge " + (done ? "resolved" : "todo");
         b.textContent = done ? "✓" : "●";
+        b.style.background = done ? "#2f9e6f" : "#e0574b"; b.style.color = "#fff";
         b.style.left = Math.max(8, r.right + window.scrollX - 34) + "px";
         b.style.top = (r.top + window.scrollY + 10) + "px";
         document.body.appendChild(b);
@@ -600,6 +601,7 @@
         var dot = document.createElement("div");
         dot.className = "fb-eldot " + (done ? "resolved" : "todo");
         dot.textContent = done ? "✓" : "!";
+        dot.style.background = done ? "#2f9e6f" : "#e0574b"; dot.style.color = "#fff";
         dot.style.left = (r2.left + window.scrollX) + "px";
         dot.style.top = (r2.top + window.scrollY) + "px";
         document.body.appendChild(dot);
