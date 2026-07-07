@@ -33,6 +33,9 @@
       hint_ok: '知道了',
       btn_edit: '✏️&nbsp; 编辑', btn_edit_exit: '✕&nbsp; 退出编辑',
       btn_fb: '💬&nbsp; 留言', btn_fb_exit: '✕&nbsp; 退出留言',
+      btn_review: '👀&nbsp; 审阅', btn_review_exit: '✕&nbsp; 退出审阅',
+      hint_review: '👀 审阅进度 —— 顾客留言的板块有<b>红点</b>(待处理)/<b>绿点</b>(已完成)。点开看留言与历史；乙方处理完点<b>「✓ 改好了」</b>标为完成。顾客也能切来这里看进度。',
+      rv_title: '留言 · 进度', rv_tip: '「改好了」只标记进度；真正上线仍需改源码后部署。', rv_mark_done: '✓ 改好了', rv_undo: '↩ 撤销', rv_marked: '✅ 已于 {at} 标记完成', rv_marked_ok: '已标记完成 ✓', rv_unmarked: '已撤销',
       btn_publish: '💾&nbsp; 发布我的改动', btn_publish_n: '💾&nbsp; 发布我的改动（{n} 处）', btn_publishing: '发布中…',
       btn_reset: '↺&nbsp; 复位', btn_page: '📄&nbsp; 整页留言',
       chip: '修改轮次：已用 <b>{u}</b> / {m}{extra}', chip_full: ' · 已达约定', chip_over: ' · ⚠已超约定 {n} 轮', chip_last: ' · ⚠最后一轮',
@@ -76,6 +79,9 @@
       hint_ok: 'Got it',
       btn_edit: '✏️&nbsp; Edit', btn_edit_exit: '✕&nbsp; Exit',
       btn_fb: '💬&nbsp; Feedback', btn_fb_exit: '✕&nbsp; Exit',
+      btn_review: '👀&nbsp; Progress', btn_review_exit: '✕&nbsp; Exit',
+      hint_review: '👀 Progress — blocks with feedback show a <b>red dot</b> (open) / <b>green dot</b> (done). Click to read notes & history; when handled, hit <b>"✓ Done"</b>. Clients can switch here too to track progress.',
+      rv_title: 'Feedback · Progress', rv_tip: '"Done" just marks progress; going live still needs source edit & deploy.', rv_mark_done: '✓ Done', rv_undo: '↩ Undo', rv_marked: '✅ Marked done at {at}', rv_marked_ok: 'Marked done ✓', rv_unmarked: 'Undone',
       btn_publish: '💾&nbsp; Publish my changes', btn_publish_n: '💾&nbsp; Publish my changes ({n})', btn_publishing: 'Publishing…',
       btn_reset: '↺&nbsp; Reset', btn_page: '📄&nbsp; Whole page',
       chip: 'Revision rounds: <b>{u}</b> / {m} used{extra}', chip_full: ' · agreed limit reached', chip_over: ' · ⚠{n} over the agreed limit', chip_last: ' · ⚠last round',
@@ -744,6 +750,7 @@
     w.innerHTML =
       '<div id="ceHintEdit" class="ce-hint ce-hint-edit">' + t("hint_edit") + '<span class="ce-hintx" data-x="ceHintEditX">' + t("hint_ok") + '</span></div>' +
       '<div id="ceHintFb" class="ce-hint ce-hint-fb">' + t("hint_fb", { m: MAX_ROUNDS }) + '<span class="ce-hintx" data-x="ceHintFbX">' + t("hint_ok") + '</span></div>' +
+      '<div id="ceHintReview" class="ce-hint ce-hint-review">' + t("hint_review") + '<span class="ce-hintx" data-x="ceHintReviewX">' + t("hint_ok") + '</span></div>' +
       '<div class="ce-dock">' +
       '  <button id="ceMinBtn" class="ce-min" title="最小化工具栏">▾</button>' +
       '  <div id="ceRoundChip" class="ce-chip" style="display:none"></div>' +
@@ -755,6 +762,7 @@
       '    <button id="cePageBtn" class="ce-btn ce-btn-page">' + t("btn_page") + '</button>' +
       '  </div>' +
       '  <div class="ce-modes">' +
+      '    <button id="ceReviewBtn" class="ce-btn ce-btn-review">' + t("btn_review") + '</button>' +
       '    <button id="ceFbBtn" class="ce-btn ce-btn-fb">' + t("btn_fb") + '</button>' +
       '    <button id="ceEditBtn" class="ce-btn ce-btn-edit">' + t("btn_edit") + '</button>' +
       '  </div>' +
@@ -787,6 +795,12 @@
       '  </div>' +
       '  <div class="fbp-tip">' + t("fbp_tip", { m: MAX_ROUNDS }) + '</div>' +
       '  <div class="fbp-foot"><button class="fb-cancel" id="fbCancel">' + t("btn_cancel") + '</button><button class="fb-submit" id="fbSubmit">' + t("btn_add_draft") + '</button></div>' +
+      '</div>' +
+      '<div id="rvPanel" class="fb-panel rv-panel">' +
+      '  <div class="fbp-head"><div class="lbl">' + t("rv_title") + '</div><div class="blk" id="rvBlk">—</div><span class="scope" id="rvScope"></span></div>' +
+      '  <div class="fbp-body" id="rvBody"></div>' +
+      '  <div class="fbp-tip">' + t("rv_tip") + '</div>' +
+      '  <div class="fbp-foot"><button class="fb-cancel" id="rvClose">' + t("btn_cancel") + '</button><button class="fb-submit rv-done" id="rvDone">' + t("rv_mark_done") + '</button></div>' +
       '</div>' +
       '<div id="ceModal" class="ce-modal"><div class="ce-mbox">' +
       '  <h4 id="ceMTitle"></h4><div class="ce-mlabel" id="ceMLabel"></div>' +
@@ -855,6 +869,8 @@
     $("#ceRoundGo").addEventListener("click", submitRound);
     $("#ceRoundCancel").addEventListener("click", closeRoundModal);
     var mb = $("#ceMinBtn"); if (mb) mb.addEventListener("click", function () { var d = $(".ce-dock"); var m = d.classList.toggle("min"); this.textContent = m ? "✏️" : "▾"; this.title = m ? "展开工具栏" : "最小化工具栏"; });
+    var rvBtn = $("#ceReviewBtn"); if (rvBtn) rvBtn.addEventListener("click", function () { setMode("review"); });
+    var rvCl = $("#rvClose"); if (rvCl) rvCl.addEventListener("click", function () { $("#rvPanel").classList.remove("on"); });
   }
 
   function toast(msg) { var el = $("#ceToast"); if (!el) return; el.textContent = msg; el.classList.add("on"); clearTimeout(el._t); el._t = setTimeout(function () { el.classList.remove("on"); }, 2800); }
