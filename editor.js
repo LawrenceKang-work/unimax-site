@@ -13,17 +13,24 @@
   "use strict";
 
   /* ---------- 0. 密钥门禁 ---------- */
-  var EDIT_KEY = "unimax-2026";
+  var EDIT_KEY_HASH = "1fb3ef9b93385feb6e1cae7e41cd4931b0499d0320e7c057896fd1e033a2739f";  // SHA-256(密钥)；源码不含明文，猜不到也扒不出
   var TKEY = "fbedit_unimax";
   var urlKey = new URLSearchParams(location.search).get("edit") || location.hash.replace(/^#/, "");
-  if (urlKey === EDIT_KEY) { try { localStorage.setItem(TKEY, urlKey); } catch (e) { } }
-  var stored = ""; try { stored = localStorage.getItem(TKEY) || ""; } catch (e) { }
-  if (urlKey !== EDIT_KEY && stored !== EDIT_KEY) return;
+  var storedKey = ""; try { storedKey = localStorage.getItem(TKEY) || ""; } catch (e) { }
+  if (!urlKey && !storedKey) return;                        // 无密钥候选 → 普通访客零影响
+  var EDIT_KEY = "";                                         // 校验通过后置为明文（发布 token 用；仅存 URL/localStorage，不进源码）
   var reviewGate = false;
   try {
     if (new URLSearchParams(location.search).get("role") === "vendor") localStorage.setItem("fbrole_unimax", "vendor");
     reviewGate = (localStorage.getItem("fbrole_unimax") === "vendor");
   } catch (e) { }
+  function _sha256hex(s) { return crypto.subtle.digest("SHA-256", new TextEncoder().encode(String(s))).then(function (b) { return Array.prototype.map.call(new Uint8Array(b), function (x) { return ("0" + x.toString(16)).slice(-2); }).join(""); }); }
+  function _authThen(cb) {
+    _sha256hex(urlKey).then(function (h) {
+      if (h === EDIT_KEY_HASH) { EDIT_KEY = urlKey; try { localStorage.setItem(TKEY, urlKey); } catch (e) { } cb(); return; }
+      _sha256hex(storedKey).then(function (h2) { if (h2 === EDIT_KEY_HASH) { EDIT_KEY = storedKey; cb(); } });
+    });
+  }
 
   /* ---------- 双语字典 ---------- */
   var UILANG = {
@@ -138,8 +145,10 @@
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
 
-  if (document.readyState !== "loading") setTimeout(init, 0);
-  else document.addEventListener("DOMContentLoaded", init);
+  _authThen(function () {
+    if (document.readyState !== "loading") setTimeout(init, 0);
+    else document.addEventListener("DOMContentLoaded", init);
+  });
 
   function init() {
     annotate(); baseline(); injectStyles(); buildUI(); bindEvents();
