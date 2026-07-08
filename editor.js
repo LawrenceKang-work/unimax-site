@@ -128,9 +128,8 @@
     }
   };
   function uiLang() {
-    var l = "";
-    try { l = localStorage.getItem("unimax_lang") || ""; } catch (e) { }   // app.js 存的权威当前语言，最可靠
-    if (!l) l = document.documentElement.getAttribute("lang") || "en";       // 兜底：<html lang>
+    var l = document.documentElement.getAttribute("lang") || "";             // <html lang> 最权威且切换时同步更新（不用滞后的 localStorage，避免语言跟随失灵）
+    if (!l) { try { l = localStorage.getItem("unimax_lang") || ""; } catch (e) { } }
     l = l.toLowerCase();
     return l.indexOf("zh") === 0 ? "zh" : "en";   // 中文→中文，其余一律→英文
   }
