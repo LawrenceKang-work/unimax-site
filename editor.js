@@ -254,7 +254,7 @@
   /* ---------- 2. 存取 ---------- */
   function loadEdits() { try { var o = JSON.parse(localStorage.getItem(LS_ED) || "{}"); return { text: o.text || {}, textLang: o.textLang || {}, images: o.images || {}, videos: o.videos || {}, bgs: o.bgs || {} }; } catch (e) { return { text: {}, textLang: {}, images: {}, videos: {}, bgs: {} }; } }
   function saveEdits() { try { localStorage.setItem(LS_ED, JSON.stringify(edits)); } catch (e) { toast(t("ts_storage")); } }
-  function loadFb() { try { return JSON.parse(localStorage.getItem(LS_FB) || "[]"); } catch (e) { return []; } }
+  function loadFb() { try { var v = JSON.parse(localStorage.getItem(LS_FB) || "[]"); return Array.isArray(v) ? v : []; } catch (e) { return []; } }   // 必须是数组(坏数据不让 init 中断)
   function saveFb() { try { localStorage.setItem(LS_FB, JSON.stringify(feedback)); } catch (e) { } }
   function fbRecKey(x) { return x.target === "element" ? "el:" + x.key : x.target === "page" ? "page" : "block:" + x.block_id; }
   function loadRounds() { try { return JSON.parse(localStorage.getItem(LS_ROUNDS) || "[]"); } catch (e) { return []; } }
