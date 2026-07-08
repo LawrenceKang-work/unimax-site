@@ -319,13 +319,12 @@
     if (!("MutationObserver" in window)) return;
     // ① 监听 <html lang> 变化（app.js 初始 applyLang + 用户切换都会改它）→ 挂件重建为对应语言
     var lastUi = uiLang();
-    new MutationObserver(function () {
-      var now = uiLang();
-      if (now !== lastUi) { lastUi = now; applyEdits(); applyFbPreviews(); rebuildUI(); }
-    }).observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
-    // ② 语言切换也点了按钮时兜底一次（防某些浏览器属性变化不触发）
-    $$("#langBtn, #langMenu button, [data-drawer-lang], #footLangBtn, #footLangMenu button").forEach(function (b) {
-      b.addEventListener("click", function () { setTimeout(function () { var now = uiLang(); if (now !== lastUi) { lastUi = now; applyEdits(); applyFbPreviews(); rebuildUI(); } }, 120); });
+    var syncLang = function () { var now = uiLang(); if (now !== lastUi) { lastUi = now; applyEdits(); applyFbPreviews(); rebuildUI(); } };
+    // ① 监听 <html lang> 变化 → 延迟重读（app.js 改 html lang 与站点语言键有时序差，同步读会拿到旧值）
+    new MutationObserver(function () { setTimeout(syncLang, 60); }).observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
+    // ② 语言切换按钮兜底（含真正的 [data-lang] 语言选项按钮，防属性变化不触发）
+    $$("#langBtn, #langMenu button, [data-lang], [data-drawer-lang], #footLangBtn, #footLangMenu button").forEach(function (b) {
+      b.addEventListener("click", function () { setTimeout(syncLang, 120); });
     });
     // ③ 文字被 applyLang 改回时重套编辑/留言预览
     new MutationObserver(function () {
