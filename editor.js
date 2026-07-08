@@ -138,7 +138,7 @@
 
   /* ---------- 状态 ---------- */
   var LS_ED = "unimax_edits_v2", LS_FB = "unimax_feedback_v1", LS_ROUNDS = "unimax_rounds_v1";
-  var API_BASE = "https://unimax-feedback.working-060525.workers.dev", MAX_ROUNDS = 6;
+  var API_BASE = "https://tablesites-publish.working-060525.workers.dev", MAX_ROUNDS = 6;   // 统一多租户后端(发布+留言+审阅);旧 unimax-feedback 已弃用
   var mode = null, fbTarget = null, mediaTarget = null, applying = false;
   var edits = loadEdits(), feedback = loadFb(), rounds = loadRounds();
   var cloudUsed = -1, curShot = "", cloudResolutions = [];
