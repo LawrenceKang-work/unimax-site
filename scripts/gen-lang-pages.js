@@ -86,7 +86,9 @@ function extractLiteral(src, declRegex) {
 }
 
 const appSrc = fs.readFileSync(path.join(ROOT, 'app.js'), 'utf8');
-const I18N = eval('(' + extractLiteral(appSrc, /var\s+I18N\s*=\s*\{/) + ')');
+/* I18N 已移出 app.js(那 67.8KB 对浏览器是死代码,只拖慢解析)，改从 scripts 下读取。
+   FAQ 仍内联在 app.js —— renderFAQ 在运行时要用它渲染 DOM。 */
+const I18N = require('./i18n-dict.js');
 const FAQ = eval('(' + extractLiteral(appSrc, /var\s+FAQ\s*=\s*\[/) + ')');
 console.log(`字典载入: I18N ${Object.keys(I18N).join('/')} | FAQ ${FAQ.length} 条`);
 
