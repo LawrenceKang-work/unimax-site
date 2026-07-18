@@ -1537,10 +1537,25 @@ html[lang="zh-Hans"] .hero h1 .h1-result {
   top: 0;
   height: 100vh;
   overflow: hidden;
-  background: oklch(0.07 0.025 265);
+  /* poster 放在容器背景上,而不是只挂在 <video> 的 poster 属性里 ——
+     这样它在 <video> 被隐藏时依然可见,并作为 LCP 元素早早绘制完成。
+     (已在 <head> 里 preload,与 CSS 并行下载) */
+  background: oklch(0.07 0.025 265) url("/assets/sc-hero-poster.webp") center/cover no-repeat;
 }
 
+.sc-video.sc-ready { opacity: 1; }
+/* 无障碍:降低动态偏好时不做 scrub,视频直接播放,故立即显示 */
+@media (prefers-reduced-motion: reduce) { .sc-video { opacity: 1; } }
+
 .sc-video {
+  /* 默认不可见,直到用户开始滚动、且视频已就绪(见 app.js)。
+     原因:video 元素占满首屏、是最大的内容元素,其**第一帧渲染会替换掉 poster 成为新的 LCP**,
+     于是 LCP 变成「视频下载完的时刻」(实测被拖到 13.6s)。
+     而 LCP 在用户首次交互后即停止更新 —— scroll-cinema 本就要滚动才有意义,
+     所以滚动后再显示视频,LCP 便定格在 poster 上。
+     poster 与视频首帧是同一画面,切换在视觉上无缝。 */
+  opacity: 0;
+  transition: opacity .35s var(--ease);
   position: absolute;
   inset: 0;
   width: 100%;

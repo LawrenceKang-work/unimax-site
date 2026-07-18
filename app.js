@@ -1490,18 +1490,32 @@
          ② 视频与首屏的 CSS/字体/图片抢带宽,首屏迟迟画不出来。
          现在 HTML 改为 preload="none" + poster,由这里择机拉取:
          首屏 load 完成后拉,或用户一开始下滚就立刻拉(取先到者)。 */
-      var warmed = false;
+      var warmed = false, userScrolled = false;
       function warmVideo() {
         if (warmed) return;
         warmed = true;
         vid.preload = "auto";
         vid.load();
       }
+      /* 视频只在「用户已开始滚动」且「数据已就绪」后才显示(CSS 里默认 opacity:0)。
+         video 占满首屏、是页面最大的内容元素,它的第一帧渲染会替换 poster 成为新的 LCP,
+         把 LCP 拖到视频下载完的时刻(实测 13.6s)。而 LCP 在用户首次交互后停止更新,
+         scroll-cinema 本就要滚动才有意义 —— 滚动后再显示,LCP 就定格在 poster 上。
+         poster 与视频首帧是同一画面,切换视觉无缝。 */
+      function revealVideo() {
+        if (userScrolled && vid.readyState >= 2) vid.classList.add("sc-ready");
+      }
+      vid.addEventListener("loadeddata", revealVideo);
+      vid.addEventListener("canplay", revealVideo);
+
       if (document.readyState === "complete") setTimeout(warmVideo, 200);
       else window.addEventListener("load", function () { setTimeout(warmVideo, 200); }, { once: true });
       /* 用户比首屏加载更快开始滚动时,不等 load 事件 */
       window.addEventListener("scroll", function onFirstScroll() {
-        if (window.scrollY > 40) { warmVideo(); window.removeEventListener("scroll", onFirstScroll); }
+        if (window.scrollY > 40) {
+          userScrolled = true; warmVideo(); revealVideo();
+          window.removeEventListener("scroll", onFirstScroll);
+        }
       }, { passive: true });
 
       /* non-uniform caption thresholds — longer dwell per scene */
