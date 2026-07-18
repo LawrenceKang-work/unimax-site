@@ -334,7 +334,7 @@ ul { list-style: none; }
 .sip-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
 .sip-item .ico { width:46px; height:46px; margin: 0 auto 16px; border-radius:50%; display:flex; align-items:center; justify-content:center; background: var(--bg-tint); color: var(--navy); }
 .sip-item .ico svg { width:22px; height:22px; }
-.sip-item h4 { font-size: 1rem; font-weight:700; letter-spacing:-0.01em; }
+.sip-item h4, .sip-item h3 { font-size: 1rem; font-weight:700; letter-spacing:-0.01em; }
 .sip-item p { font-size: 13px; color: var(--ink-muted); margin-top: 7px; }
 
 /* ============================================================
@@ -353,7 +353,7 @@ ul { list-style: none; }
 .ph .pico { position:absolute; top:14px; left:14px; width:34px;height:34px; border-radius:9px; background:#fff; box-shadow: var(--shadow-xs); display:flex;align-items:center;justify-content:center; color: var(--navy); }
 .ph .pico svg { width:18px;height:18px; }
 .persona .pbody { padding: 18px 18px 22px; }
-.persona h4 { font-size: 1.05rem; font-weight:700; letter-spacing:-0.01em; }
+.persona h4, .persona h3 { font-size: 1.05rem; font-weight:700; letter-spacing:-0.01em; }
 .persona p { font-size: 13.5px; color: var(--ink-muted); margin-top: 7px; }
 
 /* ============================================================
@@ -421,7 +421,7 @@ ul { list-style: none; }
 .steps { display:grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: clamp(34px,4vw,48px); }
 .step { background: var(--white); border:1px solid var(--line); border-radius: var(--r-lg); padding: 28px 26px; position:relative; }
 .step .sn { font-family: var(--font-display); font-weight:800; font-size: 14px; color:#fff; background: var(--navy); width:34px;height:34px;border-radius:50%; display:flex;align-items:center;justify-content:center; margin-bottom: 18px; }
-.step h4 { font-size: 1.1rem; font-weight:700; letter-spacing:-0.01em; }
+.step h4, .step h3 { font-size: 1.1rem; font-weight:700; letter-spacing:-0.01em; }
 .step p { color: var(--ink-muted); font-size: 0.96rem; margin-top: 9px; }
 .dose-note { margin-top: 22px; display:flex; gap:10px; align-items:center; justify-content:center; font-size:13.5px; color: var(--ink-faint); }
 .dose-note svg { width:16px;height:16px; color: var(--blue-ink); }
@@ -477,7 +477,7 @@ ul { list-style: none; }
   background: var(--gold);
   color: oklch(0.24 0.05 75);
 }
-#usage .step h4 { color: #fff; }
+#usage .step h4, #usage .step h3 { color: #fff; }
 #usage .step p  { color: rgba(255, 255, 255, 0.68); }
 
 /* dose note on dark */
@@ -519,6 +519,10 @@ ul { list-style: none; }
   flex:none;
 }
 .rev-dot:hover { background:var(--ink-faint); transform:scale(1.3); }
+/* 点本身只有 8x8,低于无障碍建议的 24x24。用伪元素向外扩出可点区域,
+   视觉完全不变(不改 width/height,也就不影响 .active 的宽度动画)。 */
+.rev-dot { position: relative; }
+.rev-dot::after { content:''; position:absolute; inset:-9px; border-radius:50%; }
 .rev-dot.active {
   width:28px; border-radius:4px; pointer-events:none;
   overflow:hidden; position:relative;
@@ -579,7 +583,10 @@ ul { list-style: none; }
 .footer-social a { width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:#fff; display:flex;align-items:center;justify-content:center; color: var(--ink-muted); transition: color .2s, border-color .2s; }
 .footer-social a:hover { color: var(--navy); border-color: var(--navy); }
 .footer-social svg { width:18px;height:18px; }
-.footer-col h5 { font-family: var(--font-display); font-size: 13px; text-transform:uppercase; letter-spacing:.1em; color: var(--ink); font-weight:700; margin-bottom: 16px; }
+/* 文献「Link」触摸目标原为 26x16,低于无障碍建议的 24x24,补内边距扩大可点区域 */
+#refList a { display: inline-block; padding: 6px 8px; margin: -6px -2px; }
+
+.footer-col h5, .footer-col h3 { font-family: var(--font-display); font-size: 13px; text-transform:uppercase; letter-spacing:.1em; color: var(--ink); font-weight:700; margin-bottom: 16px; }
 .footer-col ul { display:flex; flex-direction:column; gap: 11px; }
 .footer-col a, .footer-col li { color: var(--ink-muted); font-size: 14px; }
 .footer-col a:hover { color: var(--navy); }
@@ -922,7 +929,7 @@ body { font-size: 17.5px; line-height: 1.65; }
 .persona:hover .p-top .p-ico { transform: translateY(-4px) scale(1.06); color: var(--gold); }
 .p-top .p-ico svg { width: 30px; height: 30px; }
 .persona .pbody { padding: 22px 22px 26px; }
-.persona h4 { font-size: 1.12rem; }
+.persona h4, .persona h3 { font-size: 1.12rem; }
 
 /* ============================================================
    TRUST v2
@@ -1065,7 +1072,7 @@ body { font-size: 17.5px; line-height: 1.65; }
 .wcard .wimg img { width:100%; height:100%; object-fit:cover; transition: transform .8s var(--ease); display: block; }
 .wcard:hover .wimg img { transform: scale(1.07); }
 .wcard .wbody { padding: 18px 18px 22px; background: #fff; }
-.wcard h4 { font-size: 1.04rem; font-weight: 700; letter-spacing: -0.015em; }
+.wcard h4, .wcard h3 { font-size: 1.04rem; font-weight: 700; letter-spacing: -0.015em; }
 .wcard p { font-size: 13.5px; color: var(--ink-muted); margin-top: 7px; }
 
 /* cert pill badges — hero trust strip */
