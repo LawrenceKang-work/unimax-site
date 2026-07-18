@@ -40,7 +40,10 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&display=swap" />
 <link rel="stylesheet" href="styles.css?v=30" />
 
-<!-- JSON-LD: Organization -->
+<!-- JSON-LD: Organization
+     注:此处刻意不设 areaServed。Eurycoma longifolia 在欧盟 Novel Food Catalogue
+     (条目 POL-NF-00346)状态为 NOT_YET_AUTHORISED_NOVEL_FOOD,涵盖该植物所有部位,
+     2023-05-21 复核后状态未变。在合规路径澄清前,不由结构化数据声明服务欧盟。 -->
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
@@ -48,8 +51,7 @@
   "name":"UniPro",
   "url":"https://unimaxofficial.com/",
   "logo":"https://unimaxofficial.com/assets/unimax-hero.webp",
-  "description":"Supplier of UNI MAX, a Halal-certified botanical Tongkat Ali vitality drink made in Malaysia. Available for bulk orders, wholesale terms and distributor partnerships, including enquiries from the EU.",
-  "areaServed":[{"@type":"Country","name":"Malaysia"},{"@type":"Place","name":"European Union"}],
+  "description":"Supplier of UNI MAX, a Halal-certified botanical Tongkat Ali vitality drink made in Malaysia. Available for bulk orders, wholesale terms and distributor partnerships.",
   "brand":{"@type":"Brand","name":"UNI MAX","slogan":"Universe of Power, Maximum Impact"},
   "contactPoint":{"@type":"ContactPoint","contactType":"sales","telephone":"+491736986625","name":"Sales","availableLanguage":["en","zh","ms","de","nl","pl"]}
 }
