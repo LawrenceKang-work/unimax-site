@@ -46,6 +46,9 @@
 <meta property="og:image" content="https://unimaxofficial.com/assets/unimax-hero.webp" />
 <meta name="twitter:card" content="summary_large_image" />
 
+<!-- LCP:poster 是首屏最大的内容元素,但它写在 <video> 标签里,要等 HTML 解析到那儿才被发现
+     (PSI 报 "LCP request discovery")。这里提前声明,让它与 CSS 并行下载。 -->
+<link rel="preload" as="image" href="assets/sc-hero-poster.webp" fetchpriority="high" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <!-- 字体 CSS 异步化:这两个 Google Fonts 请求原本阻塞首屏渲染约 1.2s。
