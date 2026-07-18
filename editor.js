@@ -133,6 +133,28 @@
     l = l.toLowerCase();
     return l.indexOf("zh") === 0 ? "zh" : "en";   // 中文→中文，其余一律→英文
   }
+  /* 内容语言：与 uiLang() 严格区分。
+     uiLang() 是「编辑器界面语言」，UILANG 只有 zh/en 两套界面翻译，其余语言一律回退 en —— 这对界面是对的。
+     但发布时标记「这段文本属于哪个语言」必须用真实站点语言，否则 worker 会判定 L === defLang('en')，
+     把 de/nl/pl/ms 的译文用 HTMLRewriter 写进 index.html 的英文原文位置，覆盖英文源。
+     取值域须与 app.js 的 I18N 字典 key 一致：en/zh/ms/nl/pl/de。
+     兼容两种来源：<html lang> 走 app.js 的 docLang（zh-Hans/ms/nl/de/pl），localStorage 存的已是字典 key。 */
+  function contentLang() {
+    var l = document.documentElement.getAttribute("lang") || "";
+    if (!l) { try { l = localStorage.getItem("unimax_lang") || ""; } catch (e) { } }
+    l = l.toLowerCase();
+    if (l.indexOf("zh") === 0) return "zh";
+    var S = ["ms", "nl", "de", "pl"];
+    for (var i = 0; i < S.length; i++) { if (l.indexOf(S[i]) === 0) return S[i]; }
+    return "en";
+  }
+  /* 当前页文件名：worker 端按 page 选择写回目标并做白名单校验。
+     此前前端不传，worker 兜底成 'index.html' —— 单页时无碍，但一旦有多页就会把改动静默写错文件。 */
+  function currentPage() {
+    var p = (location.pathname || "/").replace(/^\//, "").split("?")[0].split("#")[0];
+    if (p === "" || p.charAt(p.length - 1) === "/") p += "index.html";
+    return p;
+  }
   function t(k, a) { var s = (UILANG[uiLang()] || UILANG.en)[k]; if (s == null) s = UILANG.en[k] || k; if (a) Object.keys(a).forEach(function (x) { s = s.split("{" + x + "}").join(a[x]); }); return s; }
 
   /* ---------- 状态 ---------- */
@@ -376,7 +398,7 @@
     var el = e.target.closest && e.target.closest('[data-fb-el="text"]');
     if (!el) return;
     var k = el.getAttribute("data-fb-key"), v = el.textContent;
-    if (v === el._orig) { delete edits.text[k]; delete edits.textLang[k]; } else { edits.text[k] = v; edits.textLang[k] = uiLang(); }
+    if (v === el._orig) { delete edits.text[k]; delete edits.textLang[k]; } else { edits.text[k] = v; edits.textLang[k] = contentLang(); }
     el.classList.toggle("ce-dirty", v !== el._orig);
     applying = true;
     $$('[data-fb-key="' + cssEsc(k) + '"]').forEach(function (o) { if (o !== el && o.textContent !== v) o.textContent = v; o.setAttribute("data-en", v); });
@@ -711,7 +733,7 @@
   function publishEdits() {
     var n = draftEditCount(); if (!n) { toast(t("ts_pub_none")); return; }
     var b = $("#cePublishBtn"); b.disabled = true; b.innerHTML = t("btn_publishing");
-    fetch(API_BASE + "/api/publish", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ token: EDIT_KEY, client: "unimax", lang: uiLang(), edits: JSON.parse(JSON.stringify(edits)) }) })
+    fetch(API_BASE + "/api/publish", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ token: EDIT_KEY, client: "unimax", page: currentPage(), lang: contentLang(), edits: JSON.parse(JSON.stringify(edits)) }) })
       .then(function (r) { return r.json(); })
       .then(function (j) { if (j && j.success) toast(j.note || t("ts_pub_ok")); else { downloadJSON(); toast((j && j.note) || t("ts_pub_fail")); } updatePublishBtn(); })
       .catch(function () { downloadJSON(); toast(t("ts_pub_fail")); updatePublishBtn(); });
