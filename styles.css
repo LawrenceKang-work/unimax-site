@@ -166,11 +166,13 @@ ul { list-style: none; }
 .lang-btn svg { width: 15px; height: 15px; color: var(--ink-muted); }
 .lang-menu { position:absolute; right:0; top: calc(100% + 8px); background:#fff; border:1px solid var(--line); border-radius: var(--r-md); box-shadow: var(--shadow-md); padding:6px; min-width: 150px; display:none; }
 .lang-menu.open { display:block; animation: pop .16s var(--ease); }
-.lang-menu button { display:flex; width:100%; align-items:center; justify-content:space-between; gap:10px; padding:9px 12px; border-radius:8px; font-size:14px; font-weight:500; color: var(--ink); text-align:left; }
-.lang-menu button:hover { background: var(--bg-tint); }
-.lang-menu button.active { color: var(--navy); font-weight:700; }
-.lang-menu button .tick { opacity:0; width:15px; height:15px; }
-.lang-menu button.active .tick { opacity:1; }
+/* 语言项在按 URL 拆分语言后由 <button> 改为 <a>(爬虫可发现 + 无 JS 可用);
+   两种元素并列保留,旧结构不受影响。 */
+.lang-menu button, .lang-menu a { display:flex; width:100%; align-items:center; justify-content:space-between; gap:10px; padding:9px 12px; border-radius:8px; font-size:14px; font-weight:500; color: var(--ink); text-align:left; }
+.lang-menu button:hover, .lang-menu a:hover { background: var(--bg-tint); }
+.lang-menu button.active, .lang-menu a.active { color: var(--navy); font-weight:700; }
+.lang-menu button .tick, .lang-menu a .tick { opacity:0; width:15px; height:15px; }
+.lang-menu button.active .tick, .lang-menu a.active .tick { opacity:1; }
 
 .nav-toggle { display:none; width:42px; height:42px; border-radius:10px; border:1px solid var(--line); align-items:center; justify-content:center; background:#fff; }
 .nav-toggle svg { width:20px; height:20px; color: var(--ink); }

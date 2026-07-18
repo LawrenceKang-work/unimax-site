@@ -574,6 +574,7 @@
   var LANG_LABEL = {en:"EN", zh:"中文", ms:"BM", nl:"NL", de:"DE", pl:"PL"};
   var LANG_FULL = {en:"English", zh:"中文", ms:"Bahasa Melayu", nl:"Nederlands", de:"Deutsch", pl:"Polski"};
   var docLang = {en:"en", zh:"zh-Hans", ms:"ms", nl:"nl", de:"de", pl:"pl"};
+  var LANG_HOME = {en:"/", zh:"/zh/", ms:"/ms/", nl:"/nl/", de:"/de/", pl:"/pl/"};
   var currentLang = "en";
 
   /* store original english text on first run */
@@ -1186,7 +1187,15 @@
 
     var saved = null;
     try { saved = localStorage.getItem("unimax_lang"); } catch (e) {}
-    if (saved && I18N[saved] !== undefined || saved === "en") applyLang(saved);
+    /* 语言已按 URL 拆分后:页面文案在生成时就烧录好了,再跑 applyLang 会把它刷掉
+       (非英文页会被字典覆盖,英文页会被 data-en 整页刷回)。此处只设定当前语言,
+       并渲染那些由 JS 驱动、不在 HTML 里的区块(FAQ / 评论)。
+       localStorage 的语言偏好在这套架构下不再决定显示什么 —— URL 才是权威。 */
+    if (window.__PAGE_LANG__) {
+      currentLang = window.__PAGE_LANG__;
+      renderFAQ(); renderReviews(); startRevTimer();
+    }
+    else if (saved && I18N[saved] !== undefined || saved === "en") applyLang(saved);
     else applyLang("en");
 
     /* header scrolled + sticky mobile CTA */
@@ -1220,7 +1229,11 @@
     /* footer lang cycles */
     var footBtn = document.getElementById("footLangBtn");
     if (footBtn) footBtn.addEventListener("click", function () {
-      var order = ["en", "zh", "ms", "nl", "de", "pl"]; applyLang(order[(order.indexOf(currentLang) + 1) % 6]);
+      var order = ["en", "zh", "ms", "nl", "de", "pl"];
+      var next = order[(order.indexOf(currentLang) + 1) % 6];
+      /* 语言按 URL 拆分后,切换 = 跳转到该语言的页面,而不是就地改文案 */
+      if (window.__PAGE_LANG__) { location.href = LANG_HOME[next] || "/"; return; }
+      applyLang(next);
     });
     document.querySelectorAll("[data-drawer-lang]").forEach(function (b) {
       b.addEventListener("click", function () { applyLang(b.getAttribute("data-drawer-lang")); });

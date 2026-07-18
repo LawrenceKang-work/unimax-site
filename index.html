@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <!-- ===== Analytics (2C live) ===== -->
+<script>window.__PAGE_LANG__ = "en";</script>
 <script>window.dataLayer = window.dataLayer || [];</script>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KNVVDF5F');</script>
@@ -23,8 +24,14 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="icon" href="/favicon.svg" />
 
-<!-- Language is switched on-page (EN / 中文 / BM) from a single URL — there are no per-language routes,
-     so per-language hreflang is N/A at this stage. Add hreflang here if localized routes are introduced. -->
+<!-- 语言已按 URL 拆分:/ 英文 · /zh/ /ms/ /pl/ /nl/ /de/。六语互指 + x-default。 -->
+<link rel="alternate" hreflang="en" href="https://unimaxofficial.com/" />
+<link rel="alternate" hreflang="zh-Hans" href="https://unimaxofficial.com/zh/" />
+<link rel="alternate" hreflang="ms" href="https://unimaxofficial.com/ms/" />
+<link rel="alternate" hreflang="nl" href="https://unimaxofficial.com/nl/" />
+<link rel="alternate" hreflang="de" href="https://unimaxofficial.com/de/" />
+<link rel="alternate" hreflang="pl" href="https://unimaxofficial.com/pl/" />
+<link rel="alternate" hreflang="x-default" href="https://unimaxofficial.com/" />
 
 <!-- Open Graph -->
 <meta property="og:type" content="website" />
@@ -38,7 +45,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&display=swap" />
-<link rel="stylesheet" href="styles.css?v=30" />
+<link rel="stylesheet" href="styles.css?v=31" />
 
 <!-- JSON-LD: Organization
      注:此处刻意不设 areaServed。Eurycoma longifolia 在欧盟 Novel Food Catalogue
@@ -128,12 +135,12 @@
             <span id="langLabel">EN</span>
           </button>
           <div class="lang-menu" id="langMenu" role="menu">
-            <button data-lang="en" class="active" role="menuitem">English <svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></button>
-            <button data-lang="zh" role="menuitem">中文 <svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></button>
-            <button data-lang="ms" role="menuitem">Bahasa Melayu <svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></button>
-            <button data-lang="pl" role="menuitem">Polski <svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></button>
-            <button data-lang="nl" role="menuitem">Nederlands <svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></button>
-            <button data-lang="de" role="menuitem">Deutsch <svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></button>
+            <a href="/" hreflang="en" class="active" role="menuitem">English <svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></a>
+            <a href="/zh/" hreflang="zh-Hans" role="menuitem">中文 <svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></a>
+            <a href="/ms/" hreflang="ms" role="menuitem">Bahasa Melayu <svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></a>
+            <a href="/pl/" hreflang="pl" role="menuitem">Polski <svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></a>
+            <a href="/nl/" hreflang="nl" role="menuitem">Nederlands <svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></a>
+            <a href="/de/" hreflang="de" role="menuitem">Deutsch <svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></a>
           </div>
         </div>
         <a href="https://wa.me/491736986625" class="btn btn--primary nav-order" target="_blank" rel="noopener">
@@ -161,12 +168,12 @@
     <a href="#order" data-close data-i18n="nav.order">Partner with Us</a>
     <a href="#faq" data-close data-i18n="nav.faq">FAQ</a>
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:14px">
-      <button class="lang-btn" data-drawer-lang="en">EN</button>
-      <button class="lang-btn" data-drawer-lang="zh">中文</button>
-      <button class="lang-btn" data-drawer-lang="ms">BM</button>
-      <button class="lang-btn" data-drawer-lang="pl">PL</button>
-      <button class="lang-btn" data-drawer-lang="nl">NL</button>
-      <button class="lang-btn" data-drawer-lang="de">DE</button>
+      <a class="lang-btn" href="/" hreflang="en">EN</a>
+      <a class="lang-btn" href="/zh/" hreflang="zh-Hans">中文</a>
+      <a class="lang-btn" href="/ms/" hreflang="ms">BM</a>
+      <a class="lang-btn" href="/pl/" hreflang="pl">PL</a>
+      <a class="lang-btn" href="/nl/" hreflang="nl">NL</a>
+      <a class="lang-btn" href="/de/" hreflang="de">DE</a>
     </div>
     <a href="https://wa.me/491736986625" target="_blank" rel="noopener" class="btn btn--primary btn--block" style="margin-top:16px" data-i18n="cta.order">Request Wholesale Terms</a>
   </div>
@@ -806,7 +813,7 @@
   <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="#1b2342"/><path d="M50 26l5 13 14 2-10 10 2.5 14L50 71l-13.5 7L39 64 29 54l14-2z" fill="#cda24f"/></svg>
 </template>
 
-<script src="app.js?v=29"></script>
+<script src="app.js?v=30"></script>
 <!-- 顾客自助编辑层：仅在网址带正确密钥（?edit=KEY）时激活，普通访客零影响 -->
 <script src="editor.js?v=33"></script>
 </body>
