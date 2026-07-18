@@ -175,6 +175,18 @@ function buildPage(srcHtml, lang) {
   report.replaced = baked.replaced;
   report.missing = baked.missing;
 
+  // 1.5) 中文排版:模板里 span 之间的空格对拉丁语系是必需的,对中文是多余的。
+  //      仅当「前段以中文或全角标点结尾」且「后段以中文开头」时才去空格 ——
+  //      中英混排(如 "Uni Max 充能")的空格必须保留,故不能无差别删除。
+  if (lang === 'zh') {
+    const CJK = '\\u4e00-\\u9fff';
+    const PUNCT = '，。、；：！？）】》」』';
+    const re = new RegExp(
+      '([' + CJK + PUNCT + '])(</[a-zA-Z][\\w-]*>)[ \\t]+(<[a-zA-Z][^>]*>)(?=[' + CJK + '])', 'g');
+    let prev;
+    do { prev = h; h = h.replace(re, '$1$2$3'); } while (h !== prev);   // 连续多段需反复收敛
+  }
+
   // 2) <html lang>
   h = h.replace(/<html lang="en">/, `<html lang="${DOC_LANG[lang]}">`);
 
