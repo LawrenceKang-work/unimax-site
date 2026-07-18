@@ -202,7 +202,8 @@ function buildPage(srcHtml, lang) {
     `<link rel="canonical" href="${ORIGIN}${HOME[lang]}" />`);
 
   // 5) 相对资源路径 → 绝对(页面位于子目录)
-  h = h.replace(/(src|href)="assets\//g, '$1="/assets/');
+  //    用通用规则而非只列 src/href —— poster、data-* 等属性同样会 404。
+  h = h.replace(/="assets\//g, '="/assets/');
   h = h.replace(/href="styles\.css/g, 'href="/styles.css');
   h = h.replace(/src="app\.js/g, 'src="/app.js');
   h = h.replace(/src="editor\.js/g, 'src="/editor.js');

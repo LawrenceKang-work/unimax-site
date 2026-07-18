@@ -48,8 +48,15 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<!-- 字体 CSS 异步化:这两个 Google Fonts 请求原本阻塞首屏渲染约 1.2s。
+     URL 里已带 display=swap —— 本来就是先用后备字体、字体到位再换,
+     所以异步不改变最终观感,只是让渲染更早开始。 -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+<noscript>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&display=swap" />
+</noscript>
 <link rel="stylesheet" href="styles.css?v=32" />
 
 <!-- JSON-LD: Organization
@@ -193,9 +200,14 @@
 <!-- ============ HERO — SCROLL CINEMA ============ -->
 <section class="scroll-cinema" id="scroll-cinema" aria-label="UNI MAX — Scroll to discover">
   <div class="sc-sticky">
+    <!-- preload="none" + poster:1.8MB 的视频若在首屏就抢带宽,LCP 会被拖到 10s 以上
+         (实测 11.5s)。改为先用 poster 顶住画面,视频由 app.js 在首屏渲染完成后
+         (或用户开始下滚时)再拉取。注意 GitHub Pages 实测不返回 206,分片加载不可行,
+         所以只能整段下载 —— 时机就更重要。 -->
     <video class="sc-video" id="scVideo"
            src="assets/sc-hero.mp4"
-           muted playsinline preload="auto"
+           poster="assets/sc-hero-poster.webp"
+           muted playsinline preload="none"
            aria-hidden="true">
     </video>
     <div class="sc-overlay" aria-hidden="true">
@@ -816,8 +828,20 @@
   <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="#1b2342"/><path d="M50 26l5 13 14 2-10 10 2.5 14L50 71l-13.5 7L39 64 29 54l14-2z" fill="#cda24f"/></svg>
 </template>
 
-<script src="app.js?v=33"></script>
+<script src="app.js?v=34" defer></script>
 <!-- 顾客自助编辑层：仅在网址带正确密钥（?edit=KEY）时激活，普通访客零影响 -->
-<script src="editor.js?v=33"></script>
+<script>
+/* editor.js 有 87KB,只有授权者用得上(?edit=密钥 / #密钥 / 本机已授权)。
+   普通访客不再下载。判定与 editor.js 内部的门禁保持一致;
+   站内锚点(#faq/#order 等)长度短,不会误触发。 */
+(function () {
+  var stored = false;
+  try { stored = !!localStorage.getItem("fbedit_unimax"); } catch (e) { }
+  if (location.search.indexOf("edit=") === -1 && location.hash.slice(1).length < 12 && !stored) return;
+  var s = document.createElement("script");
+  s.src = "/editor.js?v=34"; s.defer = true;
+  document.body.appendChild(s);
+})();
+</script>
 </body>
 </html>

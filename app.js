@@ -1484,7 +1484,25 @@
         return;
       }
 
-      vid.load();
+      /* 视频加载时机 —— 曾是 LCP 11.5s 的主因,两个问题:
+         ① 这里原本直接 vid.load(),而 HTML 里是 preload="auto",浏览器已在下载 ——
+            load() 会重置媒体元素并**重新下载一遍**,实测同一个 1.8MB 文件下了两次(共 3.6MB)。
+         ② 视频与首屏的 CSS/字体/图片抢带宽,首屏迟迟画不出来。
+         现在 HTML 改为 preload="none" + poster,由这里择机拉取:
+         首屏 load 完成后拉,或用户一开始下滚就立刻拉(取先到者)。 */
+      var warmed = false;
+      function warmVideo() {
+        if (warmed) return;
+        warmed = true;
+        vid.preload = "auto";
+        vid.load();
+      }
+      if (document.readyState === "complete") setTimeout(warmVideo, 200);
+      else window.addEventListener("load", function () { setTimeout(warmVideo, 200); }, { once: true });
+      /* 用户比首屏加载更快开始滚动时,不等 load 事件 */
+      window.addEventListener("scroll", function onFirstScroll() {
+        if (window.scrollY > 40) { warmVideo(); window.removeEventListener("scroll", onFirstScroll); }
+      }, { passive: true });
 
       /* non-uniform caption thresholds — longer dwell per scene */
       var LO = [0,    0.26, 0.62];
