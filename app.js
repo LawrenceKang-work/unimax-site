@@ -1323,9 +1323,21 @@
       }, { passive: true });
     }
 
-    /* certificates lightbox */
+    /* certificates lightbox —— 证书图缺失时优雅降级。
+       文案承诺「Tap any seal to view the certificate」,但 /assets/cert-*.webp 若不存在,
+       点开就是破图(B2B 买家恰恰最想看认证文件)。这里先预检图片是否可加载:
+       能加载才绑点击;不能则打上 .no-cert,由 CSS 隐去「查看证书」提示并去掉可点击态。
+       客户日后补上证书图即自动恢复,无需再改代码。 */
     document.querySelectorAll(".badge").forEach(function (b) {
-      b.addEventListener("click", function () { openLightbox(b.getAttribute("data-cert"), b.getAttribute("data-name")); });
+      var cert = b.getAttribute("data-cert");
+      if (!cert) return;
+      var probe = new Image();
+      probe.onload = function () {
+        b.classList.add("has-cert");
+        b.addEventListener("click", function () { openLightbox(cert, b.getAttribute("data-name")); });
+      };
+      probe.onerror = function () { b.classList.add("no-cert"); };
+      probe.src = "/assets/cert-" + cert + ".webp";
     });
     document.getElementById("lbClose").addEventListener("click", closeLightbox);
     document.getElementById("lightbox").addEventListener("click", function (e) { if (e.target.id === "lightbox") closeLightbox(); });

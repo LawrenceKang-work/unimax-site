@@ -372,6 +372,10 @@ ul { list-style: none; }
   transition: transform .25s var(--ease), background .25s; cursor: pointer; color: inherit;
 }
 .badge:hover { transform: translateY(-4px); background: rgba(255,255,255,.09); }
+/* 证书图尚未就绪时的降级(由 app.js 预检 /assets/cert-*.webp 后加 .no-cert):
+   不提示「查看证书」、不做可点击态,避免点开是破图。补上证书图后自动恢复。 */
+.badge.no-cert { cursor: default; }
+.badge.no-cert:hover .view { opacity: 0; }
 .badge .seal { width:58px; height:58px; border-radius:50%; display:flex; align-items:center; justify-content:center; background: linear-gradient(160deg, oklch(0.34 0.08 255), oklch(0.26 0.06 270)); border:1px solid rgba(255,255,255,.16); color: var(--gold); }
 .badge .seal svg { width:26px;height:26px; }
 .badge .bname { font-family: var(--font-display); font-weight:700; font-size: 15px; color:#fff; letter-spacing:-0.01em; }
