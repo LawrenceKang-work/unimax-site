@@ -25,32 +25,37 @@ const ORIGIN = 'https://unimaxofficial.com';
 /* head 区文案:I18N 字典里没有 title/description/OG,单独维护 */
 const META = {
   zh: {
+    h1: 'UNI MAX — 清真东革阿里活力饮 · 批发分销',
     title: '清真东革阿里活力饮 · 批发分销 | UNI MAX',
     desc: '清真认证东革阿里植物活力饮，10 克 × 30 包。马来西亚制造 — GMP、MeSTI、ISO 9001、HACCP。欢迎批量订购与欧盟分销商洽询。',
     ogTitle: 'UNI MAX — 清真东革阿里活力饮 | 批发与分销',
     ogDesc: '含三重东革阿里的即饮植物荔枝活力饮。10 克 × 30 包，马来西亚制造。欢迎批量订购与欧盟分销商洽询。',
   },
   ms: {
+    h1: 'UNI MAX — Minuman Vitaliti Tongkat Ali Halal untuk Borong',
     title: 'Minuman Vitaliti Tongkat Ali Halal — Borong | UNI MAX',
-    desc: 'Minuman vitaliti botani Tongkat Ali halal, 10 g × 30 sachet. Dibuat di Malaysia — GMP, MeSTI, ISO 9001, HACCP. Pesanan pukal & pertanyaan pengedar EU dialu-alukan.',
+    desc: 'Minuman vitaliti Tongkat Ali halal, 10 g × 30 sachet. Dibuat di Malaysia — GMP, MeSTI, ISO 9001, HACCP. Pesanan pukal & pengedar EU dialu-alukan.',
     ogTitle: 'UNI MAX — Minuman Vitaliti Tongkat Ali Halal | Borong & Pengedaran',
     ogDesc: 'Minuman vitaliti laici botani siap minum dengan Triple Force Tongkat Ali. 10 g × 30 sachet, dibuat di Malaysia. Pesanan pukal & pertanyaan pengedar EU dialu-alukan.',
   },
   pl: {
+    h1: 'UNI MAX — Napój witalny Tongkat Ali Halal do sprzedaży hurtowej',
     title: 'Napój witalny Tongkat Ali Halal — hurt | UNI MAX',
-    desc: 'Halal botaniczny napój witalny Tongkat Ali, 10 g × 30 saszetek. Wyprodukowano w Malezji — GMP, MeSTI, ISO 9001, HACCP. Zamówienia hurtowe i zapytania dystrybutorów UE mile widziane.',
+    desc: 'Halal napój witalny Tongkat Ali, 10 g × 30 saszetek. Malezja — GMP, MeSTI, ISO 9001, HACCP. Zamówienia hurtowe i zapytania dystrybutorów UE.',
     ogTitle: 'UNI MAX — Napój witalny Tongkat Ali Halal | Hurt i dystrybucja',
     ogDesc: 'Gotowy do picia botaniczny napój liczi z Triple Force Tongkat Ali. 10 g × 30 saszetek, wyprodukowano w Malezji. Zamówienia hurtowe i zapytania dystrybutorów UE mile widziane.',
   },
   nl: {
+    h1: 'UNI MAX — Halal Tongkat Ali vitaliteitsdrank voor groothandel',
     title: 'Halal Tongkat Ali vitaliteitsdrank — groothandel | UNI MAX',
-    desc: 'Halal botanische Tongkat Ali vitaliteitsdrank, 10 g × 30 sachets. Gemaakt in Maleisië — GMP, MeSTI, ISO 9001, HACCP. Bulkorders en aanvragen van EU-distributeurs welkom.',
+    desc: 'Halal Tongkat Ali vitaliteitsdrank, 10 g × 30 sachets. Gemaakt in Maleisië — GMP, MeSTI, ISO 9001, HACCP. Bulkorders en EU-distributeurs welkom.',
     ogTitle: 'UNI MAX — Halal Tongkat Ali vitaliteitsdrank | Groothandel & distributie',
     ogDesc: 'Kant-en-klare botanische lychee-vitaliteitsdrank met Triple Force Tongkat Ali. 10 g × 30 sachets, gemaakt in Maleisië. Bulkorders en aanvragen van EU-distributeurs welkom.',
   },
   de: {
+    h1: 'UNI MAX — Halal Tongkat Ali Vitalitätsgetränk für den Großhandel',
     title: 'Halal Tongkat Ali Vitalitätsgetränk — Großhandel | UNI MAX',
-    desc: 'Halal botanisches Tongkat-Ali-Vitalitätsgetränk, 10 g × 30 Sachets. Hergestellt in Malaysia — GMP, MeSTI, ISO 9001, HACCP. Großbestellungen und EU-Händleranfragen willkommen.',
+    desc: 'Halal Tongkat-Ali-Vitalitätsgetränk, 10 g × 30 Sachets. Malaysia — GMP, MeSTI, ISO 9001, HACCP. Großbestellungen & EU-Händleranfragen willkommen.',
     ogTitle: 'UNI MAX — Halal Tongkat Ali Vitalitätsgetränk | Großhandel & Vertrieb',
     ogDesc: 'Trinkfertiges botanisches Lychee-Vitalitätsgetränk mit Triple Force Tongkat Ali. 10 g × 30 Sachets, hergestellt in Malaysia. Großbestellungen und EU-Händleranfragen willkommen.',
   },
@@ -195,6 +200,9 @@ function buildPage(srcHtml, lang) {
   // 7) FAQPage schema 换成该语言
   h = h.replace(/(<script type="application\/ld\+json" id="faq-schema">)[\s\S]*?(<\/script>)/,
     `$1\n${faqSchema(lang)}\n$2`);
+
+  // 7.5) sr-only H1 按语言替换(它无 data-i18n,不走字典烧录)
+  h = h.replace(/(<h1 class="sr-only">)[^<]*(<\/h1>)/, `$1${escHtml(meta.h1)}$2`);
 
   // 8) 语言标签(静态烧录,app.js 不再更新它们)
   h = h.replace(/(<span id="langLabel">)[^<]*(<\/span>)/, `$1${escHtml(LANG_LABEL[lang])}$2`);
