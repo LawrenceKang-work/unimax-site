@@ -26,7 +26,8 @@ const ORIGIN = 'https://unimaxofficial.com';
 const META = {
   zh: {
     h1: 'UNI MAX — 清真东革阿里活力饮 · 批发分销',
-    title: '清真东革阿里活力饮 · 批发分销 | UNI MAX',
+    // 原 26 字/377px,SERP 可用约 580px —— 补上「马来西亚」这个高意图产地词
+    title: '马来西亚清真东革阿里活力饮 · 批发与分销合作 | UNI MAX',
     desc: '清真认证东革阿里植物活力饮，10 克 × 30 包。马来西亚制造 — GMP、MeSTI、ISO 9001、HACCP。欢迎批量订购与欧盟分销商洽询。',
     ogTitle: 'UNI MAX — 清真东革阿里活力饮 | 批发与分销',
     ogDesc: '含三重东革阿里的即饮植物荔枝活力饮。10 克 × 30 包，马来西亚制造。欢迎批量订购与欧盟分销商洽询。',
