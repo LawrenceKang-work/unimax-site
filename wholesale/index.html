@@ -158,6 +158,38 @@ window.clarity = window.clarity || function () { (window.clarity.q = window.clar
   @media (max-width: 900px) {
     .wsl-facts, .wsl-grid, .wsl-tiers, .wsl-steps { grid-template-columns: 1fr 1fr; }
   }
+
+  /* ---------- 移动端主导航 ----------
+     styles.css:642 在 ≤760px 隐藏 .nav-links,交给汉堡 drawer 承接 —— 但 drawer 是
+     app.js 渲染的,本页零 JS 没有它,结果移动端 header 只剩一个 logo。
+     这里让导航**在原地**显示并横向滚动:不换行、不动 .nav 的 height,
+     所以 sticky header 的高度和层叠都不受影响。
+     ≤760px 时 .nav-order 与 .lang 均已被隐藏(styles.css:1436 / :642),
+     header 那一行除 logo 外本就是空的,腾得出这个位置。 */
+  @media (max-width: 760px) {
+    .wsl-nav {
+      display: flex;
+      flex: 1 1 0; min-width: 0;      /* min-width:0 —— 否则 flex 子项不肯收缩,会把 header 撑破 */
+      gap: 17px;
+      margin-left: 0;
+      overflow-x: auto;
+      overscroll-behavior-x: contain;  /* 滑到头不牵动页面纵向滚动 */
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+    .wsl-nav::-webkit-scrollbar { display: none; }
+    .wsl-nav a { white-space: nowrap; font-size: 14px; padding-block: 8px; }
+    .nav { gap: 14px; }               /* 桌面的 28px 在窄屏太奢侈,让给导航项 */
+  }
+  /* 右缘渐隐 —— 横向滚动唯一的可发现性线索。断点取 460px 是算出来的:
+     导航内容实测 335px,加 logo 侧 86px 与右侧 36px = 457px,窄于此才真的溢出。
+     放宽到 760px 会让内容本就全可见的设备把末项白白淡掉。 */
+  @media (max-width: 460px) {
+    .wsl-nav {
+      -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 24px), transparent);
+              mask-image: linear-gradient(to right, #000 calc(100% - 24px), transparent);
+    }
+  }
   @media (max-width: 620px) {
     .wsl-facts, .wsl-grid, .wsl-tiers, .wsl-steps { grid-template-columns: 1fr; }
   }
@@ -174,7 +206,8 @@ window.clarity = window.clarity || function () { (window.clarity.q = window.clar
       <a href="/" class="brand logo" aria-label="UNI MAX home">
         <img src="/assets/logo-dark.webp" alt="UNI MAX" class="logo-img" width="480" height="305" />
       </a>
-      <div class="nav-links">
+      <!-- .wsl-nav —— 移动端不隐藏而是横向滚动(本页无汉堡 drawer),见内联 style 的 ≤760px 段 -->
+      <div class="nav-links wsl-nav">
         <a href="/#benefits">Benefits</a>
         <a href="/#formula">Formula</a>
         <a href="/#trust">Certified</a>
