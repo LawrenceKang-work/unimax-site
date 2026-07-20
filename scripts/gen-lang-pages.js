@@ -210,6 +210,14 @@ function buildPage(srcHtml, lang) {
   h = h.replace(/src="app\.js/g, 'src="/app.js');
   h = h.replace(/src="editor\.js/g, 'src="/editor.js');
 
+  // 5.5) /wholesale/ 内链 → 该语言的译版(若有)
+  //      zh/ms 已有 wholesale 译版(scripts/gen-wholesale-pages.js 产出),语言页应链到译版
+  //      而非英文页;pl/nl/de 暂无译版,保持指向英文 /wholesale/。
+  //      ⚠️ 这份名单必须与 gen-wholesale-pages.js 的 WSL_LANGS 一致 —— 加语言时两边都改。
+  if (['zh', 'ms'].includes(lang)) {
+    h = h.replace(/href="\/wholesale\/"/g, `href="/${lang}/wholesale/"`);
+  }
+
   // 6) 页面语言标记(app.js 据此跳过 applyLang)
   h = h.replace(/window\.__PAGE_LANG__ = "en";/, `window.__PAGE_LANG__ = ${JSON.stringify(lang)};`);
 

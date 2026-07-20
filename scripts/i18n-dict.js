@@ -11,7 +11,7 @@ module.exports = {
     zh: {
       "announce":"提供大批量订购 · 欢迎欧洲分销商洽询 · HALAL 与 GMP 认证 · 马来西亚制造",
       "nav.benefits":"功效","nav.formula":"配方","nav.trust":"认证","nav.research":"研究依据","nav.faq":"常见问题",
-      "nav.wholesale":"批发与分销（英文）","order.wholesaleLink":"查看完整批发与分销资讯（英文）→",
+      "nav.wholesale":"批发与分销","order.wholesaleLink":"查看完整批发与分销资讯 →",
       "cta.order":"索取批发条款","cta.explore":"了解配方",
       "hero.eyebrow":"30+ 男士 · 高压上班族 · 运动爱好者","hero.h1a":"总在下午就","hero.h1pk":"没电？","hero.h1b":"","hero.h1c":"每天","hero.h1bk":"一包，","hero.h1cp":"","hero.h1d":"撑满你的一整天。",
       "hero.sub":"三重东革阿里 + 12 种草本配方，支持充沛能量、持久耐力与专注恢复。即饮荔枝口味，约 30 分钟感受提升。",
@@ -91,7 +91,7 @@ module.exports = {
     ms: {
       "announce":"Pesanan Pukal Tersedia · Pertanyaan pengedar Eropah dialu-alukan · Disahkan HALAL & GMP · Buatan Malaysia",
       "nav.benefits":"Manfaat","nav.formula":"Formula","nav.trust":"Pensijilan","nav.research":"Penyelidikan","nav.faq":"Soalan Lazim",
-      "nav.wholesale":"Borong & Pengedaran (EN)","order.wholesaleLink":"Lihat maklumat borong & pengedaran penuh (dalam bahasa Inggeris) →",
+      "nav.wholesale":"Borong & Pengedaran","order.wholesaleLink":"Lihat maklumat borong & pengedaran penuh →",
       "cta.order":"Minta Terma Borong","cta.explore":"Terokai formula",
       "hero.eyebrow":"Lelaki 30+ · Profesional tekanan tinggi · Gaya hidup aktif","hero.h1a":"","hero.h1pk":"Lesu","hero.h1b":" menjelang petang?","hero.h1c":"Satu ","hero.h1bk":"sachet","hero.h1cp":" sehari,","hero.h1d":"bertenaga sepanjang hari.",
       "hero.sub":"Tongkat Ali Tiga Kuasa + 12 botani — menyokong tenaga, stamina & fokus. Minuman laici sedia minum, rasa perbezaannya dalam ~30 minit.",
