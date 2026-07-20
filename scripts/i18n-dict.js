@@ -11,6 +11,7 @@ module.exports = {
     zh: {
       "announce":"提供大批量订购 · 欢迎欧洲分销商洽询 · HALAL 与 GMP 认证 · 马来西亚制造",
       "nav.benefits":"功效","nav.formula":"配方","nav.trust":"认证","nav.research":"研究依据","nav.faq":"常见问题",
+      "nav.wholesale":"批发与分销（英文）","order.wholesaleLink":"查看完整批发与分销资讯（英文）→",
       "cta.order":"索取批发条款","cta.explore":"了解配方",
       "hero.eyebrow":"30+ 男士 · 高压上班族 · 运动爱好者","hero.h1a":"总在下午就","hero.h1pk":"没电？","hero.h1b":"","hero.h1c":"每天","hero.h1bk":"一包，","hero.h1cp":"","hero.h1d":"撑满你的一整天。",
       "hero.sub":"三重东革阿里 + 12 种草本配方，支持充沛能量、持久耐力与专注恢复。即饮荔枝口味，约 30 分钟感受提升。",
@@ -90,6 +91,7 @@ module.exports = {
     ms: {
       "announce":"Pesanan Pukal Tersedia · Pertanyaan pengedar Eropah dialu-alukan · Disahkan HALAL & GMP · Buatan Malaysia",
       "nav.benefits":"Manfaat","nav.formula":"Formula","nav.trust":"Pensijilan","nav.research":"Penyelidikan","nav.faq":"Soalan Lazim",
+      "nav.wholesale":"Borong & Pengedaran (EN)","order.wholesaleLink":"Lihat maklumat borong & pengedaran penuh (dalam bahasa Inggeris) →",
       "cta.order":"Minta Terma Borong","cta.explore":"Terokai formula",
       "hero.eyebrow":"Lelaki 30+ · Profesional tekanan tinggi · Gaya hidup aktif","hero.h1a":"","hero.h1pk":"Lesu","hero.h1b":" menjelang petang?","hero.h1c":"Satu ","hero.h1bk":"sachet","hero.h1cp":" sehari,","hero.h1d":"bertenaga sepanjang hari.",
       "hero.sub":"Tongkat Ali Tiga Kuasa + 12 botani — menyokong tenaga, stamina & fokus. Minuman laici sedia minum, rasa perbezaannya dalam ~30 minit.",
@@ -169,6 +171,7 @@ module.exports = {
     pl: {
       "announce":"Dostępne zamówienia hurtowe · Zapraszamy dystrybutorów z UE · Certyfikat HALAL i GMP · Wyprodukowano w Malezji",
       "nav.benefits":"Korzyści","nav.formula":"Formuła","nav.trust":"Certyfikaty","nav.research":"Badania","nav.faq":"FAQ",
+      "nav.wholesale":"Hurt i dystrybucja (EN)","order.wholesaleLink":"Zobacz pełne informacje o hurcie i dystrybucji (po angielsku) →",
       "cta.order":"Poproś o warunki hurtowe","cta.explore":"Odkryj formułę",
       "hero.eyebrow":"Mężczyźni 30+ · Zapracowani profesjonaliści · Aktywny styl życia","hero.h1a":"Brak energii","hero.h1pk":"po południu?","hero.h1b":"","hero.h1c":"Jedno","hero.h1bk":"sachet dziennie —","hero.h1cp":"","hero.h1d":"energia na cały dzień.",
       "hero.sub":"Triple Force Tongkat Ali + 12 składników botanicznych — wspierają energię, wytrzymałość i skupienie. Gotowy do picia napój liczi, poczuj różnicę w ~30 minut.",
@@ -248,6 +251,7 @@ module.exports = {
     nl: {
       "announce":"Bulkbestellingen mogelijk · Distributeurs uit de EU welkom · HALAL- en GMP-gecertificeerd · Gemaakt in Maleisië",
       "nav.benefits":"Voordelen","nav.formula":"Formule","nav.trust":"Certificaten","nav.research":"Onderzoek","nav.faq":"Veelgestelde vragen",
+      "nav.wholesale":"Groothandel & distributie (EN)","order.wholesaleLink":"Bekijk alle groothandel- en distributie-informatie (in het Engels) →",
       "cta.order":"Vraag groothandelsvoorwaarden aan","cta.explore":"Ontdek de formule",
       "hero.eyebrow":"Mannen 30+ · Drukke professionals · Actieve levensstijl","hero.h1a":"Energieloos","hero.h1pk":"in de middag?","hero.h1b":"","hero.h1c":"Eén","hero.h1bk":"sachet per dag —","hero.h1cp":"","hero.h1d":"energie voor de hele dag.",
       "hero.sub":"Triple Force Tongkat Ali + 12 botanische ingrediënten — ter ondersteuning van energie, uithoudingsvermogen en focus. Drankje met lychee-smaak, klaar voor gebruik. Voel het verschil in ~30 minuten.",
@@ -327,6 +331,7 @@ module.exports = {
     de: {
       "announce":"Großbestellungen möglich · Vertriebspartner aus der EU willkommen · HALAL & GMP zertifiziert · Hergestellt in Malaysia",
       "nav.benefits":"Vorteile","nav.formula":"Formel","nav.trust":"Zertifikate","nav.research":"Forschung","nav.faq":"Häufige Fragen",
+      "nav.wholesale":"Großhandel & Vertrieb (EN)","order.wholesaleLink":"Vollständige Großhandels- und Vertriebsinformationen ansehen (auf Englisch) →",
       "cta.order":"Großhandelskonditionen anfragen","cta.explore":"Formel entdecken",
       "hero.eyebrow":"Männer 30+ · Vielbeschäftigte Profis · Aktiver Lebensstil","hero.h1a":"Energielos","hero.h1pk":"am Nachmittag?","hero.h1b":"","hero.h1c":"Ein","hero.h1bk":"Sachet pro Tag —","hero.h1cp":"","hero.h1d":"Energie für den ganzen Tag.",
       "hero.sub":"Triple Force Tongkat Ali + 12 botanische Inhaltsstoffe — zur Unterstützung von Energie, Ausdauer und Fokus. Trinkfertiges Lychee-Getränk, spüren Sie den Unterschied in ~30 Minuten.",
