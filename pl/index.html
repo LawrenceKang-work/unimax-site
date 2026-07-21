@@ -799,17 +799,63 @@ window.clarity = window.clarity || function () { (window.clarity.q = window.clar
       <button class="badge" data-cert="haccp" data-name="HACCP — MS 1480:2019"><span class="seal seal--img"><img src="/assets/logo-haccp.webp" alt="HACCP Certified Ministry of Health Malaysia" width="561" height="608" /></span><span class="bname">HACCP</span><span class="bsub" data-i18n="trust.b5s">Bezpieczeństwo żywności</span><span class="view" data-i18n="trust.view">Zobacz certyfikat →</span></button>
     </div>
 
-    <!-- 公司架构 —— 导航「About」落在本段,而 B2B 买家在签约前要弄清「谁是品牌方、
-         谁生产、谁负责我这个区域」。文案与 footer 那份共用 org.* 同一批 key。 -->
-    <div class="org-flow reveal">
-      <div class="org-node"><span data-i18n="org.brand">Właściciel marki</span><b>UniPro (Malaysia)</b></div>
-      <div class="org-node"><span data-i18n="org.mfg">Producent</span><b>Orient Biotech Sdn Bhd</b></div>
-      <div class="org-node"><span data-i18n="org.intl">Dystrybucja międzynarodowa</span><b>Wellness Alliance Sdn Bhd</b></div>
-      <div class="org-node"><span data-i18n="org.eu">Europejskie Biuro Partnerstwa</span><b>Wellness Network GmbH</b></div>
+
     </div>
   </div>
 </section>
 
+
+<!-- ============ COMPANY NETWORK (B2B) ============
+     看这块的人是准备签约的分销商,他要确认四件事:跟谁签、货谁做、认证挂在谁名下、
+     出事找谁。所以这里不是摆四个公司名,而是把责任逐环切清楚 ——
+     每环一句话说明它管什么,最后一环高亮标出「你的对接方」。
+     竖排而非横排四列:每环都有实质说明文字,横排会把句子压成窄条。 -->
+<section class="section section--tight" id="company">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow center" data-i18n="cn.eyebrow">Z kim masz do czynienia</span>
+      <h2 data-i18n="cn.h2">Nasza sieć biznesowa</h2>
+      <p class="lead" data-i18n="cn.lead">Cztery spółki, jeden łańcuch. Przy każdym ogniwie poniżej wskazujemy podmiot i zakres jego odpowiedzialności.</p>
+    </div>
+
+    <ol class="cn-chain">
+      <li class="cn-link reveal">
+        <span class="cn-num">01</span>
+        <div class="cn-body">
+          <span class="cn-role" data-i18n="org.brand">Właściciel marki</span>
+          <b class="cn-name">UniPro (Malaysia)</b>
+          <p data-i18n="cn.1d">Właściciel marki i receptury UNI MAX. Tutaj ustalane są specyfikacja produktu, opakowanie i zasady używania marki.</p>
+        </div>
+      </li>
+      <li class="cn-link reveal" data-d="1">
+        <span class="cn-num">02</span>
+        <div class="cn-body">
+          <span class="cn-role" data-i18n="org.mfg">Producent</span>
+          <b class="cn-name">Orient Biotech Sdn Bhd</b>
+          <p data-i18n="cn.2d">Produkcja i konfekcjonowanie odbywają się w jej certyfikowanym zakładzie w Malezji. Wszystkie pięć certyfikatów powyżej wystawiono na ten zakład.</p>
+        </div>
+      </li>
+      <li class="cn-link reveal" data-d="2">
+        <span class="cn-num">03</span>
+        <div class="cn-body">
+          <span class="cn-role" data-i18n="org.intl">Dystrybucja międzynarodowa</span>
+          <b class="cn-name">Wellness Alliance Sdn Bhd</b>
+          <p data-i18n="cn.3d">Odpowiada za organizację eksportu i prawa dystrybucyjne na rynkach poza Malezją.</p>
+        </div>
+      </li>
+      <li class="cn-link cn-link--you reveal" data-d="3">
+        <span class="cn-num">04</span>
+        <div class="cn-body">
+          <span class="cn-role" data-i18n="org.eu">Europejskie Biuro Partnerstwa</span>
+          <b class="cn-name">Wellness Network GmbH <em class="cn-tag" data-i18n="cn.tag">twój kontakt</em></b>
+          <p data-i18n="cn.4d">Zapytania, wyceny, zamówienia i wsparcie na miejscu dla Europy prowadzi to biuro.</p>
+        </div>
+      </li>
+    </ol>
+
+    <p class="cn-note reveal" data-i18n="cn.note">Rozmawiasz z jednym biurem. Cały łańcuch za nim wskazaliśmy powyżej z nazwy.</p>
+  </div>
+</section>
 
 <!-- ============ FAQ ============ -->
 <section class="section bg-alt" id="faq">

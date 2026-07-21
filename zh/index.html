@@ -799,17 +799,63 @@ window.clarity = window.clarity || function () { (window.clarity.q = window.clar
       <button class="badge" data-cert="haccp" data-name="HACCP — MS 1480:2019"><span class="seal seal--img"><img src="/assets/logo-haccp.webp" alt="HACCP Certified Ministry of Health Malaysia" width="561" height="608" /></span><span class="bname">HACCP</span><span class="bsub" data-i18n="trust.b5s">食品安全</span><span class="view" data-i18n="trust.view">查看证书 →</span></button>
     </div>
 
-    <!-- 公司架构 —— 导航「About」落在本段,而 B2B 买家在签约前要弄清「谁是品牌方、
-         谁生产、谁负责我这个区域」。文案与 footer 那份共用 org.* 同一批 key。 -->
-    <div class="org-flow reveal">
-      <div class="org-node"><span data-i18n="org.brand">品牌方</span><b>UniPro (Malaysia)</b></div>
-      <div class="org-node"><span data-i18n="org.mfg">生产方</span><b>Orient Biotech Sdn Bhd</b></div>
-      <div class="org-node"><span data-i18n="org.intl">国际分销</span><b>Wellness Alliance Sdn Bhd</b></div>
-      <div class="org-node"><span data-i18n="org.eu">欧洲合作台</span><b>Wellness Network GmbH</b></div>
+
     </div>
   </div>
 </section>
 
+
+<!-- ============ COMPANY NETWORK (B2B) ============
+     看这块的人是准备签约的分销商,他要确认四件事:跟谁签、货谁做、认证挂在谁名下、
+     出事找谁。所以这里不是摆四个公司名,而是把责任逐环切清楚 ——
+     每环一句话说明它管什么,最后一环高亮标出「你的对接方」。
+     竖排而非横排四列:每环都有实质说明文字,横排会把句子压成窄条。 -->
+<section class="section section--tight" id="company">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow center" data-i18n="cn.eyebrow">你在和谁打交道</span>
+      <h2 data-i18n="cn.h2">我们的业务网络</h2>
+      <p class="lead" data-i18n="cn.lead">四家公司，一条链路。下面每一环都写明背后的主体，以及它负责什么。</p>
+    </div>
+
+    <ol class="cn-chain">
+      <li class="cn-link reveal">
+        <span class="cn-num">01</span>
+        <div class="cn-body">
+          <span class="cn-role" data-i18n="org.brand">品牌方</span>
+          <b class="cn-name">UniPro (Malaysia)</b>
+          <p data-i18n="cn.1d">拥有 UNI MAX 品牌与配方。产品规格、包装与品牌使用规范由这里制定。</p>
+        </div>
+      </li>
+      <li class="cn-link reveal" data-d="1">
+        <span class="cn-num">02</span>
+        <div class="cn-body">
+          <span class="cn-role" data-i18n="org.mfg">生产方</span>
+          <b class="cn-name">Orient Biotech Sdn Bhd</b>
+          <p data-i18n="cn.2d">在其马来西亚的认证工厂完成生产与灌装。上方五项认证均登记在这家工厂名下。</p>
+        </div>
+      </li>
+      <li class="cn-link reveal" data-d="2">
+        <span class="cn-num">03</span>
+        <div class="cn-body">
+          <span class="cn-role" data-i18n="org.intl">国际分销</span>
+          <b class="cn-name">Wellness Alliance Sdn Bhd</b>
+          <p data-i18n="cn.3d">负责马来西亚以外市场的出口安排与分销授权。</p>
+        </div>
+      </li>
+      <li class="cn-link cn-link--you reveal" data-d="3">
+        <span class="cn-num">04</span>
+        <div class="cn-body">
+          <span class="cn-role" data-i18n="org.eu">欧洲合作台</span>
+          <b class="cn-name">Wellness Network GmbH <em class="cn-tag" data-i18n="cn.tag">你的对接方</em></b>
+          <p data-i18n="cn.4d">欧洲市场的询价、报价、订单与落地支持，统一由这里对接。</p>
+        </div>
+      </li>
+    </ol>
+
+    <p class="cn-note reveal" data-i18n="cn.note">你只需对接一个窗口，它背后的每一环都已在上方写明。</p>
+  </div>
+</section>
 
 <!-- ============ FAQ ============ -->
 <section class="section bg-alt" id="faq">

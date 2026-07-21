@@ -258,18 +258,33 @@ ul { list-style: none; }
 .eu-desk-inner p { color: var(--ink-muted); font-size: clamp(1rem,1.5vw,1.1rem); line-height:1.7; margin-top:16px; }
 .eu-desk-inner .btn { margin-top:30px; }
 
-/* About 段的公司架构流程 —— 四个节点从左到右,节点间用 › 连接表示上下游。
-   窄屏转两列(箭头隐藏,靠网格顺序表达先后)。 */
-.org-flow { display:grid; grid-template-columns: repeat(4,1fr); gap:14px; margin-top: clamp(34px,4vw,48px); }
-.org-node { position:relative; background: var(--bg); border:1px solid var(--line); border-radius:14px; padding:18px 16px; text-align:center; }
-.org-node span { display:block; font-size:11px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color: var(--ink-faint); }
-.org-node b { display:block; font-size:14.5px; font-weight:700; color: var(--ink); margin-top:7px; line-height:1.4; }
-.org-node + .org-node::before { content:"›"; position:absolute; left:-11px; top:50%; transform:translateY(-50%); color: var(--ink-faint); font-size:20px; line-height:1; }
-@media (max-width: 780px){
-  .org-flow { grid-template-columns: repeat(2,1fr); }
-  .org-node + .org-node::before { display:none; }
+/* 公司网络(#company)—— 责任链条。
+   竖排而非横排四列:每一环都要写清「这家公司管什么」,横排会把句子压成窄条。
+   环与环之间用一小段竖线相连,读下来就是一条从品牌方到你的对接方的链路。 */
+.cn-chain { max-width: 820px; margin: clamp(34px,4vw,46px) auto 0; list-style: none; }
+.cn-link { position: relative; display: grid; grid-template-columns: auto 1fr; gap: 18px;
+           background: var(--bg); border: 1px solid var(--line); border-radius: 16px; padding: 22px 24px; }
+.cn-link + .cn-link { margin-top: 16px; }
+/* 上一环到本环的连接线,左端与序号圆心对齐 */
+.cn-link + .cn-link::before { content: ""; position: absolute; left: 41px; top: -17px; width: 2px; height: 17px; background: var(--line); }
+.cn-num { width: 34px; height: 34px; border-radius: 50%; background: var(--band-dark); color: #fff;
+          font-family: var(--font-display); font-size: .82rem; font-weight: 700;
+          display: flex; align-items: center; justify-content: center; }
+.cn-role { display: block; font-size: 11px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--ink-faint); }
+.cn-name { display: block; font-family: var(--font-display); font-size: 1.06rem; font-weight: 700; color: var(--ink); margin-top: 5px; }
+.cn-body p { color: var(--ink-muted); font-size: .95rem; line-height: 1.62; margin-top: 8px; }
+/* 最后一环 = 分销商真正打交道的对象,给足视觉权重 */
+.cn-link--you { border-color: var(--navy); border-width: 2px; background: var(--bg-tint); }
+.cn-link--you .cn-num { background: var(--navy); }
+.cn-tag { display: inline-block; vertical-align: middle; margin-left: 9px; font-family: var(--font-body);
+          font-size: 11px; font-weight: 700; font-style: normal; letter-spacing: .06em; text-transform: uppercase;
+          color: #fff; background: var(--navy); border-radius: 999px; padding: 4px 10px; }
+.cn-note { text-align: center; margin-top: 22px; font-size: .9rem; color: var(--ink-faint); }
+@media (max-width: 560px) {
+  .cn-link { padding: 20px 18px; gap: 14px; }
+  .cn-link + .cn-link::before { left: 35px; }
+  .cn-tag { display: block; width: fit-content; margin: 7px 0 0; }
 }
-@media (max-width: 420px){ .org-flow { grid-template-columns: 1fr; } }
 
 /* footer 公司架构 */
 .foot-org { margin-top: 20px; display: grid; gap: 10px; }
