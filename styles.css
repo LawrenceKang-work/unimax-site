@@ -287,7 +287,12 @@ ul { list-style: none; }
    刻意用与区块标题**不同的视觉语言**:超大号淡色序号 + 细分隔线 + 小标题,
    看起来像书里的「章节页」,不与下面各区块的 eyebrow/h2 抢层级。
    上下留大间距 —— 这条分隔线的作用一半是分类,一半是喘口气。 */
-.cat { padding-block: clamp(56px, 8vw, 104px) 0; }
+/* ⚠️ 分类头**不设任何背景** —— 它是所在 section 的第一个子元素,背景由 section 提供。
+   曾经给它单配 .cat--band/.cat--alt 去「匹配」下方区块的底色,但那仍是两个元素
+   各画各的 radial-gradient:元素高度不同,渐变的实际渲染就不同,接缝处必然出现色带。
+   共用同一块背景才是真正连续的做法,顺带语义也更对(章节标题属于该章节)。
+   上方留白由 section 自己的 padding-block 提供,这里只负责与正文之间的间距。 */
+.cat { padding-bottom: clamp(30px, 4vw, 54px); }
 .cat .wrap { border-top: 1px solid var(--line); padding-top: clamp(26px, 3vw, 38px);
              display: grid; grid-template-columns: auto 1fr; column-gap: clamp(18px, 3vw, 34px); align-items: baseline; }
 .cat-i { font-family: var(--font-display); font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight: 800;
@@ -299,24 +304,12 @@ ul { list-style: none; }
   .cat .wrap { grid-template-columns: 1fr; row-gap: 4px; }
   .cat-d { grid-column: 1; }
 }
-/* 分类头必须接住**紧随其后那个区块**的底色,否则两块颜色不同的面直接相撞,
-   看起来像标题浮在别人的地盘上(客户在 02 The formula 那里最先看出来:
-   浅色标题压在深色配方区上方,硬切)。
-   .cat--alt = 下方是 .bg-alt;.cat--band = 下方是深色 .band;
-   无修饰 = 下方用 body 默认底色,不必额外声明。 */
-.cat--alt { background: var(--bg-alt); }
-.cat--band {
-  /* 与 .band 同一套渐变,但把纵向取样点压到顶部一小段,
-     使这块与下方区块的渐变首尾相接,而不是各画各的 */
-  background:
-    radial-gradient(120% 300% at 80% 0%, oklch(0.30 0.10 285 / .55), transparent 55%),
-    radial-gradient(90% 260% at 0% 100%, oklch(0.34 0.13 250 / .45), transparent 55%),
-    var(--band-dark);
-}
-.cat--band .wrap { border-top-color: rgba(255,255,255,.14); }
-.cat--band .cat-i { color: rgba(255,255,255,.26); }
-.cat--band .cat-t { color: #fff; }
-.cat--band .cat-d { color: rgba(255,255,255,.68); }
+/* 落在深色区块里的分类头自动反白 —— 用上下文选择器,不必给分类头本身挂修饰类,
+   将来把它放进任何一个 .band 区块都直接成立。 */
+.band .cat .wrap { border-top-color: rgba(255,255,255,.14); }
+.band .cat-i { color: rgba(255,255,255,.26); }
+.band .cat-t { color: #fff; }
+.band .cat-d { color: rgba(255,255,255,.68); }
 
 /* 公司网络(#company)—— 责任链条。
    竖排而非横排四列:每一环都要写清「这家公司管什么」,横排会把句子压成窄条。
