@@ -258,6 +258,48 @@ ul { list-style: none; }
 .eu-desk-inner p { color: var(--ink-muted); font-size: clamp(1rem,1.5vw,1.1rem); line-height:1.7; margin-top:16px; }
 .eu-desk-inner .btn { margin-top:30px; }
 
+/* 导航里 Why UNI MAX 的分类下拉。
+   纯 CSS 开合(hover + focus-within),不引 JS —— 与 wholesale 页那套 <details> 同思路:
+   导航是关键路径,能不依赖脚本就不依赖。
+   ⚠️ .nav-sub 用 opacity/visibility 而非 display:none 切换,这样键盘 Tab 进来时
+   focus-within 能带出过渡,也不会因为 display 变化打断焦点。 */
+.nav-drop { position: relative; display: flex; align-items: center; }
+.nav-sub {
+  position: absolute; top: calc(100% + 10px); left: 50%; transform: translateX(-50%) translateY(-6px);
+  min-width: 208px; background: var(--bg); border: 1px solid var(--line); border-radius: 14px;
+  padding: 8px; box-shadow: 0 18px 44px rgba(20,30,60,.10);
+  display: grid; gap: 2px; opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity .18s var(--ease), transform .18s var(--ease), visibility .18s;
+  z-index: 60;
+}
+.nav-drop:hover .nav-sub, .nav-drop:focus-within .nav-sub {
+  opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0);
+}
+/* 悬停区与菜单之间那 10px 空隙会让指针滑过去时菜单收起 —— 用伪元素把空隙补成可悬停区 */
+.nav-drop::after { content: ""; position: absolute; top: 100%; left: 0; right: 0; height: 12px; }
+.nav-sub a { padding: 9px 12px; border-radius: 9px; font-size: 14px; color: var(--ink-muted); white-space: nowrap; }
+.nav-sub a:hover, .nav-sub a:focus-visible { background: var(--bg-tint); color: var(--navy); }
+/* 抽屉里的分类项:缩进一级,视觉上从属于 Why UNI MAX */
+.drawer-sub { padding-left: 18px !important; font-size: 15px !important; color: var(--ink-muted) !important; position: relative; }
+.drawer-sub::before { content: ""; position: absolute; left: 4px; top: 50%; width: 6px; height: 1px; background: var(--line); }
+
+/* Why UNI MAX 段的分类头 —— 把这一段的 11 个区块切成四类,读者随时知道自己在看哪一块。
+   刻意用与区块标题**不同的视觉语言**:超大号淡色序号 + 细分隔线 + 小标题,
+   看起来像书里的「章节页」,不与下面各区块的 eyebrow/h2 抢层级。
+   上下留大间距 —— 这条分隔线的作用一半是分类,一半是喘口气。 */
+.cat { padding-block: clamp(56px, 8vw, 104px) 0; }
+.cat .wrap { border-top: 1px solid var(--line); padding-top: clamp(26px, 3vw, 38px);
+             display: grid; grid-template-columns: auto 1fr; column-gap: clamp(18px, 3vw, 34px); align-items: baseline; }
+.cat-i { font-family: var(--font-display); font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight: 800;
+         line-height: 1; color: oklch(0.88 0.02 260); letter-spacing: -0.04em; }
+.cat-t { font-size: clamp(1.35rem, 2.6vw, 1.95rem); letter-spacing: -0.02em; }
+.cat-d { grid-column: 2; color: var(--ink-muted); font-size: clamp(.95rem, 1.4vw, 1.06rem);
+         line-height: 1.6; margin-top: 8px; max-width: 54ch; }
+@media (max-width: 560px) {
+  .cat .wrap { grid-template-columns: 1fr; row-gap: 4px; }
+  .cat-d { grid-column: 1; }
+}
+
 /* 公司网络(#company)—— 责任链条。
    竖排而非横排四列:每一环都要写清「这家公司管什么」,横排会把句子压成窄条。
    环与环之间用一小段竖线相连,读下来就是一条从品牌方到你的对接方的链路。 */

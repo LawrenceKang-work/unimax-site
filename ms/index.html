@@ -204,7 +204,15 @@ window.clarity = window.clarity || function () { (window.clarity.q = window.clar
       </a>
       <div class="nav-links">
         <a href="#overview" data-i18n="nav.overview">Gambaran</a>
-        <a href="#why-partner" data-i18n="nav.why">Mengapa UNI MAX</a>
+        <div class="nav-drop">
+          <a href="#why-partner" data-i18n="nav.why">Mengapa UNI MAX</a>
+          <div class="nav-sub">
+            <a href="#cat-product" data-i18n="cat.1t">Produk itu sendiri</a>
+            <a href="#cat-formula" data-i18n="cat.2t">Formula</a>
+            <a href="#cat-benefits" data-i18n="cat.3t">Manfaat &amp; cara ambil</a>
+            <a href="#cat-audience" data-i18n="cat.4t">Siapa yang membeli</a>
+          </div>
+        </div>
         <a href="#partner-benefits" data-i18n="nav.partnerships">Kerjasama</a>
         <a href="#trust" data-i18n="nav.about">Tentang</a>
         <a href="#faq" data-i18n="nav.faq">Soalan Lazim</a>
@@ -246,6 +254,10 @@ window.clarity = window.clarity || function () { (window.clarity.q = window.clar
     </div>
 <a href="#overview" data-close data-i18n="nav.overview">Gambaran</a>
     <a href="#why-partner" data-close data-i18n="nav.why">Mengapa UNI MAX</a>
+    <a href="#cat-product" data-close class="drawer-sub" data-i18n="cat.1t">Produk itu sendiri</a>
+    <a href="#cat-formula" data-close class="drawer-sub" data-i18n="cat.2t">Formula</a>
+    <a href="#cat-benefits" data-close class="drawer-sub" data-i18n="cat.3t">Manfaat &amp; cara ambil</a>
+    <a href="#cat-audience" data-close class="drawer-sub" data-i18n="cat.4t">Siapa yang membeli</a>
     <a href="#partner-benefits" data-close data-i18n="nav.partnerships">Kerjasama</a>
     <a href="#trust" data-close data-i18n="nav.about">Tentang</a>
     <a href="#faq" data-close data-i18n="nav.faq">Soalan Lazim</a>
@@ -398,6 +410,15 @@ window.clarity = window.clarity || function () { (window.clarity.q = window.clar
   </div>
 </section>
 
+<!-- ══════ 分类 1 ══════ -->
+<div class="cat" id="cat-product">
+  <div class="wrap">
+    <span class="cat-i">01</span>
+    <h2 class="cat-t" data-i18n="cat.1t">Produk itu sendiri</h2>
+    <p class="cat-d" data-i18n="cat.1d">Apa itu UNI MAX, dan rupanya di atas rak.</p>
+  </div>
+</div>
+
 <!-- ============ WHAT IS / INTRO ============ -->
 <section class="section bg-alt" id="about">
   <div class="wrap">
@@ -426,55 +447,40 @@ window.clarity = window.clarity || function () { (window.clarity.q = window.clar
   </div>
 </section>
 
-<!-- ============ BENEFITS ============ -->
-<section class="section" id="benefits">
+<!-- ============ BRAND BAND (cinematic) ============ -->
+<section class="brandband reveal" aria-label="UNI MAX — Universe of Power, Maximum Impact">
+  <img class="brandband-bg" src="/assets/prod-gold.webp" width="1700" height="957" alt="UNI MAX box and sachet lit by a warm gold light on a black background" loading="lazy" />
+  <div class="brandband-inner wrap">
+    <span class="eyebrow" style="color:var(--gold)">UNI MAX · by UniPro</span>
+    <h2 class="brandband-h"><span data-i18n="brand.h2a">Alam semesta kuasa,</span><br><span data-i18n="brand.h2b" style="color:var(--gold)">impak maksimum.</span></h2>
+    <a href="https://wa.me/491736986625" target="_blank" rel="noopener" class="btn btn--light btn--lg" style="margin-top:26px"><img src="/assets/logo-wa.webp" class="wa" alt="" aria-hidden="true" width="80" height="80" /><span data-i18n="cta.order">Jadi Rakan Kongsi</span></a>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section class="section" id="gallery">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow" data-i18n="ben.eyebrow">Dibina untuk Prestasi Harian</span>
-      <h2><span data-i18n="ben.h2a">Semua yang anda perlukan untuk</span> <span class="hl" data-i18n="ben.h2b">beraksi</span><span data-i18n="ben.h2c">, dalam satu teguk harian.</span></h2>
+      <span class="eyebrow" data-i18n="gal.eyebrow">Rutin</span>
+      <h2><span data-i18n="gal.h2a">Dicipta untuk</span> <span class="hl" data-i18n="gal.h2b">rutin harian moden</span></h2>
     </div>
-    <div class="bgrid">
-      <article class="bcard reveal"><span class="n">01</span><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><h3 data-i18n="ben.1t">Tenaga &amp; Stamina</h3><p data-i18n="ben.1d">Guarana memberikan tenaga botanik yang lancar dan berterusan — tiada lonjakan, tiada crash.</p></article>
-      <article class="bcard reveal" data-d="1"><span class="n">02</span><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4.5a3.5 3.5 0 1 1 5 5L8 21l-5 1 1-5z"/><path d="M13 6l5 5"/></svg></div><h3 data-i18n="ben.2t">Fokus &amp; Kejernihan</h3><p data-i18n="ben.2d">Adaptogen menyokong kejelasan mental dan fokus tajam di bawah tekanan.</p></article>
-      <article class="bcard reveal" data-d="2"><span class="n">03</span><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 4.6L18.5 9l-4.6 1.9L12 15l-1.9-4.1L5.5 9l4.6-1.4z"/><path d="M5 19h.01M19 19h.01"/></svg></div><h3 data-i18n="ben.3t">Ketahanan &amp; Pemulihan</h3><p data-i18n="ben.3d">Gabungan adaptogen dan antioksidan menyokong pemulihan daripada tekanan fizikal dan mental harian.</p></article>
-      <article class="bcard reveal"><span class="n">04</span><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div><h3 data-i18n="ben.4t">Sokongan Peredaran Darah</h3><p data-i18n="ben.4d">L-Arginine dan L-Citrulline menyokong peredaran yang sihat dan penghantaran oksigen ke otot.</p></article>
-      <article class="bcard reveal" data-d="1"><span class="n">05</span><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><h3 data-i18n="ben.5t">Vitaliti Lelaki</h3><p data-i18n="ben.5d">Triple Force Tongkat Ali dan zink membantu menyokong kekuatan, semangat dan vitaliti semula jadi harian.</p></article>
+    <div class="gallery-grid">
+      <figure class="gtile g1 reveal"><img src="/assets/prod-strip-glass.webp" width="1000" height="1334" alt="UNI MAX 10g sachet in a ribbed glass, ready to drink, with a botanical leaf" loading="lazy" /><figcaption class="gcap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 22v-6m0-12v6m14 12v-6m0-12v6M5 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm14 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg> <span data-i18n="gal.c1">Ritual mudah alih</span></figcaption></figure>
+      <figure class="gtile g2 reveal" data-d="1"><img src="/assets/prod-gallery2.webp" width="1672" height="941" alt="UNI MAX sachet flat lay on stone plate with warm light" loading="lazy" style="object-position:center 65%" /><figcaption class="gcap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7s6 5.5 6 9.8a6 6 0 1 1-12 0c0-4.3 6-9.8 6-9.8z"/></svg> <span data-i18n="gal.c2">Formula Tiga Kuasa</span></figcaption></figure>
+      <figure class="gtile g3 reveal" data-d="2"><img src="/assets/prod-openbox.webp" width="1200" height="675" alt="UNI MAX box opened, showing the ready-to-drink sachets inside" loading="lazy" /><figcaption class="gcap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h14l-1 7a6 6 0 0 1-12 0z"/><path d="M7 21h10M12 17v4"/></svg> <span data-i18n="gal.c3">Sedia diminum</span></figcaption></figure>
+      <figure class="gtile g4 reveal" data-d="3"><img src="/assets/prod-strip-stone.webp" width="1200" height="1200" alt="UNI MAX 10g sachet standing on a stone podium with a botanical leaf" loading="lazy" /><figcaption class="gcap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg> <span data-i18n="gal.c4">Sachet 10g</span></figcaption></figure>
     </div>
   </div>
 </section>
 
-<!-- ============ WHY SWITCH — comparison ============ -->
-<section class="section section--tight bg-alt" id="why">
+<!-- ══════ 分类 2 ══════ -->
+<div class="cat" id="cat-formula">
   <div class="wrap">
-    <div class="section-head center reveal">
-      <span class="eyebrow center" data-i18n="why.eyebrow">Kenapa beralih</span>
-      <h2><span data-i18n="why.h2a">Henti Mengejar</span> <span class="hl" data-i18n="why.h2b">Krisis Petang.</span></h2>
-    </div>
-    <div class="compare reveal">
-      <article class="compare-col compare-old">
-        <span class="compare-tag" data-i18n="why.oldtag">Cara biasa</span>
-        <h3 data-i18n="why.oldt">Kopi, minuman tenaga bergula &amp; segenggam pil</h3>
-        <ul class="compare-list">
-          <li data-i18n="why.o1">Naik mendadak, kemudian jatuh lebih teruk pada petang</li>
-          <li data-i18n="why.o2">Penuh dengan gula dan perangsang sintetik</li>
-          <li data-i18n="why.o3">Hanya mengejar tenaga — abai stamina, fokus &amp; peredaran</li>
-          <li data-i18n="why.o4">Beberapa minuman, bancuhan, atau pil setiap hari</li>
-        </ul>
-      </article>
-      <div class="compare-vs" aria-hidden="true"><span>VS</span></div>
-      <article class="compare-col compare-new">
-        <span class="compare-tag compare-tag--gold" data-i18n="why.newtag">Cara UNI MAX</span>
-        <h3 data-i18n="why.newt">Satu sachet botani 10g, sekali sehari</h3>
-        <ul class="compare-list compare-list--check">
-          <li data-i18n="why.n1">Tenaga botanik guarana yang lancar — stabil, bukan mendadak</li>
-          <li data-i18n="why.n2">Tanpa gula tambahan, manis ringan, rasa laici sebenar</li>
-          <li data-i18n="why.n3">Menyokong tenaga, stamina, fokus, peredaran &amp; ketahanan</li>
-          <li data-i18n="why.n4">Koyak, minum, pergi — siap dalam saat, tiada bancuhan</li>
-        </ul>
-      </article>
-    </div>
+    <span class="cat-i">02</span>
+    <h2 class="cat-t" data-i18n="cat.2t">Formula</h2>
+    <p class="cat-d" data-i18n="cat.2d">Apa yang ada di dalamnya, dan bukti di sebaliknya.</p>
   </div>
-</section>
+</div>
 
 <!-- ============ INGREDIENT STORY — DARK BAND ============ -->
 <section class="section band" id="formula">
@@ -532,60 +538,6 @@ window.clarity = window.clarity || function () { (window.clarity.q = window.clar
   </div>
 </section>
 
-<!-- ============ BRAND BAND (cinematic) ============ -->
-<section class="brandband reveal" aria-label="UNI MAX — Universe of Power, Maximum Impact">
-  <img class="brandband-bg" src="/assets/prod-gold.webp" width="1700" height="957" alt="UNI MAX box and sachet lit by a warm gold light on a black background" loading="lazy" />
-  <div class="brandband-inner wrap">
-    <span class="eyebrow" style="color:var(--gold)">UNI MAX · by UniPro</span>
-    <h2 class="brandband-h"><span data-i18n="brand.h2a">Alam semesta kuasa,</span><br><span data-i18n="brand.h2b" style="color:var(--gold)">impak maksimum.</span></h2>
-    <a href="https://wa.me/491736986625" target="_blank" rel="noopener" class="btn btn--light btn--lg" style="margin-top:26px"><img src="/assets/logo-wa.webp" class="wa" alt="" aria-hidden="true" width="80" height="80" /><span data-i18n="cta.order">Jadi Rakan Kongsi</span></a>
-  </div>
-</section>
-
-<!-- ============ GALLERY ============ -->
-<section class="section" id="gallery">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow" data-i18n="gal.eyebrow">Rutin</span>
-      <h2><span data-i18n="gal.h2a">Dicipta untuk</span> <span class="hl" data-i18n="gal.h2b">rutin harian moden</span></h2>
-    </div>
-    <div class="gallery-grid">
-      <figure class="gtile g1 reveal"><img src="/assets/prod-strip-glass.webp" width="1000" height="1334" alt="UNI MAX 10g sachet in a ribbed glass, ready to drink, with a botanical leaf" loading="lazy" /><figcaption class="gcap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 22v-6m0-12v6m14 12v-6m0-12v6M5 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm14 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg> <span data-i18n="gal.c1">Ritual mudah alih</span></figcaption></figure>
-      <figure class="gtile g2 reveal" data-d="1"><img src="/assets/prod-gallery2.webp" width="1672" height="941" alt="UNI MAX sachet flat lay on stone plate with warm light" loading="lazy" style="object-position:center 65%" /><figcaption class="gcap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7s6 5.5 6 9.8a6 6 0 1 1-12 0c0-4.3 6-9.8 6-9.8z"/></svg> <span data-i18n="gal.c2">Formula Tiga Kuasa</span></figcaption></figure>
-      <figure class="gtile g3 reveal" data-d="2"><img src="/assets/prod-openbox.webp" width="1200" height="675" alt="UNI MAX box opened, showing the ready-to-drink sachets inside" loading="lazy" /><figcaption class="gcap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h14l-1 7a6 6 0 0 1-12 0z"/><path d="M7 21h10M12 17v4"/></svg> <span data-i18n="gal.c3">Sedia diminum</span></figcaption></figure>
-      <figure class="gtile g4 reveal" data-d="3"><img src="/assets/prod-strip-stone.webp" width="1200" height="1200" alt="UNI MAX 10g sachet standing on a stone podium with a botanical leaf" loading="lazy" /><figcaption class="gcap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg> <span data-i18n="gal.c4">Sachet 10g</span></figcaption></figure>
-    </div>
-  </div>
-</section>
-
-<!-- ============ WHO IT'S FOR ============ -->
-<section class="section section--tight bg-alt" id="who">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow" data-i18n="who.eyebrow">Untuk siapa</span>
-      <h2><span data-i18n="who.h2a">Dibina untuk mereka yang</span> <span class="hl" data-i18n="who.h2b">tidak berhenti</span></h2>
-    </div>
-  </div>
-  <div class="personas-outer">
-    <div class="personas-track">
-      <article class="wcard"><div class="wimg"><img src="/assets/who-new-urban.webp" width="1086" height="1448" alt="Active man, urban lifestyle" loading="lazy" /></div><div class="wbody"><h3 data-i18n="who.1t">Lelaki Aktif</h3><p data-i18n="who.1d">Menyokong keseimbangan hormon, peredaran dan ketahanan.</p></div></article>
-      <article class="wcard"><div class="wimg"><img src="/assets/who-new-biz.webp" width="1122" height="1402" alt="Busy professional in business suit" loading="lazy" /></div><div class="wbody"><h3 data-i18n="who.2t">Profesional Sibuk</h3><p data-i18n="who.2d">Menyokong ketahanan tekanan dan pemulihan.</p></div></article>
-      <article class="wcard"><div class="wimg"><img src="/assets/who-new-fitness.webp" width="1122" height="1402" alt="Group running outdoors" loading="lazy" style="object-position:center top" /></div><div class="wbody"><h3 data-i18n="who.3t">Peminat Sukan &amp; Kecergasan</h3><p data-i18n="who.3d">Menyokong fokus, kejelasan dan tenaga berterusan tanpa keletihan.</p></div></article>
-      <article class="wcard"><div class="wimg"><img src="/assets/who-new-office.webp" width="1122" height="1402" alt="Man focused at office desk" loading="lazy" /></div><div class="wbody"><h3 data-i18n="who.4t">Pekerja Jangka Panjang</h3><p data-i18n="who.4d">Menyokong peredaran, aliran oksigen dan prestasi otot.</p></div></article>
-      <article class="wcard"><div class="wimg"><img src="/assets/who-new-leisure.webp" width="1122" height="1402" alt="Man on golf course" loading="lazy" /></div><div class="wbody"><h3 data-i18n="who.5t">Lelaki Mencari Vitaliti Harian</h3><p data-i18n="who.5d">Untuk kerjaya mencabar yang membawa keletihan mental dan fizikal.</p></div></article>
-      <article class="wcard"><div class="wimg"><img src="/assets/who-new-team.webp" width="1086" height="1448" alt="Team leaders in business meeting" loading="lazy" style="object-position:center top" /></div><div class="wbody"><h3 data-i18n="who.6t">Pemimpin &amp; Pencapai Tinggi</h3><p data-i18n="who.6d">Untuk mereka yang memimpin dan mengejar prestasi puncak dengan kejelasan minda.</p></div></article>
-      <!-- duplicate for seamless loop -->
-      <article class="wcard" aria-hidden="true"><div class="wimg"><img src="/assets/who-new-urban.webp" width="1086" height="1448" alt="" loading="lazy" /></div><div class="wbody"><h3>Lelaki Aktif</h3><p>Menyokong keseimbangan hormon, peredaran dan ketahanan.</p></div></article>
-      <article class="wcard" aria-hidden="true"><div class="wimg"><img src="/assets/who-new-biz.webp" width="1122" height="1402" alt="" loading="lazy" /></div><div class="wbody"><h3>Profesional Sibuk</h3><p>Menyokong ketahanan tekanan dan pemulihan.</p></div></article>
-      <article class="wcard" aria-hidden="true"><div class="wimg"><img src="/assets/who-new-fitness.webp" width="1122" height="1402" alt="" loading="lazy" style="object-position:center top" /></div><div class="wbody"><h3>Peminat Sukan &amp; Kecergasan</h3><p>Menyokong fokus, kejelasan dan tenaga berterusan tanpa keletihan.</p></div></article>
-      <article class="wcard" aria-hidden="true"><div class="wimg"><img src="/assets/who-new-office.webp" width="1122" height="1402" alt="" loading="lazy" /></div><div class="wbody"><h3>Pekerja Jangka Panjang</h3><p>Menyokong peredaran, aliran oksigen dan prestasi otot.</p></div></article>
-      <article class="wcard" aria-hidden="true"><div class="wimg"><img src="/assets/who-new-leisure.webp" width="1122" height="1402" alt="" loading="lazy" /></div><div class="wbody"><h3>Lelaki Mencari Vitaliti Harian</h3><p>Untuk kerjaya mencabar yang membawa keletihan mental dan fizikal.</p></div></article>
-      <article class="wcard" aria-hidden="true"><div class="wimg"><img src="/assets/who-new-team.webp" width="1086" height="1448" alt="" loading="lazy" style="object-position:center top" /></div><div class="wbody"><h3>Pemimpin &amp; Pencapai Tinggi</h3><p>Untuk mereka yang memimpin dan mengejar prestasi puncak dengan kejelasan minda.</p></div></article>
-    </div>
-  </div>
-</section>
-
-
 <!-- ============ RESEARCH + REFERENCES ============ -->
 <section class="section" id="research">
   <div class="wrap">
@@ -622,6 +574,65 @@ window.clarity = window.clarity || function () { (window.clarity.q = window.clar
   </div>
 </section>
 
+<!-- ══════ 分类 3 ══════ -->
+<div class="cat" id="cat-benefits">
+  <div class="wrap">
+    <span class="cat-i">03</span>
+    <h2 class="cat-t" data-i18n="cat.3t">Manfaat &amp; cara ambil</h2>
+    <p class="cat-d" data-i18n="cat.3d">Apa yang diberikannya kepada pengguna akhir, dan cara mereka mengambilnya.</p>
+  </div>
+</div>
+
+<!-- ============ BENEFITS ============ -->
+<section class="section" id="benefits">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-i18n="ben.eyebrow">Dibina untuk Prestasi Harian</span>
+      <h2><span data-i18n="ben.h2a">Semua yang anda perlukan untuk</span> <span class="hl" data-i18n="ben.h2b">beraksi</span><span data-i18n="ben.h2c">, dalam satu teguk harian.</span></h2>
+    </div>
+    <div class="bgrid">
+      <article class="bcard reveal"><span class="n">01</span><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><h3 data-i18n="ben.1t">Tenaga &amp; Stamina</h3><p data-i18n="ben.1d">Guarana memberikan tenaga botanik yang lancar dan berterusan — tiada lonjakan, tiada crash.</p></article>
+      <article class="bcard reveal" data-d="1"><span class="n">02</span><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4.5a3.5 3.5 0 1 1 5 5L8 21l-5 1 1-5z"/><path d="M13 6l5 5"/></svg></div><h3 data-i18n="ben.2t">Fokus &amp; Kejernihan</h3><p data-i18n="ben.2d">Adaptogen menyokong kejelasan mental dan fokus tajam di bawah tekanan.</p></article>
+      <article class="bcard reveal" data-d="2"><span class="n">03</span><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 4.6L18.5 9l-4.6 1.9L12 15l-1.9-4.1L5.5 9l4.6-1.4z"/><path d="M5 19h.01M19 19h.01"/></svg></div><h3 data-i18n="ben.3t">Ketahanan &amp; Pemulihan</h3><p data-i18n="ben.3d">Gabungan adaptogen dan antioksidan menyokong pemulihan daripada tekanan fizikal dan mental harian.</p></article>
+      <article class="bcard reveal"><span class="n">04</span><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div><h3 data-i18n="ben.4t">Sokongan Peredaran Darah</h3><p data-i18n="ben.4d">L-Arginine dan L-Citrulline menyokong peredaran yang sihat dan penghantaran oksigen ke otot.</p></article>
+      <article class="bcard reveal" data-d="1"><span class="n">05</span><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><h3 data-i18n="ben.5t">Vitaliti Lelaki</h3><p data-i18n="ben.5d">Triple Force Tongkat Ali dan zink membantu menyokong kekuatan, semangat dan vitaliti semula jadi harian.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY SWITCH — comparison ============ -->
+<section class="section section--tight bg-alt" id="why">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow center" data-i18n="why.eyebrow">Kenapa beralih</span>
+      <h2><span data-i18n="why.h2a">Henti Mengejar</span> <span class="hl" data-i18n="why.h2b">Krisis Petang.</span></h2>
+    </div>
+    <div class="compare reveal">
+      <article class="compare-col compare-old">
+        <span class="compare-tag" data-i18n="why.oldtag">Cara biasa</span>
+        <h3 data-i18n="why.oldt">Kopi, minuman tenaga bergula &amp; segenggam pil</h3>
+        <ul class="compare-list">
+          <li data-i18n="why.o1">Naik mendadak, kemudian jatuh lebih teruk pada petang</li>
+          <li data-i18n="why.o2">Penuh dengan gula dan perangsang sintetik</li>
+          <li data-i18n="why.o3">Hanya mengejar tenaga — abai stamina, fokus &amp; peredaran</li>
+          <li data-i18n="why.o4">Beberapa minuman, bancuhan, atau pil setiap hari</li>
+        </ul>
+      </article>
+      <div class="compare-vs" aria-hidden="true"><span>VS</span></div>
+      <article class="compare-col compare-new">
+        <span class="compare-tag compare-tag--gold" data-i18n="why.newtag">Cara UNI MAX</span>
+        <h3 data-i18n="why.newt">Satu sachet botani 10g, sekali sehari</h3>
+        <ul class="compare-list compare-list--check">
+          <li data-i18n="why.n1">Tenaga botanik guarana yang lancar — stabil, bukan mendadak</li>
+          <li data-i18n="why.n2">Tanpa gula tambahan, manis ringan, rasa laici sebenar</li>
+          <li data-i18n="why.n3">Menyokong tenaga, stamina, fokus, peredaran &amp; ketahanan</li>
+          <li data-i18n="why.n4">Koyak, minum, pergi — siap dalam saat, tiada bancuhan</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
 <!-- ============ DIRECTION OF USE ============ -->
 <section class="section" id="usage">
   <div class="wrap">
@@ -635,6 +646,42 @@ window.clarity = window.clarity || function () { (window.clarity.q = window.clar
       <div class="step reveal" data-d="2"><div class="sn">3</div><h3 data-i18n="use.3t">Kekal konsisten</h3><p data-i18n="use.3d">Untuk hasil berterusan, nikmati Uni Max secara konsisten dalam rutin harian anda.</p></div>
     </div>
     <div class="dose-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg><span data-i18n="use.note">Tiada bancuhan diperlukan — koyak, minum, pergi. Jangan melebihi sajian harian yang disyorkan.</span></div>
+  </div>
+</section>
+
+<!-- ══════ 分类 4 ══════ -->
+<div class="cat" id="cat-audience">
+  <div class="wrap">
+    <span class="cat-i">04</span>
+    <h2 class="cat-t" data-i18n="cat.4t">Siapa yang membeli</h2>
+    <p class="cat-d" data-i18n="cat.4d">Untuk siapa ia dibina, dan apa kata mereka.</p>
+  </div>
+</div>
+
+<!-- ============ WHO IT'S FOR ============ -->
+<section class="section section--tight bg-alt" id="who">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-i18n="who.eyebrow">Untuk siapa</span>
+      <h2><span data-i18n="who.h2a">Dibina untuk mereka yang</span> <span class="hl" data-i18n="who.h2b">tidak berhenti</span></h2>
+    </div>
+  </div>
+  <div class="personas-outer">
+    <div class="personas-track">
+      <article class="wcard"><div class="wimg"><img src="/assets/who-new-urban.webp" width="1086" height="1448" alt="Active man, urban lifestyle" loading="lazy" /></div><div class="wbody"><h3 data-i18n="who.1t">Lelaki Aktif</h3><p data-i18n="who.1d">Menyokong keseimbangan hormon, peredaran dan ketahanan.</p></div></article>
+      <article class="wcard"><div class="wimg"><img src="/assets/who-new-biz.webp" width="1122" height="1402" alt="Busy professional in business suit" loading="lazy" /></div><div class="wbody"><h3 data-i18n="who.2t">Profesional Sibuk</h3><p data-i18n="who.2d">Menyokong ketahanan tekanan dan pemulihan.</p></div></article>
+      <article class="wcard"><div class="wimg"><img src="/assets/who-new-fitness.webp" width="1122" height="1402" alt="Group running outdoors" loading="lazy" style="object-position:center top" /></div><div class="wbody"><h3 data-i18n="who.3t">Peminat Sukan &amp; Kecergasan</h3><p data-i18n="who.3d">Menyokong fokus, kejelasan dan tenaga berterusan tanpa keletihan.</p></div></article>
+      <article class="wcard"><div class="wimg"><img src="/assets/who-new-office.webp" width="1122" height="1402" alt="Man focused at office desk" loading="lazy" /></div><div class="wbody"><h3 data-i18n="who.4t">Pekerja Jangka Panjang</h3><p data-i18n="who.4d">Menyokong peredaran, aliran oksigen dan prestasi otot.</p></div></article>
+      <article class="wcard"><div class="wimg"><img src="/assets/who-new-leisure.webp" width="1122" height="1402" alt="Man on golf course" loading="lazy" /></div><div class="wbody"><h3 data-i18n="who.5t">Lelaki Mencari Vitaliti Harian</h3><p data-i18n="who.5d">Untuk kerjaya mencabar yang membawa keletihan mental dan fizikal.</p></div></article>
+      <article class="wcard"><div class="wimg"><img src="/assets/who-new-team.webp" width="1086" height="1448" alt="Team leaders in business meeting" loading="lazy" style="object-position:center top" /></div><div class="wbody"><h3 data-i18n="who.6t">Pemimpin &amp; Pencapai Tinggi</h3><p data-i18n="who.6d">Untuk mereka yang memimpin dan mengejar prestasi puncak dengan kejelasan minda.</p></div></article>
+      <!-- duplicate for seamless loop -->
+      <article class="wcard" aria-hidden="true"><div class="wimg"><img src="/assets/who-new-urban.webp" width="1086" height="1448" alt="" loading="lazy" /></div><div class="wbody"><h3>Lelaki Aktif</h3><p>Menyokong keseimbangan hormon, peredaran dan ketahanan.</p></div></article>
+      <article class="wcard" aria-hidden="true"><div class="wimg"><img src="/assets/who-new-biz.webp" width="1122" height="1402" alt="" loading="lazy" /></div><div class="wbody"><h3>Profesional Sibuk</h3><p>Menyokong ketahanan tekanan dan pemulihan.</p></div></article>
+      <article class="wcard" aria-hidden="true"><div class="wimg"><img src="/assets/who-new-fitness.webp" width="1122" height="1402" alt="" loading="lazy" style="object-position:center top" /></div><div class="wbody"><h3>Peminat Sukan &amp; Kecergasan</h3><p>Menyokong fokus, kejelasan dan tenaga berterusan tanpa keletihan.</p></div></article>
+      <article class="wcard" aria-hidden="true"><div class="wimg"><img src="/assets/who-new-office.webp" width="1122" height="1402" alt="" loading="lazy" /></div><div class="wbody"><h3>Pekerja Jangka Panjang</h3><p>Menyokong peredaran, aliran oksigen dan prestasi otot.</p></div></article>
+      <article class="wcard" aria-hidden="true"><div class="wimg"><img src="/assets/who-new-leisure.webp" width="1122" height="1402" alt="" loading="lazy" /></div><div class="wbody"><h3>Lelaki Mencari Vitaliti Harian</h3><p>Untuk kerjaya mencabar yang membawa keletihan mental dan fizikal.</p></div></article>
+      <article class="wcard" aria-hidden="true"><div class="wimg"><img src="/assets/who-new-team.webp" width="1086" height="1448" alt="" loading="lazy" style="object-position:center top" /></div><div class="wbody"><h3>Pemimpin &amp; Pencapai Tinggi</h3><p>Untuk mereka yang memimpin dan mengejar prestasi puncak dengan kejelasan minda.</p></div></article>
+    </div>
   </div>
 </section>
 
@@ -659,6 +706,18 @@ window.clarity = window.clarity || function () { (window.clarity.q = window.clar
     <div class="rev-dots" id="revDots"></div>
   </div>
 </section>
+
+
+
+
+
+
+
+
+
+
+
+
 
 <!-- ============ WHAT YOU'LL RECEIVE (B2B) ============ -->
 <section class="section section--tight" id="partner-benefits">
