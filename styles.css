@@ -220,6 +220,20 @@ ul { list-style: none; }
 /* 窄屏两个按钮会堆成上下两行,宽度不一(228 / 306)看着参差 —— 拉齐成等宽 */
 @media (max-width: 560px){ .ph-cta { flex-direction: column; } .ph-cta a { width: 100%; } }
 
+/* 合作权益(#partner-benefits)—— 六格清单,无图标,靠留白与分隔线撑起来 */
+.pb-grid { display:grid; grid-template-columns: repeat(3,1fr); gap:1px; margin-top:38px; background: var(--line); border:1px solid var(--line); border-radius:16px; overflow:hidden; }
+.pb-item { background: var(--bg); padding:26px 24px; }
+.pb-item h3 { font-size:1.02rem; margin-bottom:7px; }
+.pb-item p { color: var(--ink-muted); font-size:.93rem; line-height:1.6; }
+@media (max-width: 860px){ .pb-grid { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 560px){ .pb-grid { grid-template-columns: 1fr; } }
+
+/* 欧洲合作台(#eu-desk) */
+.eu-desk-inner { max-width: 760px; margin-inline:auto; text-align:center; }
+.eu-desk-inner h2 { margin-top:10px; }
+.eu-desk-inner p { color: var(--ink-muted); font-size: clamp(1rem,1.5vw,1.1rem); line-height:1.7; margin-top:16px; }
+.eu-desk-inner .btn { margin-top:30px; }
+
 /* footer 公司架构 */
 .foot-org { margin-top: 20px; display: grid; gap: 10px; }
 .foot-org dt { font-size: 11px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--ink-faint); }
