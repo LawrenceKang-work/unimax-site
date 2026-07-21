@@ -210,6 +210,21 @@ ul { list-style: none; }
 .hero-meta svg { width:16px; height:16px; color: var(--blue-ink); }
 .hero-proof { font-size: 13.5px; color: var(--ink-faint); font-weight: 500; margin-top: 16px; letter-spacing: 0.02em; }
 
+/* B2B partner hero(#overview)—— 勾选清单与双 CTA。
+   勾号用 ::before 生成而非内联 SVG:4 条清单塞 4 个 svg 会让 data-i18n 元素带子节点,
+   而烧录是按 textContent 语义整体替换的,子节点会被吞掉(见 CLAUDE.md 漏译排查一节)。 */
+.ph-checks { display:flex; flex-wrap:wrap; justify-content:center; gap:12px 30px; margin-top:30px; }
+.ph-checks li { display:flex; align-items:center; gap:9px; font-size:14.5px; font-weight:600; color: var(--ink); }
+.ph-checks li::before { content:"✓"; color: var(--blue-ink); font-weight:800; font-size:15px; flex:none; }
+.ph-cta { display:flex; flex-wrap:wrap; justify-content:center; gap:14px; margin-top:34px; }
+/* 窄屏两个按钮会堆成上下两行,宽度不一(228 / 306)看着参差 —— 拉齐成等宽 */
+@media (max-width: 560px){ .ph-cta { flex-direction: column; } .ph-cta a { width: 100%; } }
+
+/* footer 公司架构 */
+.foot-org { margin-top: 20px; display: grid; gap: 10px; }
+.foot-org dt { font-size: 11px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--ink-faint); }
+.foot-org dd { font-size: 13.5px; font-weight: 600; color: var(--ink); margin-top: 2px; }
+
 .hero-visual { position: relative; }
 .hero-card {
   position: relative; border-radius: var(--r-xl); overflow: hidden;

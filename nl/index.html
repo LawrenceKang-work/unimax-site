@@ -356,6 +356,47 @@ window.clarity = window.clarity || function () { (window.clarity.q = window.clar
   </div>
 </section>
 
+<!-- ============ B2B PARTNER HERO ============
+     放在视频之后而不是之前:视频 poster 是 LCP 元素(见 CLAUDE.md 的 LCP 一节),
+     把内容塞到它前面会让 LCP 重新被视频下载时间绑架。视觉开场保留,商业信息紧随其后。 -->
+<section class="section section--tight" id="overview">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow center" data-i18n="ph.eyebrow">Groothandel- en distributiepartnerschappen</span>
+      <h2><span data-i18n="ph.h2a">Groei je wellnessbedrijf met</span> <span class="hl">UNI MAX</span></h2>
+      <p class="lead" data-i18n="ph.lead">Premium botanische vitaliteitsdrank uit Maleisië, nu in expansie door Europa via geselecteerde groothandel- en distributiepartners.</p>
+    </div>
+    <ul class="ph-checks reveal">
+      <li data-i18n="ph.c1">Premium botanische formule</li>
+      <li data-i18n="ph.c2">HALAL- en GMP-gecertificeerd</li>
+      <li data-i18n="ph.c3">Marketingondersteuning inbegrepen</li>
+      <li data-i18n="ph.c4">Europees partnerprogramma</li>
+    </ul>
+    <div class="ph-cta reveal">
+      <a href="https://wa.me/491736986625?text=Hi%20UNI%20MAX%2C%20I%27d%20like%20to%20become%20a%20distribution%20partner." target="_blank" rel="noopener" class="btn btn--primary btn--lg">
+        <img src="/assets/logo-wa.webp" class="wa" alt="" aria-hidden="true" width="80" height="80" />
+        <span data-i18n="ph.cta1">Word partner</span></a>
+      <a href="/wholesale/" class="btn btn--ghost btn--lg" data-i18n="ph.cta2">Vraag groothandelsinformatie aan</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY PARTNER (B2B) ============ -->
+<section class="section section--tight bg-alt" id="why-partner">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow center" data-i18n="wp.eyebrow">Voordelen voor partners</span>
+      <h2><span data-i18n="wp.h2a">Waarom bedrijven kiezen voor</span> <span class="hl">UNI MAX</span></h2>
+    </div>
+    <div class="bgrid">
+      <article class="bcard reveal"><span class="n">01</span><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.5 6H21l-5 4 2 6.5-6-4-6 4L8 13 3 9h6.5z"/></svg></div><h3 data-i18n="wp.1t">Premium merkpositionering</h3><p data-i18n="wp.1d">Ontworpen voor de groeiende markt voor mannenwellness.</p></article>
+      <article class="bcard reveal" data-d="1"><span class="n">02</span><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-7-7 18-2.5-8z"/></svg></div><h3 data-i18n="wp.2t">Marketingondersteuning</h3><p data-i18n="wp.2d">Professionele foto’s, video’s en promotiemateriaal worden geleverd.</p></article>
+      <article class="bcard reveal" data-d="2"><span class="n">03</span><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="13" height="10" rx="2"/><path d="M15 10h4l3 3v4h-7z"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="19" r="2"/></svg></div><h3 data-i18n="wp.3t">Betrouwbare levering</h3><p data-i18n="wp.3d">Geproduceerd in gecertificeerde Maleisische faciliteiten met exportcapaciteit.</p></article>
+      <article class="bcard reveal" data-d="3"><span class="n">04</span><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 2.5 15.3 0 18M12 3c-2.5 2.7-2.5 15.3 0 18"/></svg></div><h3 data-i18n="wp.4t">Europese ondersteuning</h3><p data-i18n="wp.4d">Een toegewijde EU-partnerdesk die partners in heel Europa ondersteunt.</p></article>
+    </div>
+  </div>
+</section>
+
 <!-- ============ FEATURE STRIP ============ -->
 <section class="features" aria-label="Product highlights">
   <div class="wrap">
@@ -798,6 +839,14 @@ window.clarity = window.clarity || function () { (window.clarity.q = window.clar
       <div class="footer-about">
         <img src="/assets/logo-dark.webp" alt="UNI MAX" class="logo-img logo-img--lg" width="480" height="305" />
         <p data-i18n="foot.about">Universum van kracht, maximale impact. Een botanische vitaaldrank met lychee-smaak en Triple Force Tongkat Ali, van UniPro.</p>
+        <!-- 公司架构 —— B2B 买家在签约前会查「谁是品牌方、谁生产、谁负责我这个区域」。
+             dt 是角色(要翻译),dd 是公司注册名(专有名词,不翻译)。 -->
+        <dl class="foot-org">
+          <div><dt data-i18n="org.brand">Merkeigenaar</dt><dd>UniPro (Malaysia)</dd></div>
+          <div><dt data-i18n="org.mfg">Geproduceerd door</dt><dd>Orient Biotech Sdn Bhd</dd></div>
+          <div><dt data-i18n="org.intl">Internationale distributie</dt><dd>Wellness Alliance Sdn Bhd</dd></div>
+          <div><dt data-i18n="org.eu">Europese partnerdesk</dt><dd>Wellness Network GmbH</dd></div>
+        </dl>
         <div class="footer-social">
           <a href="https://wa.me/491736986625" target="_blank" rel="noopener" aria-label="WhatsApp"><img src="/assets/logo-wa.webp" class="wa wa--footer" alt="WhatsApp" aria-hidden="true" width="80" height="80" /></a>
           <a href="https://www.instagram.com/theunimaxofficial/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg></a>

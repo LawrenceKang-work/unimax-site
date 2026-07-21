@@ -268,6 +268,47 @@ window.clarity = window.clarity || function () { (window.clarity.q = window.clar
   </div>
 </section>
 
+<!-- ============ B2B PARTNER HERO ============
+     放在视频之后而不是之前:视频 poster 是 LCP 元素(见 CLAUDE.md 的 LCP 一节),
+     把内容塞到它前面会让 LCP 重新被视频下载时间绑架。视觉开场保留,商业信息紧随其后。 -->
+<section class="section section--tight" id="overview">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow center" data-i18n="ph.eyebrow">Wholesale &amp; Distribution Partnerships</span>
+      <h2><span data-i18n="ph.h2a">Expand Your Wellness Business with</span> <span class="hl">UNI MAX</span></h2>
+      <p class="lead" data-i18n="ph.lead">Premium botanical vitality beverage from Malaysia, now expanding across Europe through selected wholesale and distribution partners.</p>
+    </div>
+    <ul class="ph-checks reveal">
+      <li data-i18n="ph.c1">Premium Botanical Formula</li>
+      <li data-i18n="ph.c2">HALAL &amp; GMP Certified</li>
+      <li data-i18n="ph.c3">Marketing Support Included</li>
+      <li data-i18n="ph.c4">European Partnership Program</li>
+    </ul>
+    <div class="ph-cta reveal">
+      <a href="https://wa.me/491736986625?text=Hi%20UNI%20MAX%2C%20I%27d%20like%20to%20become%20a%20distribution%20partner." target="_blank" rel="noopener" class="btn btn--primary btn--lg">
+        <img src="assets/logo-wa.webp" class="wa" alt="" aria-hidden="true" width="80" height="80" />
+        <span data-i18n="ph.cta1">Become a Partner</span></a>
+      <a href="/wholesale/" class="btn btn--ghost btn--lg" data-i18n="ph.cta2">Request Wholesale Information</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY PARTNER (B2B) ============ -->
+<section class="section section--tight bg-alt" id="why-partner">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow center" data-i18n="wp.eyebrow">Partner advantages</span>
+      <h2><span data-i18n="wp.h2a">Why Businesses Choose</span> <span class="hl">UNI MAX</span></h2>
+    </div>
+    <div class="bgrid">
+      <article class="bcard reveal"><span class="n">01</span><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.5 6H21l-5 4 2 6.5-6-4-6 4L8 13 3 9h6.5z"/></svg></div><h3 data-i18n="wp.1t">Premium Brand Positioning</h3><p data-i18n="wp.1d">Designed for the growing men's wellness market.</p></article>
+      <article class="bcard reveal" data-d="1"><span class="n">02</span><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-7-7 18-2.5-8z"/></svg></div><h3 data-i18n="wp.2t">Marketing Support</h3><p data-i18n="wp.2d">Professional photos, videos and promotional materials provided.</p></article>
+      <article class="bcard reveal" data-d="2"><span class="n">03</span><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="13" height="10" rx="2"/><path d="M15 10h4l3 3v4h-7z"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="19" r="2"/></svg></div><h3 data-i18n="wp.3t">Reliable Supply</h3><p data-i18n="wp.3d">Manufactured in certified Malaysian facilities with export capability.</p></article>
+      <article class="bcard reveal" data-d="3"><span class="n">04</span><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 2.5 15.3 0 18M12 3c-2.5 2.7-2.5 15.3 0 18"/></svg></div><h3 data-i18n="wp.4t">European Support</h3><p data-i18n="wp.4d">A dedicated EU Partnership Desk supporting partners across Europe.</p></article>
+    </div>
+  </div>
+</section>
+
 <!-- ============ FEATURE STRIP ============ -->
 <section class="features" aria-label="Product highlights">
   <div class="wrap">
@@ -710,6 +751,14 @@ window.clarity = window.clarity || function () { (window.clarity.q = window.clar
       <div class="footer-about">
         <img src="assets/logo-dark.webp" alt="UNI MAX" class="logo-img logo-img--lg" width="480" height="305" />
         <p data-i18n="foot.about">Universe of Power, Maximum Impact. A botanical lychee vitality drink with Triple Force Tongkat Ali, by UniPro.</p>
+        <!-- 公司架构 —— B2B 买家在签约前会查「谁是品牌方、谁生产、谁负责我这个区域」。
+             dt 是角色(要翻译),dd 是公司注册名(专有名词,不翻译)。 -->
+        <dl class="foot-org">
+          <div><dt data-i18n="org.brand">Brand Owner</dt><dd>UniPro (Malaysia)</dd></div>
+          <div><dt data-i18n="org.mfg">Manufactured by</dt><dd>Orient Biotech Sdn Bhd</dd></div>
+          <div><dt data-i18n="org.intl">International Distribution</dt><dd>Wellness Alliance Sdn Bhd</dd></div>
+          <div><dt data-i18n="org.eu">European Partnership Desk</dt><dd>Wellness Network GmbH</dd></div>
+        </dl>
         <div class="footer-social">
           <a href="https://wa.me/491736986625" target="_blank" rel="noopener" aria-label="WhatsApp"><img src="assets/logo-wa.webp" class="wa wa--footer" alt="WhatsApp" aria-hidden="true" width="80" height="80" /></a>
           <a href="https://www.instagram.com/theunimaxofficial/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg></a>
@@ -756,7 +805,7 @@ window.clarity = window.clarity || function () { (window.clarity.q = window.clar
     </div>
     <div class="footer-base">
       <span data-i18n="foot.copy">© 2026 UniPro · UNI MAX. All rights reserved.</span>
-      <span data-i18n="foot.made">Manufactured in Malaysia by Orient Biotech Sdn Bhd.</span>
+      <span data-i18n="foot.made">UNI MAX is a brand owned by UniPro, manufactured in Malaysia by Orient Biotech Sdn Bhd. International distribution is managed by Wellness Alliance Sdn Bhd; European partnership enquiries are coordinated by Wellness Network GmbH.</span>
     </div>
   </div>
 </footer>
