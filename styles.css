@@ -210,6 +210,15 @@ ul { list-style: none; }
 .hero-meta svg { width:16px; height:16px; color: var(--blue-ink); }
 .hero-proof { font-size: 13.5px; color: var(--ink-faint); font-weight: 500; margin-top: 16px; letter-spacing: 0.02em; }
 
+/* 4 张一组的 bgrid:.bgrid 是给 5 张卡设计的 3 列,4 张套进去会排成 3+1、末张落单。
+   桌面改 4 列一行;1100px 起转 2×2(仍然成对,不会落单);620px 起单列。
+   ⚠️ 选择器写成 .bgrid.bgrid--4(0,2,0)而不是 .bgrid--4(0,1,0):
+   styles.css 后面 306/673/687 行还有三条 .bgrid 的列数规则,同权重靠顺序取胜 ——
+   提高特异性才不必依赖这段代码放在文件的哪个位置。 */
+.bgrid.bgrid--4 { grid-template-columns: repeat(4,1fr); }
+@media (max-width: 1100px){ .bgrid.bgrid--4 { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 620px){ .bgrid.bgrid--4 { grid-template-columns: 1fr; } }
+
 /* B2B partner hero(#overview)—— 勾选清单与双 CTA。
    勾号用 ::before 生成而非内联 SVG:4 条清单塞 4 个 svg 会让 data-i18n 元素带子节点,
    而烧录是按 textContent 语义整体替换的,子节点会被吞掉(见 CLAUDE.md 漏译排查一节)。 */

@@ -96,6 +96,14 @@ window.clarity = window.clarity || function () { (window.clarity.q = window.clar
 <style>
   /* 页面专用样式 —— 该页不引 app.js,故不使用依赖 JS 的 .reveal(默认 opacity:0)。零 JS 依赖。 */
   .wsl-hero { padding-block: clamp(60px, 9vw, 120px); background: var(--bg-tint); }
+  /* 左文右图两栏。原先右半是空的,整屏显得没做完。 */
+  .wsl-hero-grid { display: grid; grid-template-columns: 1.02fr .98fr; gap: clamp(28px, 5vw, 60px); align-items: center; }
+  .wsl-hero-media img { width: 100%; height: auto; display: block; border-radius: 18px; box-shadow: 0 26px 60px rgba(16, 24, 48, .20); }
+  @media (max-width: 860px) {
+    .wsl-hero-grid { grid-template-columns: 1fr; gap: 34px; }
+    /* 窄屏图片落到文案下方,不隐藏 —— 产品外观本身就是招商信息 */
+    .wsl-hero-media { order: 2; }
+  }
   .wsl-hero h1 { font-size: clamp(2.1rem, 4.6vw, 3.5rem); line-height: 1.07; letter-spacing: -0.035em; font-weight: 800; max-width: 17ch; }
   .wsl-lead { font-size: clamp(1.02rem, 1.5vw, 1.18rem); color: var(--ink-muted); max-width: 56ch; margin-top: 20px; line-height: 1.65; }
   .wsl-cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; align-items: center; }
@@ -244,7 +252,7 @@ window.clarity = window.clarity || function () { (window.clarity.q = window.clar
         </details>
         <a href="https://wa.me/491736986625?text=Hi%20UNI%20MAX%2C%20I%27d%20like%20to%20enquire%20about%20wholesale%20terms." class="btn btn--primary nav-order" target="_blank" rel="noopener">
           <img src="/assets/logo-wa.webp" class="wa" alt="WhatsApp" aria-hidden="true" width="80" height="80" />
-          <span>索取批发条款</span></a>
+          <span>成为合作伙伴</span></a>
       </div>
     </nav>
   </div>
@@ -255,6 +263,8 @@ window.clarity = window.clarity || function () { (window.clarity.q = window.clar
 <!-- ============ HERO ============ -->
 <section class="wsl-hero">
   <div class="wrap">
+    <div class="wsl-hero-grid">
+    <div class="wsl-hero-copy">
     <a href="/zh/" class="wsl-back">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:15px"><path d="M19 12H5M5 12l6-6M5 12l6 6"/></svg>
       返回 UNI MAX
@@ -265,8 +275,16 @@ window.clarity = window.clarity || function () { (window.clarity.q = window.clar
     <div class="wsl-cta-row">
       <a href="https://wa.me/491736986625?text=Hi%20UNI%20MAX%2C%20I%27d%20like%20to%20enquire%20about%20wholesale%20terms." target="_blank" rel="noopener" class="btn btn--primary btn--lg">
         <img src="/assets/logo-wa.webp" class="wa" alt="" aria-hidden="true" width="80" height="80" />
-        <span>索取批发条款</span></a>
+        <span>成为合作伙伴</span></a>
       <span class="wsl-note">WhatsApp 当天回复 · 价格面议</span>
+    </div>
+    </div>
+    <!-- 产品图做独立展示而非铺底背景:这张是暗调金光图,直接当 background 会压掉深色正文。
+         图本身产品居右、左侧留白,与左文右图的版式天然契合。
+         eager + fetchpriority=high:本页没有视频,这张就是 LCP 元素,不该被 lazy 推迟。 -->
+    <div class="wsl-hero-media">
+      <img src="/assets/prod-gold.webp" alt="UNI MAX retail box with 10 g sachet" width="1700" height="957" loading="eager" fetchpriority="high" />
+    </div>
     </div>
     <div class="wsl-facts">
       <div class="wsl-fact"><b>12</b><span>盒 —— 建议入门起订量</span></div>
@@ -426,7 +444,7 @@ window.clarity = window.clarity || function () { (window.clarity.q = window.clar
     <div style="margin-top:28px">
       <a href="https://wa.me/491736986625?text=Hi%20UNI%20MAX%2C%20I%27d%20like%20to%20enquire%20about%20wholesale%20terms." target="_blank" rel="noopener" class="btn btn--light btn--lg">
         <img src="/assets/logo-wa.webp" class="wa" alt="" aria-hidden="true" width="80" height="80" />
-        <span>索取批发条款</span></a>
+        <span>成为合作伙伴</span></a>
     </div>
   </div>
 </section>
