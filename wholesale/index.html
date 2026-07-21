@@ -252,12 +252,17 @@ window.clarity = window.clarity || function () { (window.clarity.q = window.clar
         <img src="/assets/logo-dark.webp" alt="UNI MAX" class="logo-img" width="480" height="305" />
       </a>
       <!-- .wsl-nav —— 移动端不隐藏而是横向滚动(本页无汉堡 drawer),见内联 style 的 ≤760px 段 -->
+      <!-- 导航与首页**逐项一致**(同样 6 项、同样顺序、同样样式)。
+           本页是从首页 Partnerships 区块进来的深度页,自己不在导航里出现 ——
+           导航只负责回到主站的 6 个区块,点哪一项去哪里都可预期。
+           也不做当前页高亮:6 项指向的都是首页,标 aria-current="page" 是错的。 -->
       <div class="nav-links wsl-nav">
-        <a href="/#benefits">Benefits</a>
-        <a href="/#formula">Formula</a>
-        <a href="/#trust">Certified</a>
-        <a href="/wholesale/" class="nav-pricing" aria-current="page">Wholesale</a>
+        <a href="/#overview">Overview</a>
+        <a href="/#why-partner">Why UNI MAX</a>
+        <a href="/#order">Partnerships</a>
+        <a href="/#about">About</a>
         <a href="/#faq">FAQ</a>
+        <a href="/#eu-desk">Contact</a>
       </div>
       <div class="nav-right">
         <!-- 语言切换 —— 与首页同一套视觉,但开合用 <details>(本页零 JS)。
@@ -279,7 +284,7 @@ window.clarity = window.clarity || function () { (window.clarity.q = window.clar
         </details>
         <a href="https://wa.me/491736986625?text=Hi%20UNI%20MAX%2C%20I%27d%20like%20to%20enquire%20about%20wholesale%20terms." class="btn btn--primary nav-order" target="_blank" rel="noopener">
           <img src="/assets/logo-wa.webp" class="wa" alt="WhatsApp" aria-hidden="true" width="80" height="80" />
-          <span>Request Wholesale Terms</span></a>
+          <span>Become a Partner</span></a>
       </div>
     </nav>
   </div>
@@ -302,7 +307,7 @@ window.clarity = window.clarity || function () { (window.clarity.q = window.clar
     <div class="wsl-cta-row">
       <a href="https://wa.me/491736986625?text=Hi%20UNI%20MAX%2C%20I%27d%20like%20to%20enquire%20about%20wholesale%20terms." target="_blank" rel="noopener" class="btn btn--primary btn--lg">
         <img src="/assets/logo-wa.webp" class="wa" alt="" aria-hidden="true" width="80" height="80" />
-        <span>Request Wholesale Terms</span></a>
+        <span>Become a Partner</span></a>
       <span class="wsl-note">Same-day WhatsApp reply · Pricing on request</span>
     </div>
     </div>
@@ -465,7 +470,7 @@ window.clarity = window.clarity || function () { (window.clarity.q = window.clar
     <div style="margin-top:28px">
       <a href="https://wa.me/491736986625?text=Hi%20UNI%20MAX%2C%20I%27d%20like%20to%20enquire%20about%20wholesale%20terms." target="_blank" rel="noopener" class="btn btn--light btn--lg">
         <img src="/assets/logo-wa.webp" class="wa" alt="" aria-hidden="true" width="80" height="80" />
-        <span>Request Wholesale Terms</span></a>
+        <span>Become a Partner</span></a>
     </div>
   </div>
 </section>

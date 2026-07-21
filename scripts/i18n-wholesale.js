@@ -34,13 +34,17 @@ const zh = {
     '>Formula</a>': '>' + home.zh['nav.formula'] + '</a>',
     '>Certified</a>': '>' + home.zh['nav.trust'] + '</a>',
     '>FAQ</a>': '>' + home.zh['nav.faq'] + '</a>',
-    '<span>Request Wholesale Terms</span>': '<span>' + home.zh['cta.order'] + '</span>',
+    '>Overview</a>': '>' + home.zh['nav.overview'] + '</a>',
+    '>Why UNI MAX</a>': '>' + home.zh['nav.why'] + '</a>',
+    '>Partnerships</a>': '>' + home.zh['nav.partnerships'] + '</a>',
+    '>About</a>': '>' + home.zh['nav.about'] + '</a>',
+    '>Contact</a>': '>' + home.zh['nav.contact'] + '</a>',
+    '<span>Become a Partner</span>': '<span>' + home.zh['cta.order'] + '</span>',
     '<small>boxes</small>': '<small>盒</small>',
   },
 
   html: {
     /* --- header / hero --- */
-    'aria-current="page">Wholesale</a>': 'aria-current="page">批发</a>',
     'Back to UNI MAX': '返回 UNI MAX',
     '<span class="eyebrow">Wholesale &amp; Distribution</span>': '<span class="eyebrow">批发与分销</span>',
     'Stock a finished botanical vitality drink, not a raw ingredient.':
@@ -205,12 +209,16 @@ const ms = {
     '>Formula</a>': '>' + home.ms['nav.formula'] + '</a>',
     '>Certified</a>': '>' + home.ms['nav.trust'] + '</a>',
     '>FAQ</a>': '>' + home.ms['nav.faq'] + '</a>',
-    '<span>Request Wholesale Terms</span>': '<span>' + home.ms['cta.order'] + '</span>',
+    '>Overview</a>': '>' + home.ms['nav.overview'] + '</a>',
+    '>Why UNI MAX</a>': '>' + home.ms['nav.why'] + '</a>',
+    '>Partnerships</a>': '>' + home.ms['nav.partnerships'] + '</a>',
+    '>About</a>': '>' + home.ms['nav.about'] + '</a>',
+    '>Contact</a>': '>' + home.ms['nav.contact'] + '</a>',
+    '<span>Become a Partner</span>': '<span>' + home.ms['cta.order'] + '</span>',
     '<small>boxes</small>': '<small>kotak</small>',
   },
 
   html: {
-    'aria-current="page">Wholesale</a>': 'aria-current="page">Borong</a>',
     'Back to UNI MAX': 'Kembali ke UNI MAX',
     '<span class="eyebrow">Wholesale &amp; Distribution</span>': '<span class="eyebrow">Borong &amp; Pengedaran</span>',
     'Stock a finished botanical vitality drink, not a raw ingredient.':

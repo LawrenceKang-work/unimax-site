@@ -255,12 +255,17 @@ window.clarity = window.clarity || function () { (window.clarity.q = window.clar
         <img src="/assets/logo-dark.webp" alt="UNI MAX" class="logo-img" width="480" height="305" />
       </a>
       <!-- .wsl-nav —— 移动端不隐藏而是横向滚动(本页无汉堡 drawer),见内联 style 的 ≤760px 段 -->
+      <!-- 导航与首页**逐项一致**(同样 6 项、同样顺序、同样样式)。
+           本页是从首页 Partnerships 区块进来的深度页,自己不在导航里出现 ——
+           导航只负责回到主站的 6 个区块,点哪一项去哪里都可预期。
+           也不做当前页高亮:6 项指向的都是首页,标 aria-current="page" 是错的。 -->
       <div class="nav-links wsl-nav">
-        <a href="/zh/#benefits">功效</a>
-        <a href="/zh/#formula">配方</a>
-        <a href="/zh/#trust">认证</a>
-        <a href="/zh/wholesale/" class="nav-pricing" aria-current="page">批发</a>
+        <a href="/zh/#overview">总览</a>
+        <a href="/zh/#why-partner">为何选择 UNI MAX</a>
+        <a href="/zh/#order">合作方案</a>
+        <a href="/zh/#about">关于</a>
         <a href="/zh/#faq">常见问题</a>
+        <a href="/zh/#eu-desk">联系</a>
       </div>
       <div class="nav-right">
         <!-- 语言切换 —— 与首页同一套视觉,但开合用 <details>(本页零 JS)。

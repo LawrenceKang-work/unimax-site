@@ -163,8 +163,8 @@ for (const lang of ['zh', 'ms']) {
 
   /* 7) 站内链接指向本语言
         注意顺序:先换 /wholesale/(长),再换 /"(短),否则 href="/" 会先吃掉前缀。 */
-  h = replaceExact(h, 'href="/wholesale/" class="nav-pricing"',
-    `href="/${lang}/wholesale/" class="nav-pricing"`, 'once', `${lang}/navSelf`);
+  /* 导航已与首页统一为 6 项、全部指向首页锚点,本页不再在自己的导航里出现,
+     故没有指向自身的链接要改写。下一行的 href="/#" → /{lang}/# 已覆盖全部 6 项。 */
   h = h.split('href="/#').join(`href="${home(lang)}#`);
   h = replaceExact(h, '<a href="/" class="brand logo"', `<a href="${home(lang)}" class="brand logo"`, 'once', `${lang}/brand`);
   h = replaceExact(h, '<a href="/" class="wsl-back">', `<a href="${home(lang)}" class="wsl-back">`, 'once', `${lang}/back`);
