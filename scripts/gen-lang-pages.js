@@ -210,6 +210,14 @@ function buildPage(srcHtml, lang) {
   h = h.replace(/src="app\.js/g, 'src="/app.js');
   h = h.replace(/src="editor\.js/g, 'src="/editor.js');
 
+  // 5.4) personas 轮播的副本组:用**已烧录译文**的原始 6 张重建
+  //      根因:副本是为无缝循环手写的复制品,没有 data-i18n,所以 bakeI18n 完全看不见它们
+  //      —— 语言页上原始卡片是译文、副本仍是英文,滚到一半就露馅(2026-07-21 客户实测发现)。
+  //      修法不是给副本补 data-i18n:那会让同一个 key 出现两次,污染客改层(editor.js)的
+  //      发布锚点。这里改为从原始卡片克隆:剥掉 data-i18n、alt 清空、补 aria-hidden,
+  //      于是副本永远等于译好的原始卡片,以后加卡片也不会再漏。
+  h = rebuildPersonaClones(h, lang);
+
   // 5.5) /wholesale/ 内链 → 该语言的译版(若有)
   //      zh/ms 已有 wholesale 译版(scripts/gen-wholesale-pages.js 产出),语言页应链到译版
   //      而非英文页;pl/nl/de 暂无译版,保持指向英文 /wholesale/。
@@ -265,4 +273,48 @@ for (const lang of only) {
     `data-i18n 保留 ${outCount} ${ok ? '✓' : '✗ 不一致!'}  ` +
     `无译文回退英文 ${report.missing.length} 个`);
   if (report.missing.length) console.log(`      缺: ${report.missing.join(', ')}`);
+}
+
+/* ---------- personas 轮播:用译好的原始卡片重建副本组 ----------
+   .personas-track 里是 6 张真卡片 + 6 张 aria-hidden 的复制品(CSS 无缝循环要的)。
+   复制品是手写的,没有 data-i18n,故 bakeI18n 翻不到 —— 语言页滚到后半段全是英文。
+   这里在烧录之后重建它们,保证副本 ≡ 已译原始卡片。
+
+   副本要做三件事:去 data-i18n(避免 key 重复污染客改层锚点)、alt 清空
+   (装饰性重复内容,读屏不该念第二遍)、加 aria-hidden。 */
+function rebuildPersonaClones(html, lang) {
+  const MARK = '<!-- duplicate for seamless loop -->';
+  const trackStart = html.indexOf('<div class="personas-track">');
+  const markAt = html.indexOf(MARK);
+  if (trackStart === -1 || markAt === -1) {
+    throw new Error(`[${lang}] personas 轮播结构变了:找不到 .personas-track 或副本标记`);
+  }
+
+  const originals = html.slice(trackStart, markAt).match(/<article class="wcard">[\s\S]*?<\/article>/g) || [];
+  if (originals.length === 0) throw new Error(`[${lang}] 没抓到原始 persona 卡片`);
+
+  const clones = originals.map(a => a
+    .replace('<article class="wcard">', '<article class="wcard" aria-hidden="true">')
+    .replace(/ data-i18n="[^"]*"/g, '')
+    .replace(/ alt="[^"]*"/g, ' alt=""')
+  );
+
+  /* 副本区 = 标记之后紧跟的 N 个 <article>。
+     不能用 indexOf('</div>') 找区间末尾 —— 卡片内部自己就有 <div class="wbody">…</div>,
+     那样会切在第一张副本的中间(第一版就栽在这)。改为按 article 计数取区间。 */
+  const afterMark = markAt + MARK.length;
+  const tail = html.slice(afterMark);
+  const re = /<article[\s\S]*?<\/article>/g;
+  let m, from = null, to = null, n = 0;
+  while (n < originals.length && (m = re.exec(tail)) !== null) {
+    if (from === null) from = m.index;
+    to = m.index + m[0].length;
+    n++;
+  }
+  if (n !== originals.length) {
+    throw new Error(`[${lang}] 副本数(${n}) ≠ 原始数(${originals.length}),结构对不上`);
+  }
+
+  const rebuilt = '\n      ' + clones.join('\n      ');
+  return html.slice(0, afterMark) + rebuilt + tail.slice(to);
 }

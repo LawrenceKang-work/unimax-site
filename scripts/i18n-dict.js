@@ -11,6 +11,9 @@ module.exports = {
     zh: {
       "announce":"提供大批量订购 · 欢迎欧洲分销商洽询 · HALAL 与 GMP 认证 · 马来西亚制造",
       "nav.benefits":"功效","nav.formula":"配方","nav.trust":"认证","nav.research":"研究依据","nav.faq":"常见问题",
+      "rev.writeBtn":"分享你的体验","rev.modalTitle":"分享你的体验","rev.fStars":"你的评分","rev.fName":"你的姓名","rev.fRole":"职业 / 年龄","rev.fQuote":"你的评价","rev.fMedia":"产品照片","rev.fUpload":"上传照片","rev.fAvatar":"头像照片","rev.fOpt":"（选填）","rev.fAvatarBtn":"上传头像","rev.fSubmit":"提交评价","rev.successTitle":"感谢你！","rev.successMsg":"你的评价已提交，通过审核后即会显示。","rev.fOptMax":"（选填，最多 3 张）",
+      "trust.b1s":"JAKIM 认证","trust.b2s":"良好生产规范","trust.b3s":"马来西亚卫生部","trust.b4s":"质量管理","trust.b5s":"食品安全",
+      "ing.tag.guarana":"瓜拉那","ing.tag.maca":"玛卡","ing.tag.zinc":"锌","ing.tag.bvit":"B 族维生素","ing.tag.ashwagandha":"南非醉茄","ing.tag.ginseng":"人参","ing.tag.cordyceps":"冬虫夏草","ing.tag.arginine":"L-精氨酸","ing.tag.citrulline":"L-瓜氨酸","ing.tag.elderberry":"接骨木莓",
       "nav.wholesale":"批发与分销","order.wholesaleLink":"查看完整批发与分销资讯 →",
       "cta.order":"索取批发条款","cta.explore":"了解配方",
       "hero.eyebrow":"30+ 男士 · 高压上班族 · 运动爱好者","hero.h1a":"总在下午就","hero.h1pk":"没电？","hero.h1b":"","hero.h1c":"每天","hero.h1bk":"一包，","hero.h1cp":"","hero.h1d":"撑满你的一整天。",
@@ -91,6 +94,9 @@ module.exports = {
     ms: {
       "announce":"Pesanan Pukal Tersedia · Pertanyaan pengedar Eropah dialu-alukan · Disahkan HALAL & GMP · Buatan Malaysia",
       "nav.benefits":"Manfaat","nav.formula":"Formula","nav.trust":"Pensijilan","nav.research":"Penyelidikan","nav.faq":"Soalan Lazim",
+      "rev.writeBtn":"Kongsi Pengalaman Anda","rev.modalTitle":"Kongsi Pengalaman Anda","rev.fStars":"Penilaian Anda","rev.fName":"Nama Anda","rev.fRole":"Pekerjaan / Umur","rev.fQuote":"Ulasan Anda","rev.fMedia":"Foto Produk","rev.fUpload":"Muat naik foto","rev.fAvatar":"Foto Profil","rev.fOpt":"(pilihan)","rev.fAvatarBtn":"Muat naik foto","rev.fSubmit":"Hantar Ulasan","rev.successTitle":"Terima kasih!","rev.successMsg":"Ulasan anda telah dihantar. Ia akan dipaparkan setelah diluluskan.","rev.fOptMax":"(pilihan, maks 3)",
+      "trust.b1s":"Disahkan JAKIM","trust.b2s":"Amalan Pengilangan Baik","trust.b3s":"KKM Malaysia","trust.b4s":"Pengurusan kualiti","trust.b5s":"Keselamatan makanan",
+      "ing.tag.guarana":"Guarana","ing.tag.maca":"Maca","ing.tag.zinc":"Zink","ing.tag.bvit":"Vitamin B","ing.tag.ashwagandha":"Ashwagandha","ing.tag.ginseng":"Ginseng","ing.tag.cordyceps":"Cordyceps","ing.tag.arginine":"L-Arginine","ing.tag.citrulline":"L-Citrulline","ing.tag.elderberry":"Beri Elder",
       "nav.wholesale":"Borong & Pengedaran","order.wholesaleLink":"Lihat maklumat borong & pengedaran penuh →",
       "cta.order":"Minta Terma Borong","cta.explore":"Terokai formula",
       "hero.eyebrow":"Lelaki 30+ · Profesional tekanan tinggi · Gaya hidup aktif","hero.h1a":"","hero.h1pk":"Lesu","hero.h1b":" menjelang petang?","hero.h1c":"Satu ","hero.h1bk":"sachet","hero.h1cp":" sehari,","hero.h1d":"bertenaga sepanjang hari.",
@@ -171,6 +177,9 @@ module.exports = {
     pl: {
       "announce":"Dostępne zamówienia hurtowe · Zapraszamy dystrybutorów z UE · Certyfikat HALAL i GMP · Wyprodukowano w Malezji",
       "nav.benefits":"Korzyści","nav.formula":"Formuła","nav.trust":"Certyfikaty","nav.research":"Badania","nav.faq":"FAQ",
+      "rev.writeBtn":"Podziel się doświadczeniem","rev.modalTitle":"Podziel się doświadczeniem","rev.fStars":"Twoja ocena","rev.fName":"Twoje imię","rev.fRole":"Zawód / wiek","rev.fQuote":"Twoja opinia","rev.fMedia":"Zdjęcia produktu","rev.fUpload":"Prześlij zdjęcia","rev.fAvatar":"Zdjęcie profilowe","rev.fOpt":"(opcjonalnie)","rev.fAvatarBtn":"Prześlij zdjęcie","rev.fSubmit":"Wyślij opinię","rev.successTitle":"Dziękujemy!","rev.successMsg":"Twoja opinia została wysłana. Pojawi się po zatwierdzeniu.","rev.fOptMax":"(opcjonalnie, maks. 3)",
+      "trust.b1s":"Certyfikat JAKIM","trust.b2s":"Dobra Praktyka Wytwarzania","trust.b3s":"Ministerstwo Zdrowia Malezji","trust.b4s":"Zarządzanie jakością","trust.b5s":"Bezpieczeństwo żywności",
+      "ing.tag.guarana":"Guarana","ing.tag.maca":"Maca","ing.tag.zinc":"Cynk","ing.tag.bvit":"Witaminy z grupy B","ing.tag.ashwagandha":"Ashwagandha","ing.tag.ginseng":"Żeń-szeń","ing.tag.cordyceps":"Kordyceps","ing.tag.arginine":"L-Arginina","ing.tag.citrulline":"L-Cytrulina","ing.tag.elderberry":"Czarny bez",
       "nav.wholesale":"Hurt i dystrybucja (EN)","order.wholesaleLink":"Zobacz pełne informacje o hurcie i dystrybucji (po angielsku) →",
       "cta.order":"Poproś o warunki hurtowe","cta.explore":"Odkryj formułę",
       "hero.eyebrow":"Mężczyźni 30+ · Zapracowani profesjonaliści · Aktywny styl życia","hero.h1a":"Brak energii","hero.h1pk":"po południu?","hero.h1b":"","hero.h1c":"Jedno","hero.h1bk":"sachet dziennie —","hero.h1cp":"","hero.h1d":"energia na cały dzień.",
@@ -251,6 +260,9 @@ module.exports = {
     nl: {
       "announce":"Bulkbestellingen mogelijk · Distributeurs uit de EU welkom · HALAL- en GMP-gecertificeerd · Gemaakt in Maleisië",
       "nav.benefits":"Voordelen","nav.formula":"Formule","nav.trust":"Certificaten","nav.research":"Onderzoek","nav.faq":"Veelgestelde vragen",
+      "rev.writeBtn":"Deel je ervaring","rev.modalTitle":"Deel je ervaring","rev.fStars":"Jouw beoordeling","rev.fName":"Je naam","rev.fRole":"Beroep / leeftijd","rev.fQuote":"Je review","rev.fMedia":"Productfoto's","rev.fUpload":"Foto's uploaden","rev.fAvatar":"Profielfoto","rev.fOpt":"(optioneel)","rev.fAvatarBtn":"Foto uploaden","rev.fSubmit":"Review versturen","rev.successTitle":"Bedankt!","rev.successMsg":"Je review is verstuurd. Hij verschijnt zodra deze is goedgekeurd.","rev.fOptMax":"(optioneel, max. 3)",
+      "trust.b1s":"JAKIM-gecertificeerd","trust.b2s":"Good Manufacturing Practice","trust.b3s":"Ministerie van Volksgezondheid Maleisië","trust.b4s":"Kwaliteitsmanagement","trust.b5s":"Voedselveiligheid",
+      "ing.tag.guarana":"Guarana","ing.tag.maca":"Maca","ing.tag.zinc":"Zink","ing.tag.bvit":"B-vitaminen","ing.tag.ashwagandha":"Ashwagandha","ing.tag.ginseng":"Ginseng","ing.tag.cordyceps":"Cordyceps","ing.tag.arginine":"L-Arginine","ing.tag.citrulline":"L-Citrulline","ing.tag.elderberry":"Vlierbes",
       "nav.wholesale":"Groothandel & distributie (EN)","order.wholesaleLink":"Bekijk alle groothandel- en distributie-informatie (in het Engels) →",
       "cta.order":"Vraag groothandelsvoorwaarden aan","cta.explore":"Ontdek de formule",
       "hero.eyebrow":"Mannen 30+ · Drukke professionals · Actieve levensstijl","hero.h1a":"Energieloos","hero.h1pk":"in de middag?","hero.h1b":"","hero.h1c":"Eén","hero.h1bk":"sachet per dag —","hero.h1cp":"","hero.h1d":"energie voor de hele dag.",
@@ -331,6 +343,9 @@ module.exports = {
     de: {
       "announce":"Großbestellungen möglich · Vertriebspartner aus der EU willkommen · HALAL & GMP zertifiziert · Hergestellt in Malaysia",
       "nav.benefits":"Vorteile","nav.formula":"Formel","nav.trust":"Zertifikate","nav.research":"Forschung","nav.faq":"Häufige Fragen",
+      "rev.writeBtn":"Teile deine Erfahrung","rev.modalTitle":"Teile deine Erfahrung","rev.fStars":"Deine Bewertung","rev.fName":"Dein Name","rev.fRole":"Beruf / Alter","rev.fQuote":"Deine Rezension","rev.fMedia":"Produktfotos","rev.fUpload":"Fotos hochladen","rev.fAvatar":"Profilbild","rev.fOpt":"(optional)","rev.fAvatarBtn":"Foto hochladen","rev.fSubmit":"Rezension absenden","rev.successTitle":"Vielen Dank!","rev.successMsg":"Deine Rezension wurde übermittelt. Sie erscheint nach der Freigabe.","rev.fOptMax":"(optional, max. 3)",
+      "trust.b1s":"JAKIM-zertifiziert","trust.b2s":"Gute Herstellungspraxis","trust.b3s":"Gesundheitsministerium Malaysia","trust.b4s":"Qualitätsmanagement","trust.b5s":"Lebensmittelsicherheit",
+      "ing.tag.guarana":"Guarana","ing.tag.maca":"Maca","ing.tag.zinc":"Zink","ing.tag.bvit":"B-Vitamine","ing.tag.ashwagandha":"Ashwagandha","ing.tag.ginseng":"Ginseng","ing.tag.cordyceps":"Cordyceps","ing.tag.arginine":"L-Arginin","ing.tag.citrulline":"L-Citrullin","ing.tag.elderberry":"Holunderbeere",
       "nav.wholesale":"Großhandel & Vertrieb (EN)","order.wholesaleLink":"Vollständige Großhandels- und Vertriebsinformationen ansehen (auf Englisch) →",
       "cta.order":"Großhandelskonditionen anfragen","cta.explore":"Formel entdecken",
       "hero.eyebrow":"Männer 30+ · Vielbeschäftigte Profis · Aktiver Lebensstil","hero.h1a":"Energielos","hero.h1pk":"am Nachmittag?","hero.h1b":"","hero.h1c":"Ein","hero.h1bk":"Sachet pro Tag —","hero.h1cp":"","hero.h1d":"Energie für den ganzen Tag.",
