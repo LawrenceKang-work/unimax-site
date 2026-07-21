@@ -194,7 +194,11 @@ function escAttr(s) { return esc(s).replace(/"/g, '&quot;'); }
 
 /* 粗筛:正文里是否还留着成句的英文。品牌名/认证名/单位不算。 */
 function countEnglishLeftover(html) {
-  const body = html.slice(html.indexOf('<main'));
+  const body = html.slice(html.indexOf('<main'))
+    /* 先剥掉 script/style —— 页尾内联 JS 的注释和代码里也有 the/with/for 这些词,
+       不剥的话会被当成「未翻译的正文」报出来(2026-07-21 加语言位置保持逻辑时踩到)。 */
+    .replace(/<script[\s\S]*?<\/script>/g, '')
+    .replace(/<style[\s\S]*?<\/style>/g, '');
   const texts = body.match(/>([^<>]{25,})</g) || [];
   const ok = /^[\s\d.,·×—–&+/()%:-]*$/;
   return texts

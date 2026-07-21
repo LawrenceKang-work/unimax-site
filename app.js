@@ -922,6 +922,54 @@
     document.getElementById("lightbox").addEventListener("click", function (e) { if (e.target.id === "lightbox") closeLightbox(); });
     document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeLightbox(); });
 
+    /* 带 hash 进来时(典型来源就是切换语言带过来的 /zh/#faq),等首屏资源就位后
+       再校准一次位置。浏览器在解析到 hash 的那一刻,图片与字体往往还没定高,
+       那一下定位会偏 —— 位置本来就对的话,这次校准是无害的原地不动。 */
+    (function realignOnHashLanding() {
+      if (location.hash.length <= 1) return;
+      var target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+      if (!target) return;
+      window.addEventListener("load", function () {
+        setTimeout(function () { target.scrollIntoView({ behavior: "auto" }); }, 80);
+      }, { once: true });
+    })();
+
+    /* 切换语言时保住阅读位置。
+       语言链接指向的是 /zh/ 这类裸地址,滚到半途切语言会被扔回首屏 —— 明明看的是
+       同一份内容的另一种语言,位置却丢了。这里在点击真正发生之前,把「当前所在区块」
+       的锚点补到 href 上,于是 /zh/ 变成 /zh/#faq。
+       各语言页的 section id 完全相同(生成器只换文案不动 id),所以锚点跨语言通用。
+       不绑 scroll:只在指针按下/键盘激活的那一刻算一次,零滚动开销。
+       用捕获阶段监听,保证在链接默认跳转前就改好 href。 */
+    (function keepPlaceOnLangSwitch() {
+      var langLinks = document.querySelectorAll("a[hreflang]");
+      if (!langLinks.length) return;
+      function currentSectionId() {
+        /* 还在首屏就不必带锚点 —— 否则会生成 /zh/#scroll-cinema 这种多余的地址,
+           而那本来就是目标页的默认落点。 */
+        if (window.scrollY < 200) return "";
+        var secs = document.querySelectorAll("section[id]");
+        var best = "", bestTop = -Infinity;
+        for (var i = 0; i < secs.length; i++) {
+          var t = secs[i].getBoundingClientRect().top;
+          /* 取「已滚过 header、且最接近视口顶部」的那个区块 */
+          if (t <= 140 && t > bestTop) { bestTop = t; best = secs[i].id; }
+        }
+        return best;
+      }
+      function sync() {
+        var id = currentSectionId();
+        for (var i = 0; i < langLinks.length; i++) {
+          var base = langLinks[i].getAttribute("href").split("#")[0];
+          langLinks[i].setAttribute("href", id ? base + "#" + id : base);
+        }
+      }
+      document.addEventListener("pointerdown", sync, true);
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") sync();
+      }, true);
+    })();
+
     /* scroll reveal */
     var reveals = document.querySelectorAll(".reveal:not(.in)");
     if ("IntersectionObserver" in window) {
