@@ -21,7 +21,7 @@ module.exports = {
       "trust.b1s":"JAKIM 认证","trust.b2s":"良好生产规范","trust.b3s":"马来西亚卫生部","trust.b4s":"质量管理","trust.b5s":"食品安全",
       "ing.tag.guarana":"瓜拉那","ing.tag.maca":"玛卡","ing.tag.zinc":"锌","ing.tag.bvit":"B 族维生素","ing.tag.ashwagandha":"南非醉茄","ing.tag.ginseng":"人参","ing.tag.cordyceps":"冬虫夏草","ing.tag.arginine":"L-精氨酸","ing.tag.citrulline":"L-瓜氨酸","ing.tag.elderberry":"接骨木莓",
       "nav.wholesale":"批发与分销","order.wholesaleLink":"查看完整批发与分销资讯 →",
-      "cta.order":"索取批发条款","cta.explore":"了解配方","cta.finalBtn":"成为 UNI MAX 合作伙伴",
+      "cta.order":"成为合作伙伴","cta.explore":"了解配方","cta.finalBtn":"成为 UNI MAX 合作伙伴",
       "hero.eyebrow":"30+ 男士 · 高压上班族 · 运动爱好者","hero.h1a":"总在下午就","hero.h1pk":"没电？","hero.h1b":"","hero.h1c":"每天","hero.h1bk":"一包，","hero.h1cp":"","hero.h1d":"撑满你的一整天。",
       "hero.sub":"三重东革阿里 + 12 种草本配方，支持充沛能量、持久耐力与专注恢复。即饮荔枝口味，约 30 分钟感受提升。",
       "hero.cta":"在 WhatsApp 下单 · 30 包/盒","hero.proof":"★ 真实好评 · HALAL / GMP 认证 · 马来西亚制造",
@@ -94,7 +94,7 @@ module.exports = {
       "order.p1sub":"小型保健店、健身房、诊所与补剂专卖店","order.p2sub":"电商卖家、大型健身房与多门店零售商","order.p3sub":"国家级或区域合作伙伴","order.best":"最受欢迎","order.freeship":"免运费","order.cta":"索取批发条款","order.p3save":"更省","order.poa":"价格待定","order.p1price":"12–24 盒","order.p2price":"50–100 盒","order.p3price":"300+ 盒",
       "sc.cap1.eyebrow":"活跃生活 · 日常表现 · 现代活力","sc.cap1.line1":"充能。","sc.cap1.line2":"专注。全力以赴。",
       "sc.cap2.line1":"每天一包 10g，","sc.cap2.line2":"你所需的全部能量。","sc.cap2.sub":"三重东革阿里 + 草本精华 + 氨基酸——能量、专注与自信，约 30 分钟感受提升。",
-      "sc.cap3.eyebrow":"HALAL · GMP · 马来西亚制造","sc.cap3.line1":"准备好感受","sc.cap3.line2":"与众不同了吗？",
+      "sc.cap3.eyebrow":"HALAL · GMP · 马来西亚制造","sc.cap3.line1":"准备好用 UniMax","sc.cap3.line2":"拓展你的事业了吗？",
       "brand.h2a":"力量的宇宙，","brand.h2b":"极致释放。"
     },
     ms: {
@@ -110,7 +110,7 @@ module.exports = {
       "trust.b1s":"Disahkan JAKIM","trust.b2s":"Amalan Pengilangan Baik","trust.b3s":"KKM Malaysia","trust.b4s":"Pengurusan kualiti","trust.b5s":"Keselamatan makanan",
       "ing.tag.guarana":"Guarana","ing.tag.maca":"Maca","ing.tag.zinc":"Zink","ing.tag.bvit":"Vitamin B","ing.tag.ashwagandha":"Ashwagandha","ing.tag.ginseng":"Ginseng","ing.tag.cordyceps":"Cordyceps","ing.tag.arginine":"L-Arginine","ing.tag.citrulline":"L-Citrulline","ing.tag.elderberry":"Beri Elder",
       "nav.wholesale":"Borong & Pengedaran","order.wholesaleLink":"Lihat maklumat borong & pengedaran penuh →",
-      "cta.order":"Minta Terma Borong","cta.explore":"Terokai formula","cta.finalBtn":"Jadi Rakan Kongsi UNI MAX",
+      "cta.order":"Jadi Rakan Kongsi","cta.explore":"Terokai formula","cta.finalBtn":"Jadi Rakan Kongsi UNI MAX",
       "hero.eyebrow":"Lelaki 30+ · Profesional tekanan tinggi · Gaya hidup aktif","hero.h1a":"","hero.h1pk":"Lesu","hero.h1b":" menjelang petang?","hero.h1c":"Satu ","hero.h1bk":"sachet","hero.h1cp":" sehari,","hero.h1d":"bertenaga sepanjang hari.",
       "hero.sub":"Tongkat Ali Tiga Kuasa + 12 botani — menyokong tenaga, stamina & fokus. Minuman laici sedia minum, rasa perbezaannya dalam ~30 minit.",
       "hero.cta":"Pesan di WhatsApp · 30 sachet/kotak","hero.proof":"★ Ulasan nyata · Pensijilan HALAL / GMP · Buatan Malaysia",
@@ -183,7 +183,7 @@ module.exports = {
       "order.p1sub":"Kedai kesihatan kecil, gim, klinik & kedai suplemen","order.p2sub":"Penjual e-dagang, gim besar & peruncit berbilang cawangan","order.p3sub":"Rakan kongsi peringkat negara atau serantau","order.best":"PALING POPULAR","order.freeship":"PENGHANTARAN PERCUMA","order.cta":"Minta Terma Borong","order.p3save":"Lebih jimat","order.poa":"Harga atas permintaan","order.p1price":"12–24 kotak","order.p2price":"50–100 kotak","order.p3price":"300+ kotak",
       "sc.cap1.eyebrow":"Gaya Hidup Aktif · Prestasi Harian · Vitaliti Moden","sc.cap1.line1":"Isi Semula.","sc.cap1.line2":"Fokus. Berprestasi.",
       "sc.cap2.line1":"Satu sachet 10g.","sc.cap2.line2":"Semua tenaga yang anda perlukan.","sc.cap2.sub":"Tongkat Ali Tiga Kuasa + botani & asid amino — tenaga, fokus & keyakinan dalam ~30 minit.",
-      "sc.cap3.eyebrow":"HALAL · GMP · Buatan Malaysia","sc.cap3.line1":"Bersedia rasai","sc.cap3.line2":"perbezaannya?",
+      "sc.cap3.eyebrow":"HALAL · GMP · Buatan Malaysia","sc.cap3.line1":"Bersedia kembangkan","sc.cap3.line2":"perniagaan anda dengan UniMax?",
       "brand.h2a":"Alam semesta kuasa,","brand.h2b":"impak maksimum."
     },
     pl: {
@@ -199,7 +199,7 @@ module.exports = {
       "trust.b1s":"Certyfikat JAKIM","trust.b2s":"Dobra Praktyka Wytwarzania","trust.b3s":"Ministerstwo Zdrowia Malezji","trust.b4s":"Zarządzanie jakością","trust.b5s":"Bezpieczeństwo żywności",
       "ing.tag.guarana":"Guarana","ing.tag.maca":"Maca","ing.tag.zinc":"Cynk","ing.tag.bvit":"Witaminy z grupy B","ing.tag.ashwagandha":"Ashwagandha","ing.tag.ginseng":"Żeń-szeń","ing.tag.cordyceps":"Kordyceps","ing.tag.arginine":"L-Arginina","ing.tag.citrulline":"L-Cytrulina","ing.tag.elderberry":"Czarny bez",
       "nav.wholesale":"Hurt i dystrybucja (EN)","order.wholesaleLink":"Zobacz pełne informacje o hurcie i dystrybucji (po angielsku) →",
-      "cta.order":"Poproś o warunki hurtowe","cta.explore":"Odkryj formułę","cta.finalBtn":"Zostań partnerem UNI MAX",
+      "cta.order":"Zostań partnerem","cta.explore":"Odkryj formułę","cta.finalBtn":"Zostań partnerem UNI MAX",
       "hero.eyebrow":"Mężczyźni 30+ · Zapracowani profesjonaliści · Aktywny styl życia","hero.h1a":"Brak energii","hero.h1pk":"po południu?","hero.h1b":"","hero.h1c":"Jedno","hero.h1bk":"sachet dziennie —","hero.h1cp":"","hero.h1d":"energia na cały dzień.",
       "hero.sub":"Triple Force Tongkat Ali + 12 składników botanicznych — wspierają energię, wytrzymałość i skupienie. Gotowy do picia napój liczi, poczuj różnicę w ~30 minut.",
       "hero.cta":"Zamów przez WhatsApp · 30 saszetek/opakowanie","hero.proof":"★ Prawdziwe opinie · Certyfikat HALAL / GMP · Wyprodukowano w Malezji",
@@ -272,7 +272,7 @@ module.exports = {
       "order.p1sub":"Małe sklepy ze zdrową żywnością, siłownie, kliniki, sklepy z suplementami","order.p2sub":"Sprzedawcy e-commerce, większe siłownie, sieci wielooddziałowe","order.p3sub":"Partnerzy krajowi lub regionalni","order.best":"NAJPOPULARNIEJSZE","order.freeship":"BEZPŁATNA DOSTAWA","order.cta":"Poproś o warunki hurtowe","order.p3save":"Oszczędzaj więcej","order.poa":"Cena na zapytanie","order.p1price":"12–24 opakowań","order.p2price":"50–100 opakowań","order.p3price":"300+ opakowań",
       "sc.cap1.eyebrow":"Aktywny styl życia · Codzienna wydajność · Nowoczesna witalność","sc.cap1.line1":"Naładuj się.","sc.cap1.line2":"Skupienie. Działanie.",
       "sc.cap2.line1":"Jedna saszetka 10&nbsp;g.","sc.cap2.line2":"Cała potrzebna&nbsp;moc.","sc.cap2.sub":"Triple Force Tongkat Ali + składniki botaniczne i aminokwasy — energia, skupienie i pewność siebie w ~30 minut.",
-      "sc.cap3.eyebrow":"HALAL · GMP · Wyprodukowano w Malezji","sc.cap3.line1":"Gotowy poczuć","sc.cap3.line2":"różnicę?",
+      "sc.cap3.eyebrow":"HALAL · GMP · Wyprodukowano w Malezji","sc.cap3.line1":"Gotowy rozwinąć","sc.cap3.line2":"swój biznes z UniMax?",
       "brand.h2a":"Wszechświat siły,","brand.h2b":"maksymalny efekt."
     },
     nl: {
@@ -288,7 +288,7 @@ module.exports = {
       "trust.b1s":"JAKIM-gecertificeerd","trust.b2s":"Good Manufacturing Practice","trust.b3s":"Ministerie van Volksgezondheid Maleisië","trust.b4s":"Kwaliteitsmanagement","trust.b5s":"Voedselveiligheid",
       "ing.tag.guarana":"Guarana","ing.tag.maca":"Maca","ing.tag.zinc":"Zink","ing.tag.bvit":"B-vitaminen","ing.tag.ashwagandha":"Ashwagandha","ing.tag.ginseng":"Ginseng","ing.tag.cordyceps":"Cordyceps","ing.tag.arginine":"L-Arginine","ing.tag.citrulline":"L-Citrulline","ing.tag.elderberry":"Vlierbes",
       "nav.wholesale":"Groothandel & distributie (EN)","order.wholesaleLink":"Bekijk alle groothandel- en distributie-informatie (in het Engels) →",
-      "cta.order":"Vraag groothandelsvoorwaarden aan","cta.explore":"Ontdek de formule","cta.finalBtn":"Word UNI MAX-partner",
+      "cta.order":"Word partner","cta.explore":"Ontdek de formule","cta.finalBtn":"Word UNI MAX-partner",
       "hero.eyebrow":"Mannen 30+ · Drukke professionals · Actieve levensstijl","hero.h1a":"Energieloos","hero.h1pk":"in de middag?","hero.h1b":"","hero.h1c":"Eén","hero.h1bk":"sachet per dag —","hero.h1cp":"","hero.h1d":"energie voor de hele dag.",
       "hero.sub":"Triple Force Tongkat Ali + 12 botanische ingrediënten — ter ondersteuning van energie, uithoudingsvermogen en focus. Drankje met lychee-smaak, klaar voor gebruik. Voel het verschil in ~30 minuten.",
       "hero.cta":"Bestellen via WhatsApp · 30 sachets/doos","hero.proof":"★ Echte reviews · HALAL / GMP-gecertificeerd · Gemaakt in Maleisië",
@@ -361,7 +361,7 @@ module.exports = {
       "order.p1sub":"Kleine wellnesswinkels, sportscholen, klinieken, supplementenwinkels","order.p2sub":"E-commerceverkopers, grotere sportscholen, retailers met meerdere filialen","order.p3sub":"Partners op land- of regioniveau","order.best":"MEEST POPULAIR","order.freeship":"GRATIS VERZENDING","order.cta":"Vraag groothandelsvoorwaarden aan","order.p3save":"Bespaar meer","order.poa":"Prijs op aanvraag","order.p1price":"12–24 dozen","order.p2price":"50–100 dozen","order.p3price":"300+ dozen",
       "sc.cap1.eyebrow":"Actieve levensstijl · Dagelijkse prestaties · Moderne vitaliteit","sc.cap1.line1":"Opladen.","sc.cap1.line2":"Focus. Presteren.",
       "sc.cap2.line1":"Eén sachet van 10 g.","sc.cap2.line2":"Alle kracht die je nodig hebt.","sc.cap2.sub":"Triple Force Tongkat Ali + botanische ingrediënten en aminozuren — energie, focus en zelfvertrouwen in ~30 minuten.",
-      "sc.cap3.eyebrow":"HALAL · GMP · Gemaakt in Maleisië","sc.cap3.line1":"Klaar om het","sc.cap3.line2":"verschil te voelen?",
+      "sc.cap3.eyebrow":"HALAL · GMP · Gemaakt in Maleisië","sc.cap3.line1":"Klaar om je bedrijf","sc.cap3.line2":"te laten groeien met UniMax?",
       "brand.h2a":"Universum van kracht,","brand.h2b":"maximale impact."
     },
     de: {
@@ -377,7 +377,7 @@ module.exports = {
       "trust.b1s":"JAKIM-zertifiziert","trust.b2s":"Gute Herstellungspraxis","trust.b3s":"Gesundheitsministerium Malaysia","trust.b4s":"Qualitätsmanagement","trust.b5s":"Lebensmittelsicherheit",
       "ing.tag.guarana":"Guarana","ing.tag.maca":"Maca","ing.tag.zinc":"Zink","ing.tag.bvit":"B-Vitamine","ing.tag.ashwagandha":"Ashwagandha","ing.tag.ginseng":"Ginseng","ing.tag.cordyceps":"Cordyceps","ing.tag.arginine":"L-Arginin","ing.tag.citrulline":"L-Citrullin","ing.tag.elderberry":"Holunderbeere",
       "nav.wholesale":"Großhandel & Vertrieb (EN)","order.wholesaleLink":"Vollständige Großhandels- und Vertriebsinformationen ansehen (auf Englisch) →",
-      "cta.order":"Großhandelskonditionen anfragen","cta.explore":"Formel entdecken","cta.finalBtn":"UNI MAX Partner werden",
+      "cta.order":"Partner werden","cta.explore":"Formel entdecken","cta.finalBtn":"UNI MAX Partner werden",
       "hero.eyebrow":"Männer 30+ · Vielbeschäftigte Profis · Aktiver Lebensstil","hero.h1a":"Energielos","hero.h1pk":"am Nachmittag?","hero.h1b":"","hero.h1c":"Ein","hero.h1bk":"Sachet pro Tag —","hero.h1cp":"","hero.h1d":"Energie für den ganzen Tag.",
       "hero.sub":"Triple Force Tongkat Ali + 12 botanische Inhaltsstoffe — zur Unterstützung von Energie, Ausdauer und Fokus. Trinkfertiges Lychee-Getränk, spüren Sie den Unterschied in ~30 Minuten.",
       "hero.cta":"Auf WhatsApp bestellen · 30 Sachets/Box","hero.proof":"★ Echte Bewertungen · HALAL / GMP zertifiziert · Hergestellt in Malaysia",
@@ -450,7 +450,7 @@ module.exports = {
       "order.p1sub":"Kleine Wellness-Shops, Fitnessstudios, Kliniken, Supplement-Läden","order.p2sub":"E-Commerce-Händler, größere Fitnessstudios, Filialisten","order.p3sub":"Partner auf Landes- oder regionaler Ebene","order.best":"BELIEBTESTE","order.freeship":"KOSTENLOSER VERSAND","order.cta":"Großhandelskonditionen anfragen","order.p3save":"Mehr sparen","order.poa":"Preis auf Anfrage","order.p1price":"12–24 Boxen","order.p2price":"50–100 Boxen","order.p3price":"300+ Boxen",
       "sc.cap1.eyebrow":"Aktiver Lebensstil · Tägliche Leistung · Moderne Vitalität","sc.cap1.line1":"Aufladen.","sc.cap1.line2":"Fokus. Leisten.",
       "sc.cap2.line1":"Ein 10-g-Sachet.","sc.cap2.line2":"Alle Kraft, die Sie brauchen.","sc.cap2.sub":"Triple Force Tongkat Ali + botanische Inhaltsstoffe & Aminosäuren — Energie, Fokus & Selbstvertrauen in ~30 Minuten.",
-      "sc.cap3.eyebrow":"HALAL · GMP · Hergestellt in Malaysia","sc.cap3.line1":"Bereit, den","sc.cap3.line2":"Unterschied zu spüren?",
+      "sc.cap3.eyebrow":"HALAL · GMP · Hergestellt in Malaysia","sc.cap3.line1":"Bereit, Ihr Geschäft","sc.cap3.line2":"mit UniMax auszubauen?",
       "brand.h2a":"Universum der Kraft,","brand.h2b":"maximale Wirkung."
     }
   };
