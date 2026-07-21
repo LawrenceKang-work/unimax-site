@@ -95,14 +95,30 @@ window.clarity = window.clarity || function () { (window.clarity.q = window.clar
 
 <style>
   /* 页面专用样式 —— 该页不引 app.js,故不使用依赖 JS 的 .reveal(默认 opacity:0)。零 JS 依赖。 */
-  .wsl-hero { padding-block: clamp(60px, 9vw, 120px); background: var(--bg-tint); }
-  /* 左文右图两栏。原先右半是空的,整屏显得没做完。 */
-  .wsl-hero-grid { display: grid; grid-template-columns: 1.02fr .98fr; gap: clamp(28px, 5vw, 60px); align-items: center; }
-  .wsl-hero-media img { width: 100%; height: auto; display: block; border-radius: 18px; box-shadow: 0 26px 60px rgba(16, 24, 48, .20); }
+  /* hero 整屏背景图。选 prod-marble 是因为它左侧是大片浅色留白、产品在右 ——
+     文案压在左半边仍是深色可读,不必把整套文字反白。
+     渐变遮罩从左到右由浓转无:左端几乎不透明保证正文对比度,右端全透露出产品。 */
+  .wsl-hero {
+    padding-block: clamp(60px, 9vw, 120px);
+    background:
+      linear-gradient(100deg,
+        rgba(239,244,252,.97) 0%,
+        rgba(239,244,252,.94) 34%,
+        rgba(239,244,252,.62) 56%,
+        rgba(239,244,252,.12) 76%,
+        rgba(239,244,252,0) 100%),
+      url("/assets/prod-marble.webp") center right / cover no-repeat,
+      var(--bg-tint);
+  }
+  /* 文案限宽,右侧让给背景里的产品;窄屏遮罩转为整体压暗保证可读 */
+  .wsl-hero-copy { max-width: 640px; }
   @media (max-width: 860px) {
-    .wsl-hero-grid { grid-template-columns: 1fr; gap: 34px; }
-    /* 窄屏图片落到文案下方,不隐藏 —— 产品外观本身就是招商信息 */
-    .wsl-hero-media { order: 2; }
+    .wsl-hero {
+      background:
+        linear-gradient(180deg, rgba(239,244,252,.97) 0%, rgba(239,244,252,.90) 62%, rgba(239,244,252,.82) 100%),
+        url("/assets/prod-marble.webp") center / cover no-repeat,
+        var(--bg-tint);
+    }
   }
   .wsl-hero h1 { font-size: clamp(2.1rem, 4.6vw, 3.5rem); line-height: 1.07; letter-spacing: -0.035em; font-weight: 800; max-width: 17ch; }
   .wsl-lead { font-size: clamp(1.02rem, 1.5vw, 1.18rem); color: var(--ink-muted); max-width: 56ch; margin-top: 20px; line-height: 1.65; }
@@ -134,7 +150,21 @@ window.clarity = window.clarity || function () { (window.clarity.q = window.clar
   .wsl-step h3 { font-size: 1.06rem; margin-bottom: 8px; }
   .wsl-step p { color: var(--ink-muted); font-size: .94rem; line-height: 1.6; }
 
+  /* 认证区整屏背景图。认证是信任背书,深色更有分量;用 prod-slate 的暗调产品图。
+     ⚠️ 五个认证 logo 里 HALAL 是黑色的,直接压在深色上会糊 —— 统一加白色圆底,
+     既保证每个都清晰,视觉上也比裸贴更精致。 */
+  .wsl-certband {
+    background:
+      linear-gradient(180deg, rgba(12,16,28,.86) 0%, rgba(12,16,28,.78) 100%),
+      url("/assets/prod-slate.webp") center / cover no-repeat,
+      #0c101c;
+  }
+  .wsl-certband .eyebrow { color: var(--gold); }
+  .wsl-certband h2 { color: #fff; }
+  .wsl-certband .section-head { text-align: center; }
   .wsl-certs { display: flex; flex-wrap: wrap; gap: 30px 44px; margin-top: 34px; align-items: center; justify-content: center; }
+  .wsl-certband .wsl-cert img { background: #fff; border-radius: 50%; padding: 11px; box-sizing: content-box; }
+  .wsl-certband .wsl-cert span { color: rgba(255,255,255,.72); }
   .wsl-cert { display: flex; flex-direction: column; align-items: center; gap: 9px; }
   .wsl-cert img { height: 54px; width: auto; object-fit: contain; }
   .wsl-cert span { font-size: .78rem; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--ink-muted); }
@@ -279,12 +309,6 @@ window.clarity = window.clarity || function () { (window.clarity.q = window.clar
       <span class="wsl-note">Balasan WhatsApp hari sama · Harga atas permintaan</span>
     </div>
     </div>
-    <!-- 产品图做独立展示而非铺底背景:这张是暗调金光图,直接当 background 会压掉深色正文。
-         图本身产品居右、左侧留白,与左文右图的版式天然契合。
-         eager + fetchpriority=high:本页没有视频,这张就是 LCP 元素,不该被 lazy 推迟。 -->
-    <div class="wsl-hero-media">
-      <img src="/assets/prod-gold.webp" alt="UNI MAX retail box with 10 g sachet" width="1700" height="957" loading="eager" fetchpriority="high" />
-    </div>
     </div>
     <div class="wsl-facts">
       <div class="wsl-fact"><b>12</b><span>kotak — MOQ permulaan dicadangkan</span></div>
@@ -384,7 +408,7 @@ window.clarity = window.clarity || function () { (window.clarity.q = window.clar
 </section>
 
 <!-- ============ CERTS ============ -->
-<section class="section section--tight bg-tint">
+<section class="section section--tight wsl-certband">
   <div class="wrap">
     <div class="section-head">
       <span class="eyebrow">Pengeluaran bersijil</span>
