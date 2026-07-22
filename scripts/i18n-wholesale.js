@@ -146,6 +146,9 @@ const zh = {
       '30 包 10 克即饮独立包装。配方以三重东革阿里（黄、红、黑）为核心，搭配 12 种以上植物与营养成分，含瓜拉那、适应原与氨基酸，不额外添加糖。',
 
     '<summary>How do I get wholesale pricing?</summary>': '<summary>如何获取批发价格？</summary>',
+    '<summary>Do you deliver to Europe?</summary>': '<summary>你们配送到欧洲吗？</summary>',
+    'Yes. European orders are fulfilled through a local distribution partner, and the sales contact for this site is Germany-based. Send your country and intended volume via WhatsApp and logistics and terms will be confirmed for your market.':
+      '可以。欧洲订单由当地的分销合作伙伴交付，本站的销售联络人常驻德国。通过 WhatsApp 告知你的国家与预计订量，我们会为你的市场确认物流与条款。',
     'Pricing is quoted on request and depends on partnership level and quantity. Send an enquiry over WhatsApp with your market and intended volume, and terms will be confirmed directly.':
       '价格面议，取决于合作分级与订购数量。请通过 WhatsApp 发起询价并说明你的市场与预计采购量，条款将直接与你确认。',
 
@@ -188,6 +191,7 @@ const zh = {
     'Each box contains 30 ready-to-drink sachets of 10 g. The formula combines Triple Force Tongkat Ali (Yellow, Red and Black) with 12+ botanicals and nutrients, including guarana, adaptogens and amino acids, with no added sugar.':
       '每盒含 30 包 10 克即饮独立包装。配方以三重东革阿里（黄、红、黑）为核心，搭配 12 种以上植物与营养成分，含瓜拉那、适应原与氨基酸，不额外添加糖。',
     '"name":"How do I get wholesale pricing?"': '"name":"如何获取批发价格？"',
+    '"name":"Do you deliver to Europe?"': '"name":"你们配送到欧洲吗？"',
     'Pricing is quoted on request and depends on partnership level and quantity. Send an enquiry via WhatsApp with your market and intended volume, and terms will be confirmed directly.':
       '价格面议，取决于合作分级与订购数量。请通过 WhatsApp 发起询价并说明你的市场与预计采购量，条款将直接与你确认。',
   },
@@ -315,6 +319,9 @@ const ms = {
       '30 sachet siap minum 10 g. Formula menggabungkan Tongkat Ali Tiga Kuasa (Kuning, Merah dan Hitam) dengan 12+ botani dan nutrien, termasuk guarana, adaptogen dan asid amino, tanpa gula tambahan.',
 
     '<summary>How do I get wholesale pricing?</summary>': '<summary>Bagaimana untuk mendapatkan harga borong?</summary>',
+    '<summary>Do you deliver to Europe?</summary>': '<summary>Adakah anda menghantar ke Eropah?</summary>',
+    'Yes. European orders are fulfilled through a local distribution partner, and the sales contact for this site is Germany-based. Send your country and intended volume via WhatsApp and logistics and terms will be confirmed for your market.':
+      'Ya. Pesanan Eropah dipenuhi melalui rakan pengedaran tempatan, dan hubungan jualan untuk laman ini berpangkalan di Jerman. Hantar negara dan anggaran kuantiti anda melalui WhatsApp, dan logistik serta terma akan disahkan untuk pasaran anda.',
     'Pricing is quoted on request and depends on partnership level and quantity. Send an enquiry over WhatsApp with your market and intended volume, and terms will be confirmed directly.':
       'Harga diberikan atas permintaan dan bergantung pada tahap kerjasama serta kuantiti. Hantar pertanyaan melalui WhatsApp dengan pasaran dan jumlah yang dihasratkan, dan terma akan disahkan terus.',
 
@@ -354,6 +361,7 @@ const ms = {
     'Each box contains 30 ready-to-drink sachets of 10 g. The formula combines Triple Force Tongkat Ali (Yellow, Red and Black) with 12+ botanicals and nutrients, including guarana, adaptogens and amino acids, with no added sugar.':
       'Setiap kotak mengandungi 30 sachet siap minum 10 g. Formula menggabungkan Tongkat Ali Tiga Kuasa (Kuning, Merah dan Hitam) dengan 12+ botani dan nutrien, termasuk guarana, adaptogen dan asid amino, tanpa gula tambahan.',
     '"name":"How do I get wholesale pricing?"': '"name":"Bagaimana untuk mendapatkan harga borong?"',
+    '"name":"Do you deliver to Europe?"': '"name":"Adakah anda menghantar ke Eropah?"',
     'Pricing is quoted on request and depends on partnership level and quantity. Send an enquiry via WhatsApp with your market and intended volume, and terms will be confirmed directly.':
       'Harga diberikan atas permintaan dan bergantung pada tahap kerjasama serta kuantiti. Hantar pertanyaan melalui WhatsApp dengan pasaran dan jumlah yang dihasratkan, dan terma akan disahkan terus.',
   },
