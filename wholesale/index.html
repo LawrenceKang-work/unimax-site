@@ -93,6 +93,8 @@ window.clarity = window.clarity || function () { (window.clarity.q = window.clar
 
 <style>
   /* 页面专用样式 —— 该页不引 app.js,故不使用依赖 JS 的 .reveal(默认 opacity:0)。零 JS 依赖。 */
+  .wsl-lead{max-width:720px;margin:14px 0 6px;color:var(--ink-soft,#555);line-height:1.75}
+  .wsl-why p{max-width:720px;margin:0 0 14px;line-height:1.8}
   /* hero 整屏背景图。选 prod-marble 是因为它左侧是大片浅色留白、产品在右 ——
      文案压在左半边仍是深色可读,不必把整套文字反白。
      渐变遮罩从左到右由浓转无:左端几乎不透明保证正文对比度,右端全透露出产品。 */
@@ -416,6 +418,7 @@ window.clarity = window.clarity || function () { (window.clarity.q = window.clar
     <div class="section-head">
       <span class="eyebrow">Certified manufacturing</span>
       <h2>Made in Malaysia, in certified facilities.</h2>
+      <p class="wsl-lead">UNI MAX is produced and filled by Orient Biotech Sdn Bhd, a certified manufacturing facility in Malaysia — the certifications above are registered to this facility, so every box a partner stocks comes off a certified line. The brand and formula are owned by UniPro (Malaysia), international distribution is managed by Wellness Alliance Sdn Bhd, and European enquiries are handled by a dedicated partnership desk, Wellness Network GmbH.</p>
     </div>
     <div class="wsl-certs">
       <div class="wsl-cert"><img src="/assets/logo-halal.webp" alt="HALAL JAKIM Certified" width="219" height="218" /><span>Halal</span></div>
@@ -423,6 +426,21 @@ window.clarity = window.clarity || function () { (window.clarity.q = window.clar
       <div class="wsl-cert"><img src="/assets/logo-mesti.webp" alt="MeSTI Kementerian Kesihatan Malaysia" width="327" height="158" /><span>MeSTI</span></div>
       <div class="wsl-cert"><img src="/assets/logo-iso9001.webp" alt="ISO 9001:2015 Certified" width="256" height="256" /><span>ISO 9001</span></div>
       <div class="wsl-cert"><img src="/assets/logo-haccp.webp" alt="HACCP Food Safety Certified" width="561" height="608" /><span>HACCP</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY FINISHED (2026-07-22: AKARALI 六件套之「教育型对比段」,全部已确认事实) ============ -->
+<section class="section" id="wsl-why">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Finished product, not powder</span>
+      <h2>Not every Tongkat Ali supplier hands you a finished product.</h2>
+    </div>
+    <div class="wsl-why">
+      <p>Many Tongkat Ali suppliers in Malaysia sell raw extract powder. Buying powder means you still need to source a filling plant, design packaging, run stability tests and apply for your own certifications — months of work before the first box reaches a shelf.</p>
+      <p>UNI MAX takes the opposite route for wholesale partners and distributors: a finished, shelf-ready botanical vitality drink — 30 sachets to a box, produced on a certified line, with brand, packaging and documentation already done. You order, you receive, you sell.</p>
+      <p>That is the difference between buying an ingredient and stocking a product — and it is why resellers, gyms, clinics and regional distributors partner with UNI MAX instead of building a brand from powder.</p>
     </div>
   </div>
 </section>

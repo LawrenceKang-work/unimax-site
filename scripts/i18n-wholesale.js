@@ -147,6 +147,18 @@ const zh = {
 
     '<summary>How do I get wholesale pricing?</summary>': '<summary>如何获取批发价格？</summary>',
     '<summary>Do you deliver to Europe?</summary>': '<summary>你们配送到欧洲吗？</summary>',
+    'UNI MAX is produced and filled by Orient Biotech Sdn Bhd, a certified manufacturing facility in Malaysia — the certifications above are registered to this facility, so every box a partner stocks comes off a certified line. The brand and formula are owned by UniPro (Malaysia), international distribution is managed by Wellness Alliance Sdn Bhd, and European enquiries are handled by a dedicated partnership desk, Wellness Network GmbH.':
+      'UNI MAX 由 Orient Biotech Sdn Bhd 生产与灌装 —— 这家马来西亚认证工厂持有上方全部认证，合作伙伴上架的每一盒都来自认证产线。品牌与配方由 UniPro (Malaysia) 持有，国际分销由 Wellness Alliance Sdn Bhd 统筹，欧洲市场的询价与订单则由专属合作台 Wellness Network GmbH 对接。',
+    'Finished product, not powder':
+      '成品，而非原料粉',
+    'Not every Tongkat Ali supplier hands you a finished product.':
+      '不是每个 Tongkat Ali 供应商，都会把成品交到你手上。',
+    'Many Tongkat Ali suppliers in Malaysia sell raw extract powder. Buying powder means you still need to source a filling plant, design packaging, run stability tests and apply for your own certifications — months of work before the first box reaches a shelf.':
+      '马来西亚不少 Tongkat Ali 供应商卖的是原料提取粉。买粉意味着你还要自己找灌装厂、设计包装、做稳定性测试、申请自己的认证 —— 在第一盒货上架之前，先耗上几个月。',
+    'UNI MAX takes the opposite route for wholesale partners and distributors: a finished, shelf-ready botanical vitality drink — 30 sachets to a box, produced on a certified line, with brand, packaging and documentation already done. You order, you receive, you sell.':
+      'UNI MAX 为批发伙伴与分销商走的是相反的路线：一款完成品、可直接上架的植物活力饮 —— 每盒 30 条，产自认证产线，品牌、包装与文件全部现成。你下单、收货、开卖。',
+    'That is the difference between buying an ingredient and stocking a product — and it is why resellers, gyms, clinics and regional distributors partner with UNI MAX instead of building a brand from powder.':
+      '这就是「买原料」与「上架成品」的差别 —— 也是零售商、健身房、诊所与区域分销商选择与 UNI MAX 合作、而不是从粉末开始自建品牌的原因。',
     'Yes. European orders are fulfilled through a local distribution partner, and the sales contact for this site is Germany-based. Send your country and intended volume via WhatsApp and logistics and terms will be confirmed for your market.':
       '可以。欧洲订单由当地的分销合作伙伴交付，本站的销售联络人常驻德国。通过 WhatsApp 告知你的国家与预计订量，我们会为你的市场确认物流与条款。',
     'Pricing is quoted on request and depends on partnership level and quantity. Send an enquiry over WhatsApp with your market and intended volume, and terms will be confirmed directly.':
@@ -320,6 +332,18 @@ const ms = {
 
     '<summary>How do I get wholesale pricing?</summary>': '<summary>Bagaimana untuk mendapatkan harga borong?</summary>',
     '<summary>Do you deliver to Europe?</summary>': '<summary>Adakah anda menghantar ke Eropah?</summary>',
+    'UNI MAX is produced and filled by Orient Biotech Sdn Bhd, a certified manufacturing facility in Malaysia — the certifications above are registered to this facility, so every box a partner stocks comes off a certified line. The brand and formula are owned by UniPro (Malaysia), international distribution is managed by Wellness Alliance Sdn Bhd, and European enquiries are handled by a dedicated partnership desk, Wellness Network GmbH.':
+      'UNI MAX dihasilkan dan diisi oleh Orient Biotech Sdn Bhd — kemudahan pembuatan bertauliah di Malaysia, dan pensijilan di atas didaftarkan atas nama kemudahan ini, jadi setiap kotak yang distok rakan kongsi datang dari barisan pengeluaran yang diperakui. Jenama dan formula dimiliki oleh UniPro (Malaysia), pengedaran antarabangsa diuruskan oleh Wellness Alliance Sdn Bhd, dan pertanyaan pasaran Eropah dikendalikan oleh meja perkongsian khusus, Wellness Network GmbH.',
+    'Finished product, not powder':
+      'Produk siap, bukan serbuk',
+    'Not every Tongkat Ali supplier hands you a finished product.':
+      'Bukan semua pembekal Tongkat Ali menyerahkan produk siap kepada anda.',
+    'Many Tongkat Ali suppliers in Malaysia sell raw extract powder. Buying powder means you still need to source a filling plant, design packaging, run stability tests and apply for your own certifications — months of work before the first box reaches a shelf.':
+      'Ramai pembekal Tongkat Ali di Malaysia menjual serbuk ekstrak mentah. Membeli serbuk bermakna anda masih perlu mencari kilang pengisian, mereka bentuk pembungkusan, menjalankan ujian kestabilan dan memohon pensijilan sendiri — berbulan-bulan kerja sebelum kotak pertama sampai ke rak.',
+    'UNI MAX takes the opposite route for wholesale partners and distributors: a finished, shelf-ready botanical vitality drink — 30 sachets to a box, produced on a certified line, with brand, packaging and documentation already done. You order, you receive, you sell.':
+      'UNI MAX mengambil laluan sebaliknya untuk rakan borong dan pengedar: minuman vitaliti botani yang siap dan sedia rak — 30 sachet sekotak, dihasilkan di barisan bertauliah, dengan jenama, pembungkusan dan dokumentasi sedia ada. Anda pesan, anda terima, anda jual.',
+    'That is the difference between buying an ingredient and stocking a product — and it is why resellers, gyms, clinics and regional distributors partner with UNI MAX instead of building a brand from powder.':
+      'Itulah beza antara membeli bahan mentah dan menstok produk — dan itulah sebab peruncit, gim, klinik dan pengedar wilayah memilih bekerjasama dengan UNI MAX daripada membina jenama dari serbuk.',
     'Yes. European orders are fulfilled through a local distribution partner, and the sales contact for this site is Germany-based. Send your country and intended volume via WhatsApp and logistics and terms will be confirmed for your market.':
       'Ya. Pesanan Eropah dipenuhi melalui rakan pengedaran tempatan, dan hubungan jualan untuk laman ini berpangkalan di Jerman. Hantar negara dan anggaran kuantiti anda melalui WhatsApp, dan logistik serta terma akan disahkan untuk pasaran anda.',
     'Pricing is quoted on request and depends on partnership level and quantity. Send an enquiry over WhatsApp with your market and intended volume, and terms will be confirmed directly.':

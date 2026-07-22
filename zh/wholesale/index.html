@@ -96,6 +96,8 @@ window.clarity = window.clarity || function () { (window.clarity.q = window.clar
 
 <style>
   /* 页面专用样式 —— 该页不引 app.js,故不使用依赖 JS 的 .reveal(默认 opacity:0)。零 JS 依赖。 */
+  .wsl-lead{max-width:720px;margin:14px 0 6px;color:var(--ink-soft,#555);line-height:1.75}
+  .wsl-why p{max-width:720px;margin:0 0 14px;line-height:1.8}
   /* hero 整屏背景图。选 prod-marble 是因为它左侧是大片浅色留白、产品在右 ——
      文案压在左半边仍是深色可读,不必把整套文字反白。
      渐变遮罩从左到右由浓转无:左端几乎不透明保证正文对比度,右端全透露出产品。 */
@@ -419,6 +421,7 @@ window.clarity = window.clarity || function () { (window.clarity.q = window.clar
     <div class="section-head">
       <span class="eyebrow">认证生产</span>
       <h2>马来西亚制造，于认证设施内生产。</h2>
+      <p class="wsl-lead">UNI MAX 由 Orient Biotech Sdn Bhd 生产与灌装 —— 这家马来西亚认证工厂持有上方全部认证，合作伙伴上架的每一盒都来自认证产线。品牌与配方由 UniPro (Malaysia) 持有，国际分销由 Wellness Alliance Sdn Bhd 统筹，欧洲市场的询价与订单则由专属合作台 Wellness Network GmbH 对接。</p>
     </div>
     <div class="wsl-certs">
       <div class="wsl-cert"><img src="/assets/logo-halal.webp" alt="HALAL JAKIM 认证" width="219" height="218" /><span>Halal</span></div>
@@ -426,6 +429,21 @@ window.clarity = window.clarity || function () { (window.clarity.q = window.clar
       <div class="wsl-cert"><img src="/assets/logo-mesti.webp" alt="MeSTI 马来西亚卫生部" width="327" height="158" /><span>MeSTI</span></div>
       <div class="wsl-cert"><img src="/assets/logo-iso9001.webp" alt="ISO 9001:2015 认证" width="256" height="256" /><span>ISO 9001</span></div>
       <div class="wsl-cert"><img src="/assets/logo-haccp.webp" alt="HACCP 食品安全认证" width="561" height="608" /><span>HACCP</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY FINISHED (2026-07-22: AKARALI 六件套之「教育型对比段」,全部已确认事实) ============ -->
+<section class="section" id="wsl-why">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">成品，而非原料粉</span>
+      <h2>不是每个 Tongkat Ali 供应商，都会把成品交到你手上。</h2>
+    </div>
+    <div class="wsl-why">
+      <p>马来西亚不少 Tongkat Ali 供应商卖的是原料提取粉。买粉意味着你还要自己找灌装厂、设计包装、做稳定性测试、申请自己的认证 —— 在第一盒货上架之前，先耗上几个月。</p>
+      <p>UNI MAX 为批发伙伴与分销商走的是相反的路线：一款完成品、可直接上架的植物活力饮 —— 每盒 30 条，产自认证产线，品牌、包装与文件全部现成。你下单、收货、开卖。</p>
+      <p>这就是「买原料」与「上架成品」的差别 —— 也是零售商、健身房、诊所与区域分销商选择与 UNI MAX 合作、而不是从粉末开始自建品牌的原因。</p>
     </div>
   </div>
 </section>
