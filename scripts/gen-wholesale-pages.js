@@ -133,13 +133,13 @@ for (const lang of ['zh', 'ms']) {
 
   /* 3) head 元数据 */
   h = replaceExact(h,
-    '<title>Tongkat Ali Drink Wholesale &amp; Distribution | UNI MAX</title>',
+    '<title>Tongkat Ali Drink Wholesale Malaysia &amp; Distribution | UNI MAX</title>',
     `<title>${esc(D.meta.title)}</title>`, 'once', `${lang}/title`);
   h = replaceExact(h,
     '<meta name="description" content="Halal-certified ready-to-drink Tongkat Ali vitality drink, retail-ready in 10 g × 30 sachet boxes. Suggested MOQ from 12 boxes. Made in Malaysia." />',
     `<meta name="description" content="${escAttr(D.meta.desc)}" />`, 'once', `${lang}/desc`);
   h = replaceExact(h,
-    '<meta property="og:title" content="Tongkat Ali Drink Wholesale &amp; Distribution — UNI MAX" />',
+    '<meta property="og:title" content="Tongkat Ali Drink Wholesale Malaysia &amp; Distribution — UNI MAX" />',
     `<meta property="og:title" content="${escAttr(D.meta.ogTitle)}" />`, 'once', `${lang}/ogTitle`);
   h = replaceExact(h,
     '<meta property="og:description" content="Halal-certified ready-to-drink Tongkat Ali vitality drink in retail-ready boxes. Partnership levels from stockist to regional distributor. Made in Malaysia." />',
