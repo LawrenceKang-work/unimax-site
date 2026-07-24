@@ -1128,15 +1128,20 @@ window.clarity = window.clarity || function () { (window.clarity.q = window.clar
 <script src="app.js?v=37" defer></script>
 <!-- 顾客自助编辑层：仅在网址带正确密钥（?edit=KEY）时激活，普通访客零影响 -->
 <script>
-/* editor.js 有 87KB,只有授权者用得上(?edit=密钥 / #密钥 / 本机已授权)。
-   普通访客不再下载。判定与 editor.js 内部的门禁保持一致;
+/* editor.js 有 87KB,只有授权者用得上。普通访客不再下载。
+
+   ⚠️ 2026-07-21 安全修复:原先只要 localStorage 里存过密钥就加载,
+   于是客户在自己浏览器上开过一次带密钥的网址后,以后访问**正式域名**
+   也会一直冒出编辑工具栏 —— 客户当成漏洞报了,合理。
+   现在改为**网址里必须带密钥**才加载,localStorage 只用于校验(见 editor.js 门禁),
+   不再单独构成加载条件。这样普通访客与「用过编辑模式的浏览器」看到的都是干净页面。
+
    站内锚点(#faq/#order 等)长度短,不会误触发。 */
 (function () {
-  var stored = false;
-  try { stored = !!localStorage.getItem("fbedit_unimax"); } catch (e) { }
-  if (location.search.indexOf("edit=") === -1 && location.hash.slice(1).length < 12 && !stored) return;
+  var hasUrlKey = location.search.indexOf("edit=") !== -1 || location.hash.slice(1).length >= 12;
+  if (!hasUrlKey) return;
   var s = document.createElement("script");
-  s.src = "/editor.js?v=34"; s.defer = true;
+  s.src = "/editor.js?v=35"; s.defer = true;
   document.body.appendChild(s);
 })();
 </script>

@@ -17,7 +17,12 @@
   var TKEY = "fbedit_unimax";
   var urlKey = new URLSearchParams(location.search).get("edit") || location.hash.replace(/^#/, "");
   var storedKey = ""; try { storedKey = localStorage.getItem(TKEY) || ""; } catch (e) { }
-  if (!urlKey && !storedKey) return;                        // 无密钥候选 → 普通访客零影响
+  /* ⚠️ 2026-07-21 安全修复:必须**网址里带密钥**才进入编辑层。
+     原先 storedKey 单独就能放行,导致客户在自己浏览器上开过一次带密钥的网址后,
+     以后访问正式域名也一直冒出编辑工具栏(客户当成漏洞报了,合理)。
+     storedKey 保留用途:同一次会话里在站内跳转(如首页 → /wholesale/)时,
+     URL 上的密钥仍在,storedKey 只作为校验来源之一,不再单独构成入口。 */
+  if (!urlKey) return;                                      // 网址无密钥 → 普通访客零影响
   var EDIT_KEY = "";                                         // 校验通过后置为明文（发布 token 用；仅存 URL/localStorage，不进源码）
   var reviewGate = false;
   try {
@@ -171,7 +176,23 @@
     else document.addEventListener("DOMContentLoaded", init);
   });
 
+  /* 授权后给站内链接带上密钥。
+     密钥不再存 localStorage 单独放行(见上方门禁的安全修复)后,点导航跳到别的页面
+     密钥就丢了、编辑模式会断。这里在链接上补 ?edit=KEY,让客户在编辑期间可以正常
+     浏览整站。只处理**同源的页面跳转**,纯锚点(#faq)不动 —— 它不重新加载页面。 */
+  function carryKeyOnLinks() {
+    document.querySelectorAll('a[href]').forEach(function (a) {
+      var href = a.getAttribute("href") || "";
+      if (!href || href.charAt(0) === "#") return;                 // 纯锚点:同页跳转,密钥还在
+      if (/^(https?:)?\/\//i.test(href) && href.indexOf(location.host) === -1) return;  // 站外
+      if (/^(mailto:|tel:|javascript:)/i.test(href)) return;
+      if (href.indexOf("edit=") !== -1) return;                    // 已带
+      a.setAttribute("href", href + (href.indexOf("?") === -1 ? "?" : "&") + "edit=" + encodeURIComponent(EDIT_KEY));
+    });
+  }
+
   function init() {
+    carryKeyOnLinks();
     annotate(); baseline(); injectStyles(); buildUI(); bindEvents();
     applyEdits(); applyFbPreviews(); watchLang(); fetchCloudRounds();
     setTimeout(showWelcome, 900);
