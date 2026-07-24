@@ -719,7 +719,9 @@ ul { list-style: none; }
    Footer
    ============================================================ */
 .footer { background: var(--bg-alt); border-top: 1px solid var(--line); padding-block: clamp(48px,6vw,72px) 32px; }
-.footer-top { display:grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr; gap: 36px; }
+/* about 列更宽,其余四列(explore/product/guides/contact)等分。
+   加了 guides 后从 4 列变 5 列 —— guides 的链接文本较长,给它 1.3fr 免得频繁折行。 */
+.footer-top { display:grid; grid-template-columns: 1.5fr 1fr 1fr 1.3fr 1.1fr; gap: 32px; }
 .footer .brand { color: var(--ink); margin-bottom: 16px; }
 .footer-about p { color: var(--ink-muted); font-size: 14px; max-width: 34ch; }
 .footer-social { display:flex; gap:10px; margin-top: 18px; }
