@@ -133,7 +133,7 @@ for (const lang of ['zh', 'ms']) {
 
   /* 3) head 元数据 */
   h = replaceExact(h,
-    '<title>Tongkat Ali Drink Wholesale Malaysia &amp; Distribution | UNI MAX</title>',
+    '<title>Halal Vitality Shot Wholesale — Malaysia &amp; Distribution | UNI MAX</title>',
     `<title>${esc(D.meta.title)}</title>`, 'once', `${lang}/title`);
   h = replaceExact(h,
     '<meta name="description" content="Halal-certified ready-to-drink Tongkat Ali vitality drink, retail-ready in 10 g × 30 sachet boxes. Suggested MOQ from 12 boxes. Made in Malaysia." />',
