@@ -1087,7 +1087,14 @@
       /* prefill the wholesale enquiry on every WhatsApp CTA (orderCta sets its own tier-specific text) */
       if (a.id !== "orderCta" && a.href.indexOf("text=") === -1) a.href = waUrl(null);
       a.addEventListener("click", function () {
-        track("whatsapp_click", { cta_location: ctaLoc(a), link_url: a.href });
+        /* link_location/link_text 是跨站统一的标准字段(2026-08-21 定,和 INFIBOOTH/Leekko 同款)——
+           cta_location 是这个站原有的字段名,保留不删,两个一起发,不影响历史数据连续性。 */
+        track("whatsapp_click", {
+          cta_location: ctaLoc(a),
+          link_url: a.href,
+          link_location: ctaLoc(a),
+          link_text: (a.innerText || a.textContent || "").trim().slice(0, 60),
+        });
       });
     });
     document.querySelectorAll('#packs input[name="pack"]').forEach(function (inp) {
