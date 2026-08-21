@@ -851,15 +851,19 @@
 
     /* Wholesale partnership enquiry — prefilled WhatsApp message (per client brief) */
     var TIER_LABELS = { retail: "Retail Stockist", wholesale: "Wholesale Partner", distributor: "Regional Distributor" };
-    function b2bMessage(tier) {
+    function b2bMessage(tier, loc) {
       var interested = tier
         ? "Interested in: " + TIER_LABELS[tier]
         : "Interested in: Retail Stockist / Wholesale Partner / Regional Distributor";
-      return "Hi, I'm interested in a UNI MAX wholesale partnership in Europe."
+      var msg = "Hi, I'm interested in a UNI MAX wholesale partnership in Europe."
         + "\n\nCountry:\nBusiness type:\nEstimated order quantity:\n" + interested
         + "\n\nPlease share more information about wholesale pricing, MOQ, and partnership opportunities.";
+      /* 归因(2026-08-21 补,seo-geo-standards 铁律「归因先于一切」):不同入口的开场白必须能分辨,
+         不许全站共用一句——否则 Jack 从消息内容本身分不出顾客是从哪个入口点进来的。零删除,纯增补。 */
+      if (loc) msg += "\n\n(Sent from: " + loc + ")";
+      return msg;
     }
-    function waUrl(tier) { return "https://wa.me/491736986625?text=" + encodeURIComponent(b2bMessage(tier)); }
+    function waUrl(tier, loc) { return "https://wa.me/491736986625?text=" + encodeURIComponent(b2bMessage(tier, loc)); }
 
     /* partnership level selector */
     var packEls = document.querySelectorAll('#packs input[name="pack"]');
@@ -1083,9 +1087,22 @@
       if (el.closest(".footer")) return "footer";
       var s = el.closest("section"); return (s && s.id) ? s.id : "other";
     }
+    /* 人话化 ctaLoc 的代码,塞进 WhatsApp 开场白给 Jack 看(归因,不是给 GA4 用的那份 —— 那份已经有 link_location)。
+       未知/未来新增的 section id 走通用兜底,不用每加一个区块就回来改这张表。 */
+    var LOC_LABELS = {
+      sticky: "Sticky bar", nav: "Header menu", drawer: "Mobile menu", footer: "Footer", other: "Page",
+      overview: "Overview section", "why-partner": "Why partner section", "partner-benefits": "Partner benefits section",
+      "marketing-support": "Marketing support section", "eu-desk": "EU desk section", company: "Company section",
+      order: "Order section", faq: "FAQ section",
+    };
+    function locLabel(code) {
+      if (LOC_LABELS[code]) return LOC_LABELS[code];
+      return code.charAt(0).toUpperCase() + code.slice(1).replace(/-/g, " ") + " section";
+    }
     document.querySelectorAll('a[href*="wa.me/"]').forEach(function (a) {
-      /* prefill the wholesale enquiry on every WhatsApp CTA (orderCta sets its own tier-specific text) */
-      if (a.id !== "orderCta" && a.href.indexOf("text=") === -1) a.href = waUrl(null);
+      /* prefill the wholesale enquiry on every WhatsApp CTA (orderCta sets its own tier-specific text);
+         each entry point now gets a distinct "(Sent from: ...)" line so Jack can tell them apart. */
+      if (a.id !== "orderCta" && a.href.indexOf("text=") === -1) a.href = waUrl(null, locLabel(ctaLoc(a)));
       a.addEventListener("click", function () {
         /* link_location/link_text 是跨站统一的标准字段(2026-08-21 定,和 INFIBOOTH/Leekko 同款)——
            cta_location 是这个站原有的字段名,保留不删,两个一起发,不影响历史数据连续性。 */
