@@ -138,6 +138,10 @@ window.clarity = window.clarity || function () { (window.clarity.q = window.clar
     .wsl-nav::-webkit-scrollbar{display:none}
     .wsl-nav a{white-space:nowrap;font-size:14px;padding-block:8px}
     .nav{gap:14px}
+    /* 语言切换在移动端曾完全消失 —— .lang 被全局 styles.css(.nav-right .lang{display:none})
+       在 ≤760px 隐藏,本页无 drawer 承接,头部找不到切换入口,唯一入口只剩底部 footer。
+       用更高特异度的选择器覆盖回来,放回 nav-right 最右侧,和横向滚动的导航共享这一行。 */
+    .nav-right .lang.wsl-lang{display:block;flex:none}
   }
   @media (max-width: 460px) {
     .wsl-nav{-webkit-mask-image:linear-gradient(to right,#000 calc(100% - 24px),transparent);mask-image:linear-gradient(to right,#000 calc(100% - 24px),transparent)}

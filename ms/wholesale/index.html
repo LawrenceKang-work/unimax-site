@@ -198,11 +198,12 @@ window.clarity = window.clarity || function () { (window.clarity.q = window.clar
   .wsl-lang > summary::-webkit-details-marker { display: none; }
   .wsl-lang[open] > .lang-menu { display: block; }
 
-  /* footer 语言入口 —— 平铺而非下拉:移动端 header 的 .lang 被 styles.css 隐藏
-     (跟随主页规则),footer 这组便是移动端唯一的语言出口,不能再藏进折叠层。 */
+  /* footer 语言入口 —— 平铺而非下拉,作为头部下拉之外的第二入口(不必打开菜单、
+     一眼看到全部六语)。header 的 .lang 之前被 styles.css 隐藏时这里曾是移动端唯一
+     出口,现在头部下拉已修复能同时显示,footer 这组保留作为不用点开菜单的快捷方式。 */
   .wsl-flang { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
-  /* padding 取 10px 而非 7px:移动端这组是唯一的语言出口,把触摸目标从 37px 抬到 43px
-     (贴近 44x44 建议值);横向 padding 不变,故 375px 下仍是不换行的单行。 */
+  /* padding 取 10px 而非 7px,把触摸目标从 37px 抬到 43px(贴近 44x44 建议值);
+     横向 padding 不变,故 375px 下仍是不换行的单行。 */
   .wsl-flang .lang-btn { padding: 10px 13px; font-size: 13px; }
   .wsl-flang .lang-btn[aria-current="page"] { border-color: var(--navy); color: var(--navy); font-weight: 700; }
 
@@ -231,6 +232,10 @@ window.clarity = window.clarity || function () { (window.clarity.q = window.clar
     .wsl-nav::-webkit-scrollbar { display: none; }
     .wsl-nav a { white-space: nowrap; font-size: 14px; padding-block: 8px; }
     .nav { gap: 14px; }               /* 桌面的 28px 在窄屏太奢侈,让给导航项 */
+    /* 语言切换在移动端曾完全消失 —— .lang 被全局 styles.css(.nav-right .lang{display:none})
+       在 ≤760px 隐藏,本页无 drawer 承接,头部找不到切换入口,唯一入口只剩底部 footer。
+       用更高特异度的选择器覆盖回来,放回 nav-right 最右侧,和横向滚动的导航共享这一行。 */
+    .nav-right .lang.wsl-lang { display: block; flex: none; }
   }
   /* 右缘渐隐 —— 横向滚动唯一的可发现性线索。断点取 460px 是算出来的:
      导航内容实测 335px,加 logo 侧 86px 与右侧 36px = 457px,窄于此才真的溢出。
