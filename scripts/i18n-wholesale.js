@@ -135,8 +135,8 @@ const zh = {
       '零售就绪的成品 —— 10 克独立包装，30 包一品牌盒。UNI MAX 不以散装提取物或原料形式出售，因此合作伙伴无需额外分装或重新配方即可上架。',
 
     '<summary>What certifications does UNI MAX hold?</summary>': '<summary>UNI MAX 持有哪些认证？</summary>',
-    'UNI MAX is manufactured in facilities certified for HALAL (JAKIM), GMP (Good Manufacturing Practice), MeSTI (Kementerian Kesihatan Malaysia), ISO 9001:2015 and HACCP.':
-      'UNI MAX 在持有 HALAL（JAKIM）、GMP（良好生产规范）、MeSTI（马来西亚卫生部）、ISO 9001:2015 与 HACCP 认证的设施中生产。',
+    'UNI MAX is manufactured in facilities certified for HALAL (JAKIM), GMP (Good Manufacturing Practice), MeSTI (Kementerian Kesihatan Malaysia), ISO 9001:2015 and HACCP — <a href="/guides/are-energy-drinks-halal/" style="color:var(--navy);font-weight:600">see what a halal certification actually covers</a>.':
+      'UNI MAX 在持有 HALAL（JAKIM）、GMP（良好生产规范）、MeSTI（马来西亚卫生部）、ISO 9001:2015 与 HACCP 认证的设施中生产 —— 可查看<a href="/guides/are-energy-drinks-halal/" style="color:var(--navy);font-weight:600">清真认证到底涵盖什么</a>（英文页面）。',
 
     '<summary>Where is UNI MAX manufactured?</summary>': '<summary>UNI MAX 在哪里生产？</summary>',
     '<p>In Malaysia, in certified manufacturing facilities.</p>': '<p>在马来西亚，于认证生产设施内。</p>',
@@ -320,8 +320,8 @@ const ms = {
       'Produk siap dan sedia runcit — sachet 10 g dalam kotak berjenama 30 sachet. UNI MAX tidak dijual sebagai ekstrak pukal atau bahan mentah, jadi rakan kongsi boleh meletakkannya di rak tanpa pembungkusan tambahan atau formulasi semula.',
 
     '<summary>What certifications does UNI MAX hold?</summary>': '<summary>Apakah pensijilan yang dipegang UNI MAX?</summary>',
-    'UNI MAX is manufactured in facilities certified for HALAL (JAKIM), GMP (Good Manufacturing Practice), MeSTI (Kementerian Kesihatan Malaysia), ISO 9001:2015 and HACCP.':
-      'UNI MAX dihasilkan di kemudahan yang disahkan untuk HALAL (JAKIM), GMP (Amalan Pengilangan Baik), MeSTI (Kementerian Kesihatan Malaysia), ISO 9001:2015 dan HACCP.',
+    'UNI MAX is manufactured in facilities certified for HALAL (JAKIM), GMP (Good Manufacturing Practice), MeSTI (Kementerian Kesihatan Malaysia), ISO 9001:2015 and HACCP — <a href="/guides/are-energy-drinks-halal/" style="color:var(--navy);font-weight:600">see what a halal certification actually covers</a>.':
+      'UNI MAX dihasilkan di kemudahan yang disahkan untuk HALAL (JAKIM), GMP (Amalan Pengilangan Baik), MeSTI (Kementerian Kesihatan Malaysia), ISO 9001:2015 dan HACCP — lihat <a href="/guides/are-energy-drinks-halal/" style="color:var(--navy);font-weight:600">apa yang sebenarnya diliputi oleh pensijilan halal</a> (dalam Bahasa Inggeris).',
 
     '<summary>Where is UNI MAX manufactured?</summary>': '<summary>Di manakah UNI MAX dihasilkan?</summary>',
     '<p>In Malaysia, in certified manufacturing facilities.</p>': '<p>Di Malaysia, di kemudahan pengeluaran bersijil.</p>',
