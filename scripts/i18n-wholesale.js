@@ -159,8 +159,8 @@ const zh = {
       'UNI MAX 为批发伙伴与分销商走的是相反的路线：一款完成品、可直接上架的植物活力饮 —— 每盒 30 条，产自认证产线，品牌、包装与文件全部现成。你下单、收货、开卖。',
     'That is the difference between buying an ingredient and stocking a product — and it is why resellers, gyms, clinics and regional distributors partner with UNI MAX instead of building a brand from powder.':
       '这就是「买原料」与「上架成品」的差别 —— 也是零售商、健身房、诊所与区域分销商选择与 UNI MAX 合作、而不是从粉末开始自建品牌的原因。',
-    'Yes. European orders are fulfilled through a local distribution partner, and the sales contact for this site is Germany-based. Send your country and intended volume via WhatsApp and logistics and terms will be confirmed for your market.':
-      '可以。欧洲订单由当地的分销合作伙伴交付，本站的销售联络人常驻德国。通过 WhatsApp 告知你的国家与预计订量，我们会为你的市场确认物流与条款。',
+    'Yes. European orders are fulfilled through a local distribution partner, and the sales contact for this site is Germany-based. See the <a href="/for-distributors-europe/" style="color:var(--navy);font-weight:600">European Partnership Desk</a> for how EU distribution works, or send your country and intended volume via WhatsApp and logistics and terms will be confirmed for your market.':
+      '可以。欧洲订单由当地的分销合作伙伴交付，本站的销售联络人常驻德国。可查看<a href="/for-distributors-europe/" style="color:var(--navy);font-weight:600">欧洲合作台</a>（英文页面）了解欧洲分销的具体运作方式，或直接通过 WhatsApp 告知你的国家与预计订量，我们会为你的市场确认物流与条款。',
     'Pricing is quoted on request and depends on partnership level and quantity. Send an enquiry over WhatsApp with your market and intended volume, and terms will be confirmed directly.':
       '价格面议，取决于合作分级与订购数量。请通过 WhatsApp 发起询价并说明你的市场与预计采购量，条款将直接与你确认。',
 
@@ -344,8 +344,8 @@ const ms = {
       'UNI MAX mengambil laluan sebaliknya untuk rakan borong dan pengedar: minuman vitaliti botani yang siap dan sedia rak — 30 sachet sekotak, dihasilkan di barisan bertauliah, dengan jenama, pembungkusan dan dokumentasi sedia ada. Anda pesan, anda terima, anda jual.',
     'That is the difference between buying an ingredient and stocking a product — and it is why resellers, gyms, clinics and regional distributors partner with UNI MAX instead of building a brand from powder.':
       'Itulah beza antara membeli bahan mentah dan menstok produk — dan itulah sebab peruncit, gim, klinik dan pengedar wilayah memilih bekerjasama dengan UNI MAX daripada membina jenama dari serbuk.',
-    'Yes. European orders are fulfilled through a local distribution partner, and the sales contact for this site is Germany-based. Send your country and intended volume via WhatsApp and logistics and terms will be confirmed for your market.':
-      'Ya. Pesanan Eropah dipenuhi melalui rakan pengedaran tempatan, dan hubungan jualan untuk laman ini berpangkalan di Jerman. Hantar negara dan anggaran kuantiti anda melalui WhatsApp, dan logistik serta terma akan disahkan untuk pasaran anda.',
+    'Yes. European orders are fulfilled through a local distribution partner, and the sales contact for this site is Germany-based. See the <a href="/for-distributors-europe/" style="color:var(--navy);font-weight:600">European Partnership Desk</a> for how EU distribution works, or send your country and intended volume via WhatsApp and logistics and terms will be confirmed for your market.':
+      'Ya. Pesanan Eropah dipenuhi melalui rakan pengedaran tempatan, dan hubungan jualan untuk laman ini berpangkalan di Jerman. Lihat <a href="/for-distributors-europe/" style="color:var(--navy);font-weight:600">Meja Kerjasama Eropah</a> (dalam Bahasa Inggeris) untuk cara pengedaran EU berfungsi, atau hantar negara dan anggaran kuantiti anda melalui WhatsApp, dan logistik serta terma akan disahkan untuk pasaran anda.',
     'Pricing is quoted on request and depends on partnership level and quantity. Send an enquiry over WhatsApp with your market and intended volume, and terms will be confirmed directly.':
       'Harga diberikan atas permintaan dan bergantung pada tahap kerjasama serta kuantiti. Hantar pertanyaan melalui WhatsApp dengan pasaran dan jumlah yang dihasratkan, dan terma akan disahkan terus.',
 
