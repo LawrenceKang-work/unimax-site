@@ -1093,7 +1093,7 @@
       sticky: "Sticky bar", nav: "Header menu", drawer: "Mobile menu", footer: "Footer", other: "Page",
       overview: "Overview section", "why-partner": "Why partner section", "partner-benefits": "Partner benefits section",
       "marketing-support": "Marketing support section", "eu-desk": "EU desk section", company: "Company section",
-      order: "Order section", faq: "FAQ section",
+      order: "Order section", faq: "FAQ section", brandband: "Brand statement section", "cta-band": "Final CTA section",
     };
     function locLabel(code) {
       if (LOC_LABELS[code]) return LOC_LABELS[code];
