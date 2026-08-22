@@ -212,12 +212,15 @@ for (const slug of slugsWithDict) {
     h = head + body;
 
     /* 11) 站内互链后处理:/guides/other-slug/ 与 /wholesale/ 按目标语言是否已有译版决定去向;
-          /# 首页锚点与裸 / 加语言前缀。顺序:先长(/guides/.../、/wholesale/)后短(/#、/)。
+          /for-distributors-europe/ 五语均已有真实译版(2026-08-22),直接解析;
+          /# 首页锚点与裸 / 加语言前缀。顺序:先长(/guides/.../、/wholesale/、
+          /for-distributors-europe/)后短(/#、/)。
           ⚠️ 跳过指向本篇自己的 /guides/${slug}/ —— 那是语言菜单里"English"那一项,
           buildLangMenu 已经正确定案为英文源页,这里再扫一遍会把它错改成当前目标语言
           (第一次真实踩到:zh 版菜单里的 English 选项被错误指回了 zh 版自己)。 */
     h = h.replace(/href="\/guides\/([a-z0-9-]+)\/"/g, (m, s) => s === slug ? m : `href="${guideTarget(s, lang)}"`);
     h = h.replace(/href="\/wholesale\/"/g, `href="${wholesaleTarget(lang)}"`);
+    h = h.replace(/href="\/for-distributors-europe\/"/g, `href="${lang === 'en' ? '/for-distributors-europe/' : `/${lang}/for-distributors-europe/`}"`);
     h = h.split('href="/#').join(`href="${home(lang)}#`);
     h = replaceExact(h, '<a href="/" class="brand logo"', `<a href="${home(lang)}" class="brand logo"`, 'once', `${slug}/${lang}/brand`);
     h = replaceExact(h, '<a href="/" class="wsl-back">', `<a href="${home(lang)}" class="wsl-back">`, 'once', `${slug}/${lang}/back`);
