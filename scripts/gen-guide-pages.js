@@ -35,8 +35,8 @@ const LANG_SHORT = { en: 'EN', zh: '中文', ms: 'BM', pl: 'PL', nl: 'NL', de: '
 const ALL_LANGS = ['en', 'zh', 'ms', 'pl', 'nl', 'de'];
 const TARGET_LANGS = ['zh', 'ms', 'pl', 'nl', 'de'];
 
-/* wholesale 目前只有 zh/ms 译版(pl/nl/de 未做 —— 欧盟合规顾虑未澄清前不放大,见 CLAUDE.md) */
-const WHOLESALE_LANGS = ['en', 'zh', 'ms'];
+/* wholesale 五语译版均已上线(2026-08-22,用户已知悉 EU Novel Food 合规风险并明确授权,见 CLAUDE.md) */
+const WHOLESALE_LANGS = ['en', 'zh', 'ms', 'pl', 'nl', 'de'];
 
 /* ---------- 发现:哪些 guide 已有译文字典、已有哪些语言的成品页 ---------- */
 const guidesDir = path.join(ROOT, 'guides');

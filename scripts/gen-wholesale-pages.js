@@ -25,9 +25,10 @@ const ROOT = path.resolve(__dirname, '..');
 const ORIGIN = 'https://unimaxofficial.com';
 const DICT = require('./i18n-wholesale.js');
 
-/* 有 wholesale 译版的语言。pl/nl/de 暂缺 —— 它们在语言菜单里指向各自首页。
-   ⚠️ 增补欧盟语言前先看 CLAUDE.md 的 Novel Food 合规条款。 */
-const WSL_LANGS = ['en', 'zh', 'ms'];
+/* 有 wholesale 译版的语言。2026-08-22 补 pl/nl/de —— 用户已知悉并明确授权
+   "wholesale 页的 pl/nl/de...一起做,合规风险已知悉不拦"(EU Novel Food 风险见 CLAUDE.md,
+   不再是拦截项)。 */
+const WSL_LANGS = ['en', 'zh', 'ms', 'pl', 'nl', 'de'];
 const HREF_LANG = { en: 'en', zh: 'zh-Hans', ms: 'ms', pl: 'pl', nl: 'nl', de: 'de' };
 const LANG_FULL = { en: 'English', zh: '中文', ms: 'Bahasa Melayu', pl: 'Polski', nl: 'Nederlands', de: 'Deutsch' };
 const LANG_SHORT = { en: 'EN', zh: '中文', ms: 'BM', pl: 'PL', nl: 'NL', de: 'DE' };
@@ -106,7 +107,7 @@ if (!src.includes('rel="alternate" hreflang="zh-Hans"')) {
   warnings.push('英文源页缺 hreflang alternate 组(zh/ms 版已存在,英文页需回指)');
 }
 
-for (const lang of ['zh', 'ms']) {
+for (const lang of ['zh', 'ms', 'pl', 'nl', 'de']) {
   const D = DICT[lang];
   let h = src;
 

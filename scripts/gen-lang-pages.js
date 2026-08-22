@@ -219,10 +219,10 @@ function buildPage(srcHtml, lang) {
   h = rebuildPersonaClones(h, lang);
 
   // 5.5) /wholesale/ 内链 → 该语言的译版(若有)
-  //      zh/ms 已有 wholesale 译版(scripts/gen-wholesale-pages.js 产出),语言页应链到译版
-  //      而非英文页;pl/nl/de 暂无译版,保持指向英文 /wholesale/。
+  //      2026-08-22:zh/ms/pl/nl/de 五语均已有 wholesale 译版(scripts/gen-wholesale-pages.js 产出),
+  //      语言页全部链到译版而非英文页。
   //      ⚠️ 这份名单必须与 gen-wholesale-pages.js 的 WSL_LANGS 一致 —— 加语言时两边都改。
-  if (['zh', 'ms'].includes(lang)) {
+  if (['zh', 'ms', 'pl', 'nl', 'de'].includes(lang)) {
     h = h.replace(/href="\/wholesale\/"/g, `href="/${lang}/wholesale/"`);
   }
 
