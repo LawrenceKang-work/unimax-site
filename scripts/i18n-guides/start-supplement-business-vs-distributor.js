@@ -345,7 +345,7 @@ nl: {
 
 de: {
   meta: {
-    title: 'Nahrungsergänzungsmittel-Firma Gründen oder Vertriebspartner Werden? | UNI MAX',
+    title: 'Supplement-Firma Gründen oder Vertriebspartner Werden? | UNI MAX',
     desc: 'Der Aufbau einer Nahrungsergänzungsmittelmarke dauert Monate und erfordert erhebliches Kapital. Der Vertrieb einer etablierten, zertifizierten Marke beginnt bei einem Dutzend Boxen. Die vier Wege in das Nahrungsergänzungsmittelgeschäft im Vergleich — Kosten, Risiken und wer zu welchem passt.',
     ogTitle: 'Nahrungsergänzungsmittel-Firma Gründen oder Vertriebspartner Werden? — UNI MAX',
     ogDesc: 'Die vier Wege in das Nahrungsergänzungsmittelgeschäft im Vergleich — eigene Marke, Private Label, Vertrieb und Dropshipping — mit ehrlichen Kosten und Risiken.',

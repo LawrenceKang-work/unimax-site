@@ -389,7 +389,7 @@ nl: {
 
 de: {
   meta: {
-    title: 'Großhandelspräparate zum Wiederverkauf: der Einkaufsratgeber | UNI MAX',
+    title: 'Präparate-Großhandel zum Wiederverkauf: Einkaufsratgeber | UNI MAX',
     desc: 'Wie der Kauf von Großhandels-Nahrungsergänzungsmitteln zum Wiederverkauf funktioniert: typische Margenbereiche, die drei Arten von Lieferanten, wo man sie findet, welche MOQs zu erwarten sind und wie man die Qualität vor der ersten Großbestellung überprüft.',
     ogTitle: 'Großhandelspräparate zum Wiederverkauf: der Einkaufsratgeber — UNI MAX',
     ogDesc: 'Margenbereiche, Lieferantentypen, wo man Großhandelslieferanten für Nahrungsergänzungsmittel findet, typische MOQs und wie man die Qualität vor einer ersten Großbestellung überprüft.',

@@ -222,7 +222,7 @@ ms: {
 pl: {
   shared: shared('pl'),
   meta: {
-    title: 'Dostawca Halal Energy Shot dla Europy — Dystrybuuj UNI MAX | UNI MAX',
+    title: 'Halal Energy Shot dla Europy — Dystrybuuj UNI MAX | UNI MAX',
     desc: 'Dystrybuuj gotowy, certyfikowany halal napój witalny z Tongkat Ali na swoim rynku europejskim. Pudełka gotowe do sprzedaży, gotowa marka i europejskie biuro partnerstwa — bez opracowywania receptury, bez budowy fabryki.',
     ogTitle: 'Dostawca Halal Napoju Witalnego dla Europy — Dystrybuuj UNI MAX',
     ogDesc: 'Gotowy, certyfikowany halal napój witalny z Tongkat Ali dla europejskich dystrybutorów — gotowy do sprzedaży, należący do marki, dostarczany przez naszego europejskiego partnera.',
@@ -308,7 +308,7 @@ pl: {
 nl: {
   shared: shared('nl'),
   meta: {
-    title: 'Halal Energy Shot Leverancier voor Europa — Distribueer UNI MAX | UNI MAX',
+    title: 'Distribueer Halal Energy Shot UNI MAX in Europa | UNI MAX',
     desc: 'Distribueer een kant-en-klare, halal-gecertificeerde Tongkat Ali-vitaliteitsdrank in uw Europese markt. Verkoopklare dozen, een kant-en-klaar merk en een Europees partnerschapsbureau — geen formule om te ontwikkelen, geen fabriek om te bouwen.',
     ogTitle: 'Halal Vitaliteitsdrank Leverancier voor Europa — Distribueer UNI MAX',
     ogDesc: 'Een kant-en-klare, halal-gecertificeerde Tongkat Ali-vitaliteitsdrank voor Europese distributeurs — verkoopklaar, merkeigen, geleverd via onze Europese partner.',
@@ -394,7 +394,7 @@ nl: {
 de: {
   shared: shared('de'),
   meta: {
-    title: 'Halal-Energy-Shot-Lieferant für Europa — UNI MAX Vertreiben | UNI MAX',
+    title: 'Halal Energy Shot für Europa — UNI MAX Vertreiben | UNI MAX',
     desc: 'Vertreiben Sie ein fertiges, halal-zertifiziertes Tongkat-Ali-Vitalitätsgetränk in Ihrem europäischen Markt. Verkaufsfertige Boxen, eine fertige Marke und eine europäische Partnerschaftsstelle — keine Rezeptur zu entwickeln, keine Fabrik zu bauen.',
     ogTitle: 'Halal-Vitalitätsgetränk-Lieferant für Europa — UNI MAX Vertreiben',
     ogDesc: 'Ein fertiges, halal-zertifiziertes Tongkat-Ali-Vitalitätsgetränk für europäische Vertriebspartner — verkaufsfertig, markeneigen, geliefert über unseren europäischen Partner.',
