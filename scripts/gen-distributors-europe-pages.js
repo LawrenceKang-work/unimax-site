@@ -118,7 +118,7 @@ for (const lang of TARGET_LANGS) {
 
   /* 2) meta 标题/描述/OG */
   head = replaceExact(head,
-    '<title>Halal Vitality Shot Supplier for Europe — Distribute UNI MAX | UNI MAX</title>',
+    '<title>Halal Vitality Shot for Europe — Distribute UNI MAX | UNI MAX</title>',
     `<title>${esc(D.meta.title)}</title>`, 'once', `${lang}/title`);
   head = replaceExact(head,
     '<meta name="description" content="Distribute a finished, halal-certified Tongkat Ali vitality drink in your European market. Retail-ready boxes, a ready-made brand and a European partnership desk — no formula to develop, no factory to build." />',
