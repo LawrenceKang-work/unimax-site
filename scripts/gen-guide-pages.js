@@ -27,7 +27,25 @@ const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
 const ORIGIN = 'https://unimaxofficial.com';
-const SHARED = require('./i18n-guides/_shared.js');
+
+/* ⚠️ Windows worktree 在 core.autocrlf=true 下 checkout 出来的文件是 CRLF,而字典模块
+ * (require() 加载的 .js)与英文源 HTML 各自的 CRLF/LF 状态取决于最后是哪个工具写入的,
+ * 两边不一定一致 —— 逐字节字符串匹配因此会悄悄 0 命中。2026-08-28 实测踩过(8 篇仅本篇
+ * 未受影响)。只在内存里把两侧都归一化成 LF 再比较,不改动任何磁盘文件字节,不产生 git
+ * diff 噪音。git 对象本身存的就是 LF(HEAD blob 已核实),归一化后行为与"干净 checkout"
+ * 完全一致。 */
+function normalizeCRLF(v) {
+  if (typeof v === 'string') return v.replace(/\r\n/g, '\n');
+  if (Array.isArray(v)) return v.map(normalizeCRLF);
+  if (v && typeof v === 'object') {
+    const out = {};
+    for (const [k, val] of Object.entries(v)) out[normalizeCRLF(k)] = normalizeCRLF(val);
+    return out;
+  }
+  return v;
+}
+
+const SHARED = normalizeCRLF(require('./i18n-guides/_shared.js'));
 
 const HREF_LANG = { en: 'en', zh: 'zh-Hans', ms: 'ms', pl: 'pl', nl: 'nl', de: 'de' };
 const LANG_FULL = { en: 'English', zh: '中文', ms: 'Bahasa Melayu', pl: 'Polski', nl: 'Nederlands', de: 'Deutsch' };
@@ -111,9 +129,9 @@ function buildFaqJsonLd(faq) {
 console.log(`发现 ${allSlugs.length} 篇 guide,其中 ${slugsWithDict.length} 篇有译文字典:${slugsWithDict.join(', ') || '(无)'}\n`);
 
 for (const slug of slugsWithDict) {
-  const DICT = require(path.join(dictDir, `${slug}.js`));
+  const DICT = normalizeCRLF(require(path.join(dictDir, `${slug}.js`)));
   const SRC = path.join(guidesDir, slug, 'index.html');
-  const src = fs.readFileSync(SRC, 'utf8');
+  const src = normalizeCRLF(fs.readFileSync(SRC, 'utf8'));
   const langs = Object.keys(DICT).filter(l => TARGET_LANGS.includes(l));
 
   for (const lang of langs) {
@@ -154,7 +172,10 @@ for (const slug of slugsWithDict) {
       `${slug}/${lang}/articleJsonLd`);
 
     /* 5) JSON-LD:FAQPage(整块重建) */
-    head = replaceBlock(head, '"@type":"FAQPage"', '}\n</script>',
+    /* ⚠️ endMark 用 \\r?\\n 而非字面 \n —— Windows worktree 在 core.autocrlf=true 下
+       checkout 出来的源文件是 CRLF,字面 \n 匹配不到,2026-08-28 实测踩过、全 8 篇 guides
+       源文件均受影响(非本仓库内容问题,是本机 checkout 转换,git 对象本身是 LF)。 */
+    head = replaceBlock(head, '"@type":"FAQPage"', '}\\r?\\n</script>',
       `"@type":"FAQPage",\n  ${buildFaqJsonLd(D.faq)}\n}\n</script>`, `${slug}/${lang}/faqJsonLd`);
 
     /* ---- body ---- */
@@ -162,8 +183,9 @@ for (const slug of slugsWithDict) {
     body = replaceBlock(body, '<div class="lang-menu" role="menu">', '</div>', buildLangMenu(slug, lang), `${slug}/${lang}/langMenu`);
     body = replaceBlock(body, '<div class="wsl-flang">', '</div>', buildFooterLang(slug, lang), `${slug}/${lang}/footerLang`);
 
-    /* 7) FAQ 手风琴:整块重建(锚点用 wsl-faq 容器的第一个 <details 到最后一个 </details>) */
-    body = replaceBlock(body, '<div class="wsl-faq">\\s*', '</details>\\s*\\n    </div>',
+    /* 7) FAQ 手风琴:整块重建(锚点用 wsl-faq 容器的第一个 <details 到最后一个 </details>)
+       ⚠️ 同上,\\r?\\n 兼容 CRLF checkout。 */
+    body = replaceBlock(body, '<div class="wsl-faq">\\s*', '</details>\\s*\\r?\\n    </div>',
       `<div class="wsl-faq">\n${buildFaqHtml(D.faq)}\n    </div>`, `${slug}/${lang}/faqHtml`);
 
     /* 8) 头部导航 + footer 共享文案(复用首页字典,'many' 断言 —— FAQ/Become a Partner 等词条在页内不止一处) */
