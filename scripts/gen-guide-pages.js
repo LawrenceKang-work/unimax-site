@@ -196,6 +196,7 @@ for (const slug of slugsWithDict) {
     body = replaceExact(body, '>FAQ</a>', `>${S.nav.faq}</a>`, 'many', `${slug}/${lang}/navFaq`);
     body = replaceExact(body, '>Contact</a>', `>${S.nav.contact}</a>`, 'once', `${slug}/${lang}/navContact`);
     body = replaceExact(body, '<span>Become a Partner</span>', `<span>${S.ctaOrder}</span>`, 'many', `${slug}/${lang}/ctaOrder`);
+    body = replaceExact(body, '<span>Order Now</span>', `<span>${S.ctaOrderNow}</span>`, 'many', `${slug}/${lang}/ctaOrderNow`);
     body = replaceExact(body, 'Back to UNI MAX', S.backToUniMax, 'once', `${slug}/${lang}/backToUniMax`);
     body = replaceExact(body, '<h2>Related reading</h2>', `<h2>${S.relatedReading}</h2>`, 'once', `${slug}/${lang}/relatedReading`);
     body = replaceExact(body, '<p>Universe of Power, Maximum Impact. A botanical lychee vitality drink with Triple Force Tongkat Ali, by UniPro.</p>',

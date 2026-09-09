@@ -849,21 +849,37 @@
 
     startRevTimer();
 
-    /* Wholesale partnership enquiry — prefilled WhatsApp message (per client brief) */
+    /* Wholesale/distributor partnership enquiry — prefilled WhatsApp message (per client brief).
+       2026-09-09 B2B2C split (Lawrence brief): this is the general partner line, now answered by
+       Wellness Alliance Sdn Bhd (Stewart) rather than the EU-only desk — wording generalised off
+       "in Europe" accordingly. The dedicated #eu-desk section and /for-distributors-europe/ page
+       keep their own hardcoded Jack/DE number+text untouched; they never call this function. */
     var TIER_LABELS = { retail: "Retail Stockist", wholesale: "Wholesale Partner", distributor: "Regional Distributor" };
     function b2bMessage(tier, loc) {
       var interested = tier
         ? "Interested in: " + TIER_LABELS[tier]
         : "Interested in: Retail Stockist / Wholesale Partner / Regional Distributor";
-      var msg = "Hi, I'm interested in a UNI MAX wholesale partnership in Europe."
+      var msg = "Hi, I'm interested in a UNI MAX wholesale or distribution partnership."
         + "\n\nCountry:\nBusiness type:\nEstimated order quantity:\n" + interested
         + "\n\nPlease share more information about wholesale pricing, MOQ, and partnership opportunities.";
       /* 归因(2026-08-21 补,seo-geo-standards 铁律「归因先于一切」):不同入口的开场白必须能分辨,
-         不许全站共用一句——否则 Jack 从消息内容本身分不出顾客是从哪个入口点进来的。零删除,纯增补。 */
+         不许全站共用一句——否则接单方从消息内容本身分不出顾客是从哪个入口点进来的。零删除,纯增补。 */
       if (loc) msg += "\n\n(Sent from: " + loc + ")";
       return msg;
     }
-    function waUrl(tier, loc) { return "https://wa.me/491736986625?text=" + encodeURIComponent(b2bMessage(tier, loc)); }
+    function waUrl(tier, loc) { return "https://wa.me/60162122558?text=" + encodeURIComponent(b2bMessage(tier, loc)); }
+
+    /* Consumer / direct-purchase enquiry — separate opening message from the partner line above so
+       Wellness Alliance can tell a retail buyer from a distributor lead at a glance (2026-09-09,
+       Lawrence's B2B2C brief: same WhatsApp number/desk, distinct pre-filled intent). */
+    function consumerMessage(loc) {
+      var msg = "Hi, I'd like to order UNI MAX for myself."
+        + "\n\nCountry:\nQuantity (e.g. 1 box / 30 sachets):"
+        + "\n\nPlease share pricing and how I can order.";
+      if (loc) msg += "\n\n(Sent from: " + loc + ")";
+      return msg;
+    }
+    function consumerUrl(loc) { return "https://wa.me/60162122558?text=" + encodeURIComponent(consumerMessage(loc)); }
 
     /* partnership level selector */
     var packEls = document.querySelectorAll('#packs input[name="pack"]');
@@ -1100,9 +1116,15 @@
       return code.charAt(0).toUpperCase() + code.slice(1).replace(/-/g, " ") + " section";
     }
     document.querySelectorAll('a[href*="wa.me/"]').forEach(function (a) {
-      /* prefill the wholesale enquiry on every WhatsApp CTA (orderCta sets its own tier-specific text);
-         each entry point now gets a distinct "(Sent from: ...)" line so Jack can tell them apart. */
-      if (a.id !== "orderCta" && a.href.indexOf("text=") === -1) a.href = waUrl(null, locLabel(ctaLoc(a)));
+      /* prefill the enquiry on every bare WhatsApp CTA (orderCta sets its own tier-specific text;
+         any link with its own ?text= — e.g. the #eu-desk desk — is left alone, see waUrl below);
+         each entry point now gets a distinct "(Sent from: ...)" line so the receiving desk can tell
+         them apart. .wa-consumer marks the "Order Now" buttons added alongside "Become a Partner"
+         (2026-09-09 B2B2C split) so they get the buyer-intent message instead of the partner one. */
+      if (a.id !== "orderCta" && a.href.indexOf("text=") === -1) {
+        var loc = locLabel(ctaLoc(a));
+        a.href = a.classList.contains("wa-consumer") ? consumerUrl(loc) : waUrl(null, loc);
+      }
       a.addEventListener("click", function () {
         /* link_location/link_text 是跨站统一的标准字段(2026-08-21 定,和 INFIBOOTH/Leekko 同款)——
            cta_location 是这个站原有的字段名,保留不删,两个一起发,不影响历史数据连续性。 */

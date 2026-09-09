@@ -23,6 +23,7 @@ function build(lang) {
       benefits: h['nav.benefits'], formula: h['nav.formula'], trust: h['nav.trust'],
     },
     ctaOrder: h['cta.order'],
+    ctaOrderNow: h['cta.orderNow'],
     footAbout: h['foot.about'],
     footExplore: h['foot.explore'],
     footProduct: h['foot.product'],
