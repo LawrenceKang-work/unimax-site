@@ -305,23 +305,43 @@
   function usedRounds() { return Math.max(cloudUsed < 0 ? 0 : cloudUsed, rounds.length); }
   function fetchCloudRounds(cb) {
     try {
-      fetch(API_BASE + "/api/feedback?client=unimax").then(function (r) { return r.json(); }).then(function (j) {
+      fetch(API_BASE + "/api/feedback?client=unimax", { headers: apiHeaders(false), cache: "no-store" }).then(function (r) { return r.json(); }).then(function (j) {
         if (j && j.success) { cloudUsed = j.used || 0; if ((j.rounds || []).length >= rounds.length) { rounds = j.rounds.map(function (r2) { return { v: r2.round_no, at: r2.created_at, note: r2.note, records: r2.records, synced: true }; }); saveRounds(); } cloudResolutions = j.resolutions || []; stitchResolutions(); }
         updateRoundChip(); if (mode === "review") fbRenderMarks(); if (cb) cb();
       }).catch(function () { updateRoundChip(); if (cb) cb(); });
     } catch (e) { updateRoundChip(); if (cb) cb(); }
   }
-  function uploadShot(file, done) {
+  // API credentials travel only in headers. Never place a bearer in an image URL.
+  function apiHeaders(asJson) {
+    var headers = { "Authorization": "Bearer " + EDIT_KEY, "X-Client-ID": "unimax" };
+    if (asJson) headers["Content-Type"] = "application/json";
+    return headers;
+  }
+  function setShotImage(el, url) {
+    if (!el) return;
+    el.removeAttribute("src"); el._shotUrl = url;
+    if (url.indexOf(API_BASE + "/api/img/crl/unimax/feedback/") !== 0) { el.src = url; return; }
+    fetch(url, { headers: apiHeaders(false), cache: "no-store" }).then(function (r) {
+      if (!r.ok) throw new Error("screenshot_unavailable");
+      return r.blob();
+    }).then(function (blob) {
+      if (el._shotUrl !== url || !el.isConnected) return;
+      var local = URL.createObjectURL(blob);
+      el.onload = el.onerror = function () { URL.revokeObjectURL(local); };
+      el.src = local;
+    }).catch(function () { if (el._shotUrl === url) el.removeAttribute("src"); });
+  }
+  function uploadShot(file, done, purpose) {
     var img = new Image();
     img.onload = function () {
-      var scale = Math.min(1, 1600 / img.width);
+      var scale = Math.min(1, 1600 / img.width, 2400 / img.height, Math.sqrt(4000000 / (img.width * img.height)));
       var cv = document.createElement("canvas");
       cv.width = Math.round(img.width * scale); cv.height = Math.round(img.height * scale);
       cv.getContext("2d").drawImage(img, 0, 0, cv.width, cv.height);
       cv.toBlob(function (blob) {
         if (!blob) { done(null); return; }
-        var fd = new FormData(); fd.append("file", new File([blob], "shot.jpg", { type: "image/jpeg" }));
-        fetch(API_BASE + "/api/upload", { method: "POST", body: fd }).then(function (r) { return r.json(); }).then(function (j) {
+        var fd = new FormData(); fd.append("file", new File([blob], "shot.jpg", { type: "image/jpeg" })); fd.append("purpose", purpose || "feedback");
+        fetch(API_BASE + "/api/upload", { method: "POST", headers: apiHeaders(false), body: fd }).then(function (r) { return r.json(); }).then(function (j) {
           if (j && j.success && j.url) done(API_BASE + j.url); else done(cv.toDataURL("image/jpeg", 0.6));
         }).catch(function () { done(cv.toDataURL("image/jpeg", 0.6)); });
       }, "image/jpeg", 0.85);
@@ -563,8 +583,8 @@
   }
   function renderShot() {
     var box = $("#fbShotPrevBox"); if (!box) return;
-    if (curShot) { $("#fbShotPrev").src = curShot; box.style.display = "block"; }
-    else { box.style.display = "none"; $("#fbShotPrev").removeAttribute("src"); }
+    if (curShot) { setShotImage($("#fbShotPrev"), curShot); box.style.display = "block"; }
+    else { box.style.display = "none"; $("#fbShotPrev")._shotUrl = ""; $("#fbShotPrev").removeAttribute("src"); }
   }
 
   /* ---------- 9. 草稿箱 ---------- */
@@ -674,11 +694,12 @@
       if (d.new_image_url) html += '<div class="rv-cm">🖼 <a href="' + esc(d.new_image_url) + '" target="_blank" rel="noopener">' + esc(d.new_image_url.slice(0, 46)) + '</a></div>';
       if (d.change_types && d.change_types.length) html += '<div class="rv-tags">' + d.change_types.map(function (x) { return '<span class="rv-tag">' + esc(x) + '</span>'; }).join("") + '</div>';
       if (d.comment) html += '<div class="rv-cm rv-comment">💬 ' + esc(d.comment) + '</div>';
-      if (d.screenshot) html += '<div class="rv-shot"><img src="' + esc(d.screenshot) + '" alt="shot"></div>';
+      if (d.screenshot) html += '<div class="rv-shot"><img data-shot-url="' + esc(d.screenshot) + '" alt="shot"></div>';
       if (d.resolved) html += '<div class="rv-donetag">✅ ' + esc(t("rv_marked", { at: (d.resolved_at || "").replace("T", " ").slice(0, 16) }).replace(/^✅\s*/, "")) + '</div>';
       html += '</div>';
     });
     $("#rvBody").innerHTML = html;
+    $$("#rvBody img[data-shot-url]").forEach(function (el) { setShotImage(el, el.getAttribute("data-shot-url")); });
     var resolved = rkResolved(g), latestRound = rkLatestRound(g), btn = $("#rvDone");
     btn.textContent = resolved ? t("rv_undo") : t("rv_mark_done");
     btn.className = "fb-submit rv-done" + (resolved ? " undo" : "");
@@ -692,7 +713,7 @@
     });
     saveRounds(); fbRenderMarks(); rvOpen(rk);
     toast(val ? t("rv_marked_ok") : t("rv_unmarked"));
-    try { fetch(API_BASE + "/api/feedback", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ token: EDIT_KEY, client: "unimax", kind: "resolve", round_no: roundNo, rec_key: rk, resolved: val }) }).catch(function () { }); } catch (e) { }
+    try { fetch(API_BASE + "/api/feedback", { method: "POST", headers: apiHeaders(true), body: JSON.stringify({ client: "unimax", kind: "resolve", round_no: roundNo, rec_key: rk, resolved: val }) }).catch(function () { }); } catch (e) { }
   }
   function fbRenderMarks() {
     $$(".fb-badge,.fb-eldot").forEach(function (b) { b.remove(); });
@@ -754,7 +775,7 @@
   function publishEdits() {
     var n = draftEditCount(); if (!n) { toast(t("ts_pub_none")); return; }
     var b = $("#cePublishBtn"); b.disabled = true; b.innerHTML = t("btn_publishing");
-    fetch(API_BASE + "/api/publish", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ token: EDIT_KEY, client: "unimax", page: currentPage(), lang: contentLang(), edits: JSON.parse(JSON.stringify(edits)) }) })
+    fetch(API_BASE + "/api/publish", { method: "POST", headers: apiHeaders(true), body: JSON.stringify({ client: "unimax", page: currentPage(), lang: contentLang(), edits: JSON.parse(JSON.stringify(edits)) }) })
       .then(function (r) { return r.json(); })
       .then(function (j) { if (j && j.success) toast(j.note || t("ts_pub_ok")); else { downloadJSON(); toast((j && j.note) || t("ts_pub_fail")); } updatePublishBtn(); })
       .catch(function () { downloadJSON(); toast(t("ts_pub_fail")); updatePublishBtn(); });
@@ -781,7 +802,7 @@
   function submitRound() {
     var recs = feedback.slice(), note = $("#ceRoundNote").value.trim(), vGuess = usedRounds() + 1;
     $("#ceRoundGo").disabled = true; $("#ceRoundGo").textContent = t("round_submitting");
-    fetch(API_BASE + "/api/feedback", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ token: EDIT_KEY, client: "unimax", note: note, records: recs }) })
+    fetch(API_BASE + "/api/feedback", { method: "POST", headers: apiHeaders(true), body: JSON.stringify({ client: "unimax", note: note, records: recs }) })
       .then(function (r) { return r.json(); })
       .then(function (j) {
         if (j && j.success) { cloudUsed = j.used; finishRound(j.round_no, note, recs, true); }
@@ -918,7 +939,7 @@
       $("#ceMUrl").value = "";                                                            // 同步清一次，避免竞态
       var rd = new FileReader(); rd.onload = function (ev) { showMPrev(ev.target.result); }; rd.readAsDataURL(f);  // 即时预览(data URI)
       var uh = $("#ceMUrl"); uh.setAttribute("placeholder", "上传中…");
-      uploadShot(f, function (url) { uh.setAttribute("placeholder", ""); if (url && url.indexOf("data:") !== 0) uh.value = url; });  // 传 R2 → 绝对 URL 进 URL 框 → applyMedia 存 URL 而非 data URI(可写回源码)
+      uploadShot(f, function (url) { uh.setAttribute("placeholder", ""); if (url && url.indexOf("data:") !== 0) uh.value = url; }, "media");  // 传 R2 → 绝对 URL 进 URL 框 → applyMedia 存 URL 而非 data URI(可写回源码)
     });
     $("#ceMUrl").addEventListener("input", function (e) { var u = e.target.value.trim(); if (u) showMPrev(u); });
     $("#ceMCancel").addEventListener("click", function () { $("#ceModal").classList.remove("on"); });
