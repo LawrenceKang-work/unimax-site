@@ -110,12 +110,12 @@
         pl:"Prośby o próbki rozpatrujemy indywidualnie. Prześlij dane firmy i planowaną ilość, a potwierdzimy, co możemy zorganizować dla Twojego rynku."}},
 
     {q:{en:"Who manages European enquiries?",zh:"谁负责欧洲地区的洽询？",ms:"Siapa yang menguruskan pertanyaan Eropah?",nl:"Wie behandelt Europese aanvragen?",de:"Wer betreut europäische Anfragen?",pl:"Kto obsługuje zapytania z Europy?"},
-     a:{en:"All European wholesale and distributor enquiries are managed by our authorised EU Distribution Lead based in the Netherlands, which means faster communication and regional support during onboarding.",
-        zh:"所有欧洲批发与分销洽询，均由我们常驻荷兰的授权欧盟分销负责人统一处理，因此沟通更快，接入过程中也有本地化支持。",
-        ms:"Semua pertanyaan borong dan pengedar Eropah diuruskan oleh Ketua Pengedaran EU kami yang diberi kuasa dan berpangkalan di Belanda, bermakna komunikasi lebih pantas dan sokongan serantau semasa proses penerimaan.",
-        nl:"Alle Europese groothandel- en distributieaanvragen worden behandeld door onze geautoriseerde EU Distribution Lead in Nederland, wat zorgt voor snellere communicatie en regionale ondersteuning tijdens de onboarding.",
-        de:"Alle europäischen Großhandels- und Vertriebsanfragen betreut unser autorisierter EU Distribution Lead mit Sitz in den Niederlanden — das bedeutet schnellere Kommunikation und regionale Unterstützung beim Onboarding.",
-        pl:"Wszystkie europejskie zapytania hurtowe i dystrybucyjne obsługuje nasz autoryzowany Dyrektor ds. Dystrybucji UE z siedzibą w Holandii, co oznacza szybszą komunikację i wsparcie regionalne przy wdrożeniu."}},
+     a:{en:"Wellness Alliance Sdn Bhd handles European wholesale and distribution enquiries directly. Contact our company team to discuss your market and partnership needs.",
+        zh:"欧洲批发与分销合作由 Wellness Alliance Sdn Bhd 公司直接承接。欢迎与公司团队交流您的市场需求与合作计划。",
+        ms:"Pertanyaan borong dan pengedaran Eropah dikendalikan terus oleh Wellness Alliance Sdn Bhd. Hubungi pasukan syarikat kami untuk membincangkan pasaran dan keperluan kerjasama anda.",
+        nl:"Aanvragen over groothandel en distributie in Europa worden rechtstreeks behandeld door Wellness Alliance Sdn Bhd. Neem contact op met ons team om uw markt en samenwerkingswensen te bespreken.",
+        de:"Anfragen zu Großhandel und Vertrieb in Europa bearbeitet Wellness Alliance Sdn Bhd direkt. Kontaktieren Sie unser Team, um Ihren Markt und Ihre Zusammenarbeit zu besprechen.",
+        pl:"Zapytania dotyczące sprzedaży hurtowej i dystrybucji w Europie obsługuje bezpośrednio Wellness Alliance Sdn Bhd. Skontaktuj się z naszym zespołem, aby omówić swój rynek i możliwości współpracy."}},
 
     {q:{en:"Do you provide marketing materials?",zh:"你们提供营销物料吗？",ms:"Adakah anda menyediakan bahan pemasaran?",nl:"Leveren jullie marketingmateriaal?",de:"Stellen Sie Marketingmaterialien bereit?",pl:"Czy zapewniacie materiały marketingowe?"},
      a:{en:"Yes. Partners receive professional product and lifestyle photography, promotional assets and product information to use across their own channels.",
@@ -852,7 +852,7 @@
     /* Wholesale/distributor partnership enquiry — prefilled WhatsApp message (per client brief).
        2026-09-09 B2B2C split (Lawrence brief): this is the general partner line, now answered by
        Wellness Alliance Sdn Bhd (Stewart) rather than the EU-only desk — wording generalised off
-       "in Europe" accordingly. The dedicated #eu-desk section and /for-distributors-europe/ page
+       "in Europe" accordingly. The Europe partnerships section and /for-distributors-europe/ page
        keep their own hardcoded Jack/DE number+text untouched; they never call this function. */
     var TIER_LABELS = { retail: "Retail Stockist", wholesale: "Wholesale Partner", distributor: "Regional Distributor" };
     function b2bMessage(tier, loc) {
@@ -1108,7 +1108,7 @@
     var LOC_LABELS = {
       sticky: "Sticky bar", nav: "Header menu", drawer: "Mobile menu", footer: "Footer", other: "Page",
       overview: "Overview section", "why-partner": "Why partner section", "partner-benefits": "Partner benefits section",
-      "marketing-support": "Marketing support section", "eu-desk": "EU desk section", company: "Company section",
+      "marketing-support": "Marketing support section", "eu-desk": "Europe partnerships section", company: "Company section",
       order: "Order section", faq: "FAQ section", brandband: "Brand statement section", "cta-band": "Final CTA section",
     };
     function locLabel(code) {
@@ -1117,7 +1117,7 @@
     }
     document.querySelectorAll('a[href*="wa.me/"]').forEach(function (a) {
       /* prefill the enquiry on every bare WhatsApp CTA (orderCta sets its own tier-specific text;
-         any link with its own ?text= — e.g. the #eu-desk desk — is left alone, see waUrl below);
+         any link with its own ?text= — e.g. the Europe partnerships link — is left alone, see waUrl below);
          each entry point now gets a distinct "(Sent from: ...)" line so the receiving desk can tell
          them apart. .wa-consumer marks the "Order Now" buttons added alongside "Become a Partner"
          (2026-09-09 B2B2C split) so they get the buyer-intent message instead of the partner one. */

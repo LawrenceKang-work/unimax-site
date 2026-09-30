@@ -252,7 +252,7 @@ ul { list-style: none; }
 @media (max-width: 900px){ .mk-grid { grid-template-columns: repeat(2,1fr); } }
 @media (max-width: 520px){ .mk-grid { grid-template-columns: 1fr; } .mk-card img { height:230px; } }
 
-/* 欧洲合作台(#eu-desk) */
+/* Europe partnerships section */
 .eu-desk-inner { max-width: 760px; margin-inline:auto; text-align:center; }
 .eu-desk-inner h2 { margin-top:10px; }
 .eu-desk-inner p { color: var(--ink-muted); font-size: clamp(1rem,1.5vw,1.1rem); line-height:1.7; margin-top:16px; }

@@ -160,8 +160,8 @@ const zh = {
       'UNI MAX 为批发伙伴与分销商走的是相反的路线：一款完成品、可直接上架的植物活力饮 —— 每盒 30 条，产自认证产线，品牌、包装与文件全部现成。你下单、收货、开卖。',
     'That is the difference between buying an ingredient and stocking a product — and it is why resellers, gyms, clinics and regional distributors partner with UNI MAX instead of building a brand from powder.':
       '这就是「买原料」与「上架成品」的差别 —— 也是零售商、健身房、诊所与区域分销商选择与 UNI MAX 合作、而不是从粉末开始自建品牌的原因。',
-    'Yes. European orders are fulfilled through a local distribution partner. See the <a href="/for-distributors-europe/" style="color:var(--navy);font-weight:600">European Partnership Desk</a> for how EU distribution works, or send your country and intended volume via WhatsApp and logistics and terms will be confirmed for your market.':
-      '可以。欧洲订单由当地的分销合作伙伴交付。可查看<a href="/for-distributors-europe/" style="color:var(--navy);font-weight:600">欧洲合作台</a>（英文页面）了解欧洲分销的具体运作方式，或直接通过 WhatsApp 告知你的国家与预计订量，我们会为你的市场确认物流与条款。',
+    'European wholesale and distribution enquiries are handled directly by Wellness Alliance Sdn Bhd. Contact our company team with your market and intended volume to discuss availability, logistics and terms.':
+      '欧洲批发与分销洽询由 Wellness Alliance Sdn Bhd 公司直接承接。请告知您的市场与预计订量，与公司团队沟通供货情况、物流和合作条款。',
     'Pricing is quoted on request and depends on partnership level and quantity. Send an enquiry over WhatsApp with your market and intended volume, and terms will be confirmed directly.':
       '价格面议，取决于合作分级与订购数量。请通过 WhatsApp 发起询价并说明你的市场与预计采购量，条款将直接与你确认。',
 
@@ -346,8 +346,8 @@ const ms = {
       'UNI MAX mengambil laluan sebaliknya untuk rakan borong dan pengedar: minuman vitaliti botani yang siap dan sedia rak — 30 sachet sekotak, dihasilkan di barisan bertauliah, dengan jenama, pembungkusan dan dokumentasi sedia ada. Anda pesan, anda terima, anda jual.',
     'That is the difference between buying an ingredient and stocking a product — and it is why resellers, gyms, clinics and regional distributors partner with UNI MAX instead of building a brand from powder.':
       'Itulah beza antara membeli bahan mentah dan menstok produk — dan itulah sebab peruncit, gim, klinik dan pengedar wilayah memilih bekerjasama dengan UNI MAX daripada membina jenama dari serbuk.',
-    'Yes. European orders are fulfilled through a local distribution partner. See the <a href="/for-distributors-europe/" style="color:var(--navy);font-weight:600">European Partnership Desk</a> for how EU distribution works, or send your country and intended volume via WhatsApp and logistics and terms will be confirmed for your market.':
-      'Ya. Pesanan Eropah dipenuhi melalui rakan pengedaran tempatan. Lihat <a href="/for-distributors-europe/" style="color:var(--navy);font-weight:600">Meja Kerjasama Eropah</a> (dalam Bahasa Inggeris) untuk cara pengedaran EU berfungsi, atau hantar negara dan anggaran kuantiti anda melalui WhatsApp, dan logistik serta terma akan disahkan untuk pasaran anda.',
+    'European wholesale and distribution enquiries are handled directly by Wellness Alliance Sdn Bhd. Contact our company team with your market and intended volume to discuss availability, logistics and terms.':
+      'Pertanyaan borong dan pengedaran Eropah dikendalikan terus oleh Wellness Alliance Sdn Bhd. Maklumkan pasaran dan anggaran kuantiti anda kepada pasukan syarikat untuk membincangkan ketersediaan, logistik dan terma.',
     'Pricing is quoted on request and depends on partnership level and quantity. Send an enquiry over WhatsApp with your market and intended volume, and terms will be confirmed directly.':
       'Harga diberikan atas permintaan dan bergantung pada tahap kerjasama serta kuantiti. Hantar pertanyaan melalui WhatsApp dengan pasaran dan jumlah yang dihasratkan, dan terma akan disahkan terus.',
 
@@ -529,8 +529,8 @@ const pl = {
       'UNI MAX obiera odwrotną drogę dla partnerów hurtowych i dystrybutorów: gotowy, przeznaczony na półkę botaniczny napój witalny — 30 saszetek w pudełku, produkowany na certyfikowanej linii, z gotową marką, opakowaniem i dokumentacją. Zamawiasz, odbierasz, sprzedajesz.',
     'That is the difference between buying an ingredient and stocking a product — and it is why resellers, gyms, clinics and regional distributors partner with UNI MAX instead of building a brand from powder.':
       'Na tym polega różnica między kupowaniem składnika a magazynowaniem produktu — i dlatego odsprzedawcy, siłownie, kliniki i dystrybutorzy regionalni współpracują z UNI MAX zamiast budować markę od proszku.',
-    'Yes. European orders are fulfilled through a local distribution partner. See the <a href="/for-distributors-europe/" style="color:var(--navy);font-weight:600">European Partnership Desk</a> for how EU distribution works, or send your country and intended volume via WhatsApp and logistics and terms will be confirmed for your market.':
-      'Tak. Zamówienia europejskie są realizowane przez lokalnego partnera dystrybucyjnego. Zobacz <a href="/for-distributors-europe/" style="color:var(--navy);font-weight:600">Europejskie Biuro Partnerstwa</a> (strona w języku angielskim), aby dowiedzieć się, jak działa dystrybucja w UE, lub wyślij swój kraj i planowany wolumen przez WhatsApp, a logistyka i warunki zostaną potwierdzone dla twojego rynku.',
+    'European wholesale and distribution enquiries are handled directly by Wellness Alliance Sdn Bhd. Contact our company team with your market and intended volume to discuss availability, logistics and terms.':
+      'Zapytania dotyczące sprzedaży hurtowej i dystrybucji w Europie obsługuje bezpośrednio Wellness Alliance Sdn Bhd. Podaj naszemu zespołowi swój rynek i planowaną ilość, aby omówić dostępność, logistykę i warunki.',
     'Pricing is quoted on request and depends on partnership level and quantity. Send an enquiry over WhatsApp with your market and intended volume, and terms will be confirmed directly.':
       'Cena jest podawana na zapytanie i zależy od poziomu współpracy oraz ilości. Wyślij zapytanie przez WhatsApp, podając swój rynek i planowany wolumen, a warunki zostaną potwierdzone bezpośrednio.',
 
@@ -712,8 +712,8 @@ const nl = {
       'UNI MAX slaat voor groothandelspartners en distributeurs de tegenovergestelde weg in: een kant-en-klare, verkoopklare botanische vitaliteitsdrank — 30 sachets per doos, geproduceerd op een gecertificeerde lijn, met merk, verpakking en documentatie al geregeld. U bestelt, u ontvangt, u verkoopt.',
     'That is the difference between buying an ingredient and stocking a product — and it is why resellers, gyms, clinics and regional distributors partner with UNI MAX instead of building a brand from powder.':
       'Dat is het verschil tussen het kopen van een ingrediënt en het op voorraad hebben van een product — en daarom werken wederverkopers, sportscholen, klinieken en regionale distributeurs samen met UNI MAX in plaats van een merk vanaf poeder op te bouwen.',
-    'Yes. European orders are fulfilled through a local distribution partner. See the <a href="/for-distributors-europe/" style="color:var(--navy);font-weight:600">European Partnership Desk</a> for how EU distribution works, or send your country and intended volume via WhatsApp and logistics and terms will be confirmed for your market.':
-      'Ja. Europese bestellingen worden afgehandeld via een lokale distributiepartner. Bekijk het <a href="/for-distributors-europe/" style="color:var(--navy);font-weight:600">Europese Partnerschapsbureau</a> (Engelstalige pagina) voor hoe EU-distributie werkt, of stuur uw land en beoogde volume via WhatsApp, en logistiek en voorwaarden worden voor uw markt bevestigd.',
+    'European wholesale and distribution enquiries are handled directly by Wellness Alliance Sdn Bhd. Contact our company team with your market and intended volume to discuss availability, logistics and terms.':
+      'Aanvragen over groothandel en distributie in Europa behandelt Wellness Alliance Sdn Bhd rechtstreeks. Geef ons team uw markt en gewenste hoeveelheid door om beschikbaarheid, logistiek en voorwaarden te bespreken.',
     'Pricing is quoted on request and depends on partnership level and quantity. Send an enquiry over WhatsApp with your market and intended volume, and terms will be confirmed directly.':
       'Prijzen worden op aanvraag opgegeven en zijn afhankelijk van partnerschapsniveau en hoeveelheid. Stuur een aanvraag via WhatsApp met uw markt en beoogde volume, en voorwaarden worden rechtstreeks bevestigd.',
 
@@ -895,8 +895,8 @@ const de = {
       'UNI MAX geht für Großhandelspartner und Vertriebspartner den umgekehrten Weg: ein fertiges, verkaufsfertiges botanisches Vitalitätsgetränk — 30 Sachets pro Box, produziert auf einer zertifizierten Linie, mit Marke, Verpackung und Dokumentation bereits erledigt. Sie bestellen, Sie empfangen, Sie verkaufen.',
     'That is the difference between buying an ingredient and stocking a product — and it is why resellers, gyms, clinics and regional distributors partner with UNI MAX instead of building a brand from powder.':
       'Das ist der Unterschied zwischen dem Kauf eines Inhaltsstoffs und dem Führen eines Produkts — und deshalb arbeiten Wiederverkäufer, Fitnessstudios, Kliniken und regionale Vertriebspartner mit UNI MAX zusammen, anstatt eine Marke aus Pulver aufzubauen.',
-    'Yes. European orders are fulfilled through a local distribution partner. See the <a href="/for-distributors-europe/" style="color:var(--navy);font-weight:600">European Partnership Desk</a> for how EU distribution works, or send your country and intended volume via WhatsApp and logistics and terms will be confirmed for your market.':
-      'Ja. Europäische Bestellungen werden über einen lokalen Vertriebspartner abgewickelt. Sehen Sie sich die <a href="/for-distributors-europe/" style="color:var(--navy);font-weight:600">Europäische Partnerschaftsstelle</a> (englischsprachige Seite) an, um zu erfahren, wie der EU-Vertrieb funktioniert, oder senden Sie Ihr Land und die geplante Menge über WhatsApp, und Logistik und Konditionen werden für Ihren Markt bestätigt.',
+    'European wholesale and distribution enquiries are handled directly by Wellness Alliance Sdn Bhd. Contact our company team with your market and intended volume to discuss availability, logistics and terms.':
+      'Anfragen zu Großhandel und Vertrieb in Europa bearbeitet Wellness Alliance Sdn Bhd direkt. Teilen Sie unserem Team Ihren Markt und die geplante Menge mit, um Verfügbarkeit, Logistik und Konditionen zu besprechen.',
     'Pricing is quoted on request and depends on partnership level and quantity. Send an enquiry over WhatsApp with your market and intended volume, and terms will be confirmed directly.':
       'Preise werden auf Anfrage genannt und hängen von Partnerschaftsstufe und Menge ab. Senden Sie eine Anfrage über WhatsApp mit Ihrem Markt und der geplanten Menge, und die Konditionen werden direkt bestätigt.',
 
