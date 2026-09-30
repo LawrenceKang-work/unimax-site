@@ -3,7 +3,7 @@
  * 但该页不在 guides/ 目录下,由专门的 gen-distributors-europe-pages.js 处理,不复用 gen-guide-pages.js。
  * 共享导航/footer 文案直接 require 首页字典(同 i18n-guides/_shared.js 的做法)。
  * 认证名称(GMP/MeSTI/HALAL (JAKIM)/ISO 9001/HACCP)与公司名(UniPro/Orient Biotech Sdn Bhd/
- * Wellness Alliance/Wellness Network GmbH)原样保留,不翻译。
+ * Wellness Alliance/Wellness Alliance Sdn Bhd)原样保留,不翻译。
  */
 const home = require('./i18n-dict.js');
 const DOC_LANG = { zh: 'zh-Hans', ms: 'ms', pl: 'pl', nl: 'nl', de: 'de' };
@@ -21,8 +21,7 @@ const TABLE_EN = `      <table class="gd-table">
 const CHAIN_EN = `      <ol class="gd-chain">
         <li><b>UniPro</b> — the brand owner behind UNI MAX.</li>
         <li><b>Orient Biotech Sdn Bhd</b> — the producing facility in Malaysia; the GMP, MeSTI, HALAL, ISO 9001 and HACCP certificates are registered here.</li>
-        <li><b>Wellness Alliance</b> — international distribution.</li>
-        <li class="is-you"><b>Wellness Network GmbH</b> — the European partnership desk. This is who you deal with for the European market.</li>
+        <li><b>Wellness Alliance</b> — international distribution and European enquiries.</li>
       </ol>`;
 
 const UL_TIERS_EN = `      <ul>
@@ -97,18 +96,17 @@ zh: {
       '这些证书每年更新一次。从证书到期到新版证书上传到本站之间，可能会有短暂的展示空档，所以本站展示的版本不一定始终是最新的，还请见谅。如果你出于尽职调查<strong>需要当前有效的证书，联系我们时提出即可</strong>，我们会发送最新版本。',
 
     'Who you are working with': '你实际对接的是谁',
-    'UNI MAX runs on a four-part supply chain. The certifications above are registered to the producing facility (link 02), and your day-to-day contact for Europe is the last link:':
-      'UNI MAX 运作在一条四方供应链上。以上认证登记在生产工厂（第 02 环）名下，而你在欧洲的日常对接方是链条上的最后一环：',
+    'UNI MAX runs on a three-part supply chain. The certifications above are registered to the producing facility (link 02), and your day-to-day contact for Europe is the last link:':
+      'UNI MAX 运作在一条三方供应链上。以上认证登记在生产工厂（第 02 环）名下，而你在欧洲的日常对接方是链条上的最后一环：',
     [CHAIN_EN]: `      <ol class="gd-chain">
         <li><b>UniPro</b> —— UNI MAX 背后的品牌方。</li>
         <li><b>Orient Biotech Sdn Bhd</b> —— 位于马来西亚的生产工厂，GMP、MeSTI、HALAL、ISO 9001 与 HACCP 证书均登记在这里。</li>
-        <li><b>Wellness Alliance</b> —— 国际分销。</li>
-        <li class="is-you"><b>Wellness Network GmbH</b> —— 欧洲合作台。这就是你在欧洲市场要对接的人。</li>
+        <li><b>Wellness Alliance</b> —— 国际分销与欧洲洽询。</li>
       </ol>`,
 
     'How European delivery works': '欧洲交付如何运作',
-    'European orders are handled through our <strong>European distribution partner</strong> (Wellness Network GmbH). Importation and the arrangements for your local market are set up with the partner for your territory — so you work with a Europe-based desk, not only a Malaysian office. Tell us your market and we will point you to the right terms.':
-      '欧洲订单通过我们的<strong>欧洲分销合作伙伴</strong>（Wellness Network GmbH）处理。进口以及你所在本地市场的具体安排，会由负责你所在地区的合作伙伴来搭建 —— 所以你对接的是一个常驻欧洲的合作台，而不只是马来西亚这边的办公室。告诉我们你的市场，我们会为你指向合适的条款。',
+    'European orders are handled through our <strong>European distribution partner</strong> (Wellness Alliance Sdn Bhd). Importation and the arrangements for your local market are set up with the partner for your territory — so you work with a Europe-based desk, not only a Malaysian office. Tell us your market and we will point you to the right terms.':
+      '欧洲订单通过我们的<strong>欧洲分销合作伙伴</strong>（Wellness Alliance Sdn Bhd）处理。进口以及你所在本地市场的具体安排，会由负责你所在地区的合作伙伴来搭建 —— 所以你对接的是一个常驻欧洲的合作台，而不只是马来西亚这边的办公室。告诉我们你的市场，我们会为你指向合适的条款。',
 
     'Partnership levels': '合作分级',
     [UL_TIERS_EN]: `      <ul>
@@ -183,18 +181,17 @@ ms: {
       'Sijil ini diperbaharui setiap tahun. Antara luput sijil dan salinan yang dikeluarkan semula dimuat naik di sini, mungkin ada jurang paparan yang singkat, jadi versi yang dipaparkan mungkin tidak selalu yang terkini — harap maklum. Jika anda mahukan <strong>sijil semasa untuk usaha wajar anda, tanya sahaja semasa anda menghubungi kami</strong> dan kami akan menghantar salinan terkini.',
 
     'Who you are working with': 'Dengan siapa anda bekerja',
-    'UNI MAX runs on a four-part supply chain. The certifications above are registered to the producing facility (link 02), and your day-to-day contact for Europe is the last link:':
-      'UNI MAX beroperasi pada rantaian bekalan empat bahagian. Pensijilan di atas didaftarkan kepada kemudahan pengeluar (pautan 02), dan kenalan harian anda untuk Eropah ialah pautan terakhir:',
+    'UNI MAX runs on a three-part supply chain. The certifications above are registered to the producing facility (link 02), and your day-to-day contact for Europe is the last link:':
+      'UNI MAX beroperasi pada rantaian bekalan tiga bahagian. Pensijilan di atas didaftarkan kepada kemudahan pengeluar (pautan 02), dan kenalan harian anda untuk Eropah ialah pautan terakhir:',
     [CHAIN_EN]: `      <ol class="gd-chain">
         <li><b>UniPro</b> — pemilik jenama di sebalik UNI MAX.</li>
         <li><b>Orient Biotech Sdn Bhd</b> — kemudahan pengeluar di Malaysia; sijil GMP, MeSTI, HALAL, ISO 9001 dan HACCP didaftarkan di sini.</li>
-        <li><b>Wellness Alliance</b> — pengedaran antarabangsa.</li>
-        <li class="is-you"><b>Wellness Network GmbH</b> — meja perkongsian Eropah. Ini adalah siapa yang anda berurusan untuk pasaran Eropah.</li>
+        <li><b>Wellness Alliance</b> — pengedaran antarabangsa dan pertanyaan Eropah.</li>
       </ol>`,
 
     'How European delivery works': 'Bagaimana penghantaran Eropah berfungsi',
-    'European orders are handled through our <strong>European distribution partner</strong> (Wellness Network GmbH). Importation and the arrangements for your local market are set up with the partner for your territory — so you work with a Europe-based desk, not only a Malaysian office. Tell us your market and we will point you to the right terms.':
-      'Pesanan Eropah diuruskan melalui <strong>rakan pengedaran Eropah</strong> kami (Wellness Network GmbH). Pengimportan dan pengaturan untuk pasaran tempatan anda disediakan dengan rakan untuk wilayah anda — jadi anda bekerja dengan meja berpangkalan Eropah, bukan hanya pejabat Malaysia. Beritahu kami pasaran anda dan kami akan tunjukkan terma yang betul.',
+    'European orders are handled through our <strong>European distribution partner</strong> (Wellness Alliance Sdn Bhd). Importation and the arrangements for your local market are set up with the partner for your territory — so you work with a Europe-based desk, not only a Malaysian office. Tell us your market and we will point you to the right terms.':
+      'Pesanan Eropah diuruskan melalui <strong>rakan pengedaran Eropah</strong> kami (Wellness Alliance Sdn Bhd). Pengimportan dan pengaturan untuk pasaran tempatan anda disediakan dengan rakan untuk wilayah anda — jadi anda bekerja dengan meja berpangkalan Eropah, bukan hanya pejabat Malaysia. Beritahu kami pasaran anda dan kami akan tunjukkan terma yang betul.',
 
     'Partnership levels': 'Tahap kerjasama',
     [UL_TIERS_EN]: `      <ul>
@@ -269,18 +266,17 @@ pl: {
       'Te certyfikaty są odnawiane co roku. Między wygaśnięciem certyfikatu a przesłaniem tutaj ponownie wydanej kopii może wystąpić krótka luka w wyświetlaniu, więc pokazane wersje mogą nie zawsze być najnowsze — prosimy o wyrozumiałość. Jeśli chcesz uzyskać <strong>aktualny certyfikat do swojego due diligence, po prostu zapytaj przy kontakcie z nami</strong>, a wyślemy najnowszą kopię.',
 
     'Who you are working with': 'Z kim współpracujesz',
-    'UNI MAX runs on a four-part supply chain. The certifications above are registered to the producing facility (link 02), and your day-to-day contact for Europe is the last link:':
+    'UNI MAX runs on a three-part supply chain. The certifications above are registered to the producing facility (link 02), and your day-to-day contact for Europe is the last link:':
       'UNI MAX działa w oparciu o czteroczęściowy łańcuch dostaw. Powyższe certyfikaty są zarejestrowane na zakład produkcyjny (ogniwo 02), a twoim codziennym kontaktem dla Europy jest ostatnie ogniwo:',
     [CHAIN_EN]: `      <ol class="gd-chain">
         <li><b>UniPro</b> — właściciel marki stojący za UNI MAX.</li>
         <li><b>Orient Biotech Sdn Bhd</b> — zakład produkcyjny w Malezji; certyfikaty GMP, MeSTI, HALAL, ISO 9001 i HACCP są tu zarejestrowane.</li>
-        <li><b>Wellness Alliance</b> — dystrybucja międzynarodowa.</li>
-        <li class="is-you"><b>Wellness Network GmbH</b> — europejskie biuro partnerstwa. To z nim masz do czynienia w przypadku rynku europejskiego.</li>
+        <li><b>Wellness Alliance</b> — dystrybucja międzynarodowa i zapytania z Europy.</li>
       </ol>`,
 
     'How European delivery works': 'Jak działa dostawa w Europie',
-    'European orders are handled through our <strong>European distribution partner</strong> (Wellness Network GmbH). Importation and the arrangements for your local market are set up with the partner for your territory — so you work with a Europe-based desk, not only a Malaysian office. Tell us your market and we will point you to the right terms.':
-      'Zamówienia europejskie są obsługiwane przez naszego <strong>europejskiego partnera dystrybucyjnego</strong> (Wellness Network GmbH). Import i ustalenia dla twojego lokalnego rynku są organizowane z partnerem dla twojego terytorium — więc współpracujesz z biurem opartym w Europie, a nie tylko z biurem w Malezji. Podaj nam swój rynek, a wskażemy ci odpowiednie warunki.',
+    'European orders are handled through our <strong>European distribution partner</strong> (Wellness Alliance Sdn Bhd). Importation and the arrangements for your local market are set up with the partner for your territory — so you work with a Europe-based desk, not only a Malaysian office. Tell us your market and we will point you to the right terms.':
+      'Zamówienia europejskie są obsługiwane przez naszego <strong>europejskiego partnera dystrybucyjnego</strong> (Wellness Alliance Sdn Bhd). Import i ustalenia dla twojego lokalnego rynku są organizowane z partnerem dla twojego terytorium — więc współpracujesz z biurem opartym w Europie, a nie tylko z biurem w Malezji. Podaj nam swój rynek, a wskażemy ci odpowiednie warunki.',
 
     'Partnership levels': 'Poziomy współpracy',
     [UL_TIERS_EN]: `      <ul>
@@ -355,18 +351,17 @@ nl: {
       'Deze certificaten worden elk jaar vernieuwd. Tussen het verlopen van een certificaat en het uploaden van de opnieuw uitgegeven kopie hier kan een korte weergavekloof zitten, dus de getoonde versies zijn mogelijk niet altijd de nieuwste — heeft u geduld met ons. Als u de <strong>huidige certificering voor uw due diligence wilt, vraag er dan gewoon naar wanneer u contact met ons opneemt</strong>, en wij sturen de nieuwste kopie.',
 
     'Who you are working with': 'Met wie u samenwerkt',
-    'UNI MAX runs on a four-part supply chain. The certifications above are registered to the producing facility (link 02), and your day-to-day contact for Europe is the last link:':
-      'UNI MAX draait op een viervoudige toeleveringsketen. De bovenstaande certificeringen zijn geregistreerd op de producerende faciliteit (schakel 02), en uw dagelijkse contact voor Europa is de laatste schakel:',
+    'UNI MAX runs on a three-part supply chain. The certifications above are registered to the producing facility (link 02), and your day-to-day contact for Europe is the last link:':
+      'UNI MAX draait op een drieledige toeleveringsketen. De bovenstaande certificeringen zijn geregistreerd op de producerende faciliteit (schakel 02), en uw dagelijkse contact voor Europa is de laatste schakel:',
     [CHAIN_EN]: `      <ol class="gd-chain">
         <li><b>UniPro</b> — de merkeigenaar achter UNI MAX.</li>
         <li><b>Orient Biotech Sdn Bhd</b> — de producerende faciliteit in Maleisië; de GMP-, MeSTI-, HALAL-, ISO 9001- en HACCP-certificaten zijn hier geregistreerd.</li>
-        <li><b>Wellness Alliance</b> — internationale distributie.</li>
-        <li class="is-you"><b>Wellness Network GmbH</b> — het Europese partnerschapsbureau. Met hen heeft u te maken voor de Europese markt.</li>
+        <li><b>Wellness Alliance</b> — internationale distributie en Europese aanvragen.</li>
       </ol>`,
 
     'How European delivery works': 'Hoe Europese levering werkt',
-    'European orders are handled through our <strong>European distribution partner</strong> (Wellness Network GmbH). Importation and the arrangements for your local market are set up with the partner for your territory — so you work with a Europe-based desk, not only a Malaysian office. Tell us your market and we will point you to the right terms.':
-      'Europese bestellingen worden afgehandeld via onze <strong>Europese distributiepartner</strong> (Wellness Network GmbH). Import en de regelingen voor uw lokale markt worden opgezet met de partner voor uw gebied — zodat u samenwerkt met een in Europa gevestigd bureau, niet alleen een Maleisisch kantoor. Vertel ons uw markt en wij wijzen u naar de juiste voorwaarden.',
+    'European orders are handled through our <strong>European distribution partner</strong> (Wellness Alliance Sdn Bhd). Importation and the arrangements for your local market are set up with the partner for your territory — so you work with a Europe-based desk, not only a Malaysian office. Tell us your market and we will point you to the right terms.':
+      'Europese bestellingen worden afgehandeld via onze <strong>Europese distributiepartner</strong> (Wellness Alliance Sdn Bhd). Import en de regelingen voor uw lokale markt worden opgezet met de partner voor uw gebied — zodat u samenwerkt met een in Europa gevestigd bureau, niet alleen een Maleisisch kantoor. Vertel ons uw markt en wij wijzen u naar de juiste voorwaarden.',
 
     'Partnership levels': 'Partnerschapsniveaus',
     [UL_TIERS_EN]: `      <ul>
@@ -441,18 +436,17 @@ de: {
       'Diese Zertifikate werden jedes Jahr erneuert. Zwischen dem Ablauf eines Zertifikats und dem Hochladen der neu ausgestellten Kopie hier kann es eine kurze Anzeigelücke geben, sodass die gezeigten Versionen möglicherweise nicht immer die neuesten sind — wir bitten um Verständnis. Wenn Sie das <strong>aktuelle Zertifikat für Ihre Sorgfaltsprüfung wünschen, fragen Sie einfach bei Kontaktaufnahme mit uns</strong>, und wir senden die neueste Kopie.',
 
     'Who you are working with': 'Mit wem Sie zusammenarbeiten',
-    'UNI MAX runs on a four-part supply chain. The certifications above are registered to the producing facility (link 02), and your day-to-day contact for Europe is the last link:':
-      'UNI MAX arbeitet mit einer vierteiligen Lieferkette. Die oben genannten Zertifizierungen sind auf die Produktionsanlage registriert (Glied 02), und Ihr täglicher Ansprechpartner für Europa ist das letzte Glied:',
+    'UNI MAX runs on a three-part supply chain. The certifications above are registered to the producing facility (link 02), and your day-to-day contact for Europe is the last link:':
+      'UNI MAX arbeitet mit einer dreiteiligen Lieferkette. Die oben genannten Zertifizierungen sind auf die Produktionsanlage registriert (Glied 02), und Ihr täglicher Ansprechpartner für Europa ist das letzte Glied:',
     [CHAIN_EN]: `      <ol class="gd-chain">
         <li><b>UniPro</b> — der Markeninhaber hinter UNI MAX.</li>
         <li><b>Orient Biotech Sdn Bhd</b> — die Produktionsanlage in Malaysia; die GMP-, MeSTI-, HALAL-, ISO 9001- und HACCP-Zertifikate sind hier registriert.</li>
-        <li><b>Wellness Alliance</b> — internationaler Vertrieb.</li>
-        <li class="is-you"><b>Wellness Network GmbH</b> — die europäische Partnerschaftsstelle. Mit dieser haben Sie es für den europäischen Markt zu tun.</li>
+        <li><b>Wellness Alliance</b> — internationaler Vertrieb und Anfragen aus Europa.</li>
       </ol>`,
 
     'How European delivery works': 'Wie die Lieferung in Europa funktioniert',
-    'European orders are handled through our <strong>European distribution partner</strong> (Wellness Network GmbH). Importation and the arrangements for your local market are set up with the partner for your territory — so you work with a Europe-based desk, not only a Malaysian office. Tell us your market and we will point you to the right terms.':
-      'Europäische Bestellungen werden über unseren <strong>europäischen Vertriebspartner</strong> (Wellness Network GmbH) abgewickelt. Import und die Regelungen für Ihren lokalen Markt werden mit dem Partner für Ihr Gebiet eingerichtet — sodass Sie mit einer in Europa ansässigen Stelle zusammenarbeiten, nicht nur mit einem malaysischen Büro. Teilen Sie uns Ihren Markt mit, und wir weisen Ihnen die richtigen Konditionen zu.',
+    'European orders are handled through our <strong>European distribution partner</strong> (Wellness Alliance Sdn Bhd). Importation and the arrangements for your local market are set up with the partner for your territory — so you work with a Europe-based desk, not only a Malaysian office. Tell us your market and we will point you to the right terms.':
+      'Europäische Bestellungen werden über unseren <strong>europäischen Vertriebspartner</strong> (Wellness Alliance Sdn Bhd) abgewickelt. Import und die Regelungen für Ihren lokalen Markt werden mit dem Partner für Ihr Gebiet eingerichtet — sodass Sie mit einer in Europa ansässigen Stelle zusammenarbeiten, nicht nur mit einem malaysischen Büro. Teilen Sie uns Ihren Markt mit, und wir weisen Ihnen die richtigen Konditionen zu.',
 
     'Partnership levels': 'Partnerschaftsstufen',
     [UL_TIERS_EN]: `      <ul>

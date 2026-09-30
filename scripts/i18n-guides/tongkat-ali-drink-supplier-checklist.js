@@ -59,8 +59,8 @@ zh: {
     '4. A transparent supply chain': '4. 透明的供应链',
     'Finished-product brands usually involve more than one company: a brand owner, a manufacturer, and one or more distribution entities. That structure is normal — what matters is whether the supplier discloses it. A published chain tells you who owns the formula, who produces it and who you are actually contracting with.':
       '成品品牌通常涉及不止一家公司：品牌方、生产方，以及一个或多个分销实体。这种结构是正常的——真正重要的是供应商是否愿意披露它。一条公开的责任链能告诉你配方归谁所有、谁在生产、你实际上是在和谁签约。',
-    'UNI MAX publishes a four-layer chain: UniPro (brand owner, Malaysia) → Orient Biotech Sdn Bhd (manufacturing) → Wellness Alliance Sdn Bhd (international distribution) → a dedicated European partnership desk (Wellness Network GmbH) for European enquiries.':
-      'UNI MAX 公开了一条四层责任链：UniPro（品牌方，马来西亚）→ Orient Biotech Sdn Bhd（生产方）→ Wellness Alliance Sdn Bhd（国际分销）→ 专门的欧洲合作台（Wellness Network GmbH），处理欧洲方向的询价。',
+    'UNI MAX publishes a three-part chain: UniPro (brand owner, Malaysia) → Orient Biotech Sdn Bhd (manufacturing) → Wellness Alliance Sdn Bhd (international distribution).':
+      'UNI MAX 公开了一条三部分责任链：UniPro（品牌方，马来西亚）→ Orient Biotech Sdn Bhd（生产方）→ Wellness Alliance Sdn Bhd（国际分销）。',
 
     '5. An MOQ that matches your channel': '5. 与你的渠道相匹配的起订量',
     'Bulk-powder suppliers think in kilograms and pallets. A finished-drink supplier serving retail should be able to start small enough for a shelf trial. As a reference point, UNI MAX suggests <strong>12–24 boxes</strong> for a first stockist order, <strong>50–100</strong> for wholesale partners and <strong>300+</strong> for regional distributors — with actual quantities confirmed on enquiry rather than fixed rules.':
@@ -142,8 +142,8 @@ ms: {
     '4. A transparent supply chain': '4. Rantaian bekalan yang telus',
     'Finished-product brands usually involve more than one company: a brand owner, a manufacturer, and one or more distribution entities. That structure is normal — what matters is whether the supplier discloses it. A published chain tells you who owns the formula, who produces it and who you are actually contracting with.':
       'Jenama produk siap biasanya melibatkan lebih daripada satu syarikat: pemilik jenama, pengilang, dan satu atau lebih entiti pengedaran. Struktur itu normal — apa yang penting ialah sama ada pembekal mendedahkannya. Rantaian yang diterbitkan memberitahu anda siapa memiliki formula, siapa menghasilkannya dan dengan siapa anda sebenarnya berkontrak.',
-    'UNI MAX publishes a four-layer chain: UniPro (brand owner, Malaysia) → Orient Biotech Sdn Bhd (manufacturing) → Wellness Alliance Sdn Bhd (international distribution) → a dedicated European partnership desk (Wellness Network GmbH) for European enquiries.':
-      'UNI MAX menerbitkan rantaian empat lapisan: UniPro (pemilik jenama, Malaysia) → Orient Biotech Sdn Bhd (pembuatan) → Wellness Alliance Sdn Bhd (pengedaran antarabangsa) → meja perkongsian Eropah khusus (Wellness Network GmbH) untuk pertanyaan Eropah.',
+    'UNI MAX publishes a three-part chain: UniPro (brand owner, Malaysia) → Orient Biotech Sdn Bhd (manufacturing) → Wellness Alliance Sdn Bhd (international distribution).':
+      'UNI MAX menerbitkan rantaian tiga bahagian: UniPro (pemilik jenama, Malaysia) → Orient Biotech Sdn Bhd (pembuatan) → Wellness Alliance Sdn Bhd (pengedaran antarabangsa).',
 
     '5. An MOQ that matches your channel': '5. MOQ yang sepadan dengan saluran anda',
     'Bulk-powder suppliers think in kilograms and pallets. A finished-drink supplier serving retail should be able to start small enough for a shelf trial. As a reference point, UNI MAX suggests <strong>12–24 boxes</strong> for a first stockist order, <strong>50–100</strong> for wholesale partners and <strong>300+</strong> for regional distributors — with actual quantities confirmed on enquiry rather than fixed rules.':
@@ -225,8 +225,8 @@ pl: {
     '4. A transparent supply chain': '4. Przejrzysty łańcuch dostaw',
     'Finished-product brands usually involve more than one company: a brand owner, a manufacturer, and one or more distribution entities. That structure is normal — what matters is whether the supplier discloses it. A published chain tells you who owns the formula, who produces it and who you are actually contracting with.':
       'Marki produktów gotowych zwykle angażują więcej niż jedną firmę: właściciela marki, producenta i jeden lub więcej podmiotów dystrybucyjnych. Taka struktura jest normalna — liczy się to, czy dostawca ją ujawnia. Opublikowany łańcuch mówi ci, kto jest właścicielem receptury, kto ją produkuje i z kim faktycznie zawierasz umowę.',
-    'UNI MAX publishes a four-layer chain: UniPro (brand owner, Malaysia) → Orient Biotech Sdn Bhd (manufacturing) → Wellness Alliance Sdn Bhd (international distribution) → a dedicated European partnership desk (Wellness Network GmbH) for European enquiries.':
-      'UNI MAX publikuje czteropoziomowy łańcuch: UniPro (właściciel marki, Malezja) → Orient Biotech Sdn Bhd (produkcja) → Wellness Alliance Sdn Bhd (dystrybucja międzynarodowa) → dedykowane biuro partnerstwa europejskiego (Wellness Network GmbH) dla zapytań z Europy.',
+    'UNI MAX publishes a three-part chain: UniPro (brand owner, Malaysia) → Orient Biotech Sdn Bhd (manufacturing) → Wellness Alliance Sdn Bhd (international distribution).':
+      'UNI MAX publikuje trzyczęściowy łańcuch: UniPro (właściciel marki, Malezja) → Orient Biotech Sdn Bhd (produkcja) → Wellness Alliance Sdn Bhd (dystrybucja międzynarodowa).',
 
     '5. An MOQ that matches your channel': '5. MOQ dopasowane do twojego kanału',
     'Bulk-powder suppliers think in kilograms and pallets. A finished-drink supplier serving retail should be able to start small enough for a shelf trial. As a reference point, UNI MAX suggests <strong>12–24 boxes</strong> for a first stockist order, <strong>50–100</strong> for wholesale partners and <strong>300+</strong> for regional distributors — with actual quantities confirmed on enquiry rather than fixed rules.':
@@ -308,8 +308,8 @@ nl: {
     '4. A transparent supply chain': '4. Een transparante toeleveringsketen',
     'Finished-product brands usually involve more than one company: a brand owner, a manufacturer, and one or more distribution entities. That structure is normal — what matters is whether the supplier discloses it. A published chain tells you who owns the formula, who produces it and who you are actually contracting with.':
       'Eindproductmerken betrekken meestal meer dan één bedrijf: een merkeigenaar, een fabrikant, en een of meer distributie-entiteiten. Die structuur is normaal — wat telt is of de leverancier het openbaar maakt. Een gepubliceerde keten vertelt u wie eigenaar is van de formule, wie deze produceert en met wie u daadwerkelijk een contract aangaat.',
-    'UNI MAX publishes a four-layer chain: UniPro (brand owner, Malaysia) → Orient Biotech Sdn Bhd (manufacturing) → Wellness Alliance Sdn Bhd (international distribution) → a dedicated European partnership desk (Wellness Network GmbH) for European enquiries.':
-      'UNI MAX publiceert een keten van vier lagen: UniPro (merkeigenaar, Maleisië) → Orient Biotech Sdn Bhd (productie) → Wellness Alliance Sdn Bhd (internationale distributie) → een toegewijd Europees partnerschapsbureau (Wellness Network GmbH) voor Europese aanvragen.',
+    'UNI MAX publishes a three-part chain: UniPro (brand owner, Malaysia) → Orient Biotech Sdn Bhd (manufacturing) → Wellness Alliance Sdn Bhd (international distribution).':
+      'UNI MAX publiceert een keten van drie delen: UniPro (merkeigenaar, Maleisië) → Orient Biotech Sdn Bhd (productie) → Wellness Alliance Sdn Bhd (internationale distributie).',
 
     '5. An MOQ that matches your channel': '5. Een MOQ die past bij uw kanaal',
     'Bulk-powder suppliers think in kilograms and pallets. A finished-drink supplier serving retail should be able to start small enough for a shelf trial. As a reference point, UNI MAX suggests <strong>12–24 boxes</strong> for a first stockist order, <strong>50–100</strong> for wholesale partners and <strong>300+</strong> for regional distributors — with actual quantities confirmed on enquiry rather than fixed rules.':
@@ -391,8 +391,8 @@ de: {
     '4. A transparent supply chain': '4. Eine transparente Lieferkette',
     'Finished-product brands usually involve more than one company: a brand owner, a manufacturer, and one or more distribution entities. That structure is normal — what matters is whether the supplier discloses it. A published chain tells you who owns the formula, who produces it and who you are actually contracting with.':
       'Fertigproduktmarken umfassen normalerweise mehr als ein Unternehmen: einen Markeninhaber, einen Hersteller und eine oder mehrere Vertriebseinheiten. Diese Struktur ist normal — was zählt, ist, ob der Lieferant sie offenlegt. Eine veröffentlichte Kette sagt Ihnen, wem die Rezeptur gehört, wer sie produziert und mit wem Sie tatsächlich einen Vertrag abschließen.',
-    'UNI MAX publishes a four-layer chain: UniPro (brand owner, Malaysia) → Orient Biotech Sdn Bhd (manufacturing) → Wellness Alliance Sdn Bhd (international distribution) → a dedicated European partnership desk (Wellness Network GmbH) for European enquiries.':
-      'UNI MAX veröffentlicht eine vierstufige Kette: UniPro (Markeninhaber, Malaysia) → Orient Biotech Sdn Bhd (Herstellung) → Wellness Alliance Sdn Bhd (internationaler Vertrieb) → eine dedizierte europäische Partnerschaftsstelle (Wellness Network GmbH) für europäische Anfragen.',
+    'UNI MAX publishes a three-part chain: UniPro (brand owner, Malaysia) → Orient Biotech Sdn Bhd (manufacturing) → Wellness Alliance Sdn Bhd (international distribution).':
+      'UNI MAX veröffentlicht eine dreiteilige Kette: UniPro (Markeninhaber, Malaysia) → Orient Biotech Sdn Bhd (Herstellung) → Wellness Alliance Sdn Bhd (internationaler Vertrieb).',
 
     '5. An MOQ that matches your channel': '5. Eine MOQ, die zu Ihrem Kanal passt',
     'Bulk-powder suppliers think in kilograms and pallets. A finished-drink supplier serving retail should be able to start small enough for a shelf trial. As a reference point, UNI MAX suggests <strong>12–24 boxes</strong> for a first stockist order, <strong>50–100</strong> for wholesale partners and <strong>300+</strong> for regional distributors — with actual quantities confirmed on enquiry rather than fixed rules.':

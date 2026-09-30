@@ -148,8 +148,8 @@ const zh = {
 
     '<summary>How do I get wholesale pricing?</summary>': '<summary>如何获取批发价格？</summary>',
     '<summary>Do you deliver to Europe?</summary>': '<summary>你们配送到欧洲吗？</summary>',
-    'UNI MAX is produced and filled by Orient Biotech Sdn Bhd, a certified manufacturing facility in Malaysia — the certifications above are registered to this facility, so every box a partner stocks comes off a certified line. The brand and formula are owned by UniPro (Malaysia), international distribution is managed by Wellness Alliance Sdn Bhd, and European enquiries are handled by a dedicated partnership desk, Wellness Network GmbH.':
-      'UNI MAX 由 Orient Biotech Sdn Bhd 生产与灌装 —— 这家马来西亚认证工厂持有上方全部认证，合作伙伴上架的每一盒都来自认证产线。品牌与配方由 UniPro (Malaysia) 持有，国际分销由 Wellness Alliance Sdn Bhd 统筹，欧洲市场的询价与订单则由专属合作台 Wellness Network GmbH 对接。',
+    'UNI MAX is produced and filled by Orient Biotech Sdn Bhd, a certified manufacturing facility in Malaysia — the certifications above are registered to this facility, so every box a partner stocks comes off a certified line. The brand and formula are owned by UniPro (Malaysia), international distribution is managed by Wellness Alliance Sdn Bhd.':
+      'UNI MAX 由 Orient Biotech Sdn Bhd 生产与灌装 —— 这家马来西亚认证工厂持有上方全部认证，合作伙伴上架的每一盒都来自认证产线。品牌与配方由 UniPro (Malaysia) 持有，国际分销由 Wellness Alliance Sdn Bhd 统筹',
     'Finished product, not powder':
       '成品，而非原料粉',
     'Not every Tongkat Ali supplier hands you a finished product.':
@@ -334,8 +334,8 @@ const ms = {
 
     '<summary>How do I get wholesale pricing?</summary>': '<summary>Bagaimana untuk mendapatkan harga borong?</summary>',
     '<summary>Do you deliver to Europe?</summary>': '<summary>Adakah anda menghantar ke Eropah?</summary>',
-    'UNI MAX is produced and filled by Orient Biotech Sdn Bhd, a certified manufacturing facility in Malaysia — the certifications above are registered to this facility, so every box a partner stocks comes off a certified line. The brand and formula are owned by UniPro (Malaysia), international distribution is managed by Wellness Alliance Sdn Bhd, and European enquiries are handled by a dedicated partnership desk, Wellness Network GmbH.':
-      'UNI MAX dihasilkan dan diisi oleh Orient Biotech Sdn Bhd — kemudahan pembuatan bertauliah di Malaysia, dan pensijilan di atas didaftarkan atas nama kemudahan ini, jadi setiap kotak yang distok rakan kongsi datang dari barisan pengeluaran yang diperakui. Jenama dan formula dimiliki oleh UniPro (Malaysia), pengedaran antarabangsa diuruskan oleh Wellness Alliance Sdn Bhd, dan pertanyaan pasaran Eropah dikendalikan oleh meja perkongsian khusus, Wellness Network GmbH.',
+    'UNI MAX is produced and filled by Orient Biotech Sdn Bhd, a certified manufacturing facility in Malaysia — the certifications above are registered to this facility, so every box a partner stocks comes off a certified line. The brand and formula are owned by UniPro (Malaysia), international distribution is managed by Wellness Alliance Sdn Bhd.':
+      'UNI MAX dihasilkan dan diisi oleh Orient Biotech Sdn Bhd — kemudahan pembuatan bertauliah di Malaysia, dan pensijilan di atas didaftarkan atas nama kemudahan ini, jadi setiap kotak yang distok rakan kongsi datang dari barisan pengeluaran yang diperakui. Jenama dan formula dimiliki oleh UniPro (Malaysia), pengedaran antarabangsa diuruskan oleh Wellness Alliance Sdn Bhd.',
     'Finished product, not powder':
       'Produk siap, bukan serbuk',
     'Not every Tongkat Ali supplier hands you a finished product.':
@@ -517,8 +517,8 @@ const pl = {
 
     '<summary>How do I get wholesale pricing?</summary>': '<summary>Jak uzyskać ceny hurtowe?</summary>',
     '<summary>Do you deliver to Europe?</summary>': '<summary>Czy dostarczacie do Europy?</summary>',
-    'UNI MAX is produced and filled by Orient Biotech Sdn Bhd, a certified manufacturing facility in Malaysia — the certifications above are registered to this facility, so every box a partner stocks comes off a certified line. The brand and formula are owned by UniPro (Malaysia), international distribution is managed by Wellness Alliance Sdn Bhd, and European enquiries are handled by a dedicated partnership desk, Wellness Network GmbH.':
-      'UNI MAX jest produkowany i rozlewany przez Orient Biotech Sdn Bhd, certyfikowany zakład produkcyjny w Malezji — powyższe certyfikaty są zarejestrowane na ten zakład, więc każde pudełko, które magazynuje partner, schodzi z certyfikowanej linii. Marka i receptura należą do UniPro (Malezja), dystrybucją międzynarodową zarządza Wellness Alliance Sdn Bhd, a zapytania europejskie obsługuje dedykowane biuro partnerstwa, Wellness Network GmbH.',
+    'UNI MAX is produced and filled by Orient Biotech Sdn Bhd, a certified manufacturing facility in Malaysia — the certifications above are registered to this facility, so every box a partner stocks comes off a certified line. The brand and formula are owned by UniPro (Malaysia), international distribution is managed by Wellness Alliance Sdn Bhd.':
+      'UNI MAX jest produkowany i rozlewany przez Orient Biotech Sdn Bhd, certyfikowany zakład produkcyjny w Malezji — powyższe certyfikaty są zarejestrowane na ten zakład, więc każde pudełko, które magazynuje partner, schodzi z certyfikowanej linii. Marka i receptura należą do UniPro (Malezja), dystrybucją międzynarodową zarządza Wellness Alliance Sdn Bhd.',
     'Finished product, not powder':
       'Produkt gotowy, nie proszek',
     'Not every Tongkat Ali supplier hands you a finished product.':
@@ -700,8 +700,8 @@ const nl = {
 
     '<summary>How do I get wholesale pricing?</summary>': '<summary>Hoe kom ik aan groothandelsprijzen?</summary>',
     '<summary>Do you deliver to Europe?</summary>': '<summary>Levert u aan Europa?</summary>',
-    'UNI MAX is produced and filled by Orient Biotech Sdn Bhd, a certified manufacturing facility in Malaysia — the certifications above are registered to this facility, so every box a partner stocks comes off a certified line. The brand and formula are owned by UniPro (Malaysia), international distribution is managed by Wellness Alliance Sdn Bhd, and European enquiries are handled by a dedicated partnership desk, Wellness Network GmbH.':
-      'UNI MAX wordt geproduceerd en gevuld door Orient Biotech Sdn Bhd, een gecertificeerde productiefaciliteit in Maleisië — de bovenstaande certificeringen zijn op deze faciliteit geregistreerd, dus elke doos die een partner op voorraad heeft, komt van een gecertificeerde lijn. Het merk en de formule zijn eigendom van UniPro (Maleisië), internationale distributie wordt beheerd door Wellness Alliance Sdn Bhd, en Europese aanvragen worden afgehandeld door een toegewijd partnerschapsbureau, Wellness Network GmbH.',
+    'UNI MAX is produced and filled by Orient Biotech Sdn Bhd, a certified manufacturing facility in Malaysia — the certifications above are registered to this facility, so every box a partner stocks comes off a certified line. The brand and formula are owned by UniPro (Malaysia), international distribution is managed by Wellness Alliance Sdn Bhd.':
+      'UNI MAX wordt geproduceerd en gevuld door Orient Biotech Sdn Bhd, een gecertificeerde productiefaciliteit in Maleisië — de bovenstaande certificeringen zijn op deze faciliteit geregistreerd, dus elke doos die een partner op voorraad heeft, komt van een gecertificeerde lijn. Het merk en de formule zijn eigendom van UniPro (Maleisië), internationale distributie wordt beheerd door Wellness Alliance Sdn Bhd.',
     'Finished product, not powder':
       'Eindproduct, geen poeder',
     'Not every Tongkat Ali supplier hands you a finished product.':
@@ -883,8 +883,8 @@ const de = {
 
     '<summary>How do I get wholesale pricing?</summary>': '<summary>Wie erhalte ich Großhandelspreise?</summary>',
     '<summary>Do you deliver to Europe?</summary>': '<summary>Liefern Sie nach Europa?</summary>',
-    'UNI MAX is produced and filled by Orient Biotech Sdn Bhd, a certified manufacturing facility in Malaysia — the certifications above are registered to this facility, so every box a partner stocks comes off a certified line. The brand and formula are owned by UniPro (Malaysia), international distribution is managed by Wellness Alliance Sdn Bhd, and European enquiries are handled by a dedicated partnership desk, Wellness Network GmbH.':
-      'UNI MAX wird von Orient Biotech Sdn Bhd hergestellt und abgefüllt, einer zertifizierten Produktionsanlage in Malaysia — die oben genannten Zertifizierungen sind auf diese Anlage registriert, sodass jede Box, die ein Partner führt, von einer zertifizierten Linie stammt. Marke und Rezeptur gehören UniPro (Malaysia), der internationale Vertrieb wird von Wellness Alliance Sdn Bhd verwaltet, und europäische Anfragen werden von einer dedizierten Partnerschaftsstelle, Wellness Network GmbH, bearbeitet.',
+    'UNI MAX is produced and filled by Orient Biotech Sdn Bhd, a certified manufacturing facility in Malaysia — the certifications above are registered to this facility, so every box a partner stocks comes off a certified line. The brand and formula are owned by UniPro (Malaysia), international distribution is managed by Wellness Alliance Sdn Bhd.':
+      'UNI MAX wird von Orient Biotech Sdn Bhd hergestellt und abgefüllt, einer zertifizierten Produktionsanlage in Malaysia — die oben genannten Zertifizierungen sind auf diese Anlage registriert, sodass jede Box, die ein Partner führt, von einer zertifizierten Linie stammt. Marke und Rezeptur gehören UniPro (Malaysia), der internationale Vertrieb wird von Wellness Alliance Sdn Bhd verwaltet.',
     'Finished product, not powder':
       'Fertigprodukt, kein Pulver',
     'Not every Tongkat Ali supplier hands you a finished product.':
